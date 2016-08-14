@@ -1,0 +1,25 @@
+{
+    "name": "crynobone/billplz",
+    "description": "PHP library for working with BillPlz API",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mior Muhammad Zaki",
+            "email": "crynobone@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5",
+        "php-http/httplug": "~1.0",
+        "php-http/client-common": "^1.1",
+        "php-http/client-implementation": "^1.0",
+        "php-http/discovery": "^0.8.0",
+        "guzzlehttp/psr7": "^1.0"
+    },
+    "require-dev": {
+        "php-http/guzzle6-adapter": "^1.1",
+        "php-http/curl-client": "^1.1"
+    },
+    "minimum-stability": "dev"
+}
