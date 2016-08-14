@@ -41,6 +41,14 @@ $http = new HttpMethodsClient(
 $billplz = new Client($http, 'your-api-key');
 ```
 
+#### Using Sandbox
+
+You can set to use development/sandbox environment by adding the following code:
+
+```php
+$billplz->useSandbox();
+```
+
 ### Creating Collection instance
 
 Now you can create an instance of Collection:
@@ -114,7 +122,7 @@ var_dump($body);
 }
 ```
 
-### Create an Open Collection
+#### Create an Open Collection
 
 ```php
 $response = $collection->createOpen(
