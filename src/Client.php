@@ -67,6 +67,6 @@ class Client
         $uri = (new Uri($this->endpoint.'/'.$url))
                     ->withUserInfo($this->apiKey);
 
-        return $this->http->send($method, $uri, $headers, $data);
+        return $this->http->send($method, $uri, $headers, http_build_query($data, null, '&'));
     }
 }
