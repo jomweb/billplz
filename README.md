@@ -50,3 +50,14 @@ use Billplz\Collection;
 
 $collection = new Collection($billplz);
 ```
+
+
+#### Adding new Collection
+
+You can add a new collection by calling the following code:
+
+```php
+$response = $collection->create('My first collection');
+
+$id = json_decode($response->getBody(), true)['id'];
+```
