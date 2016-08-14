@@ -36,9 +36,9 @@ class Bill
      * @param  string  $description
      * @param  array  $optional
      *
-     * @return \Psr\Http\Message\ResponseInterface
-     *
      * @throws  \InvalidArgumentException
+     *
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function create(
         $collectionId,
@@ -62,7 +62,7 @@ class Bill
         );
 
         $body['collection_id'] = $collectionId;
-        $body['callback_url'] = $callbackUrl;
+        $body['callback_url']  = $callbackUrl;
 
         return $this->client->send('POST', 'bills', [], $body);
     }

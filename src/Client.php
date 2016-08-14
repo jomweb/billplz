@@ -36,7 +36,7 @@ class Client
      */
     public function __construct(HttpClient $http, $apiKey)
     {
-        $this->http = $http;
+        $this->http   = $http;
         $this->apiKey = $apiKey;
     }
 
