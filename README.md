@@ -66,9 +66,10 @@ Now you can create an instance of Collection:
 ```php
 use Billplz\Collection;
 
-$collection = new Collection($billplz);
+$collection = $billplz->collection();
 ```
 
+> You can also manually set the API version by doing `$billplz->collection('v3');`
 
 #### Create a Collection
 
@@ -182,8 +183,10 @@ Now you can create an instance of Bill:
 ```php
 use Billplz\Bill;
 
-$bill = new Bill($billplz);
+$bill = $billplz->bill();
 ```
+
+> You can also manually set the API version by doing `$billplz->bill('v3');`
 
 #### Create a Bill
 

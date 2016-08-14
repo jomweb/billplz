@@ -28,7 +28,11 @@ class Client
      *
      * @var string
      */
-    protected $endpoint = 'https://www.billplz.com/api/v3';
+    protected $endpoint = 'https://www.billplz.com/api';
+
+    protected $supportedVersions = [
+        'v3' => 'Three',
+    ];
 
     /**
      * Construct a new Billplz Client.
@@ -66,9 +70,45 @@ class Client
      */
     public function useSandbox()
     {
-        $this->endpoint = 'https://billplz-staging.herokuapp.com/api/v3';
+        return $this->useCustomEndpoint('https://billplz-staging.herokuapp.com/api');
+    }
+
+    /**
+     * Use custom endpoint.
+     *
+     * @param  string  $endpoint
+     *
+     * @return $this
+     */
+    public function useCustomEndpoint($endpoint)
+    {
+        $this->endpoint = $endpoint;
 
         return $this;
+    }
+
+    /**
+     * Get collection resource.
+     *
+     * @param  string  $version
+     *
+     * @return object
+     */
+    public function collection($version = 'v3')
+    {
+        return $this->getVersionedResource($version, 'Collection');
+    }
+
+    /**
+     * Get bill resource.
+     *
+     * @param  string  $version
+     *
+     * @return object
+     */
+    public function bill($version = 'v3')
+    {
+        return $this->getVersionedResource($version, 'Bill');
     }
 
     /**
@@ -102,11 +142,11 @@ class Client
      */
     protected function prepareRequestBody($body = [], array $headers = [])
     {
-        if ($headers['Content-Type'] == 'application/json') {
+        if (isset($headers['Content-Type']) && $headers['Content-Type'] == 'application/json') {
             return json_encode($body);
         }
 
-        return http_build_query($data, null, '&');
+        return http_build_query($body, null, '&');
     }
 
     /**
@@ -119,5 +159,26 @@ class Client
     protected function prepareRequestHeaders(array $headers = [])
     {
         return $headers;
+    }
+
+    /**
+     * Get versioned resource (service).
+     *
+     * @param  string  $version
+     * @param  string  $service
+     *
+     * @throws \InvalidArgumentException
+     *
+     * @return object
+     */
+    protected function getVersionedResource($version, $service)
+    {
+        if (! array_key_exists($version, $this->supportedVersions)) {
+            throw new InvalidArgumentException("API version {$version} is not supported");
+        }
+
+        $class = sprintf('%s\%s\%s', __NAMESPACE__, $this->supportedVersions[$version], $service);
+
+        return new $class($this);
     }
 }
