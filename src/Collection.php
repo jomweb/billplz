@@ -13,16 +13,11 @@ class Collection
 
     public function create($title, array $data = [])
     {
-
+        return $this->client->send('POST', 'collections', [], array_merge(compact('title'), $data)));
     }
 
-    public function show($id)
+    public function createOpen($title, $description, $amount, array $data = [])
     {
-
-    }
-
-    public function destroy($id)
-    {
-
+        //
     }
 }
