@@ -8,7 +8,7 @@ To install through composer, simply put the following in your `composer.json` fi
 ```json
 {
     "require": {
-        "crynobone/billplz": "~1.0",
+        "jomweb/billplz": "~1.0",
         "php-http/guzzle6-adapter": "^1.1"
     }
 }

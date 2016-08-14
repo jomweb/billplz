@@ -1,5 +1,5 @@
 {
-    "name": "crynobone/billplz",
+    "name": "jomweb/billplz",
     "description": "PHP library for working with BillPlz API",
     "type": "library",
     "license": "MIT",
