@@ -49,7 +49,7 @@ You can set to use development/sandbox environment by adding the following code:
 $billplz->useSandbox();
 ```
 
-### Creating Collection instance
+### Creating Collection Instance
 
 Now you can create an instance of Collection:
 
@@ -164,3 +164,103 @@ var_dump($body);
 }
 ```
 
+
+### Creating Bill Instance 
+
+Now you can create an instance of Bill:
+
+```php
+use Billplz\Bill;
+
+$bill = new Bill($billplz);
+```
+
+#### Create a Bill
+
+You can add a new bill by calling the following code:
+
+```php
+$response = $bill->create(
+  'inbmmepb',
+  'api@billplz.com',
+  null,
+  'Michael API V3',
+  Money\Money::MYR(200),
+  'http://example.com/webhook/',
+  'Maecenas eu placerat ante.'
+);
+
+$body = json_decode($response->getBody(), true);
+
+var_dump($body);
+```
+
+```json
+{
+  "id": "8X0Iyzaw",
+  "collection_id": "inbmmepb",
+  "paid": false,
+  "state": "overdue",
+  "amount": 200 ,
+  "paid_amount": 0,
+  "due_at": "2015-3-9",
+  "email" :"api@billplz.com",
+  "mobile": null,
+  "name": "MICHAEL API V3",
+  "url": "https://www.billplz.com/bills/8X0Iyzaw",
+  "reference_1_label": "Reference 1",
+  "reference_1": null,
+  "reference_2_label": "Reference 2",
+  "reference_2": null,
+  "redirect_url": null,
+  "callback_url": "http://example.com/webhook/",
+  "description": "Maecenas eu placerat ante."
+}
+```
+
+#### Get a Bill
+
+```php
+$response = $bill->show('8X0Iyzaw');
+
+$body = json_decode($response->getBody(), true);
+
+var_dump($body);
+```
+
+```json
+{
+  "id": "8X0Iyzaw",
+  "collection_id": "inbmmepb",
+  "paid": false,
+  "state": "due",
+  "amount": 200 ,
+  "paid_amount": 0,
+  "due_at": "2020-12-31",
+  "email" :"api@billplz.com",
+  "mobile": "+60112223333",
+  "name": "MICHAEL API V3",
+  "url": "https://www.billplz.com/bills/8X0Iyzaw",
+  "reference_1_label": "First Name",
+  "reference_1": Jordan,
+  "reference_2_label": "Last Name",
+  "reference_2": Michael,
+  "redirect_url": "http://example.com/redirect/",
+  "callback_url": "http://example.com/webhook/",
+  "description": "Maecenas eu placerat ante."
+}
+```
+
+#### Delete a Bill
+
+```php
+$response = $bill->destroy('8X0Iyzaw');
+
+$body = json_decode($response->getBody(), true);
+
+var_dump($body);
+```
+
+```json
+{}
+```

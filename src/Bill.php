@@ -3,6 +3,7 @@
 namespace Billplz;
 
 use Money\Money;
+use InvalidArgumentException;
 
 class Bill
 {
@@ -36,6 +37,8 @@ class Bill
      * @param  array  $optional
      *
      * @return \Psr\Http\Message\ResponseInterface
+     *
+     * @throws  \InvalidArgumentException
      */
     public function create(
         $collectionId,
@@ -48,6 +51,10 @@ class Bill
         array $optional = []
     ) {
         $amount = $money->getAmount();
+
+        if (empty($email) && empty($mobile)) {
+            throw new InvalidArgumentException('Either $email or $mobile should be present');
+        }
 
         $body = array_merge(
             compact('email', 'mobile', 'name', 'amount', 'description'),
