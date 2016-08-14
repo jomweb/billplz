@@ -16,7 +16,7 @@ To install through composer, simply put the following in your `composer.json` fi
 
 ### HTTP Adapter
 
-Instead of utilizing `php-http/curl-client` you might want to use any other adapter that implements `php-http/client-implementation`. Check [Clients & Adapters](http://docs.php-http.org/en/latest/clients.html) for PHP-HTTP.
+Instead of utilizing `php-http/guzzle6-adapter` you might want to use any other adapter that implements `php-http/client-implementation`. Check [Clients & Adapters](http://docs.php-http.org/en/latest/clients.html) for PHP-HTTP.
 
 ## Usages
 
@@ -242,9 +242,9 @@ var_dump($body);
   "name": "MICHAEL API V3",
   "url": "https://www.billplz.com/bills/8X0Iyzaw",
   "reference_1_label": "First Name",
-  "reference_1": Jordan,
+  "reference_1": "Jordan",
   "reference_2_label": "Last Name",
-  "reference_2": Michael,
+  "reference_2": "Michael",
   "redirect_url": "http://example.com/redirect/",
   "callback_url": "http://example.com/webhook/",
   "description": "Maecenas eu placerat ante."
