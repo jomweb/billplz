@@ -52,7 +52,7 @@ $collection = new Collection($billplz);
 ```
 
 
-#### Adding new Collection
+#### Create a Collection
 
 You can add a new collection by calling the following code:
 
@@ -113,3 +113,51 @@ var_dump($body);
   }
 }
 ```
+
+### Create an Open Collection
+
+```php
+$response = $collection->createOpen(
+    'My First API Collection', 
+    'Maecenas eu placerat ante. Fusce ut neque justo, et aliquet enim. In hac habitasse platea dictumst.',
+    Money\Money::MYR(299),
+    [
+        'logo' => '@/Users/Billplz/Documents/uploadPhoto.png',
+        'split_payment[email]' => 'verified@account.com',
+        'split_payment[fixed_cut]' => 100,
+    ]
+);
+
+$body = json_decode($response->getBody(), true);
+
+var_dump($body);
+```
+
+```json
+{
+  "id": "0pp87t_6",
+  "title": "MY FIRST API OPEN COLLECTION",
+  "description": "Maecenas eu placerat ante. Fusce ut neque justo, et aliquet enim. In hac habitasse platea dictumst.",
+  "reference_1_label": null,
+  "reference_2_label": null,
+  "email_link": null,
+  "amount": 299,
+  "fixed_amount": true,
+  "tax": null,
+  "fixed_quantity": true,
+  "payment_button": "pay",
+  "photo":
+  {
+    "retina_url":  null,
+    "avatar_url":  null
+  },
+  "split_payment": 
+  {
+    "email": null,
+    "fixed_cut": null,
+    "variable_cut": null
+  },
+  "url": "https://www.billplz.com/0pp87t_6"
+}
+```
+
