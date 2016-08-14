@@ -102,8 +102,8 @@ var_dump($body);
   "title": "My First API Collection",
   "logo":
   {
-    "thumb_url": https://sample.net/assets/uploadPhoto.png,
-    "avatar_url": https://sample.net/assets/uploadPhoto.png
+    "thumb_url": "https://sample.net/assets/uploadPhoto.png",
+    "avatar_url": "https://sample.net/assets/uploadPhoto.png"
   },
   "split_payment": 
   {
