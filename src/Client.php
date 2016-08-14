@@ -3,6 +3,8 @@
 namespace Billplz;
 
 use GuzzleHttp\Psr7\Uri;
+use Http\Discovery\HttpClientDiscovery;
+use Http\Discovery\MessageFactoryDiscovery;
 use Http\Client\Common\HttpMethodsClient as HttpClient;
 
 class Client
@@ -41,6 +43,23 @@ class Client
     }
 
     /**
+     * Make a client.
+     *
+     * @param string  $apiKey
+     *
+     * @return $this
+     */
+    public static function make($apiKey)
+    {
+        $client = new HttpClient(
+            HttpClientDiscovery::find(),
+            MessageFactoryDiscovery::find()
+        );
+
+        return new static($client, $apiKey);
+    }
+
+    /**
      * Use sandbox environment.
      *
      * @return $this
@@ -67,6 +86,38 @@ class Client
         $uri = (new Uri($this->endpoint.'/'.$url))
                     ->withUserInfo($this->apiKey);
 
-        return $this->http->send($method, $uri, $headers, http_build_query($data, null, '&'));
+        $headers = $this->prepareRequestHeaders($headers);
+        $body    = $this->prepareRequestBody($data, $headers);
+
+        return $this->http->send($method, $uri, $headers, $body);
+    }
+
+    /**
+     * Prepare request body.
+     *
+     * @param  mixed  $body
+     * @param  array  $headers
+     *
+     * @return string
+     */
+    protected function prepareRequestBody($body = [], array $headers = [])
+    {
+        if ($headers['Content-Type'] == 'application/json') {
+            return json_encode($body);
+        }
+
+        return http_build_query($data, null, '&');
+    }
+
+    /**
+     * Prepare request headers.
+     *
+     * @param  array  $headers
+     *
+     * @return array
+     */
+    protected function prepareRequestHeaders(array $headers = [])
+    {
+        return $headers;
     }
 }
