@@ -26,7 +26,8 @@
         "guzzlehttp/psr7": "^1.0",
         "php-http/guzzle6-adapter": "^1.1",
         "php-http/curl-client": "^1.1",
-        "phpunit/phpunit": "~4.8|~5.0"
+        "phpunit/phpunit": "~4.8|~5.0",
+        "mockery/mockery": "^0.9.4"
     },
     "extra": {
         "branch-alias": {
