@@ -9,6 +9,11 @@
             "email": "crynobone@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Billplz\\": "src/"
+        }
+    },
     "require": {
         "php": ">=5.5",
         "php-http/httplug": "~1.0",
