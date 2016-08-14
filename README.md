@@ -41,6 +41,16 @@ $http = new HttpMethodsClient(
 $billplz = new Client($http, 'your-api-key');
 ```
 
+You could also use `php-http/discovery` to automatically pick available adapter installed via composer:
+
+```php
+<?php
+
+use Billplz\Client;
+
+$billplz = Client::make('your-api-key');
+```
+
 #### Using Sandbox
 
 You can set to use development/sandbox environment by adding the following code:
