@@ -120,12 +120,7 @@ var_dump($body);
 $response = $collection->createOpen(
     'My First API Collection', 
     'Maecenas eu placerat ante. Fusce ut neque justo, et aliquet enim. In hac habitasse platea dictumst.',
-    Money\Money::MYR(299),
-    [
-        'logo' => '@/Users/Billplz/Documents/uploadPhoto.png',
-        'split_payment[email]' => 'verified@account.com',
-        'split_payment[fixed_cut]' => 100,
-    ]
+    Money\Money::MYR(299)
 );
 
 $body = json_decode($response->getBody(), true);
