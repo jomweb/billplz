@@ -22,6 +22,8 @@ Instead of utilizing `php-http/curl-client` you might want to use any other adap
 
 ### Creating Billplz Client
 
+You can start by creating a Billplz client by using the following code (which uses `php-http/guzzle6-adapter`):
+
 ```php
 <?php
 
@@ -37,4 +39,14 @@ $http = new HttpMethodsClient(
 
 
 $billplz = new Client($http, 'your-api-key');
+```
+
+### Creating Collection instance
+
+Now you can create an instance of Collection:
+
+```php
+use Billplz\Collection;
+
+$collection = new Collection($billplz);
 ```
