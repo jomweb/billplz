@@ -1,6 +1,11 @@
 PHP library for working with BillPlz API v3 and beyond...
 ==============
 
+[![Latest Stable Version](https://poser.pugx.org/jomweb/billplz/v/stable?format=flat)](https://packagist.org/packages/jomweb/billplz)
+[![Total Downloads](https://poser.pugx.org/jomweb/billplz/downloads?format=flat)](https://packagist.org/packages/jomweb/billplz)
+[![License](https://poser.pugx.org/jomweb/billplz/license?format=flat)](https://packagist.org/packages/jomweb/billplz)
+[![Build Status](https://travis-ci.org/jomweb/billplz.svg?branch=master)](https://travis-ci.org/jomweb/billplz)
+
 ## Installation
 
 To install through composer, simply put the following in your `composer.json` file:
