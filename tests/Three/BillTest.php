@@ -3,6 +3,7 @@
 use Money\Money;
 use Billplz\Client;
 use Billplz\Three\Bill;
+use GuzzleHttp\Psr7\Uri;
 
 class BillTest extends PHPUnit_Framework_TestCase
 {
@@ -26,7 +27,9 @@ class BillTest extends PHPUnit_Framework_TestCase
             'callback_url' => 'http://example.com/webhook/',
         ];
 
-        $client->shouldReceive('send')->once()->with('POST', 'v3/bills', [], $data)->andReturnNull();
+        $client->shouldReceive('getApiEndpoint')->once()->andReturn('https://api.billplz.com')
+            ->shouldReceive('getApiKey')->once()->andReturn('foobar')
+            ->shouldReceive('send')->once()->with('POST', Mockery::type(Uri::class), [], $data)->andReturnNull();
 
         $bill = new Bill($client);
 
