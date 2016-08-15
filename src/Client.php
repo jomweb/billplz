@@ -3,6 +3,7 @@
 namespace Billplz;
 
 use GuzzleHttp\Psr7\Uri;
+use InvalidArgumentException;
 use Http\Discovery\HttpClientDiscovery;
 use Http\Discovery\MessageFactoryDiscovery;
 use Http\Client\Common\HttpMethodsClient as HttpClient;
@@ -30,6 +31,18 @@ class Client
      */
     protected $endpoint = 'https://www.billplz.com/api';
 
+    /**
+     * Default version.
+     *
+     * @var string
+     */
+    protected $defaultVersion = 'v3';
+
+    /**
+     * List of supported API versions.
+     *
+     * @var array
+     */
     protected $supportedVersions = [
         'v3' => 'Three',
     ];
@@ -88,27 +101,47 @@ class Client
     }
 
     /**
-     * Get collection resource.
+     * Use different API version.
      *
      * @param  string  $version
      *
+     * @throws \InvalidArgumentException
+     *
+     * @return $this
+     */
+    public function useVersion($version)
+    {
+        if (! array_key_exists($version, $this->supportedVersions)) {
+            throw new InvalidArgumentException("API version {$version} is not supported");
+        }
+
+        $this->defaultVersion = $version;
+
+        return $this;
+    }
+
+    /**
+     * Get collection resource.
+     *
+     * @param  string|null  $version
+     *
      * @return object
      */
-    public function collection($version = 'v3')
+    public function collection($version = null)
     {
-        return $this->getVersionedResource($version, 'Collection');
+        return $this->getVersionedResource('Collection', $version);
     }
 
     /**
      * Get bill resource.
      *
-     * @param  string  $version
+     * @param  string|null  $version
      *
      * @return object
      */
-    public function bill($version = 'v3')
+    public function bill($version = null)
     {
-        return $this->getVersionedResource($version, 'Bill');
+        return $this->getVersionedResource('Bill', $version);
     }
 
     /**
@@ -164,17 +197,17 @@ class Client
     /**
      * Get versioned resource (service).
      *
-     * @param  string  $version
      * @param  string  $service
+     * @param  string|null  $version
      *
      * @throws \InvalidArgumentException
      *
      * @return object
      */
-    protected function getVersionedResource($version, $service)
+    protected function getVersionedResource($service, $version = null)
     {
-        if (! array_key_exists($version, $this->supportedVersions)) {
-            throw new InvalidArgumentException("API version {$version} is not supported");
+        if (is_null($version) || ! array_key_exists($version, $this->supportedVersions)) {
+            $version = $this->defaultVersion;
         }
 
         $class = sprintf('%s\%s\%s', __NAMESPACE__, $this->supportedVersions[$version], $service);
