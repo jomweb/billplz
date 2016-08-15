@@ -72,8 +72,6 @@ $billplz->useVersion('v4');
 Now you can create an instance of Collection:
 
 ```php
-use Billplz\Collection;
-
 $collection = $billplz->collection();
 ```
 
@@ -189,8 +187,6 @@ var_dump($body);
 Now you can create an instance of Bill:
 
 ```php
-use Billplz\Bill;
-
 $bill = $billplz->bill();
 ```
 
