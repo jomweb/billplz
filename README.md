@@ -1,4 +1,4 @@
-PHP library for working with BillPlz API
+PHP library for working with BillPlz API v3 and beyond...
 ==============
 
 ## Installation
