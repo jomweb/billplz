@@ -1,9 +1,6 @@
 <?php
 
-namespace Billplz\Three;
-
-use Money\Money;
-use InvalidArgumentException;
+namespace Billplz\Two;
 
 class Bill extends Request
 {
@@ -16,7 +13,6 @@ class Bill extends Request
      * @param  string  $name
      * @param  \Money\Money  $money
      * @param  string  $callbackUrl
-     * @param  string  $description
      * @param  array  $optional
      *
      * @throws  \InvalidArgumentException
@@ -30,7 +26,6 @@ class Bill extends Request
         $name,
         Money $money,
         $callbackUrl,
-        $description,
         array $optional = []
     ) {
         $amount = $money->getAmount();
@@ -40,7 +35,7 @@ class Bill extends Request
         }
 
         $body = array_merge(
-            compact('email', 'mobile', 'name', 'amount', 'description'),
+            compact('email', 'mobile', 'name', 'amount'),
             $optional
         );
 

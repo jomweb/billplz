@@ -44,6 +44,7 @@ class Client
      * @var array
      */
     protected $supportedVersions = [
+        'v2' => 'Two',
         'v3' => 'Three',
     ];
 

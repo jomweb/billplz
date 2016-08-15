@@ -1,6 +1,6 @@
 <?php
 
-namespace Billplz\Three;
+namespace Billplz;
 
 abstract class Version
 {
@@ -9,7 +9,7 @@ abstract class Version
      *
      * @var string
      */
-    protected $version = 'v3';
+    protected $version;
 
     /**
      * Get API endpoint.

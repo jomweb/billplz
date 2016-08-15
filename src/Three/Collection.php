@@ -3,27 +3,9 @@
 namespace Billplz\Three;
 
 use Money\Money;
-use Billplz\Client;
 
-class Collection extends Version
+class Collection extends Request
 {
-    /**
-     * The Billplz client.
-     *
-     * @var \Billplz\Client
-     */
-    protected $client;
-
-    /**
-     * Construct a new Collection.
-     *
-     * @param \Billplz\Client  $client
-     */
-    public function __construct(Client $client)
-    {
-        $this->client = $client;
-    }
-
     /**
      * Create a new collection.
      *
