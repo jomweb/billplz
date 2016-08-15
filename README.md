@@ -59,6 +59,14 @@ You can set to use development/sandbox environment by adding the following code:
 $billplz->useSandbox();
 ```
 
+#### Using different API Version
+
+By default `jomweb/billplz` would use `v3` API version for any request, however you can customize this in future when new API version is available.
+
+```php
+$billplz->useVersion('v4');
+```
+
 ### Creating Collection Instance
 
 Now you can create an instance of Collection:
