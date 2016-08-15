@@ -3,9 +3,9 @@
 namespace Billplz\Three;
 
 use Billplz\Client;
-use Billplz\Version;
+use Billplz\Request as BaseRequest;
 
-abstract class Request extends Version
+abstract class Request extends BaseRequest
 {
     /**
      * Version namespace.
@@ -13,13 +13,6 @@ abstract class Request extends Version
      * @var string
      */
     protected $version = 'v3';
-
-    /**
-     * The Billplz client.
-     *
-     * @var \Billplz\Client
-     */
-    protected $client;
 
     /**
      * Construct a new Collection.

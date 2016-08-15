@@ -47,7 +47,9 @@ class Bill extends Request
         $body['collection_id'] = $collectionId;
         $body['callback_url']  = $callbackUrl;
 
-        return $this->client->send('POST', $this->endpoint('bills'), [], $body);
+        list($uri, $headers) = $this->endpoint('bills');
+
+        return $this->client->send('POST', $uri, $headers, $body);
     }
 
     /**
@@ -59,7 +61,9 @@ class Bill extends Request
      */
     public function show($id)
     {
-        return $this->client->send('GET', $this->endpoint("bills/{$id}"));
+        list($uri, $headers) = $this->endpoint("bills/{$id}");
+
+        return $this->client->send('GET', $uri, $headers);
     }
 
     /**
@@ -71,6 +75,8 @@ class Bill extends Request
      */
     public function destroy($id)
     {
-        return $this->client->send('DELETE', $this->endpoint("bills/{$id}"));
+        list($uri, $headers) = $this->endpoint("bills/{$id}");
+
+        return $this->client->send('DELETE', $uri, $headers);
     }
 }

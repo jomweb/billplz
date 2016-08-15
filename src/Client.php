@@ -2,7 +2,6 @@
 
 namespace Billplz;
 
-use GuzzleHttp\Psr7\Uri;
 use InvalidArgumentException;
 use Http\Discovery\HttpClientDiscovery;
 use Http\Discovery\MessageFactoryDiscovery;
@@ -84,7 +83,7 @@ class Client
      */
     public function useSandbox()
     {
-        return $this->useCustomEndpoint('https://billplz-staging.herokuapp.com/api');
+        return $this->useCustomApiEndpoint('https://billplz-staging.herokuapp.com/api');
     }
 
     /**
@@ -94,7 +93,7 @@ class Client
      *
      * @return $this
      */
-    public function useCustomEndpoint($endpoint)
+    public function useCustomApiEndpoint($endpoint)
     {
         $this->endpoint = $endpoint;
 
@@ -119,6 +118,26 @@ class Client
         $this->defaultVersion = $version;
 
         return $this;
+    }
+
+    /**
+     * Get API endpoint URL.
+     *
+     * @return string
+     */
+    public function getApiEndpoint()
+    {
+        return $this->endpoint;
+    }
+
+    /**
+     * Get API Key.
+     *
+     * @return string|null
+     */
+    public function getApiKey()
+    {
+        return $this->apiKey;
     }
 
     /**
@@ -149,17 +168,14 @@ class Client
      * Send the HTTP request.
      *
      * @param  string  $method
-     * @param  \Psr\Http\Message\UriInterface|string  $url
+     * @param  \Psr\Http\Message\UriInterface|string  $uri
      * @param  array  $headers
      * @param  array  $data
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function send($method, $url, $headers = [], $data = [])
+    public function send($method, $uri, $headers = [], $data = [])
     {
-        $uri = (new Uri($this->endpoint.'/'.$url))
-                    ->withUserInfo($this->apiKey);
-
         $headers = $this->prepareRequestHeaders($headers);
         $body    = $this->prepareRequestBody($data, $headers);
 

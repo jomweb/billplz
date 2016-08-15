@@ -18,7 +18,9 @@ class Collection extends Request
     {
         $body = array_merge(compact('title'), $optional);
 
-        return $this->client->send('POST', $this->endpoint('collections'), [], $body);
+        list($uri, $headers) = $this->endpoint('collections');
+
+        return $this->client->send('POST', $uri, $headers, $body);
     }
 
     /**
@@ -37,6 +39,8 @@ class Collection extends Request
 
         $body = array_merge(compact('title', 'description', 'amount'), $optional);
 
-        return $this->client->send('POST', $this->endpoint('open_collections'), [], $body);
+        list($uri, $headers) = $this->endpoint('open_collections');
+
+        return $this->client->send('POST', $uri, $headers, $body);
     }
 }
