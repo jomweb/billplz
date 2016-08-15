@@ -1,8 +1,8 @@
 <?php
 
 use Money\Money;
-use Billplz\Bill;
 use Billplz\Client;
+use Billplz\Three\Bill;
 
 class BillTest extends PHPUnit_Framework_TestCase
 {
@@ -26,7 +26,7 @@ class BillTest extends PHPUnit_Framework_TestCase
             'callback_url' => 'http://example.com/webhook/',
         ];
 
-        $client->shouldReceive('send')->once()->with('POST', 'bills', [], $data)->andReturnNull();
+        $client->shouldReceive('send')->once()->with('POST', 'v3/bills', [], $data)->andReturnNull();
 
         $bill = new Bill($client);
 
