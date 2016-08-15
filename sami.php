@@ -10,10 +10,10 @@ use Sami\RemoteRepository\GitHubRemoteRepository;
 $iterator = Finder::create()
     ->files()
     ->name('*.php')
-    ->exclude('Tests')
-    ->in('./');
+    ->in('src/');
 
 $versions = GitVersionCollection::create(__DIR__)
+    ->addFromTags('v0.*')
     ->add('master', 'master branch');
 
 return new Sami($iterator, [
