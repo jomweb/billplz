@@ -285,3 +285,17 @@ var_dump($body);
 ```json
 {}
 ```
+
+## Handling Response
+
+Every request made to Billplz would return `\Psr\Http\Message\ResponseInterface` which would allow developer to further inspect the response.
+
+### Checking the Response HTTP Status
+
+You can get the response status code via:
+
+```php
+if ($response->getStatusCode() !== 200) {
+  throw new SomethingHasGoneReallyBadException();
+}
+```
