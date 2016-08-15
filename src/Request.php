@@ -24,6 +24,7 @@ abstract class Request
      * Get API endpoint.
      *
      * @param  string  $name
+     * @param  array  $headers
      *
      * @return array
      */
