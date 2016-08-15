@@ -27,7 +27,8 @@
         "php-http/guzzle6-adapter": "^1.1",
         "php-http/curl-client": "^1.1",
         "phpunit/phpunit": "~4.8|~5.0",
-        "mockery/mockery": "^0.9.4"
+        "mockery/mockery": "^0.9.4",
+        "sami/sami": "~3.3"
     },
     "extra": {
         "branch-alias": {
