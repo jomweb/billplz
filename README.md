@@ -299,3 +299,13 @@ if ($response->getStatusCode() !== 200) {
   throw new SomethingHasGoneReallyBadException();
 }
 ```
+
+### Checking the Response Header
+
+You can also check the response header via the following code:
+
+```php
+$response->getHeaders(); // get all headers as array.
+$response->hasHeader('Content-Type'); // check if `Content-Type` header exist.
+$response->getHeader('Content-Type'); // get `Content-Type` header.
+```
