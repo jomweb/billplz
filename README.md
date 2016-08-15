@@ -6,6 +6,15 @@ PHP library for working with BillPlz API v3 and beyond...
 [![License](https://poser.pugx.org/jomweb/billplz/license?format=flat)](https://packagist.org/packages/jomweb/billplz)
 [![Build Status](https://travis-ci.org/jomweb/billplz.svg?branch=master)](https://travis-ci.org/jomweb/billplz)
 
+* [Installation](#installation)
+* [Usages](#usages)
+  - [Creating Billplz Client](#creating-billplz-client)
+  - [Creating Collection Request](#creating-collection-request)
+  - [Creating Bill Request](#creating-bill-request)
+* [Handling Response](#handling-response)
+  - [Checking the Response HTTP Status](#checking-the-response-http-status)
+  - [Checking the Response Header](#checking-the-response-header)
+
 ## Installation
 
 To install through composer, simply put the following in your `composer.json` file:
@@ -72,7 +81,7 @@ By default `jomweb/billplz` would use `v3` API version for any request, however 
 $billplz->useVersion('v4');
 ```
 
-### Creating Collection Instance
+### Creating Collection Request
 
 Now you can create an instance of Collection:
 
@@ -187,7 +196,7 @@ var_dump($body);
 ```
 
 
-### Creating Bill Instance 
+### Creating Bill Request 
 
 Now you can create an instance of Bill:
 
