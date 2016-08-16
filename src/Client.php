@@ -28,7 +28,7 @@ class Client
      *
      * @var string
      */
-    protected $endpoint = 'https://www.billplz.com/api';
+    protected $apiEndpoint = 'https://www.billplz.com/api';
 
     /**
      * Default version.
@@ -89,13 +89,13 @@ class Client
     /**
      * Use custom endpoint.
      *
-     * @param  string  $endpoint
+     * @param  string  $apiEndpoint
      *
      * @return $this
      */
-    public function useCustomApiEndpoint($endpoint)
+    public function useCustomApiEndpoint($apiEndpoint)
     {
-        $this->endpoint = $endpoint;
+        $this->apiEndpoint = $apiEndpoint;
 
         return $this;
     }
