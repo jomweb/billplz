@@ -149,7 +149,7 @@ class Client
      */
     public function collection($version = null)
     {
-        return $this->getVersionedResource('Collection', $version);
+        return $this->resource('Collection', $version);
     }
 
     /**
@@ -161,7 +161,32 @@ class Client
      */
     public function bill($version = null)
     {
-        return $this->getVersionedResource('Bill', $version);
+        return $this->resource('Bill', $version);
+    }
+
+    /**
+     * Get versioned resource (service).
+     *
+     * @param  string  $service
+     * @param  string|null  $version
+     *
+     * @throws \InvalidArgumentException
+     *
+     * @return object
+     */
+    public function resource($service, $version = null)
+    {
+        if (is_null($version) || ! array_key_exists($version, $this->supportedVersions)) {
+            $version = $this->defaultVersion;
+        }
+
+        $class = sprintf('%s\%s\%s', __NAMESPACE__, $this->supportedVersions[$version], str_replace('.', '\\', $service));
+
+        if (! class_exists($class)) {
+            throw new InvalidArgumentException("Resource [{$service}] for version [{$version}] is not available");
+        }
+
+        return new $class($this);
     }
 
     /**
@@ -209,30 +234,5 @@ class Client
     protected function prepareRequestHeaders(array $headers = [])
     {
         return $headers;
-    }
-
-    /**
-     * Get versioned resource (service).
-     *
-     * @param  string  $service
-     * @param  string|null  $version
-     *
-     * @throws \InvalidArgumentException
-     *
-     * @return object
-     */
-    protected function getVersionedResource($service, $version = null)
-    {
-        if (is_null($version) || ! array_key_exists($version, $this->supportedVersions)) {
-            $version = $this->defaultVersion;
-        }
-
-        $class = sprintf('%s\%s\%s', __NAMESPACE__, $this->supportedVersions[$version], $service);
-
-        if (! class_exists($class)) {
-            throw new InvalidArgumentException("Resource [{$service}] for version [{$version}] is not available");
-        }
-
-        return new $class($this);
     }
 }
