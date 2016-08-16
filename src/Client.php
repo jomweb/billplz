@@ -127,7 +127,7 @@ class Client
      */
     public function getApiEndpoint()
     {
-        return $this->endpoint;
+        return $this->apiEndpoint;
     }
 
     /**
@@ -228,6 +228,10 @@ class Client
         }
 
         $class = sprintf('%s\%s\%s', __NAMESPACE__, $this->supportedVersions[$version], $service);
+
+        if (! class_exists($class)) {
+            throw new InvalidArgumentException("Resource [{$service}] for version [{$version}] is not available");
+        }
 
         return new $class($this);
     }
