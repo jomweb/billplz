@@ -50,14 +50,14 @@ abstract class Request
     /**
      * Resolve API Endpoint URI and headers.
      *
-     * @param  string  $uri
+     * @param  string  $path
      * @param  array  $headers
      *
      * @return array
      *
      * @deprecated v0.4.2 To be removed in v0.5.0
      */
-    protected function endpoint($uri, array $headers = [])
+    protected function endpoint($path, array $headers = [])
     {
         $domain = $this->client->getApiEndpoint();
 
