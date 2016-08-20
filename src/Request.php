@@ -31,7 +31,7 @@ abstract class Request
     }
 
     /**
-     * Get API endpoint.
+     * Send API request.
      *
      * @param  string  $method
      * @param  string  $path
@@ -42,11 +42,28 @@ abstract class Request
      */
     protected function send($method, $path, array $headers = [], array $body = [])
     {
+        list($uri, $headers) = $this->endpoint($path, $headers);
+
+        return $this->client->send($method, $uri, $headers, $body);
+    }
+
+    /**
+     * Resolve API Endpoint URI and headers.
+     *
+     * @param  string  $uri
+     * @param  array  $headers
+     *
+     * @return array
+     *
+     * @deprecated v0.4.2 To be removed in v0.5.0
+     */
+    protected function endpoint($uri, array $headers = [])
+    {
         $domain = $this->client->getApiEndpoint();
 
         $uri = (new Uri(sprintf('%s/%s/%s', $domain, $this->version, $path)))
                     ->withUserInfo($this->client->getApiKey());
 
-        return $this->client->send($method, $uri, $headers, $body);
+        return [$uri, $headers];
     }
 }
