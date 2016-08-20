@@ -3,6 +3,7 @@
 namespace Billplz;
 
 use InvalidArgumentException;
+use Psr\Http\Message\StreamInterface;
 use Http\Discovery\HttpClientDiscovery;
 use Http\Discovery\MessageFactoryDiscovery;
 use Http\Client\Common\HttpMethodsClient as HttpClient;
@@ -55,7 +56,7 @@ class Client
      */
     public function __construct(HttpClient $http, $apiKey)
     {
-        $this->http   = $http;
+        $this->http = $http;
         $this->apiKey = $apiKey;
     }
 
@@ -180,7 +181,7 @@ class Client
             $version = $this->defaultVersion;
         }
 
-        $name  = str_replace('.', '\\', $service);
+        $name = str_replace('.', '\\', $service);
         $class = sprintf('%s\%s\%s', __NAMESPACE__, $this->supportedVersions[$version], $name);
 
         if (! class_exists($class)) {
@@ -196,33 +197,35 @@ class Client
      * @param  string  $method
      * @param  \Psr\Http\Message\UriInterface|string  $uri
      * @param  array  $headers
-     * @param  array  $data
+     * @param  \Psr\Http\Message\StreamInterface|array|null  $body
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function send($method, $uri, $headers = [], $data = [])
+    public function send($method, $uri, array $headers = [], $body = [])
     {
         $headers = $this->prepareRequestHeaders($headers);
-        $body    = $this->prepareRequestBody($data, $headers);
+        $body = $this->prepareRequestPayloads($headers, $body);
 
         return $this->http->send($method, $uri, $headers, $body);
     }
 
     /**
-     * Prepare request body.
+     * Prepare request payloads.
      *
-     * @param  mixed  $body
      * @param  array  $headers
+     * @param  mixed  $body
      *
-     * @return string
+     * @return array
      */
-    protected function prepareRequestBody($body = [], array $headers = [])
+    protected function prepareRequestPayloads(array $headers = [], $body = [])
     {
         if (isset($headers['Content-Type']) && $headers['Content-Type'] == 'application/json') {
-            return json_encode($body);
+            $body = json_encode($body);
+        } elseif (! $body instanceof StreamInterface) {
+            $body = http_build_query($body, null, '&');
         }
 
-        return http_build_query($body, null, '&');
+        return [$headers, $body];
     }
 
     /**

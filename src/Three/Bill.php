@@ -45,7 +45,7 @@ class Bill extends Request
         );
 
         $body['collection_id'] = $collectionId;
-        $body['callback_url']  = $callbackUrl;
+        $body['callback_url'] = $callbackUrl;
 
         list($uri, $headers) = $this->endpoint('bills');
 
