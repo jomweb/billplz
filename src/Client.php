@@ -203,7 +203,6 @@ class Client
      */
     public function send($method, $uri, array $headers = [], $body = [])
     {
-        $headers = $this->prepareRequestHeaders($headers);
         list($headers, $body) = $this->prepareRequestPayloads($headers, $body);
 
         return new Response(
@@ -233,6 +232,8 @@ class Client
      */
     protected function prepareRequestPayloads(array $headers = [], $body = [])
     {
+        $headers = $this->prepareRequestHeaders($headers);
+
         if ($body instanceof StreamInterface) {
             return [$headers, $body];
         }
