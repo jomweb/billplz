@@ -38,7 +38,7 @@ abstract class Request
      * @param  array  $headers
      * @param  array  $body
      *
-     * @return array
+     * @return \Billplz\Reponse
      */
     protected function send($method, $path, array $headers = [], array $body = [])
     {

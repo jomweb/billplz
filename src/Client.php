@@ -199,7 +199,7 @@ class Client
      * @param  array  $headers
      * @param  \Psr\Http\Message\StreamInterface|array|null  $body
      *
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return \Billplz\Response
      */
     public function send($method, $uri, array $headers = [], $body = [])
     {

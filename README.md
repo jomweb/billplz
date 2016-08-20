@@ -98,9 +98,7 @@ You can add a new collection by calling the following code:
 ```php
 $response = $collection->create('My First API Collection');
 
-$body = json_decode($response->getBody(), true);
-
-var_dump($body);
+var_dump($response->toArray());
 ```
 
 ```json
@@ -130,9 +128,7 @@ $response = $collection->create('My First API Collection', [
     'split_payment[fixed_cut]' => 100,
 ]);
 
-$body = json_decode($response->getBody(), true);
-
-var_dump($body);
+var_dump($response->toArray());
 ```
 
 ```json
@@ -162,9 +158,7 @@ $response = $collection->createOpen(
     Money\Money::MYR(299)
 );
 
-$body = json_decode($response->getBody(), true);
-
-var_dump($body);
+var_dump($response->toArray());
 ```
 
 ```json
@@ -221,9 +215,7 @@ $response = $bill->create(
   'Maecenas eu placerat ante.'
 );
 
-$body = json_decode($response->getBody(), true);
-
-var_dump($body);
+var_dump($response->toArray());
 ```
 
 ```json
@@ -254,9 +246,7 @@ var_dump($body);
 ```php
 $response = $bill->show('8X0Iyzaw');
 
-$body = json_decode($response->getBody(), true);
-
-var_dump($body);
+var_dump($response->toArray());
 ```
 
 ```json
@@ -287,9 +277,7 @@ var_dump($body);
 ```php
 $response = $bill->destroy('8X0Iyzaw');
 
-$body = json_decode($response->getBody(), true);
-
-var_dump($body);
+var_dump($response->toArray());
 ```
 
 ```json
