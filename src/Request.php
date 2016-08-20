@@ -21,20 +21,32 @@ abstract class Request
     protected $client;
 
     /**
+     * Construct a new Collection.
+     *
+     * @param \Billplz\Client  $client
+     */
+    public function __construct(Client $client)
+    {
+        $this->client = $client;
+    }
+
+    /**
      * Get API endpoint.
      *
-     * @param  string  $name
+     * @param  string  $method
+     * @param  string  $path
      * @param  array  $headers
+     * @param  array  $body
      *
      * @return array
      */
-    protected function endpoint($name, array $headers = [])
+    protected function send($method, $path, array $headers = [], array $body = [])
     {
-        $client = $this->client;
+        $domain = $this->client->getApiEndpoint();
 
-        $uri = (new Uri(sprintf('%s/%s/%s', $client->getApiEndpoint(), $this->version, $name)))
-                    ->withUserInfo($client->getApiKey());
+        $uri = (new Uri(sprintf('%s/%s/%s', $domain, $this->version, $path)))
+                    ->withUserInfo($this->client->getApiKey());
 
-        return [$uri, $headers];
+        return $this->client->send($method, $uri, $headers, $body);
     }
 }

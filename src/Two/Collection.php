@@ -16,8 +16,6 @@ class Collection extends Request
     {
         $body = array_merge(compact('title'), $optional);
 
-        list($uri, $headers) = $this->endpoint('collections');
-
-        return $this->client->send('POST', $uri, $headers, $body);
+        return $this->send('POST', 'collections', [], $body);
     }
 }
