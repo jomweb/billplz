@@ -3,6 +3,7 @@
 namespace Billplz;
 
 use BadMethodCallException;
+use Psr\Http\Message\ResponseInterface;
 
 class Response
 {
@@ -18,7 +19,7 @@ class Response
      *
      * @param \Psr\Http\Message\ResponseInterface  $original
      */
-    public function __construct($original)
+    public function __construct(ResponseInterface $original)
     {
         $this->original = $original;
     }

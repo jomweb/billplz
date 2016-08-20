@@ -206,7 +206,9 @@ class Client
         $headers = $this->prepareRequestHeaders($headers);
         list($headers, $body) = $this->prepareRequestPayloads($headers, $body);
 
-        return $this->http->send($method, $uri, $headers, $body);
+        return new Response(
+            $this->http->send($method, $uri, $headers, $body)
+        );
     }
 
     /**
