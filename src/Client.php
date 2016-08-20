@@ -204,9 +204,21 @@ class Client
     public function send($method, $uri, array $headers = [], $body = [])
     {
         $headers = $this->prepareRequestHeaders($headers);
-        $body = $this->prepareRequestPayloads($headers, $body);
+        list($headers, $body) = $this->prepareRequestPayloads($headers, $body);
 
         return $this->http->send($method, $uri, $headers, $body);
+    }
+
+    /**
+     * Prepare request headers.
+     *
+     * @param  array  $headers
+     *
+     * @return array
+     */
+    protected function prepareRequestHeaders(array $headers = [])
+    {
+        return $headers;
     }
 
     /**
@@ -226,17 +238,5 @@ class Client
         }
 
         return [$headers, $body];
-    }
-
-    /**
-     * Prepare request headers.
-     *
-     * @param  array  $headers
-     *
-     * @return array
-     */
-    protected function prepareRequestHeaders(array $headers = [])
-    {
-        return $headers;
     }
 }
