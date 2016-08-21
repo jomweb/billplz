@@ -2,6 +2,7 @@
 
 namespace Billplz;
 
+use GuzzleHttp\Psr7\Uri;
 use Laravie\Codex\Request as BaseRequest;
 
 abstract class Request extends BaseRequest
@@ -15,7 +16,9 @@ abstract class Request extends BaseRequest
      */
     protected function getUriEndpoint($endpoint)
     {
-        return parent::getUriEndpoint($endpoint)
-                    ->withUserInfo($this->client->getApiKey());
+        $domain = $this->client->getApiEndpoint();
+        $uri = new Uri(sprintf('%s/%s/%s', $domain, $this->getVersion(), $endpoint));
+
+        return $uri->withUserInfo($this->client->getApiKey());
     }
 }
