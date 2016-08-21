@@ -1,7 +1,8 @@
 {
     "name": "jomweb/billplz",
-    "description": "PHP library for working with BillPlz API",
+    "description": "PHP Agnostic library for working with BillPlz API",
     "type": "library",
+    "keyword": ["Billplz", "Payment Gateway"],
     "license": "MIT",
     "authors": [
         {
