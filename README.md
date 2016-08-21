@@ -122,8 +122,10 @@ You can also create new collection with optional parameters:
 ```php
 $response = $collection->create('My First API Collection', [
     'logo' => '@/Users/Billplz/Documents/uploadPhoto.png',
-    'split_payment[email]' => 'verified@account.com',
-    'split_payment[fixed_cut]' => \Money\Money::MYR(100),
+    'split_payment' => [
+      'email' => 'verified@account.com',
+      'fixed_cut' => \Money\Money::MYR(100),
+    ],
 ]);
 
 var_dump($response->toArray());
