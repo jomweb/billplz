@@ -189,7 +189,7 @@ class Client
             throw new InvalidArgumentException("Resource [{$service}] for version [{$version}] is not available");
         }
 
-        return new $class($this, new Sanitizer());
+        return new $class($this, $this->sanitizeWith());
     }
 
     /**
@@ -220,7 +220,17 @@ class Client
      */
     protected function responseWith(ResponseInterface $response)
     {
-        return new Response($response);
+        return new Response($response, $this->sanitizeWith());
+    }
+
+    /**
+     * Resolve the sanitizer class.
+     *
+     * @return \Billplz\Sanitizer
+     */
+    protected function sanitizeWith()
+    {
+        return new Sanitizer();
     }
 
     /**
