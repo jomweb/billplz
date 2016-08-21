@@ -28,14 +28,14 @@ class Sanitizer
     /**
      * Add sanitization rules.
      *
-     * @param  string  $name
+     * @param  string|array  $name
      * @param  \Billplz\Casts\Cast  $cast
      *
      * @return $this
      */
-    public function add($name, Cast $cast)
+    public function add($group, Cast $cast)
     {
-        $this->casts[$name] = $cast;
+        $this->casts = \igorw\assoc_in($this->casts, (array) $group, $cast);
 
         return $this;
     }
@@ -44,15 +44,16 @@ class Sanitizer
      * Sanitize request.
      *
      * @param  array  $inputs
+     * @param  array  $group
      *
      * @return array
      */
-    public function from(array $inputs)
+    public function from(array $inputs, array $group = [])
     {
         $data = [];
 
         foreach ($inputs as $name => $input) {
-            $data[$name] = $this->sanitizeFrom($input, $name);
+            $data[$name] = $this->sanitizeFrom($input, $name, $group = []);
         }
 
         return $data;
@@ -62,67 +63,82 @@ class Sanitizer
      * Sanitize response.
      *
      * @param  array  $inputs
+     * @param  array  $group
      *
      * @return array
      */
-    public function to(array $inputs)
+    public function to(array $inputs, $group = [])
     {
         $data = [];
 
         foreach ($inputs as $name => $input) {
-            $data[$name] = $this->sanitizeTo($input, $name);
+            $data[$name] = $this->sanitizeTo($input, $name, $group);
         }
 
         return $data;
     }
 
     /**
-     * Sanitize input from.
+     * Sanitize request from.
      *
      * @param  mixed  $value
      * @param  string  $name
+     * @param  array  $group
      *
      * @return mixed
      */
-    protected function sanitizeFrom($value, $name)
+    protected function sanitizeFrom($value, $name, array $group = [])
     {
-        if (! $this->hasCaster($name)) {
+        array_push($group, $name);
+
+        if (is_array($value)) {
+            return $this->from($value, $group);
+        }
+
+        $caster = $this->getCaster($group);
+
+        if (is_null($caster)) {
             return $value;
         }
 
-        return $this->getCaster($name)->from($value);
-    }
-
-    protected function sanitizeTo($value, $name)
-    {
-        if (! $this->hasCaster($name)) {
-            return $value;
-        }
-
-        return $this->getCaster($name)->to($value);
+        return $caster->from($value);
     }
 
     /**
-     * Has caster.
+     * Sanitize response to.
      *
+     * @param  mixed  $value
      * @param  string  $name
+     * @param  array  $group
      *
-     * @return bool
+     * @return mixed
      */
-    protected function hasCaster($name)
+    protected function sanitizeTo($value, $name, array $group = [])
     {
-        return isset($this->casts[$name]);
+        array_push($group, $name);
+
+        if (is_array($value)) {
+            return $this->to($value, $group);
+        }
+
+        $caster = $this->getCaster($group);
+
+        if (is_null($caster)) {
+            return $value;
+        }
+
+        return $caster->to($value);
     }
 
     /**
      * Get caster.
      *
-     * @param  string  $name
+     * @param  string|array  $group
      *
      * @return \Billplz\Casts\Cast
      */
-    protected function getCaster($name)
+    protected function getCaster($group)
     {
-        return $this->casts[$name];
+        return \igorw\get_in($this->casts, (array) $group);
     }
 }
