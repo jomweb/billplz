@@ -309,7 +309,7 @@ var_dump($response->toArray());
 
 ## Handling Response
 
-Every request made to Billplz would return `\Billplz\Response` which can fallback to `\Psr\Http\Message\ResponseInterface` which would allow developer to further inspect the response.
+Every request made to Billplz would return `\Laravie\Codex\Response` which can fallback to `\Psr\Http\Message\ResponseInterface` which would allow developer to further inspect the response.
 
 ### Getting the Response
 
