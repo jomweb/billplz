@@ -2,13 +2,7 @@
 
 namespace Billplz;
 
-use Laravie\Codex\Response;
-use InvalidArgumentException;
-use Psr\Http\Message\StreamInterface;
-use Http\Discovery\HttpClientDiscovery;
 use Laravie\Codex\Client as BaseClient;
-use Psr\Http\Message\ResponseInterface;
-use Http\Discovery\MessageFactoryDiscovery;
 use Http\Client\Common\HttpMethodsClient as HttpClient;
 
 class Client extends BaseClient

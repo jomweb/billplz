@@ -2,8 +2,6 @@
 
 namespace Billplz\Three;
 
-use Money\Money;
-
 class Collection extends Request
 {
     /**
