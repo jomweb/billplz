@@ -21,7 +21,7 @@ class Collection extends Request
         $files = [];
         $body = array_merge(compact('title'), $optional);
 
-        if (! isset($body['logo'])) {
+        if (isset($body['logo'])) {
             $files['logo'] = ltrim($body['logo'], '@');
             unset($body['logo']);
         }
