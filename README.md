@@ -280,7 +280,21 @@ var_dump($response->toArray());
 
 ## Handling Response
 
-Every request made to Billplz would return `\Psr\Http\Message\ResponseInterface` which would allow developer to further inspect the response.
+Every request made to Billplz would return `\Billplz\Response` which can fallback to `\Psr\Http\Message\ResponseInterface` which would allow developer to further inspect the response.
+
+### Getting the Response
+
+You can get the raw response using the following:
+
+```php
+$response->getBody();
+```
+
+However we also create a method to parse the return JSON string to array.
+
+```php
+$response->toArray();
+```
 
 ### Checking the Response HTTP Status
 
