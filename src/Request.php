@@ -2,61 +2,20 @@
 
 namespace Billplz;
 
-use GuzzleHttp\Psr7\Uri;
+use Laravie\Codex\Request as BaseRequest;
 
-abstract class Request
+abstract class Request extends BaseRequest
 {
-    use WithSanitizer;
-
     /**
-     * Version namespace.
+     * Get URI Endpoint.
      *
-     * @var string
-     */
-    protected $version;
-
-    /**
-     * The Billplz client.
+     * @param  string  $endpoint
      *
-     * @var \Billplz\Client
+     * @return \GuzzleHttp\Psr7\Uri
      */
-    protected $client;
-
-    /**
-     * Construct a new Collection.
-     *
-     * @param \Billplz\Client  $client
-     * @param \Billplz\Sanitizer|null  $sanitizer
-     */
-    public function __construct(Client $client, Sanitizer $sanitizer = null)
+    protected function getUriEndpoint($endpoint)
     {
-        $this->client = $client;
-
-        $this->setSanitizer($sanitizer);
-    }
-
-    /**
-     * Send API request.
-     *
-     * @param  string  $method
-     * @param  string  $path
-     * @param  array  $headers
-     * @param  array  $body
-     *
-     * @return \Billplz\Reponse
-     */
-    protected function send($method, $path, array $headers = [], array $body = [])
-    {
-        $domain = $this->client->getApiEndpoint();
-
-        $uri = (new Uri(sprintf('%s/%s/%s', $domain, $this->version, $path)))
+        return parent::getUriEndpoint($endpoint)
                     ->withUserInfo($this->client->getApiKey());
-
-        if ($this->hasSanitizer()) {
-            $body = $this->getSanitizer()->from($body);
-        }
-
-        return $this->client->send($method, $uri, $headers, $body)
-                    ->setSanitizer($this->getSanitizer());
     }
 }

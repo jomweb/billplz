@@ -10,7 +10,7 @@ class Collection extends Request
      * @param  string  $title
      * @param  array  $optional
      *
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return \Laravie\Codex\Response
      */
     public function create($title, array $optional = [])
     {

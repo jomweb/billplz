@@ -2,6 +2,8 @@
 
 namespace Billplz\Casts;
 
+use Laravie\Codex\Cast;
+
 class Money extends Cast
 {
     /**

@@ -20,7 +20,7 @@ class Bill extends Request
      *
      * @throws  \InvalidArgumentException
      *
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return \Laravie\Codex\Response
      */
     public function create(
         $collectionId,
@@ -52,7 +52,7 @@ class Bill extends Request
      *
      * @param  string  $id
      *
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return \Laravie\Codex\Response
      */
     public function show($id)
     {
@@ -64,7 +64,7 @@ class Bill extends Request
      *
      * @param  string  $id
      *
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return \Laravie\Codex\Response
      */
     public function destroy($id)
     {

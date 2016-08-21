@@ -3,6 +3,7 @@
 namespace Billplz\Casts;
 
 use Carbon\Carbon;
+use Laravie\Codex\Cast;
 
 class DateTime extends Cast
 {

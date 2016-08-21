@@ -12,7 +12,7 @@ class Collection extends Request
      * @param  string  $title
      * @param  array  $optional
      *
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return \Laravie\Codex\Response
      */
     public function create($title, array $optional = [])
     {
@@ -26,12 +26,12 @@ class Collection extends Request
      *
      * @param  string  $title
      * @param  string  $description
-     * @param  \Money\Money  $money
+     * @param  \Money\Money|int  $amount
      * @param  array  $optional
      *
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return \Laravie\Codex\Response
      */
-    public function createOpen($title, $description, Money $money, array $optional = [])
+    public function createOpen($title, $description, $amount, array $optional = [])
     {
         $amount = $money->getAmount();
         $body = array_merge(compact('title', 'description', 'amount'), $optional);
