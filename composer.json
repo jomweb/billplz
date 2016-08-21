@@ -16,7 +16,7 @@
     },
     "require": {
         "php": ">=5.5",
-        "laravie/codex": "^0.1",
+        "laravie/codex": "^0.2",
         "mathiasverraes/money": "^1.3",
         "nesbot/carbon": "^1.21"
     },

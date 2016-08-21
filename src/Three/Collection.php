@@ -2,8 +2,12 @@
 
 namespace Billplz\Three;
 
+use Laravie\Codex\Support\MultipartRequest;
+
 class Collection extends Request
 {
+    use MultipartRequest;
+
     /**
      * Create a new collection.
      *
@@ -14,9 +18,17 @@ class Collection extends Request
      */
     public function create($title, array $optional = [])
     {
+        $files = [];
         $body = array_merge(compact('title'), $optional);
 
-        return $this->send('POST', 'collections', [], $body);
+        if (! isset($body['logo'])) {
+            $files['logo'] = ltrim($body['logo'], '@');
+            unset($body['logo']);
+        }
+
+        list($headers, $stream) = $this->prepareMultipartRequestPayloads([], $body, $files);
+
+        return $this->send('POST', 'collections', $headers, $stream);
     }
 
     /**
