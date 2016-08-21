@@ -19,8 +19,8 @@ class Sanitizer
     public function __construct()
     {
         $this->casts = [
-            'amount'      => new Casts\Money(),
-            'due_at'      => new Casts\DateTime(),
+            'amount' => new Casts\Money(),
+            'due_at' => new Casts\DateTime(),
             'paid_amount' => new Casts\Money(),
         ];
     }
