@@ -260,7 +260,7 @@ return [
     'description' => 'This is to test bill creation',
   ],
   'url' => 'https://billplz.dev/bills/W_79pJDk',
-  'paid_at' => '2015-03-09 16:23:59 +0800',
+  'paid_at' => \Carbon\Carbon::parse('2015-03-09 16:23:59 +0800'),
 ];
 ```
 
