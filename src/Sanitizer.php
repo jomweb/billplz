@@ -22,6 +22,7 @@ class Sanitizer
             'amount' => new Casts\Money(),
             'due_at' => new Casts\DateTime(),
             'paid_amount' => new Casts\Money(),
+            'paid_at'=> new Casts\DateTime(),
             'split_payment' => [
                 'fixed_cut' => new Casts\Money(),
             ],

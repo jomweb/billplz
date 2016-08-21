@@ -235,6 +235,35 @@ return [
 }
 ```
 
+#### Payment Completion
+
+You can setup a webhook to receive POST request from Billplz. In order to accept the response all you to do is write the following.
+
+```php
+$data = $billplz->webhook($_POST);
+```
+
+```php
+return [
+  'id' => 'W_79pJDk',
+  'collection_id' => 'inbmmepb',
+  'paid' => true,
+  'state' => 'paid',
+  'amount' => \Money\Money::MYR(200),
+  'paid_amount' => \Money\Money::MYR(0),
+  'due_at' => \Carbon\Carbon::parse('2020-12-31'),
+  'email' => 'api@billplz.com',
+  'mobile' => '+60112223333',
+  'name' => 'MICHAEL API',
+  'metadata' => [
+    'id' => 9999,
+    'description' => 'This is to test bill creation',
+  ],
+  'url' => 'https://billplz.dev/bills/W_79pJDk',
+  'paid_at' => '2015-03-09 16:23:59 +0800',
+];
+```
+
 #### Get a Bill
 
 ```php
