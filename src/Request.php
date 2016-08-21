@@ -6,6 +6,8 @@ use GuzzleHttp\Psr7\Uri;
 
 abstract class Request
 {
+    use WithSanitizer;
+
     /**
      * Version namespace.
      *
@@ -24,10 +26,13 @@ abstract class Request
      * Construct a new Collection.
      *
      * @param \Billplz\Client  $client
+     * @param \Billplz\Sanitizer|null  $sanitizer
      */
-    public function __construct(Client $client)
+    public function __construct(Client $client, Sanitizer $sanitizer = null)
     {
         $this->client = $client;
+
+        $this->setSanitizer($sanitizer);
     }
 
     /**
@@ -47,6 +52,11 @@ abstract class Request
         $uri = (new Uri(sprintf('%s/%s/%s', $domain, $this->version, $path)))
                     ->withUserInfo($this->client->getApiKey());
 
-        return $this->client->send($method, $uri, $headers, $body);
+        if ($this->hasSanitizer()) {
+            $body = $this->getSanitizer()->from($body);
+        }
+
+        return $this->client->send($method, $uri, $headers, $body)
+                    ->setSanitizer($this->getSanitizer());
     }
 }

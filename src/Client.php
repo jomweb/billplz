@@ -189,7 +189,7 @@ class Client
             throw new InvalidArgumentException("Resource [{$service}] for version [{$version}] is not available");
         }
 
-        return new $class($this);
+        return new $class($this, new Sanitizer());
     }
 
     /**
