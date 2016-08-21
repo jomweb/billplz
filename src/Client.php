@@ -113,18 +113,6 @@ class Client extends BaseClient
     }
 
     /**
-     * Resolve the responder class.
-     *
-     * @param  \Psr\Http\Message\ResponseInterface  $response
-     *
-     * @return \Laravie\Codex\Response
-     */
-    protected function responseWith(ResponseInterface $response)
-    {
-        return new Response($response, $this->sanitizeWith());
-    }
-
-    /**
      * Resolve the sanitizer class.
      *
      * @return \Billplz\Sanitizer
