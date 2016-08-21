@@ -5,6 +5,7 @@ namespace Billplz;
 use InvalidArgumentException;
 use Psr\Http\Message\StreamInterface;
 use Http\Discovery\HttpClientDiscovery;
+use Psr\Http\Message\ResponseInterface;
 use Http\Discovery\MessageFactoryDiscovery;
 use Http\Client\Common\HttpMethodsClient as HttpClient;
 
@@ -205,9 +206,21 @@ class Client
     {
         list($headers, $body) = $this->prepareRequestPayloads($headers, $body);
 
-        return new Response(
+        return $this->responseWith(
             $this->http->send($method, $uri, $headers, $body)
         );
+    }
+
+    /**
+     * Resolve the responder class.
+     *
+     * @param  \Psr\Http\Message\ResponseInterface  $response
+     *
+     * @return \Billplz\Response
+     */
+    protected function responseWith(ResponseInterface $response)
+    {
+        return new Response($response);
     }
 
     /**
