@@ -70,4 +70,20 @@ class Bill extends Request
     {
         return $this->send('DELETE', "bills/{$id}");
     }
+
+    /**
+     * Parse webhook data for a bill.
+     *
+     * @param  array  $data
+     *
+     * @return array
+     */
+    public function webhook(array $data = [])
+    {
+        if (! $this->hasSanitizer()) {
+            return $data;
+        }
+
+        return $this->getSanitizer()->to($data);
+    }
 }
