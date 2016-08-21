@@ -123,7 +123,7 @@ You can also create new collection with optional parameters:
 $response = $collection->create('My First API Collection', [
     'logo' => '@/Users/Billplz/Documents/uploadPhoto.png',
     'split_payment[email]' => 'verified@account.com',
-    'split_payment[fixed_cut]' => 100,
+    'split_payment[fixed_cut]' => \Money\Money::MYR(100),
 ]);
 
 var_dump($response->toArray());
@@ -139,7 +139,7 @@ return [
   ],
   "split_payment" => [
     "email" => "verified@account.com",
-    "fixed_cut" => 100,
+    "fixed_cut" => \Money\Money::MYR(100),
     "variable_cut" => null
   ]
 ]
@@ -251,7 +251,7 @@ return [
   "state" => "due",
   "amount" => \Money\Money::MYR(200),
   "paid_amount" => \Money\Money::MYR(0),
-  "due_at" => \DateTime::createFromFormat('Y-m-d', "2020-12-31"),
+  "due_at" => \Carbon\Carbon::parse("2020-12-31"),
   "email" => "api@billplz.com",
   "mobile" => "+60112223333",
   "name" => "MICHAEL API V3",
