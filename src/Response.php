@@ -7,6 +7,8 @@ use Psr\Http\Message\ResponseInterface;
 
 class Response
 {
+    use WithSanitizer;
+
     /**
      * The original response.
      *
@@ -18,10 +20,13 @@ class Response
      * Construct a new response.
      *
      * @param \Psr\Http\Message\ResponseInterface  $original
+     * @param  \Billplz\Sanitizer|null  $sanitizer
      */
-    public function __construct(ResponseInterface $original)
+    public function __construct(ResponseInterface $original, Sanitizer $sanitizer = null)
     {
         $this->original = $original;
+
+        $this->setSanitizer($sanitizer);
     }
 
     /**
@@ -31,7 +36,13 @@ class Response
      */
     public function toArray()
     {
-        return json_decode($this->original->getBody(), true);
+        $body = json_decode($this->original->getBody(), true);
+
+        if (! $this->hasSanitizer()) {
+            return $body;
+        }
+
+        return $this->sanitizer->to($body);
     }
 
     /**

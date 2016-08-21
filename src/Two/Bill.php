@@ -11,7 +11,7 @@ class Bill extends Request
      * @param  string  $email
      * @param  string  $mobile
      * @param  string  $name
-     * @param  \Money\Money  $money
+     * @param  \Money\Money|int  $amount
      * @param  string  $callbackUrl
      * @param  array  $optional
      *
@@ -24,12 +24,10 @@ class Bill extends Request
         $email,
         $mobile,
         $name,
-        Money $money,
+        $amount,
         $callbackUrl,
         array $optional = []
     ) {
-        $amount = $money->getAmount();
-
         if (empty($email) && empty($mobile)) {
             throw new InvalidArgumentException('Either $email or $mobile should be present');
         }
