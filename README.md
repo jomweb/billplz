@@ -101,22 +101,20 @@ $response = $collection->create('My First API Collection');
 var_dump($response->toArray());
 ```
 
-```json
-{
-  "id": "inbmmepb",
-  "title": "My First API Collection",
-  "logo": 
-  {
-    "thumb_url": null,
-    "avatar_url": null
-  },
-  "split_payment": 
-  {
-    "email": null,
-    "fixed_cut": null,
-    "variable_cut": null
-  }
-}
+```php
+return [
+  "id" => "inbmmepb",
+  "title" => "My First API Collection",
+  "logo" => [
+    "thumb_url" => null,
+    "avatar_url" => null
+  ],
+  "split_payment" => [
+    "email" => null,
+    "fixed_cut" => null,
+    "variable_cut" => null
+  ]
+];
 ```
 
 You can also create new collection with optional parameters:
@@ -131,22 +129,20 @@ $response = $collection->create('My First API Collection', [
 var_dump($response->toArray());
 ```
 
-```json
-{
-  "id": "inbmmepb",
-  "title": "My First API Collection",
-  "logo":
-  {
-    "thumb_url": "https://sample.net/assets/uploadPhoto.png",
-    "avatar_url": "https://sample.net/assets/uploadPhoto.png"
-  },
-  "split_payment": 
-  {
-    "email": "verified@account.com",
-    "fixed_cut": 100,
-    "variable_cut": null
-  }
-}
+```php
+return [
+  "id" => "inbmmepb",
+  "title" => "My First API Collection",
+  "logo" => [
+    "thumb_url" => "https://sample.net/assets/uploadPhoto.png",
+    "avatar_url" => "https://sample.net/assets/uploadPhoto.png"
+  ],
+  "split_payment" => [
+    "email" => "verified@account.com",
+    "fixed_cut" => 100,
+    "variable_cut" => null
+  ]
+]
 ```
 
 #### Create an Open Collection
@@ -161,32 +157,30 @@ $response = $collection->createOpen(
 var_dump($response->toArray());
 ```
 
-```json
-{
-  "id": "0pp87t_6",
-  "title": "MY FIRST API OPEN COLLECTION",
-  "description": "Maecenas eu placerat ante. Fusce ut neque justo, et aliquet enim. In hac habitasse platea dictumst.",
-  "reference_1_label": null,
-  "reference_2_label": null,
-  "email_link": null,
-  "amount": 299,
-  "fixed_amount": true,
-  "tax": null,
-  "fixed_quantity": true,
-  "payment_button": "pay",
-  "photo":
-  {
-    "retina_url":  null,
-    "avatar_url":  null
-  },
-  "split_payment": 
-  {
-    "email": null,
-    "fixed_cut": null,
-    "variable_cut": null
-  },
-  "url": "https://www.billplz.com/0pp87t_6"
-}
+```php
+return [
+  "id" => "0pp87t_6",
+  "title" => "MY FIRST API OPEN COLLECTION",
+  "description" => "Maecenas eu placerat ante. Fusce ut neque justo, et aliquet enim. In hac habitasse platea dictumst.",
+  "reference_1_label" => null,
+  "reference_2_label" => null,
+  "email_link" => null,
+  "amount" => \Money\Money::MYR(299),
+  "fixed_amount" => true,
+  "tax" => null,
+  "fixed_quantity" => true,
+  "payment_button" => "pay",
+  "photo" => [
+    "retina_url" =>  null,
+    "avatar_url" =>  null
+  ],
+  "split_payment" => [
+    "email" => null,
+    "fixed_cut" => null,
+    "variable_cut" => null
+  ],
+  "url" => "https://www.billplz.com/0pp87t_6"
+]
 ```
 
 
@@ -218,26 +212,26 @@ $response = $bill->create(
 var_dump($response->toArray());
 ```
 
-```json
-{
-  "id": "8X0Iyzaw",
-  "collection_id": "inbmmepb",
-  "paid": false,
-  "state": "overdue",
-  "amount": 200 ,
-  "paid_amount": 0,
-  "due_at": "2015-3-9",
+```php
+return [
+  "id" => "8X0Iyzaw",
+  "collection_id" => "inbmmepb",
+  "paid" => false,
+  "state" => "overdue",
+  "amount" => \Money\Money::MYR(200),
+  "paid_amount" => \Money\Money::MYR(0),
+  "due_at" => \DateTime::createFromFormat('Y-m-d', "2015-3-9"),
   "email" :"api@billplz.com",
-  "mobile": null,
-  "name": "MICHAEL API V3",
-  "url": "https://www.billplz.com/bills/8X0Iyzaw",
-  "reference_1_label": "Reference 1",
-  "reference_1": null,
-  "reference_2_label": "Reference 2",
-  "reference_2": null,
-  "redirect_url": null,
-  "callback_url": "http://example.com/webhook/",
-  "description": "Maecenas eu placerat ante."
+  "mobile" => null,
+  "name" => "MICHAEL API V3",
+  "url" => "https://www.billplz.com/bills/8X0Iyzaw",
+  "reference_1_label" => "Reference 1",
+  "reference_1" => null,
+  "reference_2_label" => "Reference 2",
+  "reference_2" => null,
+  "redirect_url" => null,
+  "callback_url" => "http://example.com/webhook/",
+  "description" => "Maecenas eu placerat ante."
 }
 ```
 
@@ -249,27 +243,27 @@ $response = $bill->show('8X0Iyzaw');
 var_dump($response->toArray());
 ```
 
-```json
-{
-  "id": "8X0Iyzaw",
-  "collection_id": "inbmmepb",
-  "paid": false,
-  "state": "due",
-  "amount": 200 ,
-  "paid_amount": 0,
-  "due_at": "2020-12-31",
-  "email" :"api@billplz.com",
-  "mobile": "+60112223333",
-  "name": "MICHAEL API V3",
-  "url": "https://www.billplz.com/bills/8X0Iyzaw",
-  "reference_1_label": "First Name",
-  "reference_1": "Jordan",
-  "reference_2_label": "Last Name",
-  "reference_2": "Michael",
-  "redirect_url": "http://example.com/redirect/",
-  "callback_url": "http://example.com/webhook/",
-  "description": "Maecenas eu placerat ante."
-}
+```php
+return [
+  "id" => "8X0Iyzaw",
+  "collection_id" => "inbmmepb",
+  "paid" => false,
+  "state" => "due",
+  "amount" => \Money\Money::MYR(200),
+  "paid_amount" => \Money\Money::MYR(0),
+  "due_at" => \DateTime::createFromFormat('Y-m-d', "2020-12-31"),
+  "email" => "api@billplz.com",
+  "mobile" => "+60112223333",
+  "name" => "MICHAEL API V3",
+  "url" => "https://www.billplz.com/bills/8X0Iyzaw",
+  "reference_1_label" => "First Name",
+  "reference_1" => "Jordan",
+  "reference_2_label" => "Last Name",
+  "reference_2" => "Michael",
+  "redirect_url" => "http://example.com/redirect/",
+  "callback_url" => "http://example.com/webhook/",
+  "description" => "Maecenas eu placerat ante."
+]
 ```
 
 #### Delete a Bill
@@ -280,8 +274,8 @@ $response = $bill->destroy('8X0Iyzaw');
 var_dump($response->toArray());
 ```
 
-```json
-{}
+```php
+[]
 ```
 
 ## Handling Response
