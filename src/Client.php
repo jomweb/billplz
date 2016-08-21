@@ -65,7 +65,7 @@ class Client extends BaseClient
      */
     public static function make($apiKey)
     {
-        return new static($this->makeHttpClient(), $apiKey);
+        return new static(static::makeHttpClient(), $apiKey);
     }
 
     /**
