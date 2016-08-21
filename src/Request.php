@@ -16,9 +16,8 @@ abstract class Request extends BaseRequest
      */
     protected function getUriEndpoint($endpoint)
     {
-        $domain = $this->client->getApiEndpoint();
-        $uri = new Uri(sprintf('%s/%s/%s', $domain, $this->getVersion(), $endpoint));
+        $to = sprintf('%s/%s/%s', $this->client->getApiEndpoint(), $this->getVersion(), $endpoint);
 
-        return $uri->withUserInfo($this->client->getApiKey());
+        return (new Uri($to))->withUserInfo($this->client->getApiKey());
     }
 }
