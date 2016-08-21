@@ -27,10 +27,14 @@ abstract class Cast
      *
      * @param  mixed  $value
      *
-     * @return object
+     * @return object|null
      */
     public function to($value)
     {
+        if (is_null($value)) {
+            return ;
+        }
+
         return $this->toCast($value);
     }
 

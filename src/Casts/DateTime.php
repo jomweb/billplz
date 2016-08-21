@@ -2,6 +2,8 @@
 
 namespace Billplz\Casts;
 
+use Carbon\Carbon;
+
 class DateTime extends Cast
 {
     /**
@@ -33,10 +35,10 @@ class DateTime extends Cast
      *
      * @param  mixed  $value
      *
-     * @return \DateTime
+     * @return \Carbon\Carbon
      */
     protected function toCast($value)
     {
-        return \DateTime::createFromFormat('Y-m-d', $value);
+        return Carbon::parse($value);
     }
 }

@@ -19,9 +19,9 @@ class Money extends Cast
     /**
      * Cast value from object.
      *
-     * @param  object  $value
+     * @param  \Money\Money  $value
      *
-     * @return mixed
+     * @return int
      */
     public function fromCast($value)
     {
@@ -33,7 +33,7 @@ class Money extends Cast
      *
      * @param  mixed  $value
      *
-     * @return object
+     * @return \Money\Money
      */
     protected function toCast($value)
     {

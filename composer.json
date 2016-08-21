@@ -21,7 +21,8 @@
         "php-http/client-implementation": "^1.0",
         "php-http/discovery": "^1.0",
         "guzzlehttp/psr7": "^1.0",
-        "mathiasverraes/money": "^1.3"
+        "mathiasverraes/money": "^1.3",
+        "nesbot/carbon": "^1.21"
     },
     "require-dev": {
         "php-http/guzzle6-adapter": "^1.1",
