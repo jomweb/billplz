@@ -3,9 +3,10 @@
 require "vendor/autoload.php";
 
 $api = 'xxx';
+$bill = '6fj1aw';
 
 $billplz = Billplz\Client::make($api)->useSandbox();
 
-$response = $billplz->collection()->create('My First API Collection');
+$response = $billplz->bill()->show($bill);
 
 var_dump($response->toArray());
