@@ -22,7 +22,7 @@ To install through composer, simply put the following in your `composer.json` fi
 ```json
 {
     "require": {
-        "jomweb/billplz": "^0.1",
+        "jomweb/billplz": "^0.5",
         "php-http/guzzle6-adapter": "^1.1"
     }
 }
@@ -89,7 +89,7 @@ Now you can create an instance of Collection:
 $collection = $billplz->collection();
 ```
 
-> You can also manually set the API version by doing `$billplz->collection('v3');`
+> You can also manually set the API version by doing `$billplz->collection('v3');`. You can also use `$billplz->resource('Collection');` to get the same result.
 
 #### Create a Collection
 
@@ -192,7 +192,7 @@ Now you can create an instance of Bill:
 $bill = $billplz->bill();
 ```
 
-> You can also manually set the API version by doing `$billplz->bill('v3');`
+> You can also manually set the API version by doing `$billplz->bill('v3');`. You can also use `$billplz->resource('Bill');` to get the same result.
 
 #### Create a Bill
 
