@@ -223,7 +223,7 @@ return [
   "amount" => \Money\Money::MYR(200),
   "paid_amount" => \Money\Money::MYR(0),
   "due_at" => \DateTime::createFromFormat('Y-m-d', "2015-3-9"),
-  "email" :"api@billplz.com",
+  "email" => "api@billplz.com",
   "mobile" => null,
   "name" => "MICHAEL API V3",
   "url" => "https://www.billplz.com/bills/8X0Iyzaw",
@@ -234,7 +234,7 @@ return [
   "redirect_url" => null,
   "callback_url" => "http://example.com/webhook/",
   "description" => "Maecenas eu placerat ante."
-}
+];
 ```
 
 #### Payment Completion
