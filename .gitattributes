@@ -1,7 +1,7 @@
 * text=auto
 
 # Ignore following folder/file.
-/api export-ignore
+/docs export-ignore
 /examples export-ignore
 /tests export-ignore
 /.gitattributes export-ignore
