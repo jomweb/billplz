@@ -48,4 +48,28 @@ class Collection extends Request
 
         return $this->send('POST', 'open_collections', [], $body);
     }
+
+    /**
+     * Activate a collection.
+     *
+     * @param  string  $id
+     *
+     * @return \Laravie\Codex\Response
+     */
+    public function activate($id)
+    {
+        return $this->send('POST', "collections/{$id}/activate", [], []);
+    }
+
+    /**
+     * Deactivate a collection.
+     *
+     * @param  string  $id
+     *
+     * @return \Laravie\Codex\Response
+     */
+    public function deactivate($id)
+    {
+        return $this->send('POST', "collections/{$id}/deactivate", [], []);
+    }
 }
