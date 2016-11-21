@@ -43,7 +43,6 @@ class Collection extends Request
      */
     public function createOpen($title, $description, $amount, array $optional = [])
     {
-        $amount = $money->getAmount();
         $body = array_merge(compact('title', 'description', 'amount'), $optional);
 
         return $this->send('POST', 'open_collections', [], $body);
