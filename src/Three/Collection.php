@@ -73,7 +73,7 @@ class Collection extends Request
     }
 
     /**
-     * Get collection.
+     * Get open collection.
      *
      * @param  string  $id
      *
@@ -85,7 +85,7 @@ class Collection extends Request
     }
 
     /**
-     * Get collection index.
+     * Get open collection index.
      *
      * @param  string  $id
      * @param  array  $optional
