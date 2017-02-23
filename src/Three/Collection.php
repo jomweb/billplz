@@ -44,15 +44,13 @@ class Collection extends Request
     }
 
     /**
-     * Get collection.
-     *
-     * @param  string  $id
+     * Get collection index.
      *
      * @return \Laravie\Codex\Response
      */
-    public function index($id, array $optional = [])
+    public function index(array $optional = [])
     {
-        return $this->send('GET', "collections/{$id}", [], $optional);
+        return $this->send('GET', "collections", [], $optional);
     }
 
     /**
@@ -87,14 +85,13 @@ class Collection extends Request
     /**
      * Get open collection index.
      *
-     * @param  string  $id
      * @param  array  $optional
      *
      * @return \Laravie\Codex\Response
      */
-    public function indexOpen($id, array $optional = [])
+    public function indexOpen(array $optional = [])
     {
-        return $this->send('GET', "open_collections/{$id}", [], $optional);
+        return $this->send('GET', "open_collections", [], $optional);
     }
 
     /**
