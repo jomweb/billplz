@@ -32,6 +32,28 @@ class Collection extends Request
     }
 
     /**
+     * Get collection.
+     *
+     * @param  string  $id
+     *
+     * @return \Laravie\Codex\Response
+     */
+    public function get($id)
+    {
+        return $this->send('GET', "collections/{$id}", [], []);
+    }
+
+    /**
+     * Get collection index.
+     *
+     * @return \Laravie\Codex\Response
+     */
+    public function index(array $optional = [])
+    {
+        return $this->send('GET', "collections", [], $optional);
+    }
+
+    /**
      * Create a new open collection.
      *
      * @param  string  $title
@@ -46,6 +68,30 @@ class Collection extends Request
         $body = array_merge(compact('title', 'description', 'amount'), $optional);
 
         return $this->send('POST', 'open_collections', [], $body);
+    }
+
+    /**
+     * Get open collection.
+     *
+     * @param  string  $id
+     *
+     * @return \Laravie\Codex\Response
+     */
+    public function getOpen($id)
+    {
+        return $this->send('GET', "open_collections/{$id}", [], []);
+    }
+
+    /**
+     * Get open collection index.
+     *
+     * @param  array  $optional
+     *
+     * @return \Laravie\Codex\Response
+     */
+    public function indexOpen(array $optional = [])
+    {
+        return $this->send('GET', "open_collections", [], $optional);
     }
 
     /**
