@@ -117,6 +117,4 @@ class Collection extends Request
     {
         return $this->send('POST', "collections/{$id}/deactivate", [], []);
     }
-
-    
 }
