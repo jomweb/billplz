@@ -6,8 +6,9 @@ use Billplz\Response;
 use Billplz\Sanitizer;
 use Billplz\Three\Bill;
 use GuzzleHttp\Psr7\Uri;
+use PHPUnit\Framework\TestCase;
 
-class BillTest extends PHPUnit_Framework_TestCase
+class BillTest extends TestCase
 {
     protected function tearDown()
     {
