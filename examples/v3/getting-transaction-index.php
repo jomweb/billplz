@@ -7,8 +7,6 @@ $bill = 'v3bfqg';
 
 $billplz = Billplz\Client::make($api)->useSandbox();
 
-$transaction = $billplz->transaction();
-
-$response = $transaction->show($bill);
+$response = $billplz->bill()->transaction($bill);
 
 var_dump($response->toArray());
