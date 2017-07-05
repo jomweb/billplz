@@ -1,6 +1,6 @@
 <?php
 
-namespace Billplz\Three;
+namespace Billplz\Three\Bill;
 
 class Transaction extends Request
 {

@@ -114,7 +114,7 @@ class Client extends BaseClient
      */
     public function transaction($version = null)
     {
-        return $this->resource('Transaction', $version);
+        return $this->resource('Bill.Transaction', $version);
     }
 
     /**

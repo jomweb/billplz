@@ -60,6 +60,19 @@ class Bill extends Request
     }
 
     /**
+     * Show an existing bill transactions.
+     *
+     * @param  string  $id
+     *
+     * @return \Laravie\Codex\Response
+     */
+    public function transaction($id)
+    {
+        return $this->client->resource('Bill.Transaction', $this->getVersion())
+                    ->show($id);
+    }
+
+    /**
      * Destroy an existing bill.
      *
      * @param  string  $id
