@@ -106,6 +106,18 @@ class Client extends BaseClient
     }
 
     /**
+     * Get transaction resource.
+     *
+     * @param  string|null  $version
+     *
+     * @return object
+     */
+    public function transaction($version = null)
+    {
+        return $this->resource('Bill.Transaction', $version);
+    }
+
+    /**
      * Resolve the sanitizer class.
      *
      * @return \Billplz\Sanitizer
