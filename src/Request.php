@@ -31,11 +31,7 @@ abstract class Request extends BaseRequest
      */
     protected function getApiEndpoint($path = [])
     {
-        $paths = (array) $path;
-
-        array_unshift($paths, $this->getVersion());
-
-        return parent::getApiEndpoint($paths);
+        return parent::getApiEndpoint([$this->getVersion(), $path]);
     }
 
     /**
