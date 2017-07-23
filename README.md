@@ -1,10 +1,11 @@
 PHP framework agnostic library for working with BillPlz API v3 and beyond...
 ==============
 
-[![Latest Stable Version](https://poser.pugx.org/jomweb/billplz/v/stable?format=flat)](https://packagist.org/packages/jomweb/billplz)
-[![Total Downloads](https://poser.pugx.org/jomweb/billplz/downloads?format=flat)](https://packagist.org/packages/jomweb/billplz)
-[![License](https://poser.pugx.org/jomweb/billplz/license?format=flat)](https://packagist.org/packages/jomweb/billplz)
-[![Build Status](https://travis-ci.org/jomweb/billplz.svg?branch=master)](https://travis-ci.org/jomweb/billplz)
+[![Build Status](https://travis-ci.org/jomweb/billplz.svg?branch=develop)](https://travis-ci.org/jomweb/billplz)
+[![Latest Stable Version](https://poser.pugx.org/jomweb/billplz/version)](https://packagist.org/packages/jomweb/billplz)
+[![Total Downloads](https://poser.pugx.org/jomweb/billplz/downloads)](https://packagist.org/packages/jomweb/billplz)
+[![Latest Unstable Version](https://poser.pugx.org/jomweb/billplz/v/unstable)](//packagist.org/packages/jomweb/billplz)
+[![License](https://poser.pugx.org/jomweb/billplz/license)](https://packagist.org/packages/jomweb/billplz)
 
 * [Installation](#installation)
 * [Usages](#usages)
