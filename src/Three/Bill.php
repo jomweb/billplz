@@ -14,7 +14,7 @@ class Bill extends Request
      * @param  string  $mobile
      * @param  string  $name
      * @param  \Money\Money|int  $amount
-     * @param  string  $callbackUrl
+     * @param  array|string  $callbackUrl
      * @param  string  $description
      * @param  array  $optional
      *
@@ -42,7 +42,8 @@ class Bill extends Request
         );
 
         $body['collection_id'] = $collectionId;
-        $body['callback_url'] = $callbackUrl;
+
+        $body = $this->parseRedirectAndCallbackUrlFromRequest($body, $callbackUrl);
 
         return $this->send('POST', 'bills', [], $body);
     }
