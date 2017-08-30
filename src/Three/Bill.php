@@ -94,10 +94,6 @@ class Bill extends Request
      */
     public function webhook(array $data = [])
     {
-        if (! $this->hasSanitizer()) {
-            return $data;
-        }
-
-        return $this->getSanitizer()->to($data);
+        return $this->sanitizeTo($data);
     }
 }
