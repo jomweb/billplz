@@ -4,10 +4,9 @@ namespace Billplz;
 
 use GuzzleHttp\Psr7\Uri;
 use Laravie\Codex\Endpoint;
-use Laravie\Codex\Contracts\Sanitizable;
 use Laravie\Codex\Request as BaseRequest;
 
-abstract class Request extends BaseRequest implements Sanitizable
+abstract class Request extends BaseRequest
 {
     /**
      * Get URI Endpoint.
