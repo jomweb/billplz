@@ -2,6 +2,8 @@
 
 namespace Billplz\Three\Bill;
 
+use Billplz\Three\Request;
+
 class Transaction extends Request
 {
     /**
