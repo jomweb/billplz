@@ -1,6 +1,9 @@
 <?php
 
+namespace Billplz\TestCase\Three;
+
 use Money\Money;
+use Mockery as m;
 use Billplz\Client;
 use Billplz\Response;
 use Billplz\Sanitizer;
@@ -10,16 +13,19 @@ use PHPUnit\Framework\TestCase;
 
 class BillTest extends TestCase
 {
+    /**
+     * Teardown the test environment.
+     */
     protected function tearDown()
     {
-        Mockery::close();
+        m::close();
     }
 
     /** @test */
-    public function bill_can_be_created()
+    public function it_can_be_created()
     {
-        $client = Mockery::mock(Client::class);
-        $response = Mockery::mock(Response::class);
+        $client = m::mock(Client::class);
+        $response = m::mock(Response::class);
         $sanitizer = new Sanitizer();
 
         $data = [
@@ -34,7 +40,7 @@ class BillTest extends TestCase
 
         $client->shouldReceive('getApiEndpoint')->once()->andReturn('https://api.billplz.com')
             ->shouldReceive('getApiKey')->once()->andReturn('foobar')
-            ->shouldReceive('send')->once()->with('POST', Mockery::type(Uri::class), [], $data)->andReturn($response);
+            ->shouldReceive('send')->once()->with('POST', m::type(Uri::class), [], $data)->andReturn($response);
 
         $response->shouldReceive('setSanitizer')->once()->with($sanitizer)->andReturn($response);
 
