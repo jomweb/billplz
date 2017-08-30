@@ -15,6 +15,11 @@
             "Billplz\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Billplz\\TestCase\\": "tests/"
+        }
+    },
     "require": {
         "php": ">=5.5",
         "laravie/codex": "~0.4.2 || ~0.5.1",
