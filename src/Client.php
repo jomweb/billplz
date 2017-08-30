@@ -118,16 +118,6 @@ class Client extends BaseClient
     }
 
     /**
-     * Resolve the sanitizer class.
-     *
-     * @return \Billplz\Sanitizer
-     */
-    protected function sanitizeWith()
-    {
-        return new Sanitizer();
-    }
-
-    /**
      * Get resource default namespace.
      *
      * @return string
