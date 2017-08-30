@@ -2,6 +2,7 @@
 
 namespace Billplz;
 
+use Laravie\Codex\Discovery;
 use Laravie\Codex\Client as BaseClient;
 use Http\Client\Common\HttpMethodsClient as HttpClient;
 
@@ -58,7 +59,7 @@ class Client extends BaseClient
      */
     public static function make($apiKey)
     {
-        return new static(static::makeHttpClient(), $apiKey);
+        return new static(Discovery::client(), $apiKey);
     }
 
     /**
