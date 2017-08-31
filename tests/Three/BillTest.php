@@ -5,10 +5,7 @@ namespace Billplz\TestCase\Three;
 use Money\Money;
 use Mockery as m;
 use Billplz\Client;
-use Billplz\Response;
-use Billplz\Sanitizer;
-use Billplz\Three\Bill;
-use GuzzleHttp\Psr7\Uri;
+use Laravie\Codex\Response;
 use PHPUnit\Framework\TestCase;
 
 class BillTest extends TestCase
@@ -24,9 +21,8 @@ class BillTest extends TestCase
     /** @test */
     public function it_can_be_created()
     {
-        $client = m::mock(Client::class);
-        $response = m::mock(Response::class);
-        $sanitizer = new Sanitizer();
+        $http = m::mock('Http\Client\Common\HttpMethodsClient');
+        $message = m::mock('Psr\Http\Message\ResponseInterface');
 
         $data = [
             'email' => 'api@billplz.com',
@@ -38,24 +34,22 @@ class BillTest extends TestCase
             'callback_url' => 'http://example.com/webhook/',
         ];
 
-        $client->shouldReceive('getApiEndpoint')->once()->andReturn('https://api.billplz.com')
-            ->shouldReceive('getApiKey')->once()->andReturn('foobar')
-            ->shouldReceive('send')->once()->with('POST', m::type(Uri::class), [], $data)->andReturn($response);
+        $http->shouldReceive('send')
+            ->with('POST', m::type('GuzzleHttp\Psr7\Uri'), [], http_build_query($data, null, '&'))
+            ->andReturn($message);
 
-        $response->shouldReceive('setSanitizer')->once()->with($sanitizer)->andReturn($response);
+        $response = (new Client($http, 'foobar'))
+                        ->resource('Bill')
+                        ->create(
+                            $data['collection_id'],
+                            $data['email'],
+                            $data['mobile'],
+                            $data['name'],
+                            Money::MYR($data['amount']),
+                            $data['callback_url'],
+                            $data['description']
+                        );
 
-        $bill = new Bill($client, $sanitizer);
-
-        $result = $bill->create(
-            $data['collection_id'],
-            $data['email'],
-            $data['mobile'],
-            $data['name'],
-            Money::MYR($data['amount']),
-            $data['callback_url'],
-            $data['description']
-        );
-
-        $this->assertInstanceOf(Response::class, $result);
+        $this->assertInstanceOf(Response::class, $response);
     }
 }
