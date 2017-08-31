@@ -18,7 +18,7 @@ class Bill extends Request
      * @param  string  $description
      * @param  array  $optional
      *
-     * @throws  \InvalidArgumentException
+     * @throws \InvalidArgumentException
      *
      * @return \Laravie\Codex\Response
      */

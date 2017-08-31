@@ -18,6 +18,7 @@ abstract class Request extends BaseRequest
      *
      * @param  array  $body
      * @param  array|string  $url
+     *
      * @return array
      */
     protected function parseRedirectAndCallbackUrlFromRequest(array $body, $url)
