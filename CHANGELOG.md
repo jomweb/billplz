@@ -2,6 +2,13 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 1.0.1
+
+Released: Not yet
+
+### Fixes
+
+* `Billplz\Request::getApiEndpoint()` should properly handle `$path` when given an array.
 
 ## 1.0.0
 
