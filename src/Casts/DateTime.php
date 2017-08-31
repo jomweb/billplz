@@ -40,6 +40,10 @@ class DateTime extends Cast
      */
     protected function toCast($value)
     {
-        return Carbon::parse($value);
+        if (class_exists(Carbon::class)) {
+            return Carbon::parse($value);
+        }
+
+        return new \DateTime($value);
     }
 }
