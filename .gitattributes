@@ -10,4 +10,5 @@
 /.travis.yml export-ignore
 /phpunit.xml export-ignore
 /LICENSE export-ignore
+/CHANGELOG.md export-ignore
 /README.md export-ignore
