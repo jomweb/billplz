@@ -4,7 +4,7 @@ This changelog references the relevant changes (bug and security fixes) done to 
 
 ## 1.0.1
 
-Released: Not yet
+Released: 2017-08-31
 
 ### Fixes
 
