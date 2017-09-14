@@ -36,6 +36,7 @@ class Client extends BaseClient
      */
     protected $supportedVersions = [
         'v3' => 'Three',
+        'v4' => 'Four',
     ];
 
     /**
