@@ -5,6 +5,13 @@ namespace Billplz\Three;
 class Check extends Request
 {
     /**
+     * Version namespace.
+     *
+     * @var string
+     */
+    protected $version = 'v3';
+
+    /**
      * Check Bank Account Number.
      *
      * @param  string|int  $number
