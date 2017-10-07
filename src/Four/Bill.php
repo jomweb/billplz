@@ -71,6 +71,7 @@ class Bill extends Request
      * Show an existing bill transactions.
      *
      * @param  string  $id
+     * @param  array   $optional
      *
      * @return \Laravie\Codex\Response
      */
