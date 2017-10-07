@@ -74,10 +74,10 @@ class Bill extends Request
      *
      * @return \Laravie\Codex\Response
      */
-    public function transaction($id)
+    public function transaction($id, array $optional = [])
     {
         return $this->client->resource('Bill.Transaction', $this->getVersion())
-                    ->show($id);
+                    ->show($id, $optional);
     }
 
     /**

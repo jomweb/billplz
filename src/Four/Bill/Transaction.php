@@ -20,8 +20,8 @@ class Transaction extends Request
      *
      * @return \Laravie\Codex\Response
      */
-    public function show($id)
+    public function show($id, array $optional = [])
     {
-        return $this->send('GET', "bills/{$id}/transactions");
+        return $this->send('GET', "bills/{$id}/transactions", [], $optional);
     }
 }
