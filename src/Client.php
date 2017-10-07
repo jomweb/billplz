@@ -107,6 +107,18 @@ class Client extends BaseClient
     }
 
     /**
+     * Get check resource.
+     *
+     * @param  string|null  $version
+     *
+     * @return object
+     */
+    public function check($version = null)
+    {
+        return $this->resource('Check', $version);
+    }
+
+    /**
      * Get transaction resource.
      *
      * @param  string|null  $version
