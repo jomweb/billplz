@@ -7,6 +7,13 @@ use InvalidArgumentException;
 class Bill extends Request
 {
     /**
+     * Version namespace.
+     *
+     * @var string
+     */
+    protected $version = 'v3';
+
+    /**
      * Create a new bill.
      *
      * @param  string  $collectionId

@@ -36,6 +36,7 @@ class Client extends BaseClient
      */
     protected $supportedVersions = [
         'v3' => 'Three',
+        'v4' => 'Four',
     ];
 
     /**
@@ -104,6 +105,18 @@ class Client extends BaseClient
     public function bill($version = null)
     {
         return $this->resource('Bill', $version);
+    }
+
+    /**
+     * Get check resource.
+     *
+     * @param  string|null  $version
+     *
+     * @return object
+     */
+    public function check($version = null)
+    {
+        return $this->resource('Check', $version);
     }
 
     /**
