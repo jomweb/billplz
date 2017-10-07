@@ -64,13 +64,14 @@ class Bill extends Request
      * Show an existing bill transactions.
      *
      * @param  string  $id
+     * @param  array   $optional
      *
      * @return \Laravie\Codex\Response
      */
-    public function transaction($id)
+    public function transaction($id, array $optional = [])
     {
         return $this->client->resource('Bill.Transaction', $this->getVersion())
-                    ->show($id);
+                    ->show($id, $optional);
     }
 
     /**
