@@ -6,7 +6,6 @@ use Billplz\Three\Request;
 
 class Transaction extends Request
 {
-
     /**
      * Show an existing bill transactions.
      *
