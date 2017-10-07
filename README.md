@@ -9,14 +9,14 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
 
 * [Installation](#installation)
 * [Usages](#usages)
-  - [Creating Billplz Client](#creating-billplz-client)
-  - [Creating Collection Request](#creating-collection-request)
-  - [Creating Bill Request](#creating-bill-request)
-  - [Creating Check Request](#creating-check-request)
-  - [Creating Transaction Request](#creating-transaction-request)
+    - [Creating Billplz Client](#creating-billplz-client)
+    - [Creating Collection Request](#creating-collection-request)
+    - [Creating Bill Request](#creating-bill-request)
+    - [Creating Check Request](#creating-check-request)
+    - [Creating Transaction Request](#creating-transaction-request)
 * [Handling Response](#handling-response)
-  - [Checking the Response HTTP Status](#checking-the-response-http-status)
-  - [Checking the Response Header](#checking-the-response-header)
+    - [Checking the Response HTTP Status](#checking-the-response-http-status)
+    - [Checking the Response Header](#checking-the-response-header)
 
 ## Installation
 
@@ -106,17 +106,17 @@ var_dump($response->toArray());
 
 ```php
 return [
-  "id" => "inbmmepb",
-  "title" => "My First API Collection",
-  "logo" => [
-    "thumb_url" => null,
-    "avatar_url" => null
-  ],
-  "split_payment" => [
-    "email" => null,
-    "fixed_cut" => null,
-    "variable_cut" => null
-  ]
+    "id" => "inbmmepb",
+    "title" => "My First API Collection",
+    "logo" => [
+        "thumb_url" => null,
+        "avatar_url" => null
+    ],
+    "split_payment" => [
+        "email" => null,
+        "fixed_cut" => null,
+        "variable_cut" => null
+    ]
 ];
 ```
 
@@ -126,8 +126,8 @@ You can also create new collection with optional parameters:
 $response = $collection->create('My First API Collection', [
     'logo' => '@/Users/Billplz/Documents/uploadPhoto.png',
     'split_payment' => [
-      'email' => 'verified@account.com',
-      'fixed_cut' => \Money\Money::MYR(100),
+        'email' => 'verified@account.com',
+        'fixed_cut' => \Money\Money::MYR(100),
     ],
 ]);
 
@@ -136,17 +136,17 @@ var_dump($response->toArray());
 
 ```php
 return [
-  "id" => "inbmmepb",
-  "title" => "My First API Collection",
-  "logo" => [
-    "thumb_url" => "https://sample.net/assets/uploadPhoto.png",
-    "avatar_url" => "https://sample.net/assets/uploadPhoto.png"
-  ],
-  "split_payment" => [
-    "email" => "verified@account.com",
-    "fixed_cut" => \Money\Money::MYR(100),
-    "variable_cut" => null
-  ]
+    "id" => "inbmmepb",
+    "title" => "My First API Collection",
+    "logo" => [
+        "thumb_url" => "https://sample.net/assets/uploadPhoto.png",
+        "avatar_url" => "https://sample.net/assets/uploadPhoto.png"
+    ],
+    "split_payment" => [
+        "email" => "verified@account.com",
+        "fixed_cut" => \Money\Money::MYR(100),
+        "variable_cut" => null
+    ]
 ]
 ```
 
@@ -164,27 +164,27 @@ var_dump($response->toArray());
 
 ```php
 return [
-  "id" => "0pp87t_6",
-  "title" => "MY FIRST API OPEN COLLECTION",
-  "description" => "Maecenas eu placerat ante. Fusce ut neque justo, et aliquet enim. In hac habitasse platea dictumst.",
-  "reference_1_label" => null,
-  "reference_2_label" => null,
-  "email_link" => null,
-  "amount" => \Money\Money::MYR(299),
-  "fixed_amount" => true,
-  "tax" => null,
-  "fixed_quantity" => true,
-  "payment_button" => "pay",
-  "photo" => [
-    "retina_url" =>  null,
-    "avatar_url" =>  null
-  ],
-  "split_payment" => [
-    "email" => null,
-    "fixed_cut" => null,
-    "variable_cut" => null
-  ],
-  "url" => "https://www.billplz.com/0pp87t_6"
+    "id" => "0pp87t_6",
+    "title" => "MY FIRST API OPEN COLLECTION",
+    "description" => "Maecenas eu placerat ante. Fusce ut neque justo, et aliquet enim. In hac habitasse platea dictumst.",
+    "reference_1_label" => null,
+    "reference_2_label" => null,
+    "email_link" => null,
+    "amount" => \Money\Money::MYR(299),
+    "fixed_amount" => true,
+    "tax" => null,
+    "fixed_quantity" => true,
+    "payment_button" => "pay",
+    "photo" => [
+        "retina_url" =>  null,
+        "avatar_url" =>  null
+    ],
+        "split_payment" => [
+        "email" => null,
+        "fixed_cut" => null,
+        "variable_cut" => null
+    ],
+    "url" => "https://www.billplz.com/0pp87t_6"
 ]
 ```
 
@@ -205,13 +205,13 @@ You can add a new bill by calling the following code:
 
 ```php
 $response = $bill->create(
-  'inbmmepb',
-  'api@billplz.com',
-  null,
-  'Michael API V3',
-  Money\Money::MYR(200),
-  'http://example.com/webhook/',
-  'Maecenas eu placerat ante.'
+    'inbmmepb',
+    'api@billplz.com',
+    null,
+    'Michael API V3',
+    Money\Money::MYR(200),
+    'http://example.com/webhook/',
+    'Maecenas eu placerat ante.'
 );
 
 var_dump($response->toArray());
@@ -219,24 +219,24 @@ var_dump($response->toArray());
 
 ```php
 return [
-  "id" => "8X0Iyzaw",
-  "collection_id" => "inbmmepb",
-  "paid" => false,
-  "state" => "overdue",
-  "amount" => \Money\Money::MYR(200),
-  "paid_amount" => \Money\Money::MYR(0),
-  "due_at" => \DateTime::createFromFormat('Y-m-d', "2015-3-9"),
-  "email" => "api@billplz.com",
-  "mobile" => null,
-  "name" => "MICHAEL API V3",
-  "url" => "https://www.billplz.com/bills/8X0Iyzaw",
-  "reference_1_label" => "Reference 1",
-  "reference_1" => null,
-  "reference_2_label" => "Reference 2",
-  "reference_2" => null,
-  "redirect_url" => null,
-  "callback_url" => "http://example.com/webhook/",
-  "description" => "Maecenas eu placerat ante."
+    "id" => "8X0Iyzaw",
+    "collection_id" => "inbmmepb",
+    "paid" => false,
+    "state" => "overdue",
+    "amount" => \Money\Money::MYR(200),
+    "paid_amount" => \Money\Money::MYR(0),
+    "due_at" => \DateTime::createFromFormat('Y-m-d', "2015-3-9"),
+    "email" => "api@billplz.com",
+    "mobile" => null,
+    "name" => "MICHAEL API V3",
+    "url" => "https://www.billplz.com/bills/8X0Iyzaw",
+    "reference_1_label" => "Reference 1",
+    "reference_1" => null,
+    "reference_2_label" => "Reference 2",
+    "reference_2" => null,
+    "redirect_url" => null,
+    "callback_url" => "http://example.com/webhook/",
+    "description" => "Maecenas eu placerat ante."
 ];
 ```
 
@@ -250,22 +250,22 @@ $data = $billplz->webhook($_POST);
 
 ```php
 return [
-  'id' => 'W_79pJDk',
-  'collection_id' => 'inbmmepb',
-  'paid' => true,
-  'state' => 'paid',
-  'amount' => \Money\Money::MYR(200),
-  'paid_amount' => \Money\Money::MYR(0),
-  'due_at' => \Carbon\Carbon::parse('2020-12-31'),
-  'email' => 'api@billplz.com',
-  'mobile' => '+60112223333',
-  'name' => 'MICHAEL API',
-  'metadata' => [
+    'id' => 'W_79pJDk',
+    'collection_id' => 'inbmmepb',
+    'paid' => true,
+    'state' => 'paid',
+    'amount' => \Money\Money::MYR(200),
+    'paid_amount' => \Money\Money::MYR(0),
+    'due_at' => \Carbon\Carbon::parse('2020-12-31'),
+    'email' => 'api@billplz.com',
+    'mobile' => '+60112223333',
+    'name' => 'MICHAEL API',
+    'metadata' => [
     'id' => 9999,
     'description' => 'This is to test bill creation',
-  ],
-  'url' => 'https://billplz.dev/bills/W_79pJDk',
-  'paid_at' => \Carbon\Carbon::parse('2015-03-09 16:23:59 +0800'),
+    ],
+    'url' => 'https://billplz.dev/bills/W_79pJDk',
+    'paid_at' => \Carbon\Carbon::parse('2015-03-09 16:23:59 +0800'),
 ];
 ```
 
@@ -279,24 +279,24 @@ var_dump($response->toArray());
 
 ```php
 return [
-  "id" => "8X0Iyzaw",
-  "collection_id" => "inbmmepb",
-  "paid" => false,
-  "state" => "due",
-  "amount" => \Money\Money::MYR(200),
-  "paid_amount" => \Money\Money::MYR(0),
-  "due_at" => \Carbon\Carbon::parse("2020-12-31"),
-  "email" => "api@billplz.com",
-  "mobile" => "+60112223333",
-  "name" => "MICHAEL API V3",
-  "url" => "https://www.billplz.com/bills/8X0Iyzaw",
-  "reference_1_label" => "First Name",
-  "reference_1" => "Jordan",
-  "reference_2_label" => "Last Name",
-  "reference_2" => "Michael",
-  "redirect_url" => "http://example.com/redirect/",
-  "callback_url" => "http://example.com/webhook/",
-  "description" => "Maecenas eu placerat ante."
+    "id" => "8X0Iyzaw",
+    "collection_id" => "inbmmepb",
+    "paid" => false,
+    "state" => "due",
+    "amount" => \Money\Money::MYR(200),
+    "paid_amount" => \Money\Money::MYR(0),
+    "due_at" => \Carbon\Carbon::parse("2020-12-31"),
+    "email" => "api@billplz.com",
+    "mobile" => "+60112223333",
+    "name" => "MICHAEL API V3",
+    "url" => "https://www.billplz.com/bills/8X0Iyzaw",
+    "reference_1_label" => "First Name",
+    "reference_1" => "Jordan",
+    "reference_2_label" => "Last Name",
+    "reference_2" => "Michael",
+    "redirect_url" => "http://example.com/redirect/",
+    "callback_url" => "http://example.com/webhook/",
+    "description" => "Maecenas eu placerat ante."
 ]
 ```
 
@@ -317,7 +317,7 @@ var_dump($response->toArray());
 Now you can create an instance of Check:
 
 ```php
-$bill = $billplz->check();
+$checker = $billplz->check();
 ```
 
 > You can also manually set the API version by doing `$billplz->check('v3');`. You can also use `$billplz->resource('Check');` to get the same result.
@@ -325,14 +325,14 @@ $bill = $billplz->check();
 #### By Bank Account
 
 ```php
-$response = $bill->bankAccount('1234567890');
+$response = $checker->bankAccount('1234567890');
 
 var_dump($response->toArray());
 ```
 
 ```php
 return [
-  "name" => "verified"
+    "name" => "verified"
 ]
 ```
 
@@ -341,7 +341,7 @@ return [
 Now you can create an instance of Transaction:
 
 ```php
-$bill = $billplz->transaction();
+$transaction = $billplz->transaction();
 ```
 
 > You can also manually set the API version by doing `$billplz->transaction('v3');`. You can also use `$billplz->resource('Bill.Transaction');` to get the same result.
@@ -351,37 +351,37 @@ $bill = $billplz->transaction();
 You can get Transaction index by calling following code:
 
 ```php
-$response = $bill->show('inbmmepb');
+$response = $transaction->show('inbmmepb');
 
 var_dump($response->toArray());
 ```
 
 ```php
 return [
-  "bill_id" => "inbmmepb"
-  "transactions" => [
-  	[
-    	"id": "60793D4707CD",
-    	"status": "completed",
-    	"completed_at": "2017-02-23T12:49:23.612+08:00",
-    	"payment_channel": "FPX"
+    "bill_id" => "inbmmepb"
+    "transactions" => [
+        [
+            "id": "60793D4707CD",
+            "status": "completed",
+            "completed_at": "2017-02-23T12:49:23.612+08:00",
+            "payment_channel": "FPX"
+        ],
+        [
+            "id" => "28F3D3194138",
+            "status" => "failed",
+            "completed_at" => ,
+            "payment_channel" => "FPX"
+        ]
     ],
-    [
-    	"id" => "28F3D3194138",
-    	"status" => "failed",
-    	"completed_at" => ,
-    	"payment_channel" => "FPX"
-    ]
-  ],
-  "page" => 1
+    "page" => 1
 ]
 ```
 
 You also can provide optional parameters (page, status):
 
 ```php
-$response = $bill->show('8X0Iyzaw', [
-	'page' => 1,
+$response = $transaction->show('8X0Iyzaw', [
+    'page' => 1,
     'status' => 'completed'
 ]);
 
@@ -390,16 +390,16 @@ var_dump($response->toArray());
 
 ```php
 return [
-  "bill_id" => "8X0Iyzaw"
-  "transactions" => [
-  	[
-    	"id" => "60793D4707CD",
-    	"status" => "completed",
-    	"completed_at" => "2017-02-23T12:49:23.612+08:00",
-    	"payment_channel" => "FPX"
-    ]
-  ],
-  "page" => 1
+    "bill_id" => "8X0Iyzaw"
+    "transactions" => [
+        [
+            "id" => "60793D4707CD",
+            "status" => "completed",
+            "completed_at" => "2017-02-23T12:49:23.612+08:00",
+            "payment_channel" => "FPX"
+        ]
+    ],
+    "page" => 1
 ]
 ```
 
@@ -427,7 +427,7 @@ You can get the response status code via:
 
 ```php
 if ($response->getStatusCode() !== 200) {
-  throw new SomethingHasGoneReallyBadException();
+    throw new SomethingHasGoneReallyBadException();
 }
 ```
 
