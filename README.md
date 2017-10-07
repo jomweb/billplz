@@ -12,6 +12,8 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
   - [Creating Billplz Client](#creating-billplz-client)
   - [Creating Collection Request](#creating-collection-request)
   - [Creating Bill Request](#creating-bill-request)
+  - [Creating Check Request](#creating-check-request)
+  - [Creating Transaction Request](#creating-transaction-request)
 * [Handling Response](#handling-response)
   - [Checking the Response HTTP Status](#checking-the-response-http-status)
   - [Checking the Response Header](#checking-the-response-header)
@@ -48,7 +50,7 @@ use Http\Adapter\Guzzle6\Client as GuzzleHttpClient;
 use Http\Message\MessageFactory\GuzzleMessageFactory;
 
 $http = new HttpMethodsClient(
-    new GuzzleHttpClient(), 
+    new GuzzleHttpClient(),
     new GuzzleMessageFactory()
 );
 
@@ -152,7 +154,7 @@ return [
 
 ```php
 $response = $collection->createOpen(
-    'My First API Collection', 
+    'My First API Collection',
     'Maecenas eu placerat ante. Fusce ut neque justo, et aliquet enim. In hac habitasse platea dictumst.',
     Money\Money::MYR(299)
 );
@@ -187,7 +189,7 @@ return [
 ```
 
 
-### Creating Bill Request 
+### Creating Bill Request
 
 Now you can create an instance of Bill:
 
@@ -308,6 +310,97 @@ var_dump($response->toArray());
 
 ```php
 []
+```
+
+### Creating Check Request
+
+Now you can create an instance of Check:
+
+```php
+$bill = $billplz->check();
+```
+
+> You can also manually set the API version by doing `$billplz->check('v3');`. You can also use `$billplz->resource('Check');` to get the same result.
+
+#### By Bank Account
+
+```php
+$response = $bill->bankAccount('1234567890');
+
+var_dump($response->toArray());
+```
+
+```php
+return [
+  "name" => "verified"
+]
+```
+
+### Creating Transaction Request
+
+Now you can create an instance of Transaction:
+
+```php
+$bill = $billplz->transaction();
+```
+
+> You can also manually set the API version by doing `$billplz->transaction('v3');`. You can also use `$billplz->resource('Bill.Transaction');` to get the same result.
+
+#### Get Transaction Index
+
+You can get Transaction index by calling following code:
+
+```php
+$response = $bill->show('inbmmepb');
+
+var_dump($response->toArray());
+```
+
+```php
+return [
+  "bill_id" => "inbmmepb"
+  "transactions" => [
+  	[
+    	"id": "60793D4707CD",
+    	"status": "completed",
+    	"completed_at": "2017-02-23T12:49:23.612+08:00",
+    	"payment_channel": "FPX"
+    ],
+    [
+    	"id" => "28F3D3194138",
+    	"status" => "failed",
+    	"completed_at" => ,
+    	"payment_channel" => "FPX"
+    ]
+  ],
+  "page" => 1
+]
+```
+
+You also can provide optional parameters (page, status):
+
+```php
+$response = $bill->show('8X0Iyzaw', [
+	'page' => 1,
+    'status' => 'completed'
+]);
+
+var_dump($response->toArray());
+```
+
+```php
+return [
+  "bill_id" => "8X0Iyzaw"
+  "transactions" => [
+  	[
+    	"id" => "60793D4707CD",
+    	"status" => "completed",
+    	"completed_at" => "2017-02-23T12:49:23.612+08:00",
+    	"payment_channel" => "FPX"
+    ]
+  ],
+  "page" => 1
+]
 ```
 
 ## Handling Response
