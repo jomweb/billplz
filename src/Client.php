@@ -132,6 +132,30 @@ class Client extends BaseClient
     }
 
     /**
+     * Get mass payment instruction collection resource.
+     *
+     * @param  string|null  $version
+     *
+     * @return object
+     */
+    public function mpiCollection($version = null)
+    {
+        return $this->resource('MpiCollection', $version);
+    }
+
+    /**
+     * Get mass payment instruction resource.
+     *
+     * @param  string|null  $version
+     *
+     * @return object
+     */
+    public function mpi($version = null)
+    {
+        return $this->resource('Mpi', $version);
+    }
+
+    /**
      * Get resource default namespace.
      *
      * @return string
