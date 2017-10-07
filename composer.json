@@ -24,7 +24,7 @@
         "php": ">=5.6",
         "laravie/codex": "~1.0",
         "php-http/multipart-stream-builder": "^1.0",
-        "moneyphp/money": "^3.0"
+        "jomweb/ringgit": "~0.3"
     },
     "require-dev": {
         "mockery/mockery": "^0.9.4",
