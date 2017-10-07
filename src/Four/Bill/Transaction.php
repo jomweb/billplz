@@ -2,7 +2,7 @@
 
 namespace Billplz\Four\Bill;
 
-use Billplz\Three\Request;
+use Billplz\Four\Request;
 
 class Transaction extends Request
 {

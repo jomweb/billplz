@@ -9,14 +9,12 @@ class MpiCollection extends Request
      * Create a new mass payment instruction (mpi) collection.
      *
      * @param  string  $title
-     * @param  array  $optional
      *
      * @return \Laravie\Codex\Response
      */
     public function create($title)
     {
-        $body = compact('title');
-        return $this->send('POST', 'mass_payment_instruction_collections', [], $body);
+        return $this->send('POST', 'mass_payment_instruction_collections', [], compact('title'));
     }
 
     /**
