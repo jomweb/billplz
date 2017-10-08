@@ -15,7 +15,7 @@ class Money extends Cast
      */
     protected function isValid($value)
     {
-        return $value instanceof \Money\Money;
+        return $value instanceof \Money\Money || $value instanceof \Duit\MYR;
     }
 
     /**
@@ -39,6 +39,10 @@ class Money extends Cast
      */
     protected function toCast($value)
     {
+        if (class_exists(\Duit\MYR::class, false)) {
+            return \Duit\MYR::given($value);
+        }
+
         return \Money\Money::MYR($value);
     }
 }
