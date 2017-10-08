@@ -2,9 +2,9 @@
 
 namespace Billplz;
 
-use Laravie\Codex\Discovery;
-use Laravie\Codex\Client as BaseClient;
 use Http\Client\Common\HttpMethodsClient as HttpClient;
+use Laravie\Codex\Client as BaseClient;
+use Laravie\Codex\Discovery;
 
 class Client extends BaseClient
 {
@@ -129,6 +129,30 @@ class Client extends BaseClient
     public function transaction($version = null)
     {
         return $this->resource('Bill.Transaction', $version);
+    }
+
+    /**
+     * Get mass payment instruction collection resource.
+     *
+     * @param  string|null  $version
+     *
+     * @return object
+     */
+    public function massPaymentCollection($version = null)
+    {
+        return $this->resource('Collection.MassPayment', $version);
+    }
+
+    /**
+     * Get mass payment instruction resource.
+     *
+     * @param  string|null  $version
+     *
+     * @return object
+     */
+    public function massPayment($version = null)
+    {
+        return $this->resource('MassPayment', $version);
     }
 
     /**
