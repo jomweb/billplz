@@ -1,8 +1,10 @@
 <?php
 
-namespace Billplz\Four;
+namespace Billplz\Four\Collection;
 
-class MpiCollection extends Request
+use Billplz\Four\Request;
+
+class MassPayment extends Request
 {
 
     /**

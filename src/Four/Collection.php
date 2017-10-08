@@ -117,4 +117,14 @@ class Collection extends Request
     {
         return $this->send('POST', "collections/{$id}/deactivate", [], []);
     }
+
+    /**
+     * Get mass payment instruction collection resource.
+     *
+     * @return object
+     */
+    public function massPayment()
+    {
+        return $this->client->resource('Collection.MassPayment', $this->getVersion());
+    }
 }

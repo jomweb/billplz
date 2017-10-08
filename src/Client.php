@@ -2,9 +2,9 @@
 
 namespace Billplz;
 
-use Laravie\Codex\Discovery;
-use Laravie\Codex\Client as BaseClient;
 use Http\Client\Common\HttpMethodsClient as HttpClient;
+use Laravie\Codex\Client as BaseClient;
+use Laravie\Codex\Discovery;
 
 class Client extends BaseClient
 {
@@ -138,9 +138,9 @@ class Client extends BaseClient
      *
      * @return object
      */
-    public function mpiCollection($version = null)
+    public function massPaymentCollection($version = null)
     {
-        return $this->resource('MpiCollection', $version);
+        return $this->resource('Collection.MassPayment', $version);
     }
 
     /**
@@ -150,9 +150,9 @@ class Client extends BaseClient
      *
      * @return object
      */
-    public function mpi($version = null)
+    public function massPayment($version = null)
     {
-        return $this->resource('Mpi', $version);
+        return $this->resource('MassPayment', $version);
     }
 
     /**

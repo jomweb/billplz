@@ -2,7 +2,7 @@
 
 namespace Billplz\Four;
 
-class Mpi extends Request
+class MassPayment extends Request
 {
 
     /**
