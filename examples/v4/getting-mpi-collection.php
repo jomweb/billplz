@@ -6,6 +6,6 @@ $api = 'xxx';
 
 $billplz = Billplz\Client::make($api)->useSandbox();
 
-$response = $billplz->mpiCollection('v4')->get('do4wg1tj');
+$response = $billplz->collection('v4')->massPayment()->get('do4wg1tj');
 
 var_dump($response->toArray());
