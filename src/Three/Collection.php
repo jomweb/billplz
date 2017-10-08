@@ -50,7 +50,7 @@ class Collection extends Request
      */
     public function index(array $optional = [])
     {
-        return $this->send('GET', "collections", [], $optional);
+        return $this->send('GET', 'collections', [], $optional);
     }
 
     /**
@@ -91,7 +91,7 @@ class Collection extends Request
      */
     public function indexOpen(array $optional = [])
     {
-        return $this->send('GET', "open_collections", [], $optional);
+        return $this->send('GET', 'open_collections', [], $optional);
     }
 
     /**
