@@ -2,9 +2,9 @@
 
 namespace Billplz;
 
-use Http\Client\Common\HttpMethodsClient as HttpClient;
-use Laravie\Codex\Client as BaseClient;
 use Laravie\Codex\Discovery;
+use Laravie\Codex\Client as BaseClient;
+use Http\Client\Common\HttpMethodsClient as HttpClient;
 
 class Client extends BaseClient
 {

@@ -6,7 +6,6 @@ use Billplz\Four\Request;
 
 class MassPayment extends Request
 {
-
     /**
      * Create a new mass payment instruction (mpi) collection.
      *
@@ -30,5 +29,4 @@ class MassPayment extends Request
     {
         return $this->send('GET', "mass_payment_instruction_collections/{$mpiCollectionId}", [], []);
     }
-
 }

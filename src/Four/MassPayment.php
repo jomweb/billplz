@@ -4,7 +4,6 @@ namespace Billplz\Four;
 
 class MassPayment extends Request
 {
-
     /**
      * Create a new mass payment instruction (mpi).
      *
@@ -49,5 +48,4 @@ class MassPayment extends Request
     {
         return $this->send('GET', "mass_payment_instructions/{$massPaymentInstructionId}", [], []);
     }
-
 }
