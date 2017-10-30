@@ -417,34 +417,25 @@ var_dump($list->toArray());
 ```
 
 ```php
-array(1) {
-  ["banks"]=>
-  array(28) {
-    [0]=>
-    array(2) {
-      ["name"]=>
-      string(7) "PBB0233"
-      ["active"]=>
-      bool(true)
-    }
-    [1]=>
-    array(2) {
-      ["name"]=>
-      string(7) "MBB0227"
-      ["active"]=>
-      bool(true)
-    }
-    [2]=>
-    array(2) {
-      ["name"]=>
-      string(7) "MBB0228"
-      ["active"]=>
-      bool(true)
-    }
-  }
-}
+return [
+    "banks" => [
+        [
+            "name" => "PBB0233",
+            "active" => true,
+        ],
+        [
+            "name" => "MBB0227",
+            "active" => true,
+        ],
+        [
+            "name" => "MBB0228",
+            "active" => true,
+        ],
+    ],
+];
 ```
-`Note: You will hit 401, Invalid access error if you have not enabled Bank Direct by Billplz. Contact Billplz for information.`
+
+> **Note**: You will hit 401, Invalid access error if you have not enabled Bank Direct by Billplz. Contact Billplz for information.
 
 ## Handling Response
 
