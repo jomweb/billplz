@@ -11,7 +11,7 @@ class Bank extends Request
      *
      * @return \Laravie\Codex\Response
      */
-    public function account($number)
+    public function checkAccount($number)
     {
         return $this->send('GET', "check/bank_account_number/{$number}");
     }

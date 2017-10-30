@@ -14,7 +14,7 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
     - [Creating Bill Request](#creating-bill-request)
     - [Creating Check Request](#creating-check-request)
     - [Creating Transaction Request](#creating-transaction-request)
-    - [Get FPX Banks List](#get-fpx-banks-list)
+    - [Creating Bank Request](#creating-bank-request)
 * [Handling Response](#handling-response)
     - [Checking the Response HTTP Status](#checking-the-response-http-status)
     - [Checking the Response Header](#checking-the-response-header)
@@ -313,30 +313,6 @@ var_dump($response->toArray());
 []
 ```
 
-### Creating Check Request
-
-Now you can create an instance of Check:
-
-```php
-$checker = $billplz->check();
-```
-
-> You can also manually set the API version by doing `$billplz->check('v3');`. You can also use `$billplz->resource('Check');` to get the same result.
-
-#### By Bank Account
-
-```php
-$response = $checker->bankAccount('1234567890');
-
-var_dump($response->toArray());
-```
-
-```php
-return [
-    "name" => "verified"
-]
-```
-
 ### Creating Transaction Request
 
 Now you can create an instance of Transaction:
@@ -404,14 +380,40 @@ return [
 ]
 ```
 
-### Get FPX Banks List
+### Creating Bank Request
 
-If you want to yous Bank Direct Feature in Billplz, you need list of FPX Banks to send in create bill request.
-
-You can get Transaction index by calling following code: 
+Now you can create an instance of Bank:
 
 ```php
 $bank = $billplz->bank();
+```
+
+> You can also manually set the API version by doing `$billplz->bank('v3');`. You can also use `$billplz->resource('Bank');` to get the same result.
+
+#### Check Bank Account Registration Status
+
+At any given time, you can request to check on a registration status by bank account number.
+
+```php
+$response = $bank->checkAccount('1234567890');
+
+var_dump($response->toArray());
+```
+
+```php
+return [
+    "name" => "verified"
+]
+```
+
+
+#### Get FPX Banks List
+
+If you want to yous Bank Direct Feature in Billplz, you need list of FPX Banks to send in create bill request.
+
+You can get supported bank for FPX by calling following code: 
+
+```php
 $list = $bank->supportedForFpx();
 
 var_dump($list->toArray());

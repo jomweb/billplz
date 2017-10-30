@@ -14,6 +14,6 @@ class Check extends Request
     public function bankAccount($number)
     {
         return $this->client->resource('Bank', $this->getVersion())
-                    ->account($number);
+                    ->checkAccount($number);
     }
 }
