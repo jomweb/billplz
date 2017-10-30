@@ -409,7 +409,7 @@ return [
 
 #### Get FPX Banks List
 
-If you want to yous Bank Direct Feature in Billplz, you need list of FPX Banks to send in create bill request.
+If you want to use Bank Direct Feature in Billplz, you need list of FPX Banks to send in create bill request.
 
 You can get supported bank for FPX by calling following code: 
 
