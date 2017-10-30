@@ -52,7 +52,7 @@ class Client extends BaseClient
      * @param string  $apiKey
      * @param string|null $signatureKey
      */
-    public function __construct(HttpClient $http, $apiKey, $signatureKey)
+    public function __construct(HttpClient $http, $apiKey, $signatureKey = null)
     {
         $this->http = $http;
 
