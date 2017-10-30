@@ -14,6 +14,7 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
     - [Creating Bill Request](#creating-bill-request)
     - [Creating Check Request](#creating-check-request)
     - [Creating Transaction Request](#creating-transaction-request)
+    - [Creating Bank Request](#creating-bank-request)
 * [Handling Response](#handling-response)
     - [Checking the Response HTTP Status](#checking-the-response-http-status)
     - [Checking the Response Header](#checking-the-response-header)
@@ -261,8 +262,8 @@ return [
     'mobile' => '+60112223333',
     'name' => 'MICHAEL API',
     'metadata' => [
-    'id' => 9999,
-    'description' => 'This is to test bill creation',
+        'id' => 9999,
+        'description' => 'This is to test bill creation',
     ],
     'url' => 'https://billplz.dev/bills/W_79pJDk',
     'paid_at' => \Carbon\Carbon::parse('2015-03-09 16:23:59 +0800'),
@@ -310,30 +311,6 @@ var_dump($response->toArray());
 
 ```php
 []
-```
-
-### Creating Check Request
-
-Now you can create an instance of Check:
-
-```php
-$checker = $billplz->check();
-```
-
-> You can also manually set the API version by doing `$billplz->check('v3');`. You can also use `$billplz->resource('Check');` to get the same result.
-
-#### By Bank Account
-
-```php
-$response = $checker->bankAccount('1234567890');
-
-var_dump($response->toArray());
-```
-
-```php
-return [
-    "name" => "verified"
-]
 ```
 
 ### Creating Transaction Request
@@ -403,48 +380,65 @@ return [
 ]
 ```
 
-### Get FPX Banks List
+### Creating Bank Request
 
-If you want to use Bank Direct Feature in Billplz, you need list of FPX Banks to send in create bill request.
-
-You can get Transaction index by calling following code: 
+Now you can create an instance of Bank:
 
 ```php
 $bank = $billplz->bank();
+```
+
+> You can also manually set the API version by doing `$billplz->bank('v3');`. You can also use `$billplz->resource('Bank');` to get the same result.
+
+#### Check Bank Account Registration Status
+
+At any given time, you can request to check on a registration status by bank account number.
+
+```php
+$response = $bank->checkAccount('1234567890');
+
+var_dump($response->toArray());
+```
+
+```php
+return [
+    "name" => "verified"
+]
+```
+
+
+#### Get FPX Banks List
+
+If you want to use Bank Direct Feature in Billplz, you need list of FPX Banks to send in create bill request.
+
+You can get supported bank for FPX by calling following code: 
+
+```php
 $list = $bank->supportedForFpx();
 
 var_dump($list->toArray());
 ```
 
 ```php
-array(1) {
-  ["banks"]=>
-  array(28) {
-    [0]=>
-    array(2) {
-      ["name"]=>
-      string(7) "PBB0233"
-      ["active"]=>
-      bool(true)
-    }
-    [1]=>
-    array(2) {
-      ["name"]=>
-      string(7) "MBB0227"
-      ["active"]=>
-      bool(true)
-    }
-    [2]=>
-    array(2) {
-      ["name"]=>
-      string(7) "MBB0228"
-      ["active"]=>
-      bool(true)
-    }
-  }
-}
+return [
+    "banks" => [
+        [
+            "name" => "PBB0233",
+            "active" => true,
+        ],
+        [
+            "name" => "MBB0227",
+            "active" => true,
+        ],
+        [
+            "name" => "MBB0228",
+            "active" => true,
+        ],
+    ],
+];
 ```
-`Note: You will hit 401, Invalid access error if your account have not enabled Bank Direct Feature by Billplz. Contact Billplz for information.`
+
+> **Note**: You will hit 401, Invalid access error if you have not enabled Bank Direct by Billplz. Contact Billplz for information.
 
 ## Handling Response
 

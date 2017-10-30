@@ -2,8 +2,17 @@
 
 namespace Billplz\Four;
 
+use Billplz\Request;
+
 class MassPayment extends Request
 {
+    /**
+     * Version namespace.
+     *
+     * @var string
+     */
+    protected $version = 'v4';
+
     /**
      * Create a new mass payment instruction (mpi).
      *

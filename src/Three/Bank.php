@@ -1,22 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: khairul
- * Date: 29/10/2017
- * Time: 11:13 PM
- */
 
 namespace Billplz\Three;
+
+use Billplz\Base\Bank as Request;
 
 class Bank extends Request
 {
     /**
-     * Get list of bank for Bank Direct Feature
+     * Version namespace.
      *
-     * @return \Laravie\Codex\Response
+     * @var string
      */
-    public function supportedForFpx()
-    {
-        return $this->send('GET', "fpx_banks");
-    }
+    protected $version = 'v3';
 }
