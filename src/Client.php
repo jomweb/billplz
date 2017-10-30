@@ -16,6 +16,13 @@ class Client extends BaseClient
     protected $apiKey;
 
     /**
+     * Billplz X-Signature Key.
+     *
+     * @var string|null
+     */
+    protected $signatureKey;
+
+    /**
      * Billplz API endpoint.
      *
      * @var string
@@ -44,23 +51,27 @@ class Client extends BaseClient
      *
      * @param \Http\Client\Common\HttpMethodsClient  $http
      * @param string  $apiKey
+     * @param string|null $signatureKey
      */
-    public function __construct(HttpClient $http, $apiKey)
+    public function __construct(HttpClient $http, $apiKey, $signatureKey = null)
     {
         $this->http = $http;
-        $this->apiKey = $apiKey;
+
+        $this->setApiKey($apiKey);
+        $this->setSignatureKey($signatureKey);
     }
 
     /**
      * Make a client.
      *
      * @param string  $apiKey
+     * @param string|null $signatureKey
      *
      * @return $this
      */
-    public static function make($apiKey)
+    public static function make($apiKey, $signatureKey = null)
     {
-        return new static(Discovery::client(), $apiKey);
+        return new static(Discovery::client(), $apiKey, $signatureKey);
     }
 
     /**
@@ -81,6 +92,44 @@ class Client extends BaseClient
     public function getApiKey()
     {
         return $this->apiKey;
+    }
+
+    /**
+     * Set API Key.
+     *
+     * @param  string  $apiKey
+     *
+     * @return $this
+     */
+    public function setApiKey($apiKey)
+    {
+        $this->apiKey = $apiKey;
+
+        return $this;
+    }
+
+    /**
+     * Get X-Signature Key.
+     *
+     * @return string|null
+     */
+    public function getSignatureKey()
+    {
+        return $this->signatureKey;
+    }
+
+    /**
+     * Set X-Signature Key.
+     *
+     * @param  string|null  $signatureKey
+     *
+     * @return $this
+     */
+    public function setSignatureKey($signatureKey = null)
+    {
+        $this->signatureKey = $signatureKey;
+
+        return $this;
     }
 
     /**
