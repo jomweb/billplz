@@ -2,10 +2,17 @@
 
 namespace Billplz\Four\Collection;
 
-use Billplz\Four\Request;
+use Billplz\Request;
 
 class MassPayment extends Request
 {
+    /**
+     * Version namespace.
+     *
+     * @var string
+     */
+    protected $version = 'v4';
+
     /**
      * Create a new mass payment instruction (mpi) collection.
      *
@@ -21,12 +28,12 @@ class MassPayment extends Request
     /**
      * Get mass payment instruction (mpi) collection.
      *
-     * @param  string  $mpiCollectionId
+     * @param  string  $collectionId
      *
      * @return \Laravie\Codex\Response
      */
-    public function get($mpiCollectionId)
+    public function get($collectionId)
     {
-        return $this->send('GET', "mass_payment_instruction_collections/{$mpiCollectionId}", [], []);
+        return $this->send('GET', "mass_payment_instruction_collections/{$collectionId}", [], []);
     }
 }
