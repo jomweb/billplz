@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 1.0.3
+
+Released: 2017-10-12
+
+### Changes
+
+* Allows to cast to `Duit\MYR`.
+
 ## 1.0.2
 
 Released: 2017-10-08
