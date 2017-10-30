@@ -405,7 +405,7 @@ return [
 
 ### Get FPX Banks List
 
-If you want to yous Bank Direct Feature in Billplz, you need list of FPX Banks to send in create bill request.
+If you want to use Bank Direct Feature in Billplz, you need list of FPX Banks to send in create bill request.
 
 You can get Transaction index by calling following code: 
 
@@ -444,7 +444,7 @@ array(1) {
   }
 }
 ```
-`Note: You will hit 401, Invalid access error if you have not enabled Bank Direct by Billplz. Contact Billplz for information.`
+`Note: You will hit 401, Invalid access error if your account have not enabled Bank Direct Feature by Billplz. Contact Billplz for information.`
 
 ## Handling Response
 
