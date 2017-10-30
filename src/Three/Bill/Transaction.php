@@ -2,20 +2,14 @@
 
 namespace Billplz\Three\Bill;
 
-use Billplz\Three\Request;
+use Billplz\Base\Bill\Transaction as Request;
 
 class Transaction extends Request
 {
     /**
-     * Show an existing bill transactions.
+     * Version namespace.
      *
-     * @param  string  $id
-     * @param  array   $optional
-     *
-     * @return \Laravie\Codex\Response
+     * @var string
      */
-    public function show($id, array $optional = [])
-    {
-        return $this->send('GET', "bills/{$id}/transactions", [], $optional);
-    }
+    protected $version = 'v3';
 }
