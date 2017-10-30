@@ -14,6 +14,7 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
     - [Creating Bill Request](#creating-bill-request)
     - [Creating Check Request](#creating-check-request)
     - [Creating Transaction Request](#creating-transaction-request)
+    - [Get FPX Banks List](#get-fpx-banks-list)
 * [Handling Response](#handling-response)
     - [Checking the Response HTTP Status](#checking-the-response-http-status)
     - [Checking the Response Header](#checking-the-response-header)
@@ -261,8 +262,8 @@ return [
     'mobile' => '+60112223333',
     'name' => 'MICHAEL API',
     'metadata' => [
-    'id' => 9999,
-    'description' => 'This is to test bill creation',
+        'id' => 9999,
+        'description' => 'This is to test bill creation',
     ],
     'url' => 'https://billplz.dev/bills/W_79pJDk',
     'paid_at' => \Carbon\Carbon::parse('2015-03-09 16:23:59 +0800'),
