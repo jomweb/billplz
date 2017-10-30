@@ -3,6 +3,7 @@
 namespace Billplz\Three;
 
 use InvalidArgumentException;
+use Billplz\Exceptions\FailedSignatureVerification;
 
 class Bill extends Request
 {
@@ -95,6 +96,48 @@ class Bill extends Request
      */
     public function webhook(array $data = [])
     {
-        return $this->sanitizeTo($data);
+        $bill = $this->sanitizeTo($data);
+
+        $this->validateWebhook($bill, $this->client->getSignatureKey());
+
+        return $bill;
+    }
+
+    /**
+     * Validate webhook response.
+     *
+     * @param  array  $bill
+     * @param  string|null  $signatureKey
+     *
+     * @return bool
+     */
+    protected function validateWebhook(array $bill, $signatureKey = null)
+    {
+        if (is_null($signatureKey)) {
+            return true;
+        }
+
+        if (! isset($bill['x_signature'])) {
+            return false;
+        }
+
+        $attributes = [
+            'amount', 'collection_id', 'due_at', 'email', 'id', 'mobile', 'name',
+            'paid_amount', 'paid_at', 'paid', 'state', 'url',
+        ];
+
+        $keys = [];
+
+        foreach ($attributes as $attribute) {
+            array_push($keys, $attribute.(isset($bill[$attribute]) ? $bill[$attribute] : ''));
+        }
+
+        $hash = hash_hmac('sha256', implode('|', $keys), $signatureKey);
+
+        if (! hash_equals($hash, $bill['x_signature'])) {
+            throw new FailedSignatureVerification();
+        }
+
+        return true;
     }
 }

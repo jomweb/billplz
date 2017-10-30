@@ -16,6 +16,13 @@ class Client extends BaseClient
     protected $apiKey;
 
     /**
+     * Billplz X-Signature Key.
+     *
+     * @var string|null
+     */
+    protected $signatureKey;
+
+    /**
      * Billplz API endpoint.
      *
      * @var string
@@ -44,23 +51,27 @@ class Client extends BaseClient
      *
      * @param \Http\Client\Common\HttpMethodsClient  $http
      * @param string  $apiKey
+     * @param string|null $signatureKey
      */
-    public function __construct(HttpClient $http, $apiKey)
+    public function __construct(HttpClient $http, $apiKey, $signatureKey = null)
     {
         $this->http = $http;
-        $this->apiKey = $apiKey;
+
+        $this->setApiKey($apiKey);
+        $this->setSignatureKey($signatureKey);
     }
 
     /**
      * Make a client.
      *
      * @param string  $apiKey
+     * @param string|null $signatureKey
      *
      * @return $this
      */
-    public static function make($apiKey)
+    public static function make($apiKey, $signatureKey = null)
     {
-        return new static(Discovery::client(), $apiKey);
+        return new static(Discovery::client(), $apiKey, $signatureKey);
     }
 
     /**
@@ -81,6 +92,44 @@ class Client extends BaseClient
     public function getApiKey()
     {
         return $this->apiKey;
+    }
+
+    /**
+     * Set API Key.
+     *
+     * @param  string  $apiKey
+     *
+     * @return $this
+     */
+    public function setApiKey($apiKey)
+    {
+        $this->apiKey = $apiKey;
+
+        return $this;
+    }
+
+    /**
+     * Get X-Signature Key.
+     *
+     * @return string|null
+     */
+    public function getSignatureKey()
+    {
+        return $this->signatureKey;
+    }
+
+    /**
+     * Set X-Signature Key.
+     *
+     * @param  string|null  $signatureKey
+     *
+     * @return $this
+     */
+    public function setSignatureKey($signatureKey = null)
+    {
+        $this->signatureKey = $signatureKey;
+
+        return $this;
     }
 
     /**
@@ -129,6 +178,42 @@ class Client extends BaseClient
     public function transaction($version = null)
     {
         return $this->resource('Bill.Transaction', $version);
+    }
+
+    /**
+     * Get mass payment instruction collection resource.
+     *
+     * @param  string|null  $version
+     *
+     * @return object
+     */
+    public function massPaymentCollection($version = null)
+    {
+        return $this->resource('Collection.MassPayment', $version);
+    }
+
+    /**
+     * Get mass payment instruction resource.
+     *
+     * @param  string|null  $version
+     *
+     * @return object
+     */
+    public function massPayment($version = null)
+    {
+        return $this->resource('MassPayment', $version);
+    }
+
+    /**
+     * Get bank resource.
+     *
+     * @param  string|null  $version
+     *
+     * @return object
+     */
+    public function bank($version = null)
+    {
+        return $this->resource('Bank', $version);
     }
 
     /**

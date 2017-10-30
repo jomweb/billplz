@@ -1,6 +1,6 @@
 <?php
 
-namespace Billplz\Three;
+namespace Billplz\Four;
 
 use Billplz\Request as BaseRequest;
 

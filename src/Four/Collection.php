@@ -1,6 +1,6 @@
 <?php
 
-namespace Billplz\Three;
+namespace Billplz\Four;
 
 use Laravie\Codex\Support\MultipartRequest;
 
@@ -116,5 +116,15 @@ class Collection extends Request
     public function deactivate($id)
     {
         return $this->send('POST', "collections/{$id}/deactivate", [], []);
+    }
+
+    /**
+     * Get mass payment instruction collection resource.
+     *
+     * @return object
+     */
+    public function massPayment()
+    {
+        return $this->client->resource('Collection.MassPayment', $this->getVersion());
     }
 }
