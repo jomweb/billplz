@@ -13,6 +13,7 @@ class Check extends Request
      */
     public function bankAccount($number)
     {
-        return $this->send('GET', "check/bank_account_number/{$number}");
+        return $this->client->resource('Bank', $this->getVersion())
+                    ->account($number);
     }
 }
