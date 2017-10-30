@@ -15,7 +15,7 @@ class Bank extends Request
      *
      * @return \Laravie\Codex\Response
      */
-    public function bankList()
+    public function supportedForFpx()
     {
         return $this->send('GET', "fpx_banks");
     }
