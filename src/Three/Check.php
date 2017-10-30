@@ -2,18 +2,14 @@
 
 namespace Billplz\Three;
 
+use Billplz\Base\Check as Request;
+
 class Check extends Request
 {
     /**
-     * Check Bank Account Number.
+     * Version namespace.
      *
-     * @param  string|int  $number
-     *
-     * @return \Laravie\Codex\Response
+     * @var string
      */
-    public function bankAccount($number)
-    {
-        return $this->client->resource('Bank', $this->getVersion())
-                    ->checkAccount($number);
-    }
+    protected $version = 'v3';
 }

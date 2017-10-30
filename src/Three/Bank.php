@@ -2,27 +2,14 @@
 
 namespace Billplz\Three;
 
+use Billplz\Base\Bank as Request;
+
 class Bank extends Request
 {
     /**
-     * Check Bank Account Number.
+     * Version namespace.
      *
-     * @param  string|int  $number
-     *
-     * @return \Laravie\Codex\Response
+     * @var string
      */
-    public function checkAccount($number)
-    {
-        return $this->send('GET', "check/bank_account_number/{$number}");
-    }
-
-    /**
-     * Get list of bank for Bank Direct Feature.
-     *
-     * @return \Laravie\Codex\Response
-     */
-    public function supportedForFpx()
-    {
-        return $this->send('GET', 'fpx_banks');
-    }
+    protected $version = 'v3';
 }
