@@ -156,6 +156,18 @@ class Client extends BaseClient
     }
 
     /**
+     * Get bank resource.
+     *
+     * @param  string|null  $version
+     *
+     * @return object
+     */
+    public function bank($version = null)
+    {
+        return $this->resource('Bank', $version);
+    }
+
+    /**
      * Get resource default namespace.
      *
      * @return string
