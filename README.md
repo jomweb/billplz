@@ -411,7 +411,7 @@ You can get Transaction index by calling following code:
 
 ```php
 $bank = $billplz->bank();
-$list = $bank->bankList();
+$list = $bank->supportedForFpx();
 
 var_dump($list->toArray());
 ```
