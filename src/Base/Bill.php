@@ -6,7 +6,7 @@ use Billplz\Request;
 use InvalidArgumentException;
 use Billplz\Exceptions\FailedSignatureVerification;
 
-class Bill extends Request
+abstract class Bill extends Request
 {
     /**
      * Create a new bill.

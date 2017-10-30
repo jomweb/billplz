@@ -4,7 +4,7 @@ namespace Billplz\Base\Bill;
 
 use Billplz\Request;
 
-class Transaction extends Request
+abstract class Transaction extends Request
 {
     /**
      * Show an existing bill transactions.

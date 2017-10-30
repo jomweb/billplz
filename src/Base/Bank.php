@@ -4,7 +4,7 @@ namespace Billplz\Base;
 
 use Billplz\Request;
 
-class Bank extends Request
+abstract class Bank extends Request
 {
     /**
      * Check Bank Account Number.

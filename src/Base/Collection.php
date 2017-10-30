@@ -5,7 +5,7 @@ namespace Billplz\Base;
 use Billplz\Request;
 use Laravie\Codex\Support\MultipartRequest;
 
-class Collection extends Request
+abstract class Collection extends Request
 {
     use MultipartRequest;
 
