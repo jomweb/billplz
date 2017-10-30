@@ -97,11 +97,9 @@ abstract class Bill extends Request
      */
     public function webhook(array $data = [])
     {
-        $bill = $this->sanitizeTo($data);
+        $this->validateWebhook($data, $this->client->getSignatureKey());
 
-        $this->validateWebhook($bill, $this->client->getSignatureKey());
-
-        return $bill;
+        return $this->sanitizeTo($data);
     }
 
     /**
