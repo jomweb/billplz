@@ -93,13 +93,13 @@ abstract class Bill extends Request
      *
      * @param  array  $data
      *
-     * @return array
+     * @return array|null
      */
     public function webhook(array $data = [])
     {
-        $this->validateWebhook($data, $this->client->getSignatureKey());
-
-        return $this->sanitizeTo($data);
+        if ($this->validateWebhook($data, $this->client->getSignatureKey())) {
+            return $this->sanitizeTo($data);
+        }
     }
 
     /**
