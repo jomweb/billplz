@@ -9,6 +9,16 @@ use Billplz\TestCase\TestCase;
 class BillTest extends TestCase
 {
     /** @test */
+    public function it_can_called_via_helper()
+    {
+        $bill = $this->fakeClient($this->fakeHttpClient())->bill();
+
+        $this->assertInstanceOf('Billplz\Base\Bill', $bill);
+        $this->assertInstanceOf('Billplz\Three\Bill', $bill);
+        $this->assertSame('v3', $bill->getVersion());
+    }
+
+    /** @test */
     public function it_can_be_created()
     {
         $data = [

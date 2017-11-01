@@ -34,6 +34,16 @@ class TestCase extends PHPUnit
     }
 
     /**
+     * Fake HTTP Client.
+     *
+     * @return \Mockery\MockInterface
+     */
+    protected function fakeHttpClient()
+    {
+        return m::mock(HttpMethodsClient::class);
+    }
+
+    /**
      * Create a fake HTTP request.
      *
      * @param  string  $method
@@ -44,7 +54,7 @@ class TestCase extends PHPUnit
      */
     protected function fakeHttpRequest($method = 'GET', $uri, array $headers = [], array $body = [])
     {
-        $http = m::mock(HttpMethodsClient::class);
+        $http = $this->fakeHttpClient();
         $message = m::mock(ResponseInterface::class);
 
         $http->shouldReceive('send')
