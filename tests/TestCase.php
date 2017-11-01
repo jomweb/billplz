@@ -4,26 +4,23 @@ namespace Billplz\TestCase;
 
 use Mockery as m;
 use Billplz\Client;
-use GuzzleHttp\Psr7\Uri;
-use Psr\Http\Message\ResponseInterface;
-use Http\Client\Common\HttpMethodsClient;
 use PHPUnit\Framework\TestCase as PHPUnit;
 
 class TestCase extends PHPUnit
 {
     /**
-     * API Version
+     * API Version.
      *
      * @var string
      */
     protected $apiEndpoint = 'www.billplz.com/api';
 
     /**
-     * API Version
+     * API Version.
      *
      * @var string
      */
-    protected $apiVersion = 'v3';
+    protected $apiVersion;
 
     /**
      * Teardown the test environment.
@@ -45,7 +42,7 @@ class TestCase extends PHPUnit
     protected function expectRequest($method = 'GET', $uri = '/', array $headers = [], array $body = [])
     {
         $expectedUrl = sprintf(
-            "https://%s@%s/%s/%s", '73eb57f0-7d4e-42b9-a544-aeac6e4b0f81', $this->apiEndpoint, $this->apiVersion, $uri
+            'https://%s@%s/%s/%s', '73eb57f0-7d4e-42b9-a544-aeac6e4b0f81', $this->apiEndpoint, $this->apiVersion, $uri
         );
 
         return FakeRequest::create()
