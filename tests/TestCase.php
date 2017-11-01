@@ -12,6 +12,20 @@ use PHPUnit\Framework\TestCase as PHPUnit;
 class TestCase extends PHPUnit
 {
     /**
+     * API Version
+     *
+     * @var string
+     */
+    protected $apiEndpoint = 'www.billplz.com/api';
+
+    /**
+     * API Version
+     *
+     * @var string
+     */
+    protected $apiVersion = 'v3';
+
+    /**
      * Teardown the test environment.
      */
     protected function tearDown()
@@ -36,7 +50,7 @@ class TestCase extends PHPUnit
         $http->shouldReceive('send')
             ->with($method, m::type(Uri::class), $headers, http_build_query($body, null, '&'))
             ->andReturnUsing(function ($m, $u, $h, $b) use ($uri, $message) {
-                $this->assertEquals((string) $u, "https://jomweb@www.billplz.com/api/v3/{$uri}");
+                $this->assertEquals((string) $u, "https://jomweb@{$this->apiEndpoint}/{$this->apiVersion}/{$uri}");
 
                 return $message;
             });

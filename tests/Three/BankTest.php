@@ -8,6 +8,7 @@ use Billplz\TestCase\TestCase;
 
 class BankTest extends TestCase
 {
+    /** @test */
     public function it_can_check_account_registration()
     {
         list($http, $message) = $this->fakeHttpRequest('GET', 'check/bank_account_number/jomlaunch');
