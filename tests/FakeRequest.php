@@ -6,6 +6,7 @@ use Mockery as m;
 use GuzzleHttp\Psr7\Uri;
 use PHPUnit\Framework\Assert;
 use Psr\Http\Message\ResponseInterface;
+use Http\Client\Common\HttpMethodsClient;
 
 class FakeRequest
 {
@@ -46,23 +47,21 @@ class FakeRequest
 
     /**
      * Construct a fake request.
-     *
-     * @param \Mockery\MockeryInterface $http
      */
-    public function __construct($http)
+    public function __construct()
     {
-        $this->http = $http;
+        $this->http = m::mock(HttpMethodsClient::class);
         $this->message = m::mock(ResponseInterface::class);
     }
 
     /**
      * Create a fake request.
      *
-     * @param \Mockery\MockeryInterface $http
+     * @return static
      */
-    public static function create($http)
+    public static function create()
     {
-        return new static($http);
+        return new static();
     }
 
     /**

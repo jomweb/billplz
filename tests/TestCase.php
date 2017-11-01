@@ -34,16 +34,6 @@ class TestCase extends PHPUnit
     }
 
     /**
-     * Mock HTTP Client.
-     *
-     * @return \Mockery\MockInterface
-     */
-    protected function mockHttpClient()
-    {
-        return m::mock(HttpMethodsClient::class);
-    }
-
-    /**
      * Create a fake HTTP request.
      *
      * @param  string  $method
@@ -58,7 +48,7 @@ class TestCase extends PHPUnit
             "https://%s@%s/%s/%s", '73eb57f0-7d4e-42b9-a544-aeac6e4b0f81', $this->apiEndpoint, $this->apiVersion, $uri
         );
 
-        return FakeRequest::create($this->mockHttpClient())
+        return FakeRequest::create()
                     ->setExpectedUrl($expectedUrl)
                     ->call($method, $headers, http_build_query($body, null, '&'));
     }
@@ -73,7 +63,7 @@ class TestCase extends PHPUnit
     protected function makeClient($http = null)
     {
         if (is_null($http)) {
-            $http = $this->mockHttpClient();
+            $http = FakeRequest::create()->http();
         }
 
         return new Client($http, '73eb57f0-7d4e-42b9-a544-aeac6e4b0f81', 'billplz');
