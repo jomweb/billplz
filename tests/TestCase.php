@@ -50,7 +50,13 @@ class TestCase extends PHPUnit
         $http->shouldReceive('send')
             ->with($method, m::type(Uri::class), $headers, http_build_query($body, null, '&'))
             ->andReturnUsing(function ($m, $u, $h, $b) use ($uri, $message) {
-                $this->assertEquals((string) $u, "https://jomweb@{$this->apiEndpoint}/{$this->apiVersion}/{$uri}");
+                $this->assertEquals((string) $u, sprintf(
+                    "https://%s@%s/%s/%s",
+                    '73eb57f0-7d4e-42b9-a544-aeac6e4b0f81',
+                    $this->apiEndpoint,
+                    $this->apiVersion,
+                    $uri
+                ));
 
                 return $message;
             });
@@ -67,6 +73,6 @@ class TestCase extends PHPUnit
      */
     protected function fakeClient($http)
     {
-        return new Client($http, 'jomweb', 'billplz');
+        return new Client($http, '73eb57f0-7d4e-42b9-a544-aeac6e4b0f81', 'billplz');
     }
 }
