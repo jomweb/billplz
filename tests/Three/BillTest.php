@@ -11,7 +11,7 @@ class BillTest extends TestCase
     /** @test */
     public function it_can_called_via_helper()
     {
-        $bill = $this->fakeClient($this->fakeHttpClient())->bill();
+        $bill = $this->makeClient()->bill();
 
         $this->assertInstanceOf('Billplz\Base\Bill', $bill);
         $this->assertInstanceOf('Billplz\Three\Bill', $bill);
@@ -31,14 +31,12 @@ class BillTest extends TestCase
             'callback_url' => 'http://example.com/webhook/',
         ];
 
-        list($http, $message) = $this->fakeHttpRequest('POST', 'bills', [], $data);
+        $expected = '{"id":"8X0Iyzaw","collection_id":"inbmmepb","paid":false,"state":"due","amount":200,"paid_amount":0,"due_at":"2015-3-9","email":"api@billplz.com","mobile":null,"name":"MICHAEL API V3","url":"https:\/\/www.billplz.com\/bills\/8X0Iyzaw","reference_1_label":"Reference 1","reference_1":null,"reference_2_label":"Reference 2","reference_2":null,"redirect_url":null,"callback_url":"http:\/\/example.com\/webhook\/","description":"Maecenas eu placerat ante."}';
 
-        $message->shouldReceive('getStatusCode')->andReturn(200)
-                ->shouldReceive('getBody')->andReturn(
-                    '{"id":"8X0Iyzaw","collection_id":"inbmmepb","paid":false,"state":"due","amount":200,"paid_amount":0,"due_at":"2015-3-9","email":"api@billplz.com","mobile":null,"name":"MICHAEL API V3","url":"https:\/\/www.billplz.com\/bills\/8X0Iyzaw","reference_1_label":"Reference 1","reference_1":null,"reference_2_label":"Reference 2","reference_2":null,"redirect_url":null,"callback_url":"http:\/\/example.com\/webhook\/","description":"Maecenas eu placerat ante."}'
-                );
+        $request = $this->expectRequest('POST', 'bills', [], $data)
+                        ->shouldResponseWith(200, $expected);
 
-        $response = $this->fakeClient($http)
+        $response = $this->makeClient($request->http())
                         ->resource('Bill')
                         ->create(
                             $data['collection_id'],
@@ -51,25 +49,28 @@ class BillTest extends TestCase
                         );
 
         $this->assertInstanceOf(Response::class, $response);
+        $this->assertSame(200, $response->getStatusCode());
+        $this->assertSame($expected, $response->getBody());
     }
 
     /** @test */
     public function it_can_show_existing_bill()
     {
-        list($http, $message) = $this->fakeHttpRequest('GET', 'bills/8X0Iyzaw');
+        $expected = '{"id":"8X0Iyzaw","collection_id":"inbmmepb","paid":false,"state":"due","amount":200,"paid_amount":0,"due_at":"2020-12-31","email":"api@billplz.com","mobile":"+60112223333","name":"MICHAEL API V3","url":"https:\/\/www.billplz.com\/bills\/8X0Iyzaw","reference_1_label":"First Name","reference_1":"Jordan","reference_2_label":"Last Name","reference_2":"Michael","redirect_url":"http:\/\/example.com\/redirect\/","callback_url":"http:\/\/example.com\/webhook\/","description":"Maecenas eu placerat ante."}';
 
-        $message->shouldReceive('getStatusCode')->andReturn(200)
-            ->shouldReceive('getBody')->andReturn(
-                '{"id":"8X0Iyzaw","collection_id":"inbmmepb","paid":false,"state":"due","amount":200,"paid_amount":0,"due_at":"2020-12-31","email":"api@billplz.com","mobile":"+60112223333","name":"MICHAEL API V3","url":"https:\/\/www.billplz.com\/bills\/8X0Iyzaw","reference_1_label":"First Name","reference_1":"Jordan","reference_2_label":"Last Name","reference_2":"Michael","redirect_url":"http:\/\/example.com\/redirect\/","callback_url":"http:\/\/example.com\/webhook\/","description":"Maecenas eu placerat ante."}'
-            );
+        $request = $this->expectRequest('GET', 'bills/8X0Iyzaw')
+                        ->shouldResponseWith(200, $expected);
 
-        $response = $this->fakeClient($http)
+        $response = $this->makeClient($request->http())
                         ->resource('Bill')
                         ->show('8X0Iyzaw');
 
+        $this->assertInstanceOf(Response::class, $response);
+        $this->assertSame(200, $response->getStatusCode());
+        $this->assertSame($expected, $response->getBody());
+
         $bill = $response->toArray();
 
-        $this->assertInstanceOf(Response::class, $response);
         $this->assertInstanceOf(Money::class, $bill['amount']);
         $this->assertSame('inbmmepb', $bill['collection_id']);
     }
@@ -77,18 +78,18 @@ class BillTest extends TestCase
     /** @test */
     public function it_can_delete_existing_bill()
     {
-        list($http, $message) = $this->fakeHttpRequest('DELETE', 'bills/8X0Iyzaw');
+        $expected = '[]';
 
-        $message->shouldReceive('getStatusCode')->andReturn(200)
-            ->shouldReceive('getBody')->andReturn('[]');
+        $request = $this->expectRequest('DELETE', 'bills/8X0Iyzaw')
+                        ->shouldResponseWith(200, $expected);
 
-        $response = $this->fakeClient($http)
+        $response = $this->makeClient($request->http())
                         ->resource('Bill')
                         ->destroy('8X0Iyzaw');
 
-        $bill = $response->toArray();
-
         $this->assertInstanceOf(Response::class, $response);
-        $this->assertSame([], $bill);
+        $this->assertSame(200, $response->getStatusCode());
+        $this->assertSame($expected, $response->getBody());
+        $this->assertSame([], $response->toArray());
     }
 }

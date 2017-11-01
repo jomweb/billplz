@@ -8,11 +8,10 @@ use Billplz\TestCase\TestCase;
 
 class CheckTest extends TestCase
 {
-
     /** @test */
     public function it_can_called_via_helper()
     {
-        $check = $this->fakeClient($this->fakeHttpClient())->check();
+        $check = $this->makeClient()->check();
 
         $this->assertInstanceOf('Billplz\Base\Check', $check);
         $this->assertInstanceOf('Billplz\Three\Check', $check);
@@ -22,9 +21,12 @@ class CheckTest extends TestCase
     /** @test */
     public function it_can_check_account_registration()
     {
-        list($http, $message) = $this->fakeHttpRequest('GET', 'check/bank_account_number/jomlaunch');
+        $expected = '{"verified":true}';
 
-        $response = $this->fakeClient($http)
+        $request = $this->expectRequest('GET', 'check/bank_account_number/jomlaunch')
+                        ->shouldResponseWith(200, $expected);
+
+        $response = $this->makeClient($request->http())
                         ->resource('Check')
                         ->bankAccount('jomlaunch');
 

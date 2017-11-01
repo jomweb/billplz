@@ -34,11 +34,11 @@ class TestCase extends PHPUnit
     }
 
     /**
-     * Fake HTTP Client.
+     * Mock HTTP Client.
      *
      * @return \Mockery\MockInterface
      */
-    protected function fakeHttpClient()
+    protected function mockHttpClient()
     {
         return m::mock(HttpMethodsClient::class);
     }
@@ -52,37 +52,30 @@ class TestCase extends PHPUnit
      *
      * @return array
      */
-    protected function fakeHttpRequest($method = 'GET', $uri, array $headers = [], array $body = [])
+    protected function expectRequest($method = 'GET', $uri = '/', array $headers = [], array $body = [])
     {
-        $http = $this->fakeHttpClient();
-        $message = m::mock(ResponseInterface::class);
+        $expectedUrl = sprintf(
+            "https://%s@%s/%s/%s", '73eb57f0-7d4e-42b9-a544-aeac6e4b0f81', $this->apiEndpoint, $this->apiVersion, $uri
+        );
 
-        $http->shouldReceive('send')
-            ->with($method, m::type(Uri::class), $headers, http_build_query($body, null, '&'))
-            ->andReturnUsing(function ($m, $u, $h, $b) use ($uri, $message) {
-                $this->assertEquals((string) $u, sprintf(
-                    "https://%s@%s/%s/%s",
-                    '73eb57f0-7d4e-42b9-a544-aeac6e4b0f81',
-                    $this->apiEndpoint,
-                    $this->apiVersion,
-                    $uri
-                ));
-
-                return $message;
-            });
-
-        return [$http, $message];
+        return FakeRequest::create($this->mockHttpClient())
+                    ->setExpectedUrl($expectedUrl)
+                    ->call($method, $headers, http_build_query($body, null, '&'));
     }
 
     /**
      * Create a fake client.
      *
-     * @param  object  $http
+     * @param  object|null  $http
      *
      * @return \Billplz\Client
      */
-    protected function fakeClient($http)
+    protected function makeClient($http = null)
     {
+        if (is_null($http)) {
+            $http = $this->mockHttpClient();
+        }
+
         return new Client($http, '73eb57f0-7d4e-42b9-a544-aeac6e4b0f81', 'billplz');
     }
 }
