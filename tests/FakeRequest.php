@@ -29,7 +29,7 @@ class FakeRequest
      *
      * @var string
      */
-    protected $expectedUrl;
+    protected $expectedEndpoint;
 
     /**
      * Expected HTTP status code.
@@ -67,13 +67,13 @@ class FakeRequest
     /**
      * Set expected URL.
      *
-     * @param  string  $expectedUrl
+     * @param  string  $endpoint
      *
      * @return $this
      */
-    public function setExpectedUrl($expectedUrl)
+    public function expectEndpointIs($endpoint)
     {
-        $this->expectedUrl = $expectedUrl;
+        $this->expectedEndpoint = $endpoint;
 
         return $this;
     }
@@ -92,7 +92,7 @@ class FakeRequest
         $this->http->shouldReceive('send')
                 ->with($method, m::type(Uri::class), $headers, $body)
                 ->andReturnUsing(function ($m, $u, $h, $b) {
-                    Assert::assertSame((string) $u, $this->expectedUrl);
+                    Assert::assertSame((string) $u, $this->expectedEndpoint);
 
                     return $this->message;
                 });
