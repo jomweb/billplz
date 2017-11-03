@@ -2,13 +2,27 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 1.0.5
+
+Released: 2017-11-03
+
+### Added
+
+* Add `v4` API support.
+* Add Mass Payment instruction support. ([@h2akim](https://github.com/h2akim))
+* Add `Billplz\Signature` to allow reusing x-signature verification even without using the whole library.
+
+### Changes
+
+* Abstract common API request to `Billplz\Base` namespace to support multiple version API requests.
+
 ## 1.0.4
 
 Released: 2017-10-30
 
 ### Added
 
-* Add `Billplze\Three\Bank::checkAccount()` to handle checking account status as prefered alternative instead of `Billplz\Three\Check::bankAccount()`.
+* Add `Billplz\Three\Bank::checkAccount()` to handle checking account status as prefered alternative instead of `Billplz\Three\Check::bankAccount()`.
 * Add `Billplz\Three\Bank::supportedForFpx()` to check list of banks support with FPX. ([@mrkaymy](https://github.com/mrkaymy))
 * Add X-Signature verification for `Billplz\Three\Bill::webhook()` which will throws `Billplz\Exceptions\FailedSignatureVerification` exception if the hash is not equals.
 
