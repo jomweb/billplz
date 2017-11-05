@@ -3,9 +3,9 @@
 namespace Billplz\TestCase;
 
 use Billplz\Sanitizer;
-use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestCase as PHPUnit;
 
-class SanitizerTest extends TestCase
+class SanitizerTest extends PHPUnit
 {
     /** @test */
     public function it_has_proper_signature()

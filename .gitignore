@@ -1,4 +1,3 @@
-/api/
-/cache/
+/coverage/
 /vendor/
 composer.lock

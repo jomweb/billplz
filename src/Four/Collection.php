@@ -1,6 +1,6 @@
 <?php
 
-namespace Billplz\Base;
+namespace Billplz\Four;
 
 use Billplz\Base\Collection as Request;
 

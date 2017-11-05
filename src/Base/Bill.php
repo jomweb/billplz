@@ -93,13 +93,13 @@ abstract class Bill extends Request
      *
      * @param  array  $data
      *
-     * @return array
+     * @return array|null
      */
     public function webhook(array $data = [])
     {
-        $this->validateWebhook($data, $this->client->getSignatureKey());
-
-        return $this->sanitizeTo($data);
+        if ($this->validateWebhook($data, $this->client->getSignatureKey())) {
+            return $this->sanitizeTo($data);
+        }
     }
 
     /**
@@ -120,20 +120,12 @@ abstract class Bill extends Request
             return false;
         }
 
-        $attributes = [
+        $signature = new Signature($signatureKey, [
             'amount', 'collection_id', 'due_at', 'email', 'id', 'mobile', 'name',
             'paid_amount', 'paid_at', 'paid', 'state', 'url',
-        ];
+        ]);
 
-        $keys = [];
-
-        foreach ($attributes as $attribute) {
-            array_push($keys, $attribute.(isset($bill[$attribute]) ? $bill[$attribute] : ''));
-        }
-
-        $hash = hash_hmac('sha256', implode('|', $keys), $signatureKey);
-
-        if (! hash_equals($hash, $bill['x_signature'])) {
+        if (! $signature->verify($bill, $bill['x_signature'])) {
             throw new FailedSignatureVerification();
         }
 
