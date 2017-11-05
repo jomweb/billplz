@@ -63,6 +63,9 @@ class TestCase extends PHPUnit
             $http = FakeRequest::create()->http();
         }
 
-        return new Client($http, '73eb57f0-7d4e-42b9-a544-aeac6e4b0f81', 'billplz');
+        $client = new Client($http, '73eb57f0-7d4e-42b9-a544-aeac6e4b0f81', 'billplz');
+        $client->useVersion($this->apiVersion);
+
+        return $client;
     }
 }

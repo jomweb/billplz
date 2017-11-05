@@ -1,6 +1,6 @@
 <?php
 
-namespace Billplz\TestCase\Three;
+namespace Billplz\TestCase\Four;
 
 use Billplz\TestCase\Base\BankTestCase;
 
@@ -16,8 +16,9 @@ class BankTest extends BankTestCase
     /** @test */
     public function it_can_called_via_helper()
     {
-        $bank = $this->makeClient()->bank('v3');
+        $bank = $this->makeClient()->bank('v4');
 
+        $this->assertInstanceOf('Billplz\Four\Bank', $bank);
         $this->assertInstanceOf('Billplz\Three\Bank', $bank);
         $this->assertSame('v3', $bank->getVersion());
     }
