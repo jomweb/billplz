@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 1.0.6
+
+Released: 2017-11-05
+
+### Fixes
+
+* Fixes `Billplz\Four` namespace for `Bill` and `Collection` requests.
+
 ## 1.0.5
 
 Released: 2017-11-03

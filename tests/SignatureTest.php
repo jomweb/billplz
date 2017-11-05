@@ -3,9 +3,9 @@
 namespace Billplz\TestCase;
 
 use Billplz\Signature;
-use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestCase as PHPUnit;
 
-class SignatureTest extends TestCase
+class SignatureTest extends PHPUnit
 {
     /** @test */
     public function it_can_verify_valid_hash()
