@@ -43,7 +43,7 @@ class Signature
         $keys = [];
 
         foreach ($this->attributes as $attribute) {
-            array_push($keys, $attribute.(isset($data[$attribute]) ? $data[$attribute] : ''));
+            array_push($keys, $attribute.($data[$attribute] ?? ''));
         }
 
         return hash_equals(hash_hmac('sha256', implode('|', $keys), $this->key), $hash);

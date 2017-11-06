@@ -62,8 +62,8 @@ abstract class Request extends BaseRequest
         if (is_string($url)) {
             $body['callback_url'] = $url;
         } elseif (is_array($url)) {
-            $body['callback_url'] = isset($url['callback_url']) ? $url['callback_url'] : null;
-            $body['redirect_url'] = isset($url['redirect_url']) ? $url['redirect_url'] : null;
+            $body['callback_url'] = $url['callback_url'] ?? null;
+            $body['redirect_url'] = $url['redirect_url'] ?? null;
         }
 
         return $body;
