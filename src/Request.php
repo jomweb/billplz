@@ -6,7 +6,6 @@ use Laravie\Codex\Endpoint;
 use Psr\Http\Message\UriInterface;
 use Laravie\Codex\Request as BaseRequest;
 use Laravie\Codex\Contracts\Endpoint as EndpointContract;
-use Laravie\Codex\Contracts\Sanitizer as SanitizerContract;
 
 abstract class Request extends BaseRequest
 {
@@ -46,7 +45,7 @@ abstract class Request extends BaseRequest
      *
      * @return \Billplz\Sanitizer
      */
-    protected function sanitizeWith(): SanitizerContract
+    protected function sanitizeWith(): Sanitizer
     {
         return new Sanitizer();
     }
