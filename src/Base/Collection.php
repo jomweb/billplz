@@ -60,7 +60,7 @@ abstract class Collection extends Request
      *
      * @param  string  $title
      * @param  string  $description
-     * @param  \Money\Money|int  $amount
+     * @param  \Money\Money|\Duit\MYR|int  $amount
      * @param  array  $optional
      *
      * @return \Laravie\Codex\Contracts\Response

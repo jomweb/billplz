@@ -16,7 +16,7 @@ abstract class Bill extends Request
      * @param  string|null  $email
      * @param  string|null  $mobile
      * @param  string  $name
-     * @param  \Money\Money|int  $amount
+     * @param  \Money\Money|\Duit\MYR|int  $amount
      * @param  array|string  $callbackUrl
      * @param  string  $description
      * @param  array  $optional
