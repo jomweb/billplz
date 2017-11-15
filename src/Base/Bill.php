@@ -5,6 +5,7 @@ namespace Billplz\Base;
 use Billplz\Request;
 use InvalidArgumentException;
 use Billplz\Exceptions\FailedSignatureVerification;
+use Laravie\Codex\Contracts\Response as ResponseContract;
 
 abstract class Bill extends Request
 {
@@ -12,8 +13,8 @@ abstract class Bill extends Request
      * Create a new bill.
      *
      * @param  string  $collectionId
-     * @param  string  $email
-     * @param  string  $mobile
+     * @param  string|null  $email
+     * @param  string|null  $mobile
      * @param  string  $name
      * @param  \Money\Money|int  $amount
      * @param  array|string  $callbackUrl
@@ -22,18 +23,18 @@ abstract class Bill extends Request
      *
      * @throws \InvalidArgumentException
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function create(
-        $collectionId,
+        string $collectionId,
         $email,
         $mobile,
-        $name,
+        string $name,
         $amount,
         $callbackUrl,
-        $description,
+        string $description,
         array $optional = []
-    ) {
+    ): ResponseContract {
         if (empty($email) && empty($mobile)) {
             throw new InvalidArgumentException('Either $email or $mobile should be present');
         }
@@ -55,9 +56,9 @@ abstract class Bill extends Request
      *
      * @param  string  $id
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function show($id)
+    public function show(string $id): ResponseContract
     {
         return $this->send('GET', "bills/{$id}");
     }
@@ -68,9 +69,9 @@ abstract class Bill extends Request
      * @param  string  $id
      * @param  array   $optional
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function transaction($id, array $optional = [])
+    public function transaction(string $id, array $optional = []): ResponseContract
     {
         return $this->client->resource('Bill.Transaction', $this->getVersion())
                     ->show($id, $optional);
@@ -81,9 +82,9 @@ abstract class Bill extends Request
      *
      * @param  string  $id
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function destroy($id)
+    public function destroy(string $id): ResponseContract
     {
         return $this->send('DELETE', "bills/{$id}");
     }
@@ -109,8 +110,9 @@ abstract class Bill extends Request
      * @param  string|null  $signatureKey
      *
      * @return bool
+     * @throws \Billplz\Exceptions\FailedSignatureVerification
      */
-    protected function validateWebhook(array $bill, $signatureKey = null)
+    protected function validateWebhook(array $bill, $signatureKey = null): bool
     {
         if (is_null($signatureKey)) {
             return true;

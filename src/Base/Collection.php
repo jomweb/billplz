@@ -4,6 +4,7 @@ namespace Billplz\Base;
 
 use Billplz\Request;
 use Laravie\Codex\Support\MultipartRequest;
+use Laravie\Codex\Contracts\Response as ResponseContract;
 
 abstract class Collection extends Request
 {
@@ -15,9 +16,9 @@ abstract class Collection extends Request
      * @param  string  $title
      * @param  array  $optional
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function create($title, array $optional = [])
+    public function create(string $title, array $optional = []): ResponseContract
     {
         $files = [];
         $body = array_merge(compact('title'), $optional);
@@ -37,9 +38,9 @@ abstract class Collection extends Request
      *
      * @param  string  $id
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function get($id)
+    public function get(string $id): ResponseContract
     {
         return $this->send('GET', "collections/{$id}", [], []);
     }
@@ -47,9 +48,9 @@ abstract class Collection extends Request
     /**
      * Get collection index.
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function index(array $optional = [])
+    public function index(array $optional = []): ResponseContract
     {
         return $this->send('GET', 'collections', [], $optional);
     }
@@ -62,10 +63,14 @@ abstract class Collection extends Request
      * @param  \Money\Money|int  $amount
      * @param  array  $optional
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function createOpen($title, $description, $amount, array $optional = [])
-    {
+    public function createOpen(
+        string $title,
+        string $description,
+        $amount,
+        array $optional = []
+    ): ResponseContract {
         $body = array_merge(compact('title', 'description', 'amount'), $optional);
 
         return $this->send('POST', 'open_collections', [], $body);
@@ -76,9 +81,9 @@ abstract class Collection extends Request
      *
      * @param  string  $id
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function getOpen($id)
+    public function getOpen(string $id): ResponseContract
     {
         return $this->send('GET', "open_collections/{$id}", [], []);
     }
@@ -88,9 +93,9 @@ abstract class Collection extends Request
      *
      * @param  array  $optional
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function indexOpen(array $optional = [])
+    public function indexOpen(array $optional = []): ResponseContract
     {
         return $this->send('GET', 'open_collections', [], $optional);
     }
@@ -100,9 +105,9 @@ abstract class Collection extends Request
      *
      * @param  string  $id
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function activate($id)
+    public function activate(string $id): ResponseContract
     {
         return $this->send('POST', "collections/{$id}/activate", [], []);
     }
@@ -112,9 +117,9 @@ abstract class Collection extends Request
      *
      * @param  string  $id
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function deactivate($id)
+    public function deactivate(string $id): ResponseContract
     {
         return $this->send('POST', "collections/{$id}/deactivate", [], []);
     }

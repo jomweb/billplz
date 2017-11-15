@@ -24,7 +24,7 @@ class Signature
      * @param string  $key
      * @param array  $attributes
      */
-    public function __construct($key, array $attributes)
+    public function __construct(string $key, array $attributes)
     {
         $this->key = $key;
         $this->attributes = $attributes;
@@ -38,7 +38,7 @@ class Signature
      *
      * @return bool
      */
-    public function verify(array $data, $hash)
+    public function verify(array $data, string $hash): bool
     {
         $keys = [];
 

@@ -2,9 +2,11 @@
 
 namespace Billplz;
 
-use GuzzleHttp\Psr7\Uri;
 use Laravie\Codex\Endpoint;
+use Psr\Http\Message\UriInterface;
 use Laravie\Codex\Request as BaseRequest;
+use Laravie\Codex\Contracts\Endpoint as EndpointContract;
+use Laravie\Codex\Contracts\Sanitizer as SanitizerContract;
 
 abstract class Request extends BaseRequest
 {
@@ -13,9 +15,9 @@ abstract class Request extends BaseRequest
      *
      * @param  array|string  $path
      *
-     * @return \Laravie\Codex\Endpoint
+     * @return \Laravie\Codex\Contracts\Endpoint
      */
-    protected function getApiEndpoint($path = [])
+    protected function getApiEndpoint($path = []): EndpointContract
     {
         if (is_array($path)) {
             array_unshift($path, $this->getVersion());
@@ -31,9 +33,9 @@ abstract class Request extends BaseRequest
      *
      * @param  \Laravie\Codex\Endpoint  $endpoint
      *
-     * @return \GuzzleHttp\Psr7\Uri
+     * @return \Psr\Http\Message\UriInterface
      */
-    protected function resolveUri(Endpoint $endpoint)
+    protected function resolveUri(Endpoint $endpoint): UriInterface
     {
         return parent::resolveUri($endpoint)
                     ->withUserInfo($this->client->getApiKey());
@@ -44,7 +46,7 @@ abstract class Request extends BaseRequest
      *
      * @return \Billplz\Sanitizer
      */
-    protected function sanitizeWith()
+    protected function sanitizeWith(): SanitizerContract
     {
         return new Sanitizer();
     }
@@ -57,7 +59,7 @@ abstract class Request extends BaseRequest
      *
      * @return array
      */
-    protected function parseRedirectAndCallbackUrlFromRequest(array $body, $url)
+    protected function parseRedirectAndCallbackUrlFromRequest(array $body, $url): array
     {
         if (is_string($url)) {
             $body['callback_url'] = $url;
