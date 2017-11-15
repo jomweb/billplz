@@ -2,10 +2,9 @@
 
 namespace Billplz;
 
-use Laravie\Codex\Endpoint;
 use Psr\Http\Message\UriInterface;
+use Laravie\Codex\Contracts\Endpoint;
 use Laravie\Codex\Request as BaseRequest;
-use Laravie\Codex\Contracts\Endpoint as EndpointContract;
 
 abstract class Request extends BaseRequest
 {
@@ -16,7 +15,7 @@ abstract class Request extends BaseRequest
      *
      * @return \Laravie\Codex\Contracts\Endpoint
      */
-    protected function getApiEndpoint($path = []): EndpointContract
+    protected function getApiEndpoint($path = []): Endpoint
     {
         if (is_array($path)) {
             array_unshift($path, $this->getVersion());
@@ -30,7 +29,7 @@ abstract class Request extends BaseRequest
     /**
      * Resolve URI.
      *
-     * @param  \Laravie\Codex\Endpoint  $endpoint
+     * @param  \Laravie\Codex\Contracts\Endpoint  $endpoint
      *
      * @return \Psr\Http\Message\UriInterface
      */
