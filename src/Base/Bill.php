@@ -109,8 +109,9 @@ abstract class Bill extends Request
      * @param  array  $bill
      * @param  string|null  $signatureKey
      *
-     * @return bool
      * @throws \Billplz\Exceptions\FailedSignatureVerification
+     *
+     * @return bool
      */
     protected function validateWebhook(array $bill, $signatureKey = null): bool
     {
