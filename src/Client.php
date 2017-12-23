@@ -53,7 +53,7 @@ class Client extends BaseClient
      * @param string  $apiKey
      * @param string|null $signatureKey
      */
-    public function __construct(HttpClient $http, $apiKey, $signatureKey = null)
+    public function __construct(HttpClient $http, string $apiKey, ?string $signatureKey = null)
     {
         $this->http = $http;
 
@@ -69,7 +69,7 @@ class Client extends BaseClient
      *
      * @return $this
      */
-    public static function make(string $apiKey, string $signatureKey = null)
+    public static function make(string $apiKey, ?string $signatureKey = null)
     {
         return new static(Discovery::client(), $apiKey, $signatureKey);
     }
@@ -87,9 +87,9 @@ class Client extends BaseClient
     /**
      * Get API Key.
      *
-     * @return string|null
+     * @return string
      */
-    public function getApiKey()
+    public function getApiKey(): string
     {
         return $this->apiKey;
     }
@@ -113,7 +113,7 @@ class Client extends BaseClient
      *
      * @return string|null
      */
-    public function getSignatureKey()
+    public function getSignatureKey(): ?string
     {
         return $this->signatureKey;
     }
@@ -125,7 +125,7 @@ class Client extends BaseClient
      *
      * @return $this
      */
-    public function setSignatureKey(string $signatureKey = null): self
+    public function setSignatureKey(?string $signatureKey = null): self
     {
         $this->signatureKey = $signatureKey;
 
@@ -139,7 +139,7 @@ class Client extends BaseClient
      *
      * @return object
      */
-    public function collection(string $version = null)
+    public function collection(?string $version = null)
     {
         return $this->resource('Collection', $version);
     }
@@ -151,7 +151,7 @@ class Client extends BaseClient
      *
      * @return object
      */
-    public function bill(string $version = null)
+    public function bill(?string $version = null)
     {
         return $this->resource('Bill', $version);
     }
@@ -163,7 +163,7 @@ class Client extends BaseClient
      *
      * @return object
      */
-    public function check(string $version = null)
+    public function check(?string $version = null)
     {
         return $this->resource('Check', $version);
     }
@@ -175,7 +175,7 @@ class Client extends BaseClient
      *
      * @return object
      */
-    public function transaction(string $version = null)
+    public function transaction(?string $version = null)
     {
         return $this->resource('Bill.Transaction', $version);
     }
@@ -187,7 +187,7 @@ class Client extends BaseClient
      *
      * @return object
      */
-    public function massPaymentCollection(string $version = null)
+    public function massPaymentCollection(?string $version = null)
     {
         return $this->resource('Collection.MassPayment', $version);
     }
@@ -199,7 +199,7 @@ class Client extends BaseClient
      *
      * @return object
      */
-    public function massPayment(string $version = null)
+    public function massPayment(?string $version = null)
     {
         return $this->resource('MassPayment', $version);
     }
@@ -211,7 +211,7 @@ class Client extends BaseClient
      *
      * @return object
      */
-    public function bank(string $version = null)
+    public function bank(?string $version = null)
     {
         return $this->resource('Bank', $version);
     }

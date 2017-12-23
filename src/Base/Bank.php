@@ -22,9 +22,9 @@ abstract class Bank extends Request
     /**
      * Get list of bank for Bank Direct Feature.
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function supportedForFpx()
+    public function supportedForFpx(): ResponseContract
     {
         return $this->send('GET', 'fpx_banks');
     }

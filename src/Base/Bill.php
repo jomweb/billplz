@@ -27,8 +27,8 @@ abstract class Bill extends Request
      */
     public function create(
         string $collectionId,
-        $email,
-        $mobile,
+        ?string $email,
+        ?string $mobile,
         string $name,
         $amount,
         $callbackUrl,
@@ -113,7 +113,7 @@ abstract class Bill extends Request
      *
      * @return bool
      */
-    protected function validateWebhook(array $bill, $signatureKey = null): bool
+    protected function validateWebhook(array $bill, ?string $signatureKey = null): bool
     {
         if (is_null($signatureKey)) {
             return true;
