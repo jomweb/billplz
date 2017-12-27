@@ -1,7 +1,7 @@
 PHP framework agnostic library for working with BillPlz API v3 and beyond...
 ==============
 
-[![Build Status](https://travis-ci.org/jomweb/billplz.svg?branch=master)](https://travis-ci.org/jomweb/billplz)
+[![Build Status](https://travis-ci.org/jomweb/billplz.svg?branch=1.0)](https://travis-ci.org/jomweb/billplz)
 [![Latest Stable Version](https://poser.pugx.org/jomweb/billplz/version)](https://packagist.org/packages/jomweb/billplz)
 [![Total Downloads](https://poser.pugx.org/jomweb/billplz/downloads)](https://packagist.org/packages/jomweb/billplz)
 [![Latest Unstable Version](https://poser.pugx.org/jomweb/billplz/v/unstable)](//packagist.org/packages/jomweb/billplz)
