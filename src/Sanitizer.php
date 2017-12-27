@@ -12,6 +12,7 @@ class Sanitizer extends BaseSanitizer
     public function __construct()
     {
         $this->casts = [
+            'total' => new Casts\Money(),
             'amount' => new Casts\Money(),
             'due_at' => new Casts\DateTime(),
             'paid_amount' => new Casts\Money(),

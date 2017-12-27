@@ -24,7 +24,7 @@ class Signature
      * @param string  $key
      * @param array  $attributes
      */
-    public function __construct($key, array $attributes)
+    public function __construct(string $key, array $attributes)
     {
         $this->key = $key;
         $this->attributes = $attributes;
@@ -38,12 +38,12 @@ class Signature
      *
      * @return bool
      */
-    public function verify(array $data, $hash)
+    public function verify(array $data, string $hash): bool
     {
         $keys = [];
 
         foreach ($this->attributes as $attribute) {
-            array_push($keys, $attribute.(isset($data[$attribute]) ? $data[$attribute] : ''));
+            array_push($keys, $attribute.($data[$attribute] ?? ''));
         }
 
         return hash_equals(hash_hmac('sha256', implode('|', $keys), $this->key), $hash);

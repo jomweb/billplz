@@ -2,7 +2,7 @@
 
 namespace Billplz\TestCase\Base;
 
-use Money\Money;
+use Duit\MYR;
 use Laravie\Codex\Response;
 use Billplz\TestCase\TestCase;
 
@@ -42,7 +42,7 @@ abstract class BillTestCase extends TestCase
                             $data['email'],
                             $data['mobile'],
                             $data['name'],
-                            Money::MYR($data['amount']),
+                            MYR::given($data['amount']),
                             $data['callback_url'],
                             $data['description']
                         );
@@ -70,7 +70,7 @@ abstract class BillTestCase extends TestCase
 
         $bill = $response->toArray();
 
-        $this->assertInstanceOf(Money::class, $bill['amount']);
+        $this->assertInstanceOf(MYR::class, $bill['amount']);
         $this->assertSame('inbmmepb', $bill['collection_id']);
     }
 

@@ -2,8 +2,8 @@
 
 namespace Billplz;
 
-use GuzzleHttp\Psr7\Uri;
-use Laravie\Codex\Endpoint;
+use Psr\Http\Message\UriInterface;
+use Laravie\Codex\Contracts\Endpoint;
 use Laravie\Codex\Request as BaseRequest;
 
 abstract class Request extends BaseRequest
@@ -13,9 +13,9 @@ abstract class Request extends BaseRequest
      *
      * @param  array|string  $path
      *
-     * @return \Laravie\Codex\Endpoint
+     * @return \Laravie\Codex\Contracts\Endpoint
      */
-    protected function getApiEndpoint($path = [])
+    protected function getApiEndpoint($path = []): Endpoint
     {
         if (is_array($path)) {
             array_unshift($path, $this->getVersion());
@@ -29,11 +29,11 @@ abstract class Request extends BaseRequest
     /**
      * Resolve URI.
      *
-     * @param  \Laravie\Codex\Endpoint  $endpoint
+     * @param  \Laravie\Codex\Contracts\Endpoint  $endpoint
      *
-     * @return \GuzzleHttp\Psr7\Uri
+     * @return \Psr\Http\Message\UriInterface
      */
-    protected function resolveUri(Endpoint $endpoint)
+    protected function resolveUri(Endpoint $endpoint): UriInterface
     {
         return parent::resolveUri($endpoint)
                     ->withUserInfo($this->client->getApiKey());
@@ -44,7 +44,7 @@ abstract class Request extends BaseRequest
      *
      * @return \Billplz\Sanitizer
      */
-    protected function sanitizeWith()
+    protected function sanitizeWith(): Sanitizer
     {
         return new Sanitizer();
     }
@@ -57,13 +57,13 @@ abstract class Request extends BaseRequest
      *
      * @return array
      */
-    protected function parseRedirectAndCallbackUrlFromRequest(array $body, $url)
+    protected function parseRedirectAndCallbackUrlFromRequest(array $body, $url): array
     {
         if (is_string($url)) {
             $body['callback_url'] = $url;
         } elseif (is_array($url)) {
-            $body['callback_url'] = isset($url['callback_url']) ? $url['callback_url'] : null;
-            $body['redirect_url'] = isset($url['redirect_url']) ? $url['redirect_url'] : null;
+            $body['callback_url'] = $url['callback_url'] ?? null;
+            $body['redirect_url'] = $url['redirect_url'] ?? null;
         }
 
         return $body;
