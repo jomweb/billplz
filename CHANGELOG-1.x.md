@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 1.1.0
+
+Released: 2017-12-28
+
+### Changes
+
+* Update minimum version to PHP 5.6.
+
 ## 1.0.6
 
 Released: 2017-11-05
