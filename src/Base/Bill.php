@@ -3,8 +3,8 @@
 namespace Billplz\Base;
 
 use Billplz\Request;
-use InvalidArgumentException;
 use Billplz\Signature;
+use InvalidArgumentException;
 use Billplz\Exceptions\FailedSignatureVerification;
 
 abstract class Bill extends Request
