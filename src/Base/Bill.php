@@ -5,7 +5,6 @@ namespace Billplz\Base;
 use Billplz\Request;
 use Billplz\Signature;
 use InvalidArgumentException;
-use Billplz\Signature;
 use Billplz\Exceptions\FailedSignatureVerification;
 use Laravie\Codex\Contracts\Response as ResponseContract;
 
