@@ -79,7 +79,7 @@ class Client extends BaseClient
      *
      * @return $this
      */
-    public function useSandbox(): self
+    final public function useSandbox(): self
     {
         return $this->useCustomApiEndpoint('https://billplz-staging.herokuapp.com/api');
     }
@@ -89,7 +89,7 @@ class Client extends BaseClient
      *
      * @return string
      */
-    public function getApiKey(): string
+    final public function getApiKey(): string
     {
         return $this->apiKey;
     }
@@ -101,7 +101,7 @@ class Client extends BaseClient
      *
      * @return $this
      */
-    public function setApiKey(string $apiKey): self
+    final public function setApiKey(string $apiKey): self
     {
         $this->apiKey = $apiKey;
 
@@ -113,7 +113,7 @@ class Client extends BaseClient
      *
      * @return string|null
      */
-    public function getSignatureKey(): ?string
+    final public function getSignatureKey(): ?string
     {
         return $this->signatureKey;
     }
@@ -125,7 +125,7 @@ class Client extends BaseClient
      *
      * @return $this
      */
-    public function setSignatureKey(?string $signatureKey = null): self
+    final public function setSignatureKey(?string $signatureKey = null): self
     {
         $this->signatureKey = $signatureKey;
 
@@ -221,7 +221,7 @@ class Client extends BaseClient
      *
      * @return string
      */
-    protected function getResourceNamespace(): string
+    final protected function getResourceNamespace(): string
     {
         return __NAMESPACE__;
     }

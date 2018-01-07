@@ -38,7 +38,7 @@ class Signature
      *
      * @return bool
      */
-    public function verify(array $data, string $hash): bool
+    final public function verify(array $data, string $hash): bool
     {
         $keys = [];
 
