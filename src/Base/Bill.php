@@ -3,6 +3,7 @@
 namespace Billplz\Base;
 
 use Billplz\Request;
+use Billplz\Signature;
 use InvalidArgumentException;
 use Billplz\Exceptions\FailedSignatureVerification;
 

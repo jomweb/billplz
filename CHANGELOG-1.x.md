@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 1.1.1
+
+Released: 2018-01-07
+
+### Fixes
+
+* Fixes missing `Billplz\Signature` import. ([@rained23](https://github.com/rained23))
+
 ## 1.1.0
 
 Released: 2017-12-28
@@ -9,6 +17,14 @@ Released: 2017-12-28
 ### Changes
 
 * Update minimum version to PHP 5.6.
+
+## 1.0.7
+
+Released: 2018-01-07
+
+### Fixes
+
+* Fixes missing `Billplz\Signature` import. ([@rained23](https://github.com/rained23))
 
 ## 1.0.6
 
