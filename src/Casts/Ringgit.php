@@ -25,7 +25,7 @@ class Money extends Cast
      *
      * @return string
      */
-    public function fromCast($value)
+    public function fromCast($value): string
     {
         return $value->getAmount();
     }
