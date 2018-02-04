@@ -141,7 +141,7 @@ class Client extends BaseClient
      */
     public function collection($version = null)
     {
-        return $this->resource('Collection', $version);
+        return $this->uses('Collection', $version);
     }
 
     /**
@@ -153,7 +153,7 @@ class Client extends BaseClient
      */
     public function bill($version = null)
     {
-        return $this->resource('Bill', $version);
+        return $this->uses('Bill', $version);
     }
 
     /**
@@ -165,7 +165,7 @@ class Client extends BaseClient
      */
     public function check($version = null)
     {
-        return $this->resource('Check', $version);
+        return $this->uses('Check', $version);
     }
 
     /**
@@ -177,7 +177,7 @@ class Client extends BaseClient
      */
     public function transaction($version = null)
     {
-        return $this->resource('Bill.Transaction', $version);
+        return $this->uses('Bill.Transaction', $version);
     }
 
     /**
@@ -189,7 +189,7 @@ class Client extends BaseClient
      */
     public function massPaymentCollection($version = null)
     {
-        return $this->resource('Collection.MassPayment', $version);
+        return $this->uses('Collection.MassPayment', $version);
     }
 
     /**
@@ -201,7 +201,7 @@ class Client extends BaseClient
      */
     public function massPayment($version = null)
     {
-        return $this->resource('MassPayment', $version);
+        return $this->uses('MassPayment', $version);
     }
 
     /**
@@ -213,7 +213,7 @@ class Client extends BaseClient
      */
     public function bank($version = null)
     {
-        return $this->resource('Bank', $version);
+        return $this->uses('Bank', $version);
     }
 
     /**

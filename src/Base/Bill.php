@@ -73,7 +73,7 @@ abstract class Bill extends Request
      */
     public function transaction($id, array $optional = [])
     {
-        return $this->client->resource('Bill.Transaction', $this->getVersion())
+        return $this->client->uses('Bill.Transaction', $this->getVersion())
                     ->show($id, $optional);
     }
 
