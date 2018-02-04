@@ -4,7 +4,7 @@ namespace Billplz\Casts;
 
 use Laravie\Codex\Cast;
 
-class Money extends Cast
+class Ringgit extends Cast
 {
     /**
      * Is value a valid object.
