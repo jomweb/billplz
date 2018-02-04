@@ -1,6 +1,6 @@
 <?php
 
-require "vendor/autoload.php";
+require 'vendor/autoload.php';
 
 $api = 'xxx';
 $collection = '2e97chf9';
