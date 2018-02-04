@@ -35,10 +35,10 @@ class Money extends Cast
      *
      * @param  mixed  $value
      *
-     * @return \Money\Money
+     * @return \Duit\MYR
      */
-    protected function toCast($value): \Money\Money
+    protected function toCast($value): \Duit\MYR
     {
-        return \Money\Money::MYR($value);
+        return \Duit\MYR::given($value);
     }
 }
