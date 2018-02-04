@@ -4,7 +4,7 @@ namespace Billplz\Casts;
 
 use Laravie\Codex\Cast;
 
-class Money extends Cast
+class Ringgit extends Cast
 {
     /**
      * Is value a valid object.
@@ -35,10 +35,10 @@ class Money extends Cast
      *
      * @param  mixed  $value
      *
-     * @return \Money\Money
+     * @return \Duit\MYR
      */
     protected function toCast($value)
     {
-        return \Money\Money::MYR($value);
+        return \Duit\MYR::given($value);
     }
 }

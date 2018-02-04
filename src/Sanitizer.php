@@ -8,17 +8,22 @@ class Sanitizer extends BaseSanitizer
 {
     /**
      * Construct a new sanitizer.
+     *
+     * @param  array  $casters
      */
-    public function __construct()
+    public function __construct(array $casters = [])
     {
-        $this->casts = [
-            'amount' => new Casts\Money(),
-            'due_at' => new Casts\DateTime(),
-            'paid_amount' => new Casts\Money(),
-            'paid_at' => new Casts\DateTime(),
+        $money = isset($casters['money']) ? $casters['money'] : Casts\Money::class;
+        $datetime = isset($casters['datetime']) ? $casters['datetime'] : Casts\DateTime::class;
+
+        $this->casts = array_merge($casts, [
+            'amount' => new $money,
+            'due_at' => new $datetime,
+            'paid_amount' => new $money,
+            'paid_at' => new $datetime,
             'split_payment' => [
-                'fixed_cut' => new Casts\Money(),
+                'fixed_cut' => new $money,
             ],
-        ];
+        ]);
     }
 }
