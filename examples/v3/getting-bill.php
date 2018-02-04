@@ -1,6 +1,6 @@
 <?php
 
-require "vendor/autoload.php";
+require 'vendor/autoload.php';
 
 $api = 'xxx';
 $bill = '6fj1aw';
