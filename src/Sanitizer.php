@@ -16,7 +16,7 @@ class Sanitizer extends BaseSanitizer
         $money = isset($casters['money']) ? $casters['money'] : Casts\Money::class;
         $datetime = isset($casters['datetime']) ? $casters['datetime'] : Casts\DateTime::class;
 
-        $this->casts = array_merge($casts, [
+        $this->casts = [
             'amount' => new $money,
             'due_at' => new $datetime,
             'paid_amount' => new $money,
@@ -24,6 +24,6 @@ class Sanitizer extends BaseSanitizer
             'split_payment' => [
                 'fixed_cut' => new $money,
             ],
-        ]);
+        ];
     }
 }
