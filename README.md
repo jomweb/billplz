@@ -26,7 +26,7 @@ To install through composer, simply put the following in your `composer.json` fi
 ```json
 {
     "require": {
-        "jomweb/billplz": "^1.0",
+        "jomweb/billplz": "^1.2",
         "php-http/guzzle6-adapter": "^1.1"
     }
 }
@@ -93,7 +93,7 @@ Now you can create an instance of Collection:
 $collection = $billplz->collection();
 ```
 
-> You can also manually set the API version by doing `$billplz->collection('v3');`. You can also use `$billplz->resource('Collection');` to get the same result.
+> You can also manually set the API version by doing `$billplz->collection('v3');`. You can also use `$billplz->uses('Collection');` to get the same result.
 
 #### Create a Collection
 
@@ -198,7 +198,7 @@ Now you can create an instance of Bill:
 $bill = $billplz->bill();
 ```
 
-> You can also manually set the API version by doing `$billplz->bill('v3');`. You can also use `$billplz->resource('Bill');` to get the same result.
+> You can also manually set the API version by doing `$billplz->bill('v3');`. You can also use `$billplz->uses('Bill');` to get the same result.
 
 #### Create a Bill
 
@@ -321,7 +321,7 @@ Now you can create an instance of Transaction:
 $transaction = $billplz->transaction();
 ```
 
-> You can also manually set the API version by doing `$billplz->transaction('v3');`. You can also use `$billplz->resource('Bill.Transaction');` to get the same result.
+> You can also manually set the API version by doing `$billplz->transaction('v3');`. You can also use `$billplz->uses('Bill.Transaction');` to get the same result.
 
 #### Get Transaction Index
 
@@ -388,7 +388,7 @@ Now you can create an instance of Bank:
 $bank = $billplz->bank();
 ```
 
-> You can also manually set the API version by doing `$billplz->bank('v3');`. You can also use `$billplz->resource('Bank');` to get the same result.
+> You can also manually set the API version by doing `$billplz->bank('v3');`. You can also use `$billplz->uses('Bank');` to get the same result.
 
 #### Check Bank Account Registration Status
 

@@ -16,7 +16,7 @@ abstract class Check extends Request
      */
     public function bankAccount($number): ResponseContract
     {
-        return $this->client->resource('Bank', $this->getVersion())
+        return $this->client->uses('Bank', $this->getVersion())
                     ->checkAccount($number);
     }
 }

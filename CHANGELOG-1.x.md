@@ -2,6 +2,20 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 1.2.0
+
+Released: 2018-02-04
+
+### Added
+
+* Added `Billplz\Casts\Ringgit` to cast to `Duit\MYR`.
+
+### Changes
+
+* Bump `laravie/codex` to version `1.4+`, allows to use `Billplz::uses()` instead of deprecated `Billplz::resource()`.
+* Allows to set custom casters for Billplz Sanitizer.
+* `Billplz\Casts\Money` should always cast to `Money\Money`.
+
 ## 1.1.1
 
 Released: 2018-01-07

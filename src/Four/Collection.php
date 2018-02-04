@@ -20,6 +20,6 @@ class Collection extends Request
      */
     public function massPayment(): Collection\MassPayment
     {
-        return $this->client->resource('Collection.MassPayment', $this->getVersion());
+        return $this->client->uses('Collection.MassPayment', $this->getVersion());
     }
 }
