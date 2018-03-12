@@ -93,7 +93,7 @@ abstract class BillTestCase extends TestCase
     }
 
     /** @test */
-    public function it_can_parse_redirect_data()
+    public function it_can_parse_redirect_data_with_signature()
     {
         $client = $this->makeClient();
 
@@ -115,5 +115,28 @@ abstract class BillTestCase extends TestCase
         $this->assertSame('true', $bill['paid']);
         $this->assertInstanceOf('DateTime', $bill['paid_at']);
         $this->assertEquals(new \DateTimeZone('+08:00'), $bill['paid_at']->getTimezone());
+    }
+
+    /**
+     * @test
+     * @expectedException \Billplz\Exceptions\FailedSignatureVerification
+     */
+    public function it_can_detect_invalid_redirect_data_with_signature()
+    {
+        $client = $this->makeClient();
+
+        $payload = [
+            'billplz' => [
+                'id' => 'W_79pJDk',
+                'paid' => 'false',
+                'paid_at' => '2018-03-12+12%3A46%3A36+%2B0800',
+            ],
+            'x_signature' => 'a4ec01becf3b5f0221d1ad4a1296d77d1e9f8d3cc2d4404973d863983a25760f'
+        ];
+
+        $bill = $this->makeClient()
+                    ->setSignatureKey('foobar')
+                    ->uses('Bill')
+                    ->redirect($payload);
     }
 }
