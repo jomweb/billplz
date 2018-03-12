@@ -11,8 +11,11 @@ php:
 
 env:
   global:
-    - setup=basic
     - coverage=no
+  matrix:
+    - setup=basic
+    - setup=lowest
+    - setup=stable
 
 before_script:
   - composer config discard-changes true
@@ -31,12 +34,9 @@ after_script:
 matrix:
   include:
     - php: 5.6
-      env: setup=lowest
-    - php: 5.6
-      env: setup=stable
-    - php: 5.6
       env: setup=coveralls coverage=yes
   allow_failures:
+    - env: php=hhvm
     - env: setup=lowest
     - env: setup=coveralls coverage=yes
   fast_finish: true
