@@ -22,7 +22,7 @@
     },
     "require": {
         "php": ">=7.1",
-        "laravie/codex": "~2.1",
+        "laravie/codex": "~2.2",
         "moneyphp/money": "^3.0",
         "php-http/multipart-stream-builder": "^1.0"
     },
@@ -30,7 +30,7 @@
         "jomweb/ringgit": "^1.0",
         "mockery/mockery": "^1.0",
         "nesbot/carbon": "^1.12",
-        "php-http/curl-client": "^1.1",
+        "php-http/curl-client": "^1.7",
         "phpunit/phpunit": "~7.0"
     },
     "extra": {
