@@ -90,6 +90,33 @@ abstract class Bill extends Request
     }
 
     /**
+     * Parse redirect data for a bill.
+     *
+     * @param  array  $data
+     *
+     * @return array|null
+     */
+    public function redirect(array $data = [])
+    {
+        $data['billplz']['paid_at'] = urldecode($data['billplz']['paid_at']);
+
+        $bill = [
+            'billplzid' => $data['billplz']['id'],
+            'billplzpaid' => $data['billplz']['paid'],
+            'billplzpaid_at' => $data['billplz']['paid_at'],
+            'x_signature' => $data['x_signature'],
+        ];
+
+        $validated = $this->validateAgainstSignature($bill, $this->client->getSignatureKey(), [
+            'billplzid', 'billplzpaid_at', 'billplzpaid',
+        ]);
+
+        if (!! $validated) {
+            return $this->sanitizeTo($data['billplz']);
+        }
+    }
+
+    /**
      * Parse webhook data for a bill.
      *
      * @param  array  $data
@@ -98,20 +125,28 @@ abstract class Bill extends Request
      */
     public function webhook(array $data = [])
     {
-        if ($this->validateWebhook($data, $this->client->getSignatureKey())) {
+        $validated = $this->validateAgainstSignature($data, $this->client->getSignatureKey(), [
+            'amount', 'collection_id', 'due_at', 'email', 'id', 'mobile', 'name',
+            'paid_amount', 'paid_at', 'paid', 'state', 'url',
+        ]);
+
+        if (!! $validated) {
             return $this->sanitizeTo($data);
         }
     }
 
     /**
-     * Validate webhook response.
+     * Validate against x-signature.
      *
      * @param  array  $bill
      * @param  string|null  $signatureKey
+     * @param  array  $parameters
      *
      * @return bool
+     *
+     * @throws \Billplz\Exceptions\FailedSignatureVerification
      */
-    protected function validateWebhook(array $bill, $signatureKey = null)
+    final protected function validateAgainstSignature(array $bill, $signatureKey = null, array $parameters = [])
     {
         if (is_null($signatureKey)) {
             return true;
@@ -121,10 +156,7 @@ abstract class Bill extends Request
             return false;
         }
 
-        $signature = new Signature($signatureKey, [
-            'amount', 'collection_id', 'due_at', 'email', 'id', 'mobile', 'name',
-            'paid_amount', 'paid_at', 'paid', 'state', 'url',
-        ]);
+        $signature = new Signature($signatureKey, $parameters);
 
         if (! $signature->verify($bill, $bill['x_signature'])) {
             throw new FailedSignatureVerification();
