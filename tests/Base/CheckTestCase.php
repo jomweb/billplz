@@ -26,7 +26,7 @@ abstract class CheckTestCase extends TestCase
                         ->shouldResponseWith(200, $expected);
 
         $response = $this->makeClient($request->http())
-                        ->resource('Check')
+                        ->uses('Check')
                         ->bankAccount('jomlaunch');
 
         $this->assertInstanceOf(Response::class, $response);

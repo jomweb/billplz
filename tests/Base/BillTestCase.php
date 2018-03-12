@@ -36,7 +36,7 @@ abstract class BillTestCase extends TestCase
                         ->shouldResponseWith(200, $expected);
 
         $response = $this->makeClient($request->http())
-                        ->resource('Bill')
+                        ->uses('Bill')
                         ->create(
                             $data['collection_id'],
                             $data['email'],
@@ -61,7 +61,7 @@ abstract class BillTestCase extends TestCase
                         ->shouldResponseWith(200, $expected);
 
         $response = $this->makeClient($request->http())
-                        ->resource('Bill')
+                        ->uses('Bill')
                         ->show('8X0Iyzaw');
 
         $this->assertInstanceOf(Response::class, $response);
@@ -83,7 +83,7 @@ abstract class BillTestCase extends TestCase
                         ->shouldResponseWith(200, $expected);
 
         $response = $this->makeClient($request->http())
-                        ->resource('Bill')
+                        ->uses('Bill')
                         ->destroy('8X0Iyzaw');
 
         $this->assertInstanceOf(Response::class, $response);
