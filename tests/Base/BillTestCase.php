@@ -52,6 +52,36 @@ abstract class BillTestCase extends TestCase
         $this->assertSame($expected, $response->getBody());
     }
 
+    /**
+     * @test
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Either $email or $mobile should be present
+     */
+    public function it_cant_be_created_given_empty_email_and_mobile()
+    {
+        $data = [
+            'email' => '',
+            'mobile' => null,
+            'name' => 'Michael API V3',
+            'amount' => 200,
+            'description' => 'Maecenas eu placerat ante.',
+            'collection_id' => 'inbmmepb',
+            'callback_url' => 'http://example.com/webhook/',
+        ];
+
+        $response = $this->makeClient()
+                        ->uses('Bill')
+                        ->create(
+                            $data['collection_id'],
+                            $data['email'],
+                            $data['mobile'],
+                            $data['name'],
+                            Money::MYR($data['amount']),
+                            $data['callback_url'],
+                            $data['description']
+                        );
+    }
+
     /** @test */
     public function it_can_show_existing_bill()
     {
