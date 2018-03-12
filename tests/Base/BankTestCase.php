@@ -25,7 +25,7 @@ abstract class BankTestCase extends TestCase
                         ->shouldResponseWith(200, $expected);
 
         $response = $this->makeClient($request->http())
-                        ->resource('Bank')
+                        ->uses('Bank')
                         ->checkAccount('jomlaunch');
 
         $this->assertInstanceOf(Response::class, $response);
@@ -42,7 +42,7 @@ abstract class BankTestCase extends TestCase
                         ->shouldResponseWith(200, $expected);
 
         $response = $this->makeClient($request->http())
-                        ->resource('Bank')
+                        ->uses('Bank')
                         ->supportedForFpx();
 
         $this->assertInstanceOf(Response::class, $response);

@@ -46,6 +46,8 @@ class Signature
             array_push($keys, $attribute.($data[$attribute] ?? ''));
         }
 
-        return hash_equals(hash_hmac('sha256', implode('|', $keys), $this->key), $hash);
+        $compared = hash_hmac('sha256', implode('|', $keys), $this->key);
+
+        return hash_equals($compared, $hash);
     }
 }

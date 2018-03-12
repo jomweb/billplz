@@ -37,7 +37,7 @@ abstract class BillTestCase extends TestCase
                         ->shouldResponseWith(200, $expected);
 
         $response = $this->makeClient($request->http())
-                        ->resource('Bill')
+                        ->uses('Bill')
                         ->create(
                             $data['collection_id'],
                             $data['email'],
@@ -53,6 +53,36 @@ abstract class BillTestCase extends TestCase
         $this->assertSame($expected, $response->getBody());
     }
 
+    /**
+     * @test
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Either $email or $mobile should be present
+     */
+    public function it_cant_be_created_given_empty_email_and_mobile()
+    {
+        $data = [
+            'email' => '',
+            'mobile' => null,
+            'name' => 'Michael API V3',
+            'amount' => 200,
+            'description' => 'Maecenas eu placerat ante.',
+            'collection_id' => 'inbmmepb',
+            'callback_url' => 'http://example.com/webhook/',
+        ];
+
+        $response = $this->makeClient()
+                        ->uses('Bill')
+                        ->create(
+                            $data['collection_id'],
+                            $data['email'],
+                            $data['mobile'],
+                            $data['name'],
+                            Money::MYR($data['amount']),
+                            $data['callback_url'],
+                            $data['description']
+                        );
+    }
+
     /** @test */
     public function it_can_show_existing_bill()
     {
@@ -62,7 +92,7 @@ abstract class BillTestCase extends TestCase
                         ->shouldResponseWith(200, $expected);
 
         $response = $this->makeClient($request->http())
-                        ->resource('Bill')
+                        ->uses('Bill')
                         ->show('8X0Iyzaw');
 
         $this->assertInstanceOf(Response::class, $response);
@@ -84,12 +114,60 @@ abstract class BillTestCase extends TestCase
                         ->shouldResponseWith(200, $expected);
 
         $response = $this->makeClient($request->http())
-                        ->resource('Bill')
+                        ->uses('Bill')
                         ->destroy('8X0Iyzaw');
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame($expected, $response->getBody());
         $this->assertSame([], $response->toArray());
+    }
+
+    /** @test */
+    public function it_can_parse_redirect_data_with_signature()
+    {
+        $client = $this->makeClient();
+
+        $payload = [
+            'billplz' => [
+                'id' => 'W_79pJDk',
+                'paid' => 'true',
+                'paid_at' => '2018-03-12+12%3A46%3A36+%2B0800',
+            ],
+            'x_signature' => 'a4ec01becf3b5f0221d1ad4a1296d77d1e9f8d3cc2d4404973d863983a25760f'
+        ];
+
+        $bill = $this->makeClient()
+                    ->setSignatureKey('foobar')
+                    ->uses('Bill')
+                    ->redirect($payload);
+
+        $this->assertSame('W_79pJDk', $bill['id']);
+        $this->assertSame('true', $bill['paid']);
+        $this->assertInstanceOf('DateTime', $bill['paid_at']);
+        $this->assertEquals(new \DateTimeZone('+08:00'), $bill['paid_at']->getTimezone());
+    }
+
+    /**
+     * @test
+     * @expectedException \Billplz\Exceptions\FailedSignatureVerification
+     */
+    public function it_can_detect_invalid_redirect_data_with_signature()
+    {
+        $client = $this->makeClient();
+
+        $payload = [
+            'billplz' => [
+                'id' => 'W_79pJDk',
+                'paid' => 'false',
+                'paid_at' => '2018-03-12+12%3A46%3A36+%2B0800',
+            ],
+            'x_signature' => 'a4ec01becf3b5f0221d1ad4a1296d77d1e9f8d3cc2d4404973d863983a25760f'
+        ];
+
+        $bill = $this->makeClient()
+                    ->setSignatureKey('foobar')
+                    ->uses('Bill')
+                    ->redirect($payload);
     }
 }
