@@ -111,7 +111,7 @@ abstract class Bill extends Request
             'billplzid', 'billplzpaid_at', 'billplzpaid',
         ]);
 
-        if (!! $validated) {
+        if ((bool) $validated) {
             return $this->sanitizeTo($data['billplz']);
         }
     }
@@ -130,7 +130,7 @@ abstract class Bill extends Request
             'paid_amount', 'paid_at', 'paid', 'state', 'url',
         ]);
 
-        if (!! $validated) {
+        if ((bool) $validated) {
             return $this->sanitizeTo($data);
         }
     }
@@ -142,9 +142,9 @@ abstract class Bill extends Request
      * @param  string|null  $signatureKey
      * @param  array  $parameters
      *
-     * @return bool
-     *
      * @throws \Billplz\Exceptions\FailedSignatureVerification
+     *
+     * @return bool
      */
     final protected function validateAgainstSignature(array $bill, $signatureKey = null, array $parameters = [])
     {

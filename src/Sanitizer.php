@@ -17,12 +17,12 @@ class Sanitizer extends BaseSanitizer
         $datetime = isset($casters['datetime']) ? $casters['datetime'] : Casts\DateTime::class;
 
         $this->casts = [
-            'amount' => new $money,
-            'due_at' => new $datetime,
-            'paid_amount' => new $money,
-            'paid_at' => new $datetime,
+            'amount' => new $money(),
+            'due_at' => new $datetime(),
+            'paid_amount' => new $money(),
+            'paid_at' => new $datetime(),
             'split_payment' => [
-                'fixed_cut' => new $money,
+                'fixed_cut' => new $money(),
             ],
         ];
     }
