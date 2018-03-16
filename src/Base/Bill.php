@@ -144,7 +144,6 @@ abstract class Bill extends Request
      * @param  array  $parameters
      *
      * @throws \Billplz\Exceptions\FailedSignatureVerification
-     * @throws \Billplz\Exceptions\FailedSignatureVerification
      *
      * @return bool
      */
