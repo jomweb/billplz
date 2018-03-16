@@ -23,8 +23,8 @@
     "require": {
         "php": ">=5.6",
         "laravie/codex": "~1.5",
-        "php-http/multipart-stream-builder": "^1.0",
-        "moneyphp/money": "^3.0"
+        "moneyphp/money": "^3.0",
+        "php-http/multipart-stream-builder": "^1.0"
     },
     "require-dev": {
         "mockery/mockery": "~1.0",
