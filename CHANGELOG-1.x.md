@@ -2,6 +2,18 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 1.3.0
+
+Released: 2018-03-28
+
+### Added
+
+* Add X-Signature validation for redirected URL.
+
+### Changes
+
+* Bump `laravie/codex` to version `1.5+`.
+
 ## 1.2.0
 
 Released: 2018-02-04
