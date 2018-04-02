@@ -98,8 +98,6 @@ abstract class Bill extends Request
      */
     public function redirect(array $data = [])
     {
-        $data['billplz']['paid_at'] = urldecode($data['billplz']['paid_at']);
-
         $bill = [
             'billplzid' => $data['billplz']['id'],
             'billplzpaid' => $data['billplz']['paid'],
