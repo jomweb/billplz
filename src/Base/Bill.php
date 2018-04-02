@@ -99,13 +99,11 @@ abstract class Bill extends Request
      */
     public function redirect(array $data = [])
     {
-        $data['billplz']['paid_at'] = urldecode($data['billplz']['paid_at']);
-
         $bill = [
             'billplzid' => $data['billplz']['id'],
             'billplzpaid' => $data['billplz']['paid'],
             'billplzpaid_at' => $data['billplz']['paid_at'],
-            'x_signature' => $data['x_signature'],
+            'x_signature' => $data['billplz']['x_signature'],
         ];
 
         $validated = $this->validateAgainstSignature($bill, $this->client->getSignatureKey(), [
