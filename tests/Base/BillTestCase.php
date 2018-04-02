@@ -132,8 +132,8 @@ abstract class BillTestCase extends TestCase
                 'id' => 'W_79pJDk',
                 'paid' => 'true',
                 'paid_at' => '2018-03-12+12%3A46%3A36+%2B0800',
+                'x_signature' => 'a4ec01becf3b5f0221d1ad4a1296d77d1e9f8d3cc2d4404973d863983a25760f',
             ],
-            'x_signature' => 'a4ec01becf3b5f0221d1ad4a1296d77d1e9f8d3cc2d4404973d863983a25760f',
         ];
 
         $bill = $this->makeClient()
@@ -160,8 +160,8 @@ abstract class BillTestCase extends TestCase
                 'id' => 'W_79pJDk',
                 'paid' => 'false',
                 'paid_at' => '2018-03-12+12%3A46%3A36+%2B0800',
+                'x_signature' => 'a4ec01becf3b5f0221d1ad4a1296d77d1e9f8d3cc2d4404973d863983a25760f',
             ],
-            'x_signature' => 'a4ec01becf3b5f0221d1ad4a1296d77d1e9f8d3cc2d4404973d863983a25760f',
         ];
 
         $bill = $this->makeClient()
