@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 1.3.1
+
+Released: 2018-04-02
+
+### Fixes
+
+* Fixes X-Signature validation for redirected URL.
+
 ## 1.3.0
 
 Released: 2018-03-28
