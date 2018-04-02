@@ -15,7 +15,7 @@ abstract class Collection extends Request
      * @param  string  $title
      * @param  array  $optional
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function create($title, array $optional = [])
     {
@@ -37,7 +37,7 @@ abstract class Collection extends Request
      *
      * @param  string  $id
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function get($id)
     {
@@ -47,7 +47,7 @@ abstract class Collection extends Request
     /**
      * Get collection index.
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function index(array $optional = [])
     {
@@ -62,7 +62,7 @@ abstract class Collection extends Request
      * @param  \Money\Money|int  $amount
      * @param  array  $optional
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function createOpen($title, $description, $amount, array $optional = [])
     {
@@ -76,7 +76,7 @@ abstract class Collection extends Request
      *
      * @param  string  $id
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function getOpen($id)
     {
@@ -88,7 +88,7 @@ abstract class Collection extends Request
      *
      * @param  array  $optional
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function indexOpen(array $optional = [])
     {
@@ -100,7 +100,7 @@ abstract class Collection extends Request
      *
      * @param  string  $id
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function activate($id)
     {
@@ -112,7 +112,7 @@ abstract class Collection extends Request
      *
      * @param  string  $id
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function deactivate($id)
     {

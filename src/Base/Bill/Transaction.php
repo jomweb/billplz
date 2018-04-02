@@ -12,7 +12,7 @@ abstract class Transaction extends Request
      * @param  string  $id
      * @param  array   $optional
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function show($id, array $optional = [])
     {

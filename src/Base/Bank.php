@@ -11,7 +11,7 @@ abstract class Bank extends Request
      *
      * @param  string|int  $number
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function checkAccount($number)
     {
@@ -21,7 +21,7 @@ abstract class Bank extends Request
     /**
      * Get list of bank for Bank Direct Feature.
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function supportedForFpx()
     {

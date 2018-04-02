@@ -23,7 +23,7 @@ abstract class Bill extends Request
      *
      * @throws \InvalidArgumentException
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function create(
         $collectionId,
@@ -56,7 +56,7 @@ abstract class Bill extends Request
      *
      * @param  string  $id
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function show($id)
     {
@@ -69,7 +69,7 @@ abstract class Bill extends Request
      * @param  string  $id
      * @param  array   $optional
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function transaction($id, array $optional = [])
     {
@@ -82,7 +82,7 @@ abstract class Bill extends Request
      *
      * @param  string  $id
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function destroy($id)
     {

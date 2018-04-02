@@ -11,7 +11,7 @@ abstract class Check extends Request
      *
      * @param  string|int  $number
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function bankAccount($number)
     {
