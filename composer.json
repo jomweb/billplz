@@ -22,7 +22,7 @@
     },
     "require": {
         "php": ">=7.1",
-        "laravie/codex": "^1.5",
+        "laravie/codex": "^1.6",
         "moneyphp/money": "^3.0",
         "php-http/multipart-stream-builder": "^1.0"
     },
