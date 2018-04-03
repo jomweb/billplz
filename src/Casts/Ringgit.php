@@ -25,7 +25,7 @@ class Ringgit extends Cast
      *
      * @return string
      */
-    public function fromCast($value): string
+    protected function fromCast($value): string
     {
         return $value->getAmount();
     }
