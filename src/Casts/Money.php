@@ -25,7 +25,7 @@ class Money extends Cast
      *
      * @return int
      */
-    public function fromCast($value)
+    protected function fromCast($value)
     {
         return $value->getAmount();
     }

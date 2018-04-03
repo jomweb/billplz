@@ -26,7 +26,7 @@ class DateTime extends Cast
      *
      * @return string
      */
-    public function fromCast($value)
+    protected function fromCast($value)
     {
         return $value->format('Y-m-d');
     }
