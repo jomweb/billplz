@@ -41,26 +41,7 @@ Instead of utilizing `php-http/guzzle6-adapter` you might want to use any other 
 
 ### Creating Billplz Client
 
-You can start by creating a Billplz client by using the following code (which uses `php-http/guzzle6-adapter`):
-
-```php
-<?php
-
-use Billplz\Client;
-use Http\Client\Common\HttpMethodsClient;
-use Http\Adapter\Guzzle6\Client as GuzzleHttpClient;
-use Http\Message\MessageFactory\GuzzleMessageFactory;
-
-$http = new HttpMethodsClient(
-    new GuzzleHttpClient(),
-    new GuzzleMessageFactory()
-);
-
-
-$billplz = new Client($http, 'your-api-key');
-```
-
-You could also use `php-http/discovery` to automatically pick available adapter installed via composer:
+You can start by creating a Billplz client by using the following code (which uses `php-http/guzzle6-adapter` and `php-http/discovery` to automatically pick available adapter installed via composer):
 
 ```php
 <?php
@@ -68,6 +49,32 @@ You could also use `php-http/discovery` to automatically pick available adapter 
 use Billplz\Client;
 
 $billplz = Client::make('your-api-key');
+```
+
+You can also send `X-Signature` key by doing the following:
+
+```php
+<?php
+
+use Billplz\Client;
+
+$billplz = Client::make('your-api-key', 'your-x-signature-key');
+```
+
+Alternatively, you could also manually configure `Http\Client\Common\HttpMethodsClient` directly:
+
+```php
+<?php
+
+use Billplz\Client;
+use Laravie\Codex\Discovery;
+use Http\Client\Common\HttpMethodsClient;
+use Http\Adapter\Guzzle6\Client as GuzzleHttpClient;
+use Http\Message\MessageFactory\GuzzleMessageFactory;
+
+$http = Discovery::client();
+
+$billplz = new Client($http, 'your-api-key', 'your-x-signature-key');
 ```
 
 #### Using Sandbox
