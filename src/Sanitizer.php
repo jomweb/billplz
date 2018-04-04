@@ -13,7 +13,7 @@ class Sanitizer extends BaseSanitizer
      */
     public function __construct(array $casters = [])
     {
-        $money = $casters['money'] ?? Casts\Money::class;
+        $money = $casters['money'] ?? Casts\Ringgit::class;
         $datetime = $casters['datetime'] ?? Casts\DateTime::class;
 
         $this->casts = [
