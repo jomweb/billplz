@@ -128,7 +128,7 @@ $response = $collection->create('My First API Collection', [
     'logo' => '@/Users/Billplz/Documents/uploadPhoto.png',
     'split_payment' => [
         'email' => 'verified@account.com',
-        'fixed_cut' => \Money\Money::MYR(100),
+        'fixed_cut' => \Duit\MYR::given(100),
     ],
 ]);
 
@@ -145,7 +145,7 @@ return [
     ],
     "split_payment" => [
         "email" => "verified@account.com",
-        "fixed_cut" => \Money\Money::MYR(100),
+        "fixed_cut" => \Duit\MYR::given(100),
         "variable_cut" => null
     ]
 ]
@@ -157,7 +157,7 @@ return [
 $response = $collection->createOpen(
     'My First API Collection',
     'Maecenas eu placerat ante. Fusce ut neque justo, et aliquet enim. In hac habitasse platea dictumst.',
-    Money\Money::MYR(299)
+    \Duit\MYR::given(299)
 );
 
 var_dump($response->toArray());
@@ -171,7 +171,7 @@ return [
     "reference_1_label" => null,
     "reference_2_label" => null,
     "email_link" => null,
-    "amount" => \Money\Money::MYR(299),
+    "amount" => \Duit\MYR::given(299),
     "fixed_amount" => true,
     "tax" => null,
     "fixed_quantity" => true,
@@ -210,7 +210,7 @@ $response = $bill->create(
     'api@billplz.com',
     null,
     'Michael API V3',
-    Money\Money::MYR(200),
+    \Duit\MYR::given(200),
     'http://example.com/webhook/',
     'Maecenas eu placerat ante.'
 );
@@ -224,9 +224,9 @@ return [
     "collection_id" => "inbmmepb",
     "paid" => false,
     "state" => "overdue",
-    "amount" => \Money\Money::MYR(200),
-    "paid_amount" => \Money\Money::MYR(0),
-    "due_at" => \DateTime::createFromFormat('Y-m-d', "2015-3-9"),
+    "amount" => \Duit\MYR::given(200),
+    "paid_amount" => \Duit\MYR::given(0),
+    "due_at" => new \DateTime('Y-m-d', "2015-3-9"),
     "email" => "api@billplz.com",
     "mobile" => null,
     "name" => "MICHAEL API V3",
@@ -255,9 +255,9 @@ return [
     'collection_id' => 'inbmmepb',
     'paid' => true,
     'state' => 'paid',
-    'amount' => \Money\Money::MYR(200),
-    'paid_amount' => \Money\Money::MYR(0),
-    'due_at' => \Carbon\Carbon::parse('2020-12-31'),
+    'amount' => \Duit\MYR::given(200),
+    'paid_amount' => \Duit\MYR::given(0),
+    'due_at' => new \DateTime('2020-12-31'),
     'email' => 'api@billplz.com',
     'mobile' => '+60112223333',
     'name' => 'MICHAEL API',
@@ -266,7 +266,7 @@ return [
         'description' => 'This is to test bill creation',
     ],
     'url' => 'https://billplz.dev/bills/W_79pJDk',
-    'paid_at' => \Carbon\Carbon::parse('2015-03-09 16:23:59 +0800'),
+    'paid_at' => new \DateTime('2015-03-09 16:23:59 +0800'),
 ];
 ```
 
@@ -284,9 +284,9 @@ return [
     "collection_id" => "inbmmepb",
     "paid" => false,
     "state" => "due",
-    "amount" => \Money\Money::MYR(200),
-    "paid_amount" => \Money\Money::MYR(0),
-    "due_at" => \Carbon\Carbon::parse("2020-12-31"),
+    "amount" => \Duit\MYR::given(200),
+    "paid_amount" => \Duit\MYR::given(0),
+    "due_at" => new \DateTime("2020-12-31"),
     "email" => "api@billplz.com",
     "mobile" => "+60112223333",
     "name" => "MICHAEL API V3",
