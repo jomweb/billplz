@@ -36,7 +36,7 @@ class DateTime extends Cast
      *
      * @param  mixed  $value
      *
-     * @return \Carbon\Carbon
+     * @return \DateTimeInterface
      */
     protected function toCast($value)
     {
