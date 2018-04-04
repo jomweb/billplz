@@ -4,6 +4,8 @@ namespace Billplz\TestCase;
 
 use Mockery as m;
 use Billplz\Client;
+use Laravie\Codex\Discovery;
+use Laravie\Codex\Testing\FakeRequest;
 use PHPUnit\Framework\TestCase as PHPUnit;
 
 class TestCase extends PHPUnit
@@ -28,6 +30,8 @@ class TestCase extends PHPUnit
     protected function tearDown()
     {
         m::close();
+
+        Discovery::flush();
     }
 
     /**
@@ -64,7 +68,10 @@ class TestCase extends PHPUnit
         }
 
         $client = new Client($http, '73eb57f0-7d4e-42b9-a544-aeac6e4b0f81', 'billplz');
-        $client->useVersion($this->apiVersion);
+
+        if (! is_null($this->apiVersion)) {
+            $client->useVersion($this->apiVersion);
+        }
 
         return $client;
     }
