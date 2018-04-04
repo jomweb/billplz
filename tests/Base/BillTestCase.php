@@ -102,6 +102,7 @@ abstract class BillTestCase extends TestCase
         $bill = $response->toArray();
 
         $this->assertInstanceOf(MYR::class, $bill['amount']);
+        $this->assertSame('2.00', $bill['amount']->amount());
         $this->assertSame('inbmmepb', $bill['collection_id']);
     }
 
