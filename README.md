@@ -68,9 +68,6 @@ Alternatively, you could also manually configure `Http\Client\Common\HttpMethods
 
 use Billplz\Client;
 use Laravie\Codex\Discovery;
-use Http\Client\Common\HttpMethodsClient;
-use Http\Adapter\Guzzle6\Client as GuzzleHttpClient;
-use Http\Message\MessageFactory\GuzzleMessageFactory;
 
 $http = Discovery::client();
 
