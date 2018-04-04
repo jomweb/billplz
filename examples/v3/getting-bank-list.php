@@ -7,6 +7,6 @@ $api = 'xxx';
 $billplz = Billplz\Client::make($api)->useSandbox();
 
 $bank = $billplz->bank();
-$list = $bank->supportedForFpx();
+$response = $bank->supportedForFpx();
 
-var_dump($list->toArray());
+var_dump($response->getStatusCode(), $response->toArray());

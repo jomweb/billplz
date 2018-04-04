@@ -9,4 +9,4 @@ $billplz = Billplz\Client::make($api)->useSandbox();
 
 $response = $billplz->bill()->transaction($bill);
 
-var_dump($response->toArray());
+var_dump($response->getStatusCode(), $response->toArray());
