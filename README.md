@@ -6,6 +6,7 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
 [![Total Downloads](https://poser.pugx.org/jomweb/billplz/downloads)](https://packagist.org/packages/jomweb/billplz)
 [![Latest Unstable Version](https://poser.pugx.org/jomweb/billplz/v/unstable)](//packagist.org/packages/jomweb/billplz)
 [![License](https://poser.pugx.org/jomweb/billplz/license)](https://packagist.org/packages/jomweb/billplz)
+[![Coverage Status](https://coveralls.io/repos/github/jomweb/billplz/badge.svg?branch=master)](https://coveralls.io/github/jomweb/billplz?branch=master)
 
 * [Installation](#installation)
 * [Usages](#usages)
@@ -26,7 +27,7 @@ To install through composer, simply put the following in your `composer.json` fi
 ```json
 {
     "require": {
-        "jomweb/billplz": "^1.3",
+        "jomweb/billplz": "^2.0",
         "php-http/guzzle6-adapter": "^1.1"
     }
 }
@@ -40,26 +41,7 @@ Instead of utilizing `php-http/guzzle6-adapter` you might want to use any other 
 
 ### Creating Billplz Client
 
-You can start by creating a Billplz client by using the following code (which uses `php-http/guzzle6-adapter`):
-
-```php
-<?php
-
-use Billplz\Client;
-use Http\Client\Common\HttpMethodsClient;
-use Http\Adapter\Guzzle6\Client as GuzzleHttpClient;
-use Http\Message\MessageFactory\GuzzleMessageFactory;
-
-$http = new HttpMethodsClient(
-    new GuzzleHttpClient(),
-    new GuzzleMessageFactory()
-);
-
-
-$billplz = new Client($http, 'your-api-key');
-```
-
-You could also use `php-http/discovery` to automatically pick available adapter installed via composer:
+You can start by creating a Billplz client by using the following code (which uses `php-http/guzzle6-adapter` and `php-http/discovery` to automatically pick available adapter installed via composer):
 
 ```php
 <?php
@@ -67,6 +49,29 @@ You could also use `php-http/discovery` to automatically pick available adapter 
 use Billplz\Client;
 
 $billplz = Client::make('your-api-key');
+```
+
+You can also send `X-Signature` key by doing the following:
+
+```php
+<?php
+
+use Billplz\Client;
+
+$billplz = Client::make('your-api-key', 'your-x-signature-key');
+```
+
+Alternatively, you could also manually configure `Http\Client\Common\HttpMethodsClient` directly:
+
+```php
+<?php
+
+use Billplz\Client;
+use Laravie\Codex\Discovery;
+
+$http = Discovery::client();
+
+$billplz = new Client($http, 'your-api-key', 'your-x-signature-key');
 ```
 
 #### Using Sandbox

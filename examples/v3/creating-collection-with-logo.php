@@ -11,4 +11,4 @@ $response = $billplz->collection()->create('My First API Collection with Logo', 
     'logo' => $logo,
 ]);
 
-var_dump($response->toArray());
+var_dump($response->getStatusCode(), $response->toArray());

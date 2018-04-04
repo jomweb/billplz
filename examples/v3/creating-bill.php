@@ -17,4 +17,4 @@ $response = $billplz->bill()->create(
     'My first bill'
 );
 
-var_dump($response->toArray());
+var_dump($response->getStatusCode(), $response->toArray());

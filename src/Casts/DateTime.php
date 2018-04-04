@@ -2,7 +2,6 @@
 
 namespace Billplz\Casts;
 
-use Carbon\Carbon;
 use DateTimeInterface;
 use Laravie\Codex\Cast;
 
@@ -41,10 +40,6 @@ class DateTime extends Cast
      */
     protected function toCast($value): DateTimeInterface
     {
-        if (class_exists(Carbon::class, false)) {
-            return Carbon::parse($value);
-        }
-
         return new \DateTime($value);
     }
 }
