@@ -157,7 +157,7 @@ return [
 $response = $collection->createOpen(
     'My First API Collection',
     'Maecenas eu placerat ante. Fusce ut neque justo, et aliquet enim. In hac habitasse platea dictumst.',
-    Money\Money::MYR(299)
+    \Money\Money::MYR(299)
 );
 
 var_dump($response->toArray());
@@ -210,7 +210,7 @@ $response = $bill->create(
     'api@billplz.com',
     null,
     'Michael API V3',
-    Money\Money::MYR(200),
+    \Money\Money::MYR(200),
     'http://example.com/webhook/',
     'Maecenas eu placerat ante.'
 );
@@ -226,7 +226,7 @@ return [
     "state" => "overdue",
     "amount" => \Money\Money::MYR(200),
     "paid_amount" => \Money\Money::MYR(0),
-    "due_at" => \DateTime::createFromFormat('Y-m-d', "2015-3-9"),
+    "due_at" => new \DateTime("2015-3-9"),
     "email" => "api@billplz.com",
     "mobile" => null,
     "name" => "MICHAEL API V3",
@@ -257,7 +257,7 @@ return [
     'state' => 'paid',
     'amount' => \Money\Money::MYR(200),
     'paid_amount' => \Money\Money::MYR(0),
-    'due_at' => \Carbon\Carbon::parse('2020-12-31'),
+    'due_at' => new \DateTime('2020-12-31'),
     'email' => 'api@billplz.com',
     'mobile' => '+60112223333',
     'name' => 'MICHAEL API',
@@ -266,7 +266,7 @@ return [
         'description' => 'This is to test bill creation',
     ],
     'url' => 'https://billplz.dev/bills/W_79pJDk',
-    'paid_at' => \Carbon\Carbon::parse('2015-03-09 16:23:59 +0800'),
+    'paid_at' => new \DateTime('2015-03-09 16:23:59 +0800'),
 ];
 ```
 
@@ -286,7 +286,7 @@ return [
     "state" => "due",
     "amount" => \Money\Money::MYR(200),
     "paid_amount" => \Money\Money::MYR(0),
-    "due_at" => \Carbon\Carbon::parse("2020-12-31"),
+    "due_at" => new \DateTime("2020-12-31"),
     "email" => "api@billplz.com",
     "mobile" => "+60112223333",
     "name" => "MICHAEL API V3",
