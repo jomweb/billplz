@@ -2,7 +2,7 @@
 
 namespace Billplz;
 
-use Laravie\Codex\Endpoint;
+use Laravie\Codex\Contracts\Endpoint;
 use Psr\Http\Message\UriInterface;
 use Laravie\Codex\Request as BaseRequest;
 
@@ -23,19 +23,7 @@ abstract class Request extends BaseRequest
             $path = [$this->getVersion(), $path];
         }
 
-        return parent::getApiEndpoint($path);
-    }
-
-    /**
-     * Resolve URI.
-     *
-     * @param  \Laravie\Codex\Contracts\Endpoint  $endpoint
-     *
-     * @return \Psr\Http\Message\UriInterface
-     */
-    protected function resolveUri(Endpoint $endpoint): UriInterface
-    {
-        return parent::resolveUri($endpoint)
+        return parent::getApiEndpoint($path)
                     ->withUserInfo($this->client->getApiKey());
     }
 
