@@ -295,7 +295,7 @@ abstract class BillTestCase extends TestCase
             'name' => 'MICHAEL API',
             'url' => 'http://billplz.dev/bills/W_79pJDk',
             'paid_at' => '2015-03-09 16:23:59 +0800',
-            'x_signature' => '01bdc1167f8b4dd1f591d8af7ada00061d39ca2b63e66c6588474a918a04796c'
+            'x_signature' => '01bdc1167f8b4dd1f591d8af7ada00061d39ca2b63e66c6588474a918a04796c',
         ];
 
         $bill = $this->makeClient()
@@ -325,7 +325,7 @@ abstract class BillTestCase extends TestCase
             'name' => 'MICHAEL API',
             'url' => 'http://billplz.dev/bills/W_79pJDk',
             'paid_at' => '2015-03-09 16:23:59 +0800',
-            'x_signature' => '01bdc1167f8b4dd1f591d8af7ada00061d39ca2b63e66c6588474a918a04796c'
+            'x_signature' => '01bdc1167f8b4dd1f591d8af7ada00061d39ca2b63e66c6588474a918a04796c',
         ];
 
         $bill = $this->makeClient()

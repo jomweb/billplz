@@ -3,7 +3,6 @@
 namespace Billplz;
 
 use Laravie\Codex\Contracts\Endpoint;
-use Psr\Http\Message\UriInterface;
 use Laravie\Codex\Request as BaseRequest;
 
 abstract class Request extends BaseRequest

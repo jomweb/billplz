@@ -71,9 +71,8 @@ abstract class Collection extends Request
         $amount,
         array $optional = []
     ): ResponseContract {
-        $body = array_merge(compact('title', 'description', 'amount'), $optional);
-
-        return $this->send('POST', 'open_collections', [], $body);
+        return $this->client->uses('Collection.Open', $this->getVersion())
+                    ->create($title, $description, $amount, $optional);
     }
 
     /**
@@ -85,7 +84,8 @@ abstract class Collection extends Request
      */
     public function getOpen(string $id): ResponseContract
     {
-        return $this->send('GET', "open_collections/{$id}", [], []);
+        return $this->client->uses('Collection.Open', $this->getVersion())
+                    ->get($id);
     }
 
     /**
@@ -97,7 +97,8 @@ abstract class Collection extends Request
      */
     public function indexOpen(array $optional = []): ResponseContract
     {
-        return $this->send('GET', 'open_collections', [], $optional);
+        return $this->client->uses('Collection.Open', $this->getVersion())
+                    ->index($optional);
     }
 
     /**

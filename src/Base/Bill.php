@@ -100,7 +100,7 @@ abstract class Bill extends Request
     public function redirect(array $data = [])
     {
         if (! isset($data['billplz']) || ! is_array($data['billplz'])) {
-            throw new InvalidArgumentException("Expected \$billplz to be an array!");
+            throw new InvalidArgumentException('Expected $billplz to be an array!');
         }
 
         $bill = [
