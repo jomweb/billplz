@@ -3,12 +3,12 @@
 namespace Billplz\Base;
 
 use Billplz\Request;
-use Laravie\Codex\Support\MultipartRequest;
+use Laravie\Codex\Concerns\Request\Multipart;
 use Laravie\Codex\Contracts\Response as ResponseContract;
 
 abstract class Collection extends Request
 {
-    use MultipartRequest;
+    use Multipart;
 
     /**
      * Create a new collection.
