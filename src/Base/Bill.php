@@ -3,13 +3,13 @@
 namespace Billplz\Base;
 
 use Billplz\Request;
-use Billplz\Signature;
 use InvalidArgumentException;
-use Billplz\Exceptions\FailedSignatureVerification;
 use Laravie\Codex\Contracts\Response as ResponseContract;
 
 abstract class Bill extends Request
 {
+    use Bill\PaymentCompletion;
+
     /**
      * Create a new bill.
      *
@@ -58,8 +58,22 @@ abstract class Bill extends Request
      * @param  string  $id
      *
      * @return \Laravie\Codex\Contracts\Response
+     *
+     * @deprecated v2.0.0
      */
     public function show(string $id): ResponseContract
+    {
+        return $this->get($id);
+    }
+
+    /**
+     * Show an existing bill.
+     *
+     * @param  string  $id
+     *
+     * @return \Laravie\Codex\Contracts\Response
+     */
+    public function get(string $id): ResponseContract
     {
         return $this->send('GET', "bills/{$id}");
     }
@@ -117,54 +131,5 @@ abstract class Bill extends Request
         if ((bool) $validated) {
             return $this->sanitizeTo($data['billplz']);
         }
-    }
-
-    /**
-     * Parse webhook data for a bill.
-     *
-     * @param  array  $data
-     *
-     * @return array|null
-     */
-    public function webhook(array $data = [])
-    {
-        $validated = $this->validateAgainstSignature($data, $this->client->getSignatureKey(), [
-            'amount', 'collection_id', 'due_at', 'email', 'id', 'mobile', 'name',
-            'paid_amount', 'paid_at', 'paid', 'state', 'url',
-        ]);
-
-        if ((bool) $validated) {
-            return $this->sanitizeTo($data);
-        }
-    }
-
-    /**
-     * Validate against x-signature.
-     *
-     * @param  array  $bill
-     * @param  string|null  $signatureKey
-     * @param  array  $parameters
-     *
-     * @throws \Billplz\Exceptions\FailedSignatureVerification
-     *
-     * @return bool
-     */
-    final protected function validateAgainstSignature(array $bill, ?string $signatureKey = null, array $parameters = []): bool
-    {
-        if (is_null($signatureKey)) {
-            return true;
-        }
-
-        if (! isset($bill['x_signature'])) {
-            return false;
-        }
-
-        $signature = new Signature($signatureKey, $parameters);
-
-        if (! $signature->verify($bill, $bill['x_signature'])) {
-            throw new FailedSignatureVerification();
-        }
-
-        return true;
     }
 }

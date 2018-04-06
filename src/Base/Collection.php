@@ -50,6 +50,7 @@ abstract class Collection extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      *
+     * @deprecated v2.0.0
      */
     public function index(array $optional = []): ResponseContract
     {
@@ -105,6 +106,8 @@ abstract class Collection extends Request
      * @param  array  $optional
      *
      * @return \Laravie\Codex\Contracts\Response
+     *
+     * @deprecated v2.0.0
      */
     public function indexOpen(array $optional = []): ResponseContract
     {
