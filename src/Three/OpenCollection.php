@@ -11,5 +11,5 @@ class OpenCollection extends Request
      *
      * @var string
      */
-    protected $version = 'v4';
+    protected $version = 'v3';
 }

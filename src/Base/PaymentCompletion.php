@@ -15,7 +15,7 @@ trait PaymentCompletion
      *
      * @return array|null
      */
-    public function redirect(array $data = [])
+    public function redirect(array $data = []): ?array
     {
         if (! isset($data['billplz']) || ! is_array($data['billplz'])) {
             throw new InvalidArgumentException('Expected $billplz to be an array!');
@@ -35,6 +35,8 @@ trait PaymentCompletion
         if ((bool) $validated) {
             return $this->sanitizeTo($data['billplz']);
         }
+
+        return null;
     }
 
     /**
@@ -44,7 +46,7 @@ trait PaymentCompletion
      *
      * @return array|null
      */
-    public function webhook(array $data = [])
+    public function webhook(array $data = []): ?array
     {
         $validated = $this->validateAgainstSignature($data, $this->client->getSignatureKey(), [
             'amount', 'collection_id', 'due_at', 'email', 'id', 'mobile', 'name',
@@ -54,6 +56,8 @@ trait PaymentCompletion
         if ((bool) $validated) {
             return $this->sanitizeTo($data);
         }
+
+        return null;
     }
 
     /**
