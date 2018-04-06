@@ -49,8 +49,19 @@ abstract class Collection extends Request
      * Get collection index.
      *
      * @return \Laravie\Codex\Contracts\Response
+     *
      */
     public function index(array $optional = []): ResponseContract
+    {
+        return $this->all($optional);
+    }
+
+    /**
+     * Get collection index.
+     *
+     * @return \Laravie\Codex\Contracts\Response
+     */
+    public function all(array $optional = []): ResponseContract
     {
         return $this->send('GET', 'collections', [], $optional);
     }
@@ -71,8 +82,9 @@ abstract class Collection extends Request
         $amount,
         array $optional = []
     ): ResponseContract {
-        return $this->client->uses('Collection.Open', $this->getVersion())
-                    ->create($title, $description, $amount, $optional);
+        return $this->client->uses('Collection.Open', $this->getVersion())->create(
+            $title, $description, $amount, $optional
+        );
     }
 
     /**
@@ -84,8 +96,7 @@ abstract class Collection extends Request
      */
     public function getOpen(string $id): ResponseContract
     {
-        return $this->client->uses('Collection.Open', $this->getVersion())
-                    ->get($id);
+        return $this->client->uses('Collection.Open', $this->getVersion())->get($id);
     }
 
     /**
@@ -97,8 +108,19 @@ abstract class Collection extends Request
      */
     public function indexOpen(array $optional = []): ResponseContract
     {
-        return $this->client->uses('Collection.Open', $this->getVersion())
-                    ->index($optional);
+        return $this->opens($optional);
+    }
+
+    /**
+     * Get open collection index.
+     *
+     * @param  array  $optional
+     *
+     * @return \Laravie\Codex\Contracts\Response
+     */
+    public function opens(array $optional = []): ResponseContract
+    {
+        return $this->client->uses('Collection.Open', $this->getVersion())->all($optional);
     }
 
     /**

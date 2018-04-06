@@ -47,7 +47,7 @@ class Open extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function index(array $optional = []): ResponseContract
+    public function all(array $optional = []): ResponseContract
     {
         return $this->send('GET', 'open_collections', [], $optional);
     }
