@@ -3,10 +3,40 @@
 namespace Billplz\Base;
 
 use Billplz\Signature;
+use InvalidArgumentException;
 use Billplz\Exceptions\FailedSignatureVerification;
 
 trait PaymentCompletion
 {
+    /**
+     * Parse redirect data for a bill.
+     *
+     * @param  array  $data
+     *
+     * @return array|null
+     */
+    public function redirect(array $data = [])
+    {
+        if (! isset($data['billplz']) || ! is_array($data['billplz'])) {
+            throw new InvalidArgumentException('Expected $billplz to be an array!');
+        }
+
+        $bill = [
+            'billplzid' => $data['billplz']['id'],
+            'billplzpaid' => $data['billplz']['paid'],
+            'billplzpaid_at' => $data['billplz']['paid_at'],
+            'x_signature' => isset($data['billplz']['x_signature']) ? $data['billplz']['x_signature'] : null,
+        ];
+
+        $validated = $this->validateAgainstSignature($bill, $this->client->getSignatureKey(), [
+            'billplzid', 'billplzpaid_at', 'billplzpaid',
+        ]);
+
+        if ((bool) $validated) {
+            return $this->sanitizeTo($data['billplz']);
+        }
+    }
+
     /**
      * Parse webhook data for a bill.
      *
