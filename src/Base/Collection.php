@@ -51,6 +51,16 @@ abstract class Collection extends Request
      */
     public function index(array $optional = [])
     {
+        return $this->all($optional);
+    }
+
+    /**
+     * Get collection index.
+     *
+     * @return \Laravie\Codex\Contracts\Response
+     */
+    public function all(array $optional = [])
+    {
         return $this->send('GET', 'collections', [], $optional);
     }
 
@@ -66,9 +76,8 @@ abstract class Collection extends Request
      */
     public function createOpen($title, $description, $amount, array $optional = [])
     {
-        $body = array_merge(compact('title', 'description', 'amount'), $optional);
-
-        return $this->send('POST', 'open_collections', [], $body);
+        return $this->client->uses('OpenCollection', $this->getVersion())
+                    ->create($title, $description, $amount, $optional);
     }
 
     /**
@@ -80,7 +89,8 @@ abstract class Collection extends Request
      */
     public function getOpen($id)
     {
-        return $this->send('GET', "open_collections/{$id}", [], []);
+        return $this->client->uses('OpenCollection', $this->getVersion())
+                    ->show($id);
     }
 
     /**
@@ -92,7 +102,8 @@ abstract class Collection extends Request
      */
     public function indexOpen(array $optional = [])
     {
-        return $this->send('GET', 'open_collections', [], $optional);
+        return $this->client->uses('OpenCollection', $this->getVersion())
+                    ->all($optional);
     }
 
     /**

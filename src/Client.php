@@ -183,25 +183,21 @@ class Client extends BaseClient
     /**
      * Get mass payment instruction collection resource.
      *
-     * @param  string|null  $version
-     *
      * @return object
      */
-    public function massPaymentCollection($version = null)
+    public function massPaymentCollection()
     {
-        return $this->uses('Collection.MassPayment', $version);
+        return $this->uses('Collection.MassPayment', 'v4');
     }
 
     /**
      * Get mass payment instruction resource.
      *
-     * @param  string|null  $version
-     *
      * @return object
      */
-    public function massPayment($version = null)
+    public function massPayment()
     {
-        return $this->uses('MassPayment', $version);
+        return $this->uses('MassPayment', 'v4');
     }
 
     /**

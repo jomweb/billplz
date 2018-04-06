@@ -18,7 +18,7 @@ class MassPayment extends Request
      *
      * @param  string  $title
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function create($title)
     {
@@ -30,7 +30,7 @@ class MassPayment extends Request
      *
      * @param  string  $collectionId
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function get($collectionId)
     {

@@ -23,7 +23,7 @@ class Ringgit extends Cast
      *
      * @param  \Money\Money  $value
      *
-     * @return int
+     * @return string
      */
     protected function fromCast($value)
     {

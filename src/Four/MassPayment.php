@@ -16,7 +16,7 @@ class MassPayment extends Request
     /**
      * Create a new mass payment instruction (mpi).
      *
-     * @param  string      $massPaymentInstructionCollectionId
+     * @param  string      $collectionId
      * @param  string      $bankCode
      * @param  string|int  $bankAccountNumber
      * @param  string|int  $identityNumber
@@ -25,10 +25,10 @@ class MassPayment extends Request
      * @param  int         $total
      * @param  array       $optional
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
     public function create(
-        $massPaymentInstructionCollectionId,
+        $collectionId,
         $bankCode,
         $bankAccountNumber,
         $identityNumber,
@@ -38,7 +38,7 @@ class MassPayment extends Request
         array $optional = []
     ) {
         $body = array_merge(compact('title', 'name', 'description', 'total'), $optional);
-        $body['mass_payment_instruction_collection_id'] = $massPaymentInstructionCollectionId;
+        $body['mass_payment_instruction_collection_id'] = $collectionId;
         $body['bank_code'] = $bankCode;
         $body['bank_account_number'] = $bankAccountNumber;
         $body['identity_number'] = $identityNumber;
@@ -49,12 +49,12 @@ class MassPayment extends Request
     /**
      * Get mass payment instruction (mpi).
      *
-     * @param  string  $massPaymentInstructionId
+     * @param  string  $instructionId
      *
-     * @return \Laravie\Codex\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    public function get($massPaymentInstructionId)
+    public function get($instructionId)
     {
-        return $this->send('GET', "mass_payment_instructions/{$massPaymentInstructionId}", [], []);
+        return $this->send('GET', "mass_payment_instructions/{$instructionId}", [], []);
     }
 }
