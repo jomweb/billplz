@@ -1,6 +1,6 @@
 <?php
 
-namespace Billplz\Base\Bill;
+namespace Billplz\Base;
 
 use Billplz\Signature;
 use Billplz\Exceptions\FailedSignatureVerification;

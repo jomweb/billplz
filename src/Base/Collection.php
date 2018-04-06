@@ -68,65 +68,6 @@ abstract class Collection extends Request
     }
 
     /**
-     * Create a new open collection.
-     *
-     * @param  string  $title
-     * @param  string  $description
-     * @param  \Money\Money|\Duit\MYR|int  $amount
-     * @param  array  $optional
-     *
-     * @return \Laravie\Codex\Contracts\Response
-     */
-    public function createOpen(
-        string $title,
-        string $description,
-        $amount,
-        array $optional = []
-    ): ResponseContract {
-        return $this->client->uses('Collection.Open', $this->getVersion())->create(
-            $title, $description, $amount, $optional
-        );
-    }
-
-    /**
-     * Get open collection.
-     *
-     * @param  string  $id
-     *
-     * @return \Laravie\Codex\Contracts\Response
-     */
-    public function getOpen(string $id): ResponseContract
-    {
-        return $this->client->uses('Collection.Open', $this->getVersion())->get($id);
-    }
-
-    /**
-     * Get open collection index.
-     *
-     * @param  array  $optional
-     *
-     * @return \Laravie\Codex\Contracts\Response
-     *
-     * @deprecated v2.0.0
-     */
-    public function indexOpen(array $optional = []): ResponseContract
-    {
-        return $this->opens($optional);
-    }
-
-    /**
-     * Get open collection index.
-     *
-     * @param  array  $optional
-     *
-     * @return \Laravie\Codex\Contracts\Response
-     */
-    public function opens(array $optional = []): ResponseContract
-    {
-        return $this->client->uses('Collection.Open', $this->getVersion())->all($optional);
-    }
-
-    /**
      * Activate a collection.
      *
      * @param  string  $id

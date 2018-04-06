@@ -1,11 +1,11 @@
 <?php
 
-namespace Billplz\Base\Collection;
+namespace Billplz\Base;
 
 use Billplz\Request;
 use Laravie\Codex\Contracts\Response as ResponseContract;
 
-class Open extends Request
+class OpenCollection extends Request
 {
     /**
      * Create a new open collection.

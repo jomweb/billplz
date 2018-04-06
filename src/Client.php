@@ -133,13 +133,25 @@ class Client extends BaseClient
     }
 
     /**
-     * Get collection resource.
+     * Get Collection resource.
      *
      * @param  string|null  $version
      *
-     * @return object
+     * @return \BIllplz\Base\Collection
      */
-    public function collection(?string $version = null)
+    final public function collection(?string $version = null): Base\Collection
+    {
+        return $this->uses('Collection', $version);
+    }
+
+    /**
+     * Get Open Collection resource.
+     *
+     * @param  string|null  $version
+     *
+     * @return \BIllplz\Base\OpenCollection
+     */
+    final public function openCollection(?string $version = null): Base\OpenCollection
     {
         return $this->uses('Collection', $version);
     }
@@ -149,9 +161,9 @@ class Client extends BaseClient
      *
      * @param  string|null  $version
      *
-     * @return object
+     * @return \Billplz\Base\Bill
      */
-    public function bill(?string $version = null)
+    final public function bill(?string $version = null): Base\Bill
     {
         return $this->uses('Bill', $version);
     }
@@ -161,9 +173,9 @@ class Client extends BaseClient
      *
      * @param  string|null  $version
      *
-     * @return object
+     * @return \Billplz\Base\Check
      */
-    public function check(?string $version = null)
+    final public function check(?string $version = null): Base\Check
     {
         return $this->uses('Check', $version);
     }
@@ -173,9 +185,9 @@ class Client extends BaseClient
      *
      * @param  string|null  $version
      *
-     * @return object
+     * @return \Billplz\Base\Bill\Transaction
      */
-    public function transaction(?string $version = null)
+    final public function transaction(?string $version = null): Base\Bill\Transaction
     {
         return $this->uses('Bill.Transaction', $version);
     }
@@ -183,25 +195,21 @@ class Client extends BaseClient
     /**
      * Get mass payment instruction collection resource.
      *
-     * @param  string|null  $version
-     *
-     * @return object
+     * @return \BIllplz\Four\Collection\MassPayment
      */
-    public function massPaymentCollection(?string $version = null)
+    final public function massPaymentCollection(): Four\Collection\MassPayment
     {
-        return $this->uses('Collection.MassPayment', $version);
+        return $this->uses('Collection.MassPayment', 'v4');
     }
 
     /**
      * Get mass payment instruction resource.
      *
-     * @param  string|null  $version
-     *
-     * @return object
+     * @return \Billplz\Four\MassPayment
      */
-    public function massPayment(?string $version = null)
+    final public function massPayment(): Four\MassPayment
     {
-        return $this->uses('MassPayment', $version);
+        return $this->uses('MassPayment', 'v4');
     }
 
     /**
@@ -209,9 +217,9 @@ class Client extends BaseClient
      *
      * @param  string|null  $version
      *
-     * @return object
+     * @return \Billplz\Base\Bank
      */
-    public function bank(?string $version = null)
+    final public function bank(?string $version = null): Base\Bank
     {
         return $this->uses('Bank', $version);
     }

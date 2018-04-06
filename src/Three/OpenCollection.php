@@ -1,10 +1,10 @@
 <?php
 
-namespace Billplz\Three\Collection;
+namespace Billplz\Three;
 
-use Billplz\Base\Collection\Open as Request;
+use Billplz\Base\OpenCollection as Request;
 
-class Open extends Request
+class OpenCollection extends Request
 {
     /**
      * Version namespace.

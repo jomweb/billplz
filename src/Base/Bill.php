@@ -8,7 +8,7 @@ use Laravie\Codex\Contracts\Response as ResponseContract;
 
 abstract class Bill extends Request
 {
-    use Bill\PaymentCompletion;
+    use PaymentCompletion;
 
     /**
      * Create a new bill.
