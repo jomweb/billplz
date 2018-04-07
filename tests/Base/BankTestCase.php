@@ -21,10 +21,10 @@ abstract class BankTestCase extends TestCase
     {
         $expected = '{"verified":true}';
 
-        $request = $this->expectRequest('GET', 'check/bank_account_number/jomlaunch')
+        $faker = $this->expectRequest('GET', 'check/bank_account_number/jomlaunch')
                         ->shouldResponseWith(200, $expected);
 
-        $response = $this->makeClient($request->http())
+        $response = $this->makeClient($faker)
                         ->uses('Bank')
                         ->checkAccount('jomlaunch');
 
@@ -38,10 +38,10 @@ abstract class BankTestCase extends TestCase
     {
         $expected = '{"bank":[{"name":"PBB0233","active":true},{"name":"MBB0227","active":true},{"name":"MBB0228","active":true}]}';
 
-        $request = $this->expectRequest('GET', 'fpx_banks')
+        $faker = $this->expectRequest('GET', 'fpx_banks')
                         ->shouldResponseWith(200, $expected);
 
-        $response = $this->makeClient($request->http())
+        $response = $this->makeClient($faker)
                         ->uses('Bank')
                         ->supportedForFpx();
 

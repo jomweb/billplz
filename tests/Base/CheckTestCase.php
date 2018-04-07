@@ -22,10 +22,10 @@ abstract class CheckTestCase extends TestCase
     {
         $expected = '{"verified":true}';
 
-        $request = $this->expectRequest('GET', 'check/bank_account_number/jomlaunch')
+        $faker = $this->expectRequest('GET', 'check/bank_account_number/jomlaunch')
                         ->shouldResponseWith(200, $expected);
 
-        $response = $this->makeClient($request->http())
+        $response = $this->makeClient($faker)
                         ->uses('Check')
                         ->bankAccount('jomlaunch');
 

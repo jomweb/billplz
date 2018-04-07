@@ -13,10 +13,10 @@ class ClientTest extends TestCase
     {
         $faker = FakeRequest::create();
 
-        $client = new Client($faker->http(), '73eb57f0-7d4e-42b9-a544-aeac6e4b0f81', 'billplz');
+        $client = new Client($faker->http(), static::API_KEY, static::X_SIGNATURE);
 
-        $this->assertSame('73eb57f0-7d4e-42b9-a544-aeac6e4b0f81', $client->getApiKey());
-        $this->assertSame('billplz', $client->getSignatureKey());
+        $this->assertSame(static::API_KEY, $client->getApiKey());
+        $this->assertSame(static::X_SIGNATURE, $client->getSignatureKey());
         $this->assertSame('https://www.billplz.com/api', $client->getApiEndpoint());
     }
 
@@ -27,10 +27,10 @@ class ClientTest extends TestCase
 
         Discovery::override($faker->http());
 
-        $client = Client::make('73eb57f0-7d4e-42b9-a544-aeac6e4b0f81', 'billplz');
+        $client = Client::make(static::API_KEY, static::X_SIGNATURE);
 
-        $this->assertSame('73eb57f0-7d4e-42b9-a544-aeac6e4b0f81', $client->getApiKey());
-        $this->assertSame('billplz', $client->getSignatureKey());
+        $this->assertSame(static::API_KEY, $client->getApiKey());
+        $this->assertSame(static::X_SIGNATURE, $client->getSignatureKey());
         $this->assertSame('https://www.billplz.com/api', $client->getApiEndpoint());
     }
 

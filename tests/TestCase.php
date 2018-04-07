@@ -10,6 +10,9 @@ use PHPUnit\Framework\TestCase as PHPUnit;
 
 class TestCase extends PHPUnit
 {
+    const API_KEY = '73eb57f0-7d4e-42b9-a544-aeac6e4b0f81';
+    const X_SIGNATURE = 'billplz';
+
     /**
      * API Version.
      *
@@ -57,17 +60,17 @@ class TestCase extends PHPUnit
     /**
      * Create a fake client.
      *
-     * @param  object|null  $http
+     * @param  \Laravie\Codex\Testing\FakeRequest|null  $faker
      *
      * @return \Billplz\Client
      */
-    protected function makeClient($http = null)
+    protected function makeClient(FakeRequest $faker = null)
     {
-        if (is_null($http)) {
-            $http = FakeRequest::create()->http();
+        if (is_null($faker)) {
+            $faker = FakeRequest::create();
         }
 
-        $client = new Client($http, '73eb57f0-7d4e-42b9-a544-aeac6e4b0f81', 'billplz');
+        $client = new Client($faker->http(), static::API_KEY, static::X_SIGNATURE);
 
         if (! is_null($this->apiVersion)) {
             $client->useVersion($this->apiVersion);
