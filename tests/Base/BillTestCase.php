@@ -33,10 +33,10 @@ abstract class BillTestCase extends TestCase
 
         $expected = '{"id":"8X0Iyzaw","collection_id":"inbmmepb","paid":false,"state":"due","amount":200,"paid_amount":0,"due_at":"2015-3-9","email":"api@billplz.com","mobile":null,"name":"MICHAEL API V3","url":"https:\/\/www.billplz.com\/bills\/8X0Iyzaw","reference_1_label":"Reference 1","reference_1":null,"reference_2_label":"Reference 2","reference_2":null,"redirect_url":null,"callback_url":"http:\/\/example.com\/webhook\/","description":"Maecenas eu placerat ante."}';
 
-        $request = $this->expectRequest('POST', 'bills', [], $data)
+        $faker = $this->expectRequest('POST', 'bills', [], $data)
                         ->shouldResponseWith(200, $expected);
 
-        $response = $this->makeClient($request->http())
+        $response = $this->makeClient($faker)
                         ->uses('Bill')
                         ->create(
                             $data['collection_id'],
@@ -69,10 +69,10 @@ abstract class BillTestCase extends TestCase
 
         $expected = '{"id":"8X0Iyzaw","collection_id":"inbmmepb","paid":false,"state":"due","amount":200,"paid_amount":0,"due_at":"2015-3-9","email":"api@billplz.com","mobile":null,"name":"MICHAEL API V3","url":"https:\/\/www.billplz.com\/bills\/8X0Iyzaw","reference_1_label":"Reference 1","reference_1":null,"reference_2_label":"Reference 2","reference_2":null,"redirect_url":"http:\/\/example.com\/paid\/","callback_url":"http:\/\/example.com\/webhook\/","description":"Maecenas eu placerat ante."}';
 
-        $request = $this->expectRequest('POST', 'bills', [], $data)
+        $faker = $this->expectRequest('POST', 'bills', [], $data)
                         ->shouldResponseWith(200, $expected);
 
-        $response = $this->makeClient($request->http())
+        $response = $this->makeClient($faker)
                         ->uses('Bill')
                         ->create(
                             $data['collection_id'],
@@ -127,10 +127,10 @@ abstract class BillTestCase extends TestCase
     {
         $expected = '{"id":"8X0Iyzaw","collection_id":"inbmmepb","paid":false,"state":"due","amount":200,"paid_amount":0,"due_at":"2020-12-31","email":"api@billplz.com","mobile":"+60112223333","name":"MICHAEL API V3","url":"https:\/\/www.billplz.com\/bills\/8X0Iyzaw","reference_1_label":"First Name","reference_1":"Jordan","reference_2_label":"Last Name","reference_2":"Michael","redirect_url":"http:\/\/example.com\/redirect\/","callback_url":"http:\/\/example.com\/webhook\/","description":"Maecenas eu placerat ante."}';
 
-        $request = $this->expectRequest('GET', 'bills/8X0Iyzaw')
+        $faker = $this->expectRequest('GET', 'bills/8X0Iyzaw')
                         ->shouldResponseWith(200, $expected);
 
-        $response = $this->makeClient($request->http())
+        $response = $this->makeClient($faker)
                         ->uses('Bill')
                         ->show('8X0Iyzaw');
 
@@ -150,10 +150,10 @@ abstract class BillTestCase extends TestCase
     {
         $expected = '[]';
 
-        $request = $this->expectRequest('DELETE', 'bills/8X0Iyzaw')
+        $faker = $this->expectRequest('DELETE', 'bills/8X0Iyzaw')
                         ->shouldResponseWith(200, $expected);
 
-        $response = $this->makeClient($request->http())
+        $response = $this->makeClient($faker)
                         ->uses('Bill')
                         ->destroy('8X0Iyzaw');
 
@@ -168,10 +168,10 @@ abstract class BillTestCase extends TestCase
     {
         $expected = '{"bill_id":"inbmmepb","transactions":[{"id":"60793D4707CD","status":"completed","completed_at":"2017-02-23T12:49:23.612+08:00","payment_channel":"FPX"},{"id":"28F3D3194138","status":"failed","completed_at":,"payment_channel":"FPX"}],"page":1}';
 
-        $request = $this->expectRequest('GET', 'bills/inbmmepb/transactions')
+        $faker = $this->expectRequest('GET', 'bills/inbmmepb/transactions')
                         ->shouldResponseWith(200, $expected);
 
-        $response = $this->makeClient($request->http())
+        $response = $this->makeClient($faker)
                         ->uses('Bill')
                         ->transaction('inbmmepb');
 
