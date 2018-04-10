@@ -1,19 +1,12 @@
 <?php
 
-namespace Billplz\TestCase\Three;
+namespace Billplz\TestCase\Base\Collection;
 
+use Laravie\Codex\Response;
 use Billplz\TestCase\TestCase;
-use Laravie\Codex\Contracts\Response;
 
-class PaymentMethodTest extends TestCase
+class PaymentMethodTestCase extends TestCase
 {
-    /**
-     * API Version.
-     *
-     * @var string
-     */
-    protected $apiVersion = 'v3';
-
     /** @test */
     public function it_can_get_payment_methods()
     {
@@ -21,7 +14,7 @@ class PaymentMethodTest extends TestCase
 
         $faker = $this->expectRequest('GET', 'collections/0idsxnh5/payment_methods')->shouldResponseWith(200, $expected);
 
-        $response = $this->makeClient($faker)->uses('PaymentMethod')->show('0idsxnh5');
+        $response = $this->makeClient($faker)->uses('Collection.PaymentMethod')->show('0idsxnh5');
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());

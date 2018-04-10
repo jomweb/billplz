@@ -1,18 +1,11 @@
 <?php
 
-namespace Billplz\Three;
+namespace Billplz\Base\Collection;
 
 use Billplz\Request;
 
 class PaymentMethod extends Request
 {
-    /**
-     * Version namespace.
-     *
-     * @var string
-     */
-    protected $version = 'v3';
-
     /**
      * Get payment method index.
      *
@@ -29,12 +22,12 @@ class PaymentMethod extends Request
      * Update payment methods.
      *
      * @param  string  $id
-     * @param  array   $payment_methods
+     * @param  array   $paymentMethods
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function update($id, $payment_methods = [])
+    public function update($id, array $paymentMethods)
     {
-        return $this->send('PUT', "collections/{$id}/payment_methods", [], $payment_methods);
+        return $this->send('PUT', "collections/{$id}/payment_methods", [], $paymentMethods);
     }
 }
