@@ -35,7 +35,6 @@ class PaymentMethod extends Request
      */
     public function update($id, $payment_methods = [])
     {
-        // payment_methods[][code]='fpx'
-        return $this->send('PUT', "collections/{$id}/payment_methods");
+        return $this->send('PUT', "collections/{$id}/payment_methods", [], $payment_methods);
     }
 }
