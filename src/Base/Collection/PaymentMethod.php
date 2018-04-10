@@ -9,25 +9,25 @@ class PaymentMethod extends Request
     /**
      * Get payment method index.
      *
-     * @param  string  $id
+     * @param  string  $collectionId
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function show($id)
+    public function get(string $collectionId)
     {
-        return $this->send('GET', "collections/{$id}/payment_methods", [], []);
+        return $this->send('GET', "collections/{$collectionId}/payment_methods", [], []);
     }
 
     /**
      * Update payment methods.
      *
-     * @param  string  $id
+     * @param  string  $collectionId
      * @param  array   $paymentMethods
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function update($id, array $paymentMethods)
+    public function update(string $collectionId, array $paymentMethods)
     {
-        return $this->send('PUT', "collections/{$id}/payment_methods", [], $paymentMethods);
+        return $this->send('PUT', "collections/{$collectionId}/payment_methods", [], $paymentMethods);
     }
 }

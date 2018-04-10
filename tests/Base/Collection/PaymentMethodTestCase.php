@@ -14,7 +14,7 @@ class PaymentMethodTestCase extends TestCase
 
         $faker = $this->expectRequest('GET', 'collections/0idsxnh5/payment_methods')->shouldResponseWith(200, $expected);
 
-        $response = $this->makeClient($faker)->uses('Collection.PaymentMethod')->show('0idsxnh5');
+        $response = $this->makeClient($faker)->uses('Collection.PaymentMethod')->get('0idsxnh5');
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
