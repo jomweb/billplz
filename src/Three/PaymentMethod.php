@@ -6,7 +6,7 @@ use Billplz\Request;
 
 class PaymentMethod extends Request
 {
-	/**
+    /**
      * Version namespace.
      *
      * @var string
@@ -22,7 +22,7 @@ class PaymentMethod extends Request
      */
     public function show($id)
     {
-    	return $this->send('GET', "collections/{$id}/payment_methods", [], []);
+        return $this->send('GET', "collections/{$id}/payment_methods", [], []);
     }
 
     /**
