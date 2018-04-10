@@ -3,6 +3,7 @@
 namespace Billplz\Base\Collection;
 
 use Billplz\Request;
+use Laravie\Codex\Contracts\Response;
 
 class PaymentMethod extends Request
 {
@@ -13,7 +14,7 @@ class PaymentMethod extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function get(string $collectionId)
+    public function get(string $collectionId): Response
     {
         return $this->send('GET', "collections/{$collectionId}/payment_methods", [], []);
     }
@@ -26,7 +27,7 @@ class PaymentMethod extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function update(string $collectionId, array $paymentMethods)
+    public function update(string $collectionId, array $paymentMethods): Response
     {
         return $this->send('PUT', "collections/{$collectionId}/payment_methods", [], $paymentMethods);
     }
