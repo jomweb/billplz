@@ -13,7 +13,7 @@ class PaymentMethod extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function show($id)
+    public function get($id)
     {
         return $this->send('GET', "collections/{$id}/payment_methods", [], []);
     }
