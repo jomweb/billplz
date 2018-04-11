@@ -246,35 +246,6 @@ return [
 ];
 ```
 
-#### Payment Completion
-
-You can setup a webhook to receive POST request from Billplz. In order to accept the response all you to do is write the following.
-
-```php
-$data = $billplz->webhook($_POST);
-```
-
-```php
-return [
-    'id' => 'W_79pJDk',
-    'collection_id' => 'inbmmepb',
-    'paid' => true,
-    'state' => 'paid',
-    'amount' => \Duit\MYR::given(200),
-    'paid_amount' => \Duit\MYR::given(0),
-    'due_at' => new \DateTime('2020-12-31'),
-    'email' => 'api@billplz.com',
-    'mobile' => '+60112223333',
-    'name' => 'MICHAEL API',
-    'metadata' => [
-        'id' => 9999,
-        'description' => 'This is to test bill creation',
-    ],
-    'url' => 'https://billplz.dev/bills/W_79pJDk',
-    'paid_at' => new \DateTime('2015-03-09 16:23:59 +0800'),
-];
-```
-
 #### Get a Bill
 
 ```php
@@ -316,6 +287,53 @@ var_dump($response->toArray());
 
 ```php
 []
+```
+
+#### Payment Completion
+
+##### Callback
+
+You can setup a webhook to receive POST request from Billplz. In order to accept the response, all you to do is write the following.
+
+```php
+$data = $bill->webhook($_POST);
+```
+
+```php
+return [
+    'id' => 'W_79pJDk',
+    'collection_id' => 'inbmmepb',
+    'paid' => true,
+    'state' => 'paid',
+    'amount' => \Duit\MYR::given(200),
+    'paid_amount' => \Duit\MYR::given(0),
+    'due_at' => new \DateTime('2020-12-31'),
+    'email' => 'api@billplz.com',
+    'mobile' => '+60112223333',
+    'name' => 'MICHAEL API',
+    'metadata' => [
+        'id' => 9999,
+        'description' => 'This is to test bill creation',
+    ],
+    'url' => 'https://billplz.dev/bills/W_79pJDk',
+    'paid_at' => new \DateTime('2015-03-09 16:23:59 +0800'),
+];
+```
+
+##### Redirect
+
+You can setup a redirect page where user will be redirected after payment is completed. Billplz will redirect user to your specified redirect page along with few URL parameters. In order to capture all the URL parameters, do the following.
+
+```php
+$data = $bill->redirect($_GET);
+```
+
+```php
+return [
+    'id' => 'W_79pJDk',
+    'paid' => true,
+    'paid_at' => new \DateTime('2015-03-09 16:23:59 +0800'),
+];
 ```
 
 ### Creating Transaction Request
