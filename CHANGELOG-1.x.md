@@ -2,6 +2,21 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 1.3.2
+
+Released: 2018-04-25
+
+### Added
+
+* Added `Billplz\Base\Bill::get()` as alternative to `show()`.
+* Added `Billplz\Base\Collection::all()` as alternative to `index()`.
+* Added `Billplz\Base\OpenCollection` to handle Open Collection resource.
+* Added `Billplz\Base\Collection\PaymentMethod` to handle Payment Method resource.
+
+### Changes
+
+* Move `redirect()` and `webhook()` methods to `Billplz\Base\PaymentCompletion` trait.
+
 ## 1.3.1
 
 Released: 2018-04-02
