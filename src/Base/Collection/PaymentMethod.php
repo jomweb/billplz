@@ -22,12 +22,18 @@ class PaymentMethod extends Request
      * Update payment methods.
      *
      * @param  string  $id
-     * @param  array   $paymentMethods
+     * @param  array   $codes
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function update($id, array $paymentMethods)
+    public function update($id, array $codes = [])
     {
-        return $this->send('PUT', "collections/{$id}/payment_methods", [], $paymentMethods);
+        $payments = [];
+
+        foreach ($codes as $code) {
+            array_push($payments, compact('code'));
+        }
+
+        return $this->send('PUT', "collections/{$id}/payment_methods", [], $payments);
     }
 }
