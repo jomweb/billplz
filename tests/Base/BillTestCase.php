@@ -21,7 +21,7 @@ abstract class BillTestCase extends TestCase
     /** @test */
     public function it_can_be_created()
     {
-        $data = [
+        $payload = [
             'email' => 'api@billplz.com',
             'mobile' => null,
             'name' => 'Michael API V3',
@@ -33,19 +33,19 @@ abstract class BillTestCase extends TestCase
 
         $expected = '{"id":"8X0Iyzaw","collection_id":"inbmmepb","paid":false,"state":"due","amount":200,"paid_amount":0,"due_at":"2015-3-9","email":"api@billplz.com","mobile":null,"name":"MICHAEL API V3","url":"https:\/\/www.billplz.com\/bills\/8X0Iyzaw","reference_1_label":"Reference 1","reference_1":null,"reference_2_label":"Reference 2","reference_2":null,"redirect_url":null,"callback_url":"http:\/\/example.com\/webhook\/","description":"Maecenas eu placerat ante."}';
 
-        $faker = $this->expectRequest('POST', 'bills', [], $data)
+        $faker = $this->expectRequest('POST', 'bills', [], $payload)
                         ->shouldResponseWith(200, $expected);
 
         $response = $this->makeClient($faker)
                         ->uses('Bill')
                         ->create(
-                            $data['collection_id'],
-                            $data['email'],
-                            $data['mobile'],
-                            $data['name'],
-                            MYR::given($data['amount']),
-                            $data['callback_url'],
-                            $data['description']
+                            $payload['collection_id'],
+                            $payload['email'],
+                            $payload['mobile'],
+                            $payload['name'],
+                            MYR::given($payload['amount']),
+                            $payload['callback_url'],
+                            $payload['description']
                         );
 
         $this->assertInstanceOf(Response::class, $response);
@@ -56,7 +56,7 @@ abstract class BillTestCase extends TestCase
     /** @test */
     public function it_can_be_created_with_url_as_array()
     {
-        $data = [
+        $payload = [
             'email' => 'api@billplz.com',
             'mobile' => null,
             'name' => 'Michael API V3',
@@ -69,22 +69,22 @@ abstract class BillTestCase extends TestCase
 
         $expected = '{"id":"8X0Iyzaw","collection_id":"inbmmepb","paid":false,"state":"due","amount":200,"paid_amount":0,"due_at":"2015-3-9","email":"api@billplz.com","mobile":null,"name":"MICHAEL API V3","url":"https:\/\/www.billplz.com\/bills\/8X0Iyzaw","reference_1_label":"Reference 1","reference_1":null,"reference_2_label":"Reference 2","reference_2":null,"redirect_url":"http:\/\/example.com\/paid\/","callback_url":"http:\/\/example.com\/webhook\/","description":"Maecenas eu placerat ante."}';
 
-        $faker = $this->expectRequest('POST', 'bills', [], $data)
+        $faker = $this->expectRequest('POST', 'bills', [], $payload)
                         ->shouldResponseWith(200, $expected);
 
         $response = $this->makeClient($faker)
                         ->uses('Bill')
                         ->create(
-                            $data['collection_id'],
-                            $data['email'],
-                            $data['mobile'],
-                            $data['name'],
-                            Money::MYR($data['amount']),
+                            $payload['collection_id'],
+                            $payload['email'],
+                            $payload['mobile'],
+                            $payload['name'],
+                            MYR::given($payload['amount']),
                             [
-                                'callback_url' => $data['callback_url'],
-                                'redirect_url' => $data['redirect_url'],
+                                'callback_url' => $payload['callback_url'],
+                                'redirect_url' => $payload['redirect_url'],
                             ],
-                            $data['description']
+                            $payload['description']
                         );
 
         $this->assertInstanceOf(Response::class, $response);
@@ -99,7 +99,7 @@ abstract class BillTestCase extends TestCase
      */
     public function it_cant_be_created_given_empty_email_and_mobile()
     {
-        $data = [
+        $payload = [
             'email' => '',
             'mobile' => null,
             'name' => 'Michael API V3',
@@ -112,13 +112,13 @@ abstract class BillTestCase extends TestCase
         $response = $this->makeClient()
                         ->uses('Bill')
                         ->create(
-                            $data['collection_id'],
-                            $data['email'],
-                            $data['mobile'],
-                            $data['name'],
-                            Money::MYR($data['amount']),
-                            $data['callback_url'],
-                            $data['description']
+                            $payload['collection_id'],
+                            $payload['email'],
+                            $payload['mobile'],
+                            $payload['name'],
+                            MYR::given($payload['amount']),
+                            $payload['callback_url'],
+                            $payload['description']
                         );
     }
 
@@ -132,7 +132,7 @@ abstract class BillTestCase extends TestCase
 
         $response = $this->makeClient($faker)
                         ->uses('Bill')
-                        ->show('8X0Iyzaw');
+                        ->get('8X0Iyzaw');
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());

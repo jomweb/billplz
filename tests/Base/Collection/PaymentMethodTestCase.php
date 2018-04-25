@@ -20,4 +20,23 @@ class PaymentMethodTestCase extends TestCase
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame($expected, $response->getBody());
     }
+
+    /** @test */
+    public function it_can_set_payment_methods()
+    {
+        $expected = '{"payment_methods":[{"code": "paypal","name": "PAYPAL","active": true},{"code": "fpx","name": "Online Banking","active": true}]}';
+        $payload = [
+            ['code' => 'fpx'],
+            ['code' => 'paypal'],
+        ];
+
+        $faker = $this->expectRequest('PUT', 'collections/0idsxnh5/payment_methods', [], $payload)
+                        ->shouldResponseWith(200, $expected);
+
+        $response = $this->makeClient($faker)->uses('Collection.PaymentMethod')->update('0idsxnh5', ['fpx', 'paypal']);
+
+        $this->assertInstanceOf(Response::class, $response);
+        $this->assertSame(200, $response->getStatusCode());
+        $this->assertSame($expected, $response->getBody());
+    }
 }

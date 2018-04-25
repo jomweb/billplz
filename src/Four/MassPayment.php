@@ -3,7 +3,7 @@
 namespace Billplz\Four;
 
 use Billplz\Request;
-use Laravie\Codex\Contracts\Response as ResponseContract;
+use Laravie\Codex\Contracts\Response;
 
 class MassPayment extends Request
 {
@@ -37,8 +37,8 @@ class MassPayment extends Request
         string $description,
         $total,
         array $optional = []
-    ): ResponseContract {
-        $body = array_merge(compact('title', 'name', 'description', 'total'), $optional);
+    ): Response {
+        $body = array_merge(compact('name', 'description', 'total'), $optional);
         $body['mass_payment_instruction_collection_id'] = $collectionId;
         $body['bank_code'] = $bankCode;
         $body['bank_account_number'] = $bankAccountNumber;
@@ -54,7 +54,7 @@ class MassPayment extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function get(string $instructionId): ResponseContract
+    public function get(string $instructionId): Response
     {
         return $this->send('GET', "mass_payment_instructions/{$instructionId}", [], []);
     }
