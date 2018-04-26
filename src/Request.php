@@ -16,11 +16,7 @@ abstract class Request extends BaseRequest
      */
     protected function getApiEndpoint($path = []): Endpoint
     {
-        if (is_array($path)) {
-            array_unshift($path, $this->getVersion());
-        } else {
-            $path = [$this->getVersion(), $path];
-        }
+        $path = [$this->getVersion(), $path];
 
         return parent::getApiEndpoint($path)
                     ->withUserInfo($this->client->getApiKey());
