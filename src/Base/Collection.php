@@ -49,22 +49,10 @@ abstract class Collection extends Request
      * Get collection index.
      *
      * @return \Laravie\Codex\Contracts\Response
-     *
-     * @deprecated v2.0.0
-     */
-    public function index(array $optional = []): Response
-    {
-        return $this->send('GET', 'collections', [], $optional);
-    }
-
-    /**
-     * Get collection index.
-     *
-     * @return \Laravie\Codex\Contracts\Response
      */
     public function all(array $optional = []): Response
     {
-        return $this->index($optional);
+        return $this->send('GET', 'collections', [], $optional);
     }
 
     /**

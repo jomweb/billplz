@@ -58,24 +58,10 @@ abstract class Bill extends Request
      * @param  string  $id
      *
      * @return \Laravie\Codex\Contracts\Response
-     *
-     * @deprecated v2.0.0
-     */
-    public function show(string $id): Response
-    {
-        return $this->send('GET', "bills/{$id}");
-    }
-
-    /**
-     * Show an existing bill.
-     *
-     * @param  string  $id
-     *
-     * @return \Laravie\Codex\Contracts\Response
      */
     public function get(string $id): Response
     {
-        return $this->show($id);
+        return $this->send('GET', "bills/{$id}");
     }
 
     /**
