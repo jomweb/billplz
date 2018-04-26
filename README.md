@@ -27,6 +27,7 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
         + [Redirect](#redirect)
         + [Callback](#callback)
     - [Transaction](#transaction)
+        + [List of Transactions](#list-of-transactions)
     - [Bank](#bank)
 * [Handling Response](#handling-response)
     - [Checking the Response HTTP Status](#checking-the-response-http-status)
@@ -405,7 +406,8 @@ $transaction = $billplz->transaction();
 
 > You can also manually set the API version by doing `$billplz->transaction('v3');`. You can also use `$billplz->uses('Bill.Transaction');` to get the same result.
 
-#### Get Transaction Index
+<a name="get-transaction-index"></a>
+#### List of Transactions
 
 You can get Transaction index by calling following code:
 
