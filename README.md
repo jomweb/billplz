@@ -9,9 +9,12 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
 [![Coverage Status](https://coveralls.io/repos/github/jomweb/billplz/badge.svg?branch=master)](https://coveralls.io/github/jomweb/billplz?branch=master)
 
 * [Installation](#installation)
+* [Getting Started](#getting-started)
+    - [Creating Client](#creating-client)
+    - [Using Sandbox](#using-sandbox)
+    - [API Version](#api-version)
 * [Usages](#usages)
-    - [Creating Billplz Client](#creating-billplz-client)
-    - [Creating Collection Request](#creating-collection-request)
+    - [Collection](#creating-collection-request)
     - [Creating Bill Request](#creating-bill-request)
     - [Creating Check Request](#creating-check-request)
     - [Creating Transaction Request](#creating-transaction-request)
@@ -37,9 +40,10 @@ To install through composer, simply put the following in your `composer.json` fi
 
 Instead of utilizing `php-http/guzzle6-adapter` you might want to use any other adapter that implements `php-http/client-implementation`. Check [Clients & Adapters](http://docs.php-http.org/en/latest/clients.html) for PHP-HTTP.
 
-## Usages
+## Getting Started
 
-### Creating Billplz Client
+<a name="creating-billplz-client"></a>
+### Creating Client
 
 You can start by creating a Billplz client by using the following code (which uses `php-http/guzzle6-adapter` and `php-http/discovery` to automatically pick available adapter installed via composer):
 
@@ -74,7 +78,7 @@ $http = Discovery::client();
 $billplz = new Client($http, 'your-api-key', 'your-x-signature-key');
 ```
 
-#### Using Sandbox
+### Using Sandbox
 
 You can set to use development/sandbox environment by adding the following code:
 
@@ -82,7 +86,8 @@ You can set to use development/sandbox environment by adding the following code:
 $billplz->useSandbox();
 ```
 
-#### Using different API Version
+<a name="using-different-api-version"></a>
+### API Version
 
 By default `jomweb/billplz` would use `v3` API version for any request, however you can customize this in future when new API version is available.
 
@@ -90,7 +95,10 @@ By default `jomweb/billplz` would use `v3` API version for any request, however 
 $billplz->useVersion('v4');
 ```
 
-### Creating Collection Request
+## Usages
+
+<a name="creating-collection-request"></a>
+### Collection
 
 Now you can create an instance of Collection:
 
@@ -155,6 +163,8 @@ return [
     ]
 ]
 ```
+
+### Open Collection
 
 #### Create an Open Collection
 
