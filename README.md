@@ -16,7 +16,12 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
 * [Usages](#usages)
     - [Collection](#collection)
     - [Bill](#bill)
+        + [Create a Bill](#create-a-bill)
+        + [Get existing Bill](#get-existing-bill)
+        + [Delete a Bill](#delete-a-bill)
     - [Payment Completion](#payment-completion)
+        + [Redirect](#redirect)
+        + [Callback](#callback)
     - [Transaction](#transaction)
     - [Bank](#bank)
 * [Handling Response](#handling-response)
@@ -338,9 +343,25 @@ var_dump($response->toArray());
 []
 ```
 
-#### Payment Completion
+### Payment Completion
 
-##### Callback
+#### Redirect
+
+You can setup a redirect page where user will be redirected after payment is completed. Billplz will redirect user to your specified redirect page along with few URL parameters. In order to capture all the URL parameters, do the following.
+
+```php
+$data = $bill->redirect($_GET);
+```
+
+```php
+return [
+    'id' => 'W_79pJDk',
+    'paid' => true,
+    'paid_at' => new \DateTime('2015-03-09 16:23:59 +0800'),
+];
+```
+
+#### Callback
 
 You can setup a webhook to receive POST request from Billplz. In order to accept the response, all you to do is write the following.
 
@@ -365,22 +386,6 @@ return [
         'description' => 'This is to test bill creation',
     ],
     'url' => 'https://billplz.dev/bills/W_79pJDk',
-    'paid_at' => new \DateTime('2015-03-09 16:23:59 +0800'),
-];
-```
-
-##### Redirect
-
-You can setup a redirect page where user will be redirected after payment is completed. Billplz will redirect user to your specified redirect page along with few URL parameters. In order to capture all the URL parameters, do the following.
-
-```php
-$data = $bill->redirect($_GET);
-```
-
-```php
-return [
-    'id' => 'W_79pJDk',
-    'paid' => true,
     'paid_at' => new \DateTime('2015-03-09 16:23:59 +0800'),
 ];
 ```
