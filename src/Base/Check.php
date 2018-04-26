@@ -3,7 +3,7 @@
 namespace Billplz\Base;
 
 use Billplz\Request;
-use Laravie\Codex\Contracts\Response as ResponseContract;
+use Laravie\Codex\Contracts\Response;
 
 abstract class Check extends Request
 {
@@ -14,7 +14,7 @@ abstract class Check extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function bankAccount($number): ResponseContract
+    public function bankAccount($number): Response
     {
         return $this->client->uses('Bank', $this->getVersion())
                     ->checkAccount($number);

@@ -4,7 +4,7 @@ namespace Billplz\Base;
 
 use Billplz\Request;
 use InvalidArgumentException;
-use Laravie\Codex\Contracts\Response as ResponseContract;
+use Laravie\Codex\Contracts\Response;
 
 abstract class Bill extends Request
 {
@@ -35,7 +35,7 @@ abstract class Bill extends Request
         $callbackUrl,
         string $description,
         array $optional = []
-    ): ResponseContract {
+    ): Response {
         if (empty($email) && empty($mobile)) {
             throw new InvalidArgumentException('Either $email or $mobile should be present');
         }
@@ -61,7 +61,7 @@ abstract class Bill extends Request
      *
      * @deprecated v2.0.0
      */
-    public function show(string $id): ResponseContract
+    public function show(string $id): Response
     {
         return $this->send('GET', "bills/{$id}");
     }
@@ -73,7 +73,7 @@ abstract class Bill extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function get(string $id): ResponseContract
+    public function get(string $id): Response
     {
         return $this->show($id);
     }
@@ -86,7 +86,7 @@ abstract class Bill extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function transaction(string $id, array $optional = []): ResponseContract
+    public function transaction(string $id, array $optional = []): Response
     {
         return $this->client->uses('Bill.Transaction', $this->getVersion())
                     ->show($id, $optional);
@@ -99,7 +99,7 @@ abstract class Bill extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function destroy(string $id): ResponseContract
+    public function destroy(string $id): Response
     {
         return $this->send('DELETE', "bills/{$id}");
     }

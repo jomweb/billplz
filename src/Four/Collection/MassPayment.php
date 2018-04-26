@@ -3,7 +3,7 @@
 namespace Billplz\Four\Collection;
 
 use Billplz\Request;
-use Laravie\Codex\Contracts\Response as ResponseContract;
+use Laravie\Codex\Contracts\Response;
 
 class MassPayment extends Request
 {
@@ -21,7 +21,7 @@ class MassPayment extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function create(string $title): ResponseContract
+    public function create(string $title): Response
     {
         return $this->send('POST', 'mass_payment_instruction_collections', [], compact('title'));
     }
@@ -33,7 +33,7 @@ class MassPayment extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function get(string $collectionId): ResponseContract
+    public function get(string $collectionId): Response
     {
         return $this->send('GET', "mass_payment_instruction_collections/{$collectionId}", [], []);
     }

@@ -4,7 +4,7 @@ namespace Billplz\Base;
 
 use Billplz\Request;
 use Laravie\Codex\Concerns\Request\Multipart;
-use Laravie\Codex\Contracts\Response as ResponseContract;
+use Laravie\Codex\Contracts\Response;
 
 abstract class Collection extends Request
 {
@@ -18,7 +18,7 @@ abstract class Collection extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function create(string $title, array $optional = []): ResponseContract
+    public function create(string $title, array $optional = []): Response
     {
         $files = [];
         $body = array_merge(compact('title'), $optional);
@@ -40,7 +40,7 @@ abstract class Collection extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function get(string $id): ResponseContract
+    public function get(string $id): Response
     {
         return $this->send('GET', "collections/{$id}", [], []);
     }
@@ -52,7 +52,7 @@ abstract class Collection extends Request
      *
      * @deprecated v2.0.0
      */
-    public function index(array $optional = []): ResponseContract
+    public function index(array $optional = []): Response
     {
         return $this->send('GET', 'collections', [], $optional);
     }
@@ -62,7 +62,7 @@ abstract class Collection extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function all(array $optional = []): ResponseContract
+    public function all(array $optional = []): Response
     {
         return $this->index($optional);
     }
@@ -74,7 +74,7 @@ abstract class Collection extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function activate(string $id): ResponseContract
+    public function activate(string $id): Response
     {
         return $this->send('POST', "collections/{$id}/activate", [], []);
     }
@@ -86,7 +86,7 @@ abstract class Collection extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function deactivate(string $id): ResponseContract
+    public function deactivate(string $id): Response
     {
         return $this->send('POST', "collections/{$id}/deactivate", [], []);
     }
