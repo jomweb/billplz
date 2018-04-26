@@ -29,6 +29,8 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
     - [Transaction](#transaction)
         + [List of Transactions](#list-of-transactions)
     - [Bank](#bank)
+        + [Check Bank Account Registration Status](#check-bank-account-registration-status)
+        + [Get FPX Banks List](#get-fpx-banks-list)
 * [Handling Response](#handling-response)
     - [Checking the Response HTTP Status](#checking-the-response-http-status)
     - [Checking the Response Header](#checking-the-response-header)
