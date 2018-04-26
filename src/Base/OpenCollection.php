@@ -31,13 +31,13 @@ class OpenCollection extends Request
     /**
      * Get open collection.
      *
-     * @param  string  $id
+     * @param  string  $collectionId
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function get(string $id): Response
+    public function get(string $collectionId): Response
     {
-        return $this->send('GET', "open_collections/{$id}", [], []);
+        return $this->send('GET', "open_collections/{$collectionId}", [], []);
     }
 
     /**
