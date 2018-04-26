@@ -14,11 +14,11 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
     - [Using Sandbox](#using-sandbox)
     - [API Version](#api-version)
 * [Usages](#usages)
-    - [Collection](#creating-collection-request)
-    - [Creating Bill Request](#creating-bill-request)
-    - [Creating Check Request](#creating-check-request)
-    - [Creating Transaction Request](#creating-transaction-request)
-    - [Creating Bank Request](#creating-bank-request)
+    - [Collection](#collection)
+    - [Bill](#bill)
+    - [Payment Completion](#payment-completion)
+    - [Transaction](#transaction)
+    - [Bank](#bank)
 * [Handling Response](#handling-response)
     - [Checking the Response HTTP Status](#checking-the-response-http-status)
     - [Checking the Response Header](#checking-the-response-header)
@@ -164,6 +164,44 @@ return [
 ]
 ```
 
+#### Get existing Collection
+
+You can get existing collection by calling the following code:
+
+```php
+$response = $collection->get('inbmmepb');
+
+var_dump($response->toArray());
+```
+
+```php
+return [
+    "id" => "inbmmepb"
+    "title" => "My First API Collection"
+    "logo" => [
+        "thumb_url" => null,
+        "avatar_url" => null,
+    ],
+    "split_header" => null,
+    "split_payments" => [
+        [
+            "email" => "verified@account.com",
+            "fixed_cut" => 100,
+            "variable_cut" => 2,
+            "stack_order" => 0,
+        ],
+        [
+            "email" => "verified2@account.com",
+            "fixed_cut" => 200,
+            "variable_cut" => 3,
+            "stack_order" => 1,
+        ],
+    ],
+    "status" => "active"
+];
+```
+
+
 ### Open Collection
 
 #### Create an Open Collection
@@ -204,8 +242,8 @@ return [
 ]
 ```
 
-
-### Creating Bill Request
+<a name="creating-bill-request"></a>
+### Bill
 
 Now you can create an instance of Bill:
 
@@ -256,7 +294,8 @@ return [
 ];
 ```
 
-#### Get a Bill
+<a name="get-a-bill"></a>
+#### Get existing Bill
 
 ```php
 $response = $bill->show('8X0Iyzaw');
@@ -346,7 +385,8 @@ return [
 ];
 ```
 
-### Creating Transaction Request
+<a name="creating-transaction-request"></a>
+### Transaction
 
 Now you can create an instance of Transaction:
 
@@ -413,7 +453,8 @@ return [
 ]
 ```
 
-### Creating Bank Request
+<a name="creating-bank-request"></a>
+### Bank
 
 Now you can create an instance of Bank:
 
@@ -438,7 +479,6 @@ return [
     "name" => "verified"
 ]
 ```
-
 
 #### Get FPX Banks List
 
