@@ -34,7 +34,7 @@ class Client extends BaseClient
      *
      * @var string
      */
-    protected $defaultVersion = 'v3';
+    protected $defaultVersion = 'v4';
 
     /**
      * List of supported API versions.
