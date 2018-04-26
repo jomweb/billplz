@@ -15,6 +15,7 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
     - [API Version](#api-version)
 * [Usages](#usages)
     - [Collection](#collection)
+    - [Open Collection](#open-collection)
     - [Bill](#bill)
         + [Create a Bill](#create-a-bill)
         + [Get existing Bill](#get-existing-bill)
