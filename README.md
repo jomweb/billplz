@@ -28,8 +28,8 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
         + [Callback](#callback)
     - [Transaction](#transaction)
         + [List of Transactions](#list-of-transactions)
-    - [Bank](#bank)
-        + [Check Bank Account Registration Status](#check-bank-account-registration-status)
+    - [Banking](#banking)
+        + [Registration Check by Bank Account](#registration-check-by-bank-account)
         + [Get FPX Banks List](#get-fpx-banks-list)
 * [Handling Response](#handling-response)
     - [Getting the Response](#getting-the-response)
@@ -468,7 +468,7 @@ return [
 ```
 
 <a name="creating-bank-request"></a>
-### Bank
+### Banking
 
 Now you can create an instance of Bank:
 
@@ -478,7 +478,8 @@ $bank = $billplz->bank();
 
 > You can also manually set the API version by doing `$billplz->bank('v3');`. You can also use `$billplz->uses('Bank');` to get the same result.
 
-#### Check Bank Account Registration Status
+<a name="check-bank-account-registration-status"></a>
+#### Registration Check by Bank Account
 
 At any given time, you can request to check on a registration status by bank account number.
 
