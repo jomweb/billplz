@@ -9,13 +9,13 @@ abstract class Bank extends Request
     /**
      * Get A Bank Account.
      *
-     * @param  string|int  $bank_account_number
+     * @param  string|int  $accountNumber
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function get($bank_account_number)
+    public function get($accountNumber)
     {
-        return $this->send('GET', "bank_verification_services/{$bank_account_number}");
+        return $this->send('GET', "bank_verification_services/{$accountNumber}");
     }
 
     /**
@@ -41,13 +41,13 @@ abstract class Bank extends Request
     /**
      * Check Bank Account Number.
      *
-     * @param  string|int  $number
+     * @param  string|int  $accountNumber
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function checkAccount($number)
+    public function checkAccount($accountNumber)
     {
-        return $this->send('GET', "check/bank_account_number/{$number}");
+        return $this->send('GET', "check/bank_account_number/{$accountNumber}");
     }
 
     /**
