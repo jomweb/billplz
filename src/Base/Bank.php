@@ -7,6 +7,24 @@ use Billplz\Request;
 abstract class Bank extends Request
 {
     /**
+     * Create A Bank Account.
+     *
+     * @param  string  $name
+     * @param  int  $id_no
+     * @param  int  $acc_no
+     * @param  string  $code
+     * @param  bool $organization
+     *
+     * @return \Laravie\Codex\Contracts\Response
+     */
+    public function createAccount($name, $id_no, $acc_no, $code, $organization)
+    {
+        $body = compact('name', 'id_no', 'acc_no', 'code', 'organization');
+
+        return $this->send('POST', "bank_verification_services", [], $body);
+    }
+
+    /**
      * Check Bank Account Number.
      *
      * @param  string|int  $number
