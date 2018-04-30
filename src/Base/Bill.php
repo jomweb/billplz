@@ -60,7 +60,7 @@ abstract class Bill extends Request
      */
     public function show($id)
     {
-        return $this->get($id);
+        return $this->send('GET', "bills/{$id}");
     }
 
     /**
@@ -72,7 +72,7 @@ abstract class Bill extends Request
      */
     public function get($id)
     {
-        return $this->send('GET', "bills/{$id}");
+        return $this->show($id);
     }
 
     /**

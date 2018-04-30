@@ -51,7 +51,7 @@ abstract class Collection extends Request
      */
     public function index(array $optional = [])
     {
-        return $this->all($optional);
+        return $this->send('GET', 'collections', [], $optional);
     }
 
     /**
@@ -61,7 +61,7 @@ abstract class Collection extends Request
      */
     public function all(array $optional = [])
     {
-        return $this->send('GET', 'collections', [], $optional);
+        return $this->index($optional);
     }
 
     /**
