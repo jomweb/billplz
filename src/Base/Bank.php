@@ -10,16 +10,18 @@ abstract class Bank extends Request
      * Create A Bank Account.
      *
      * @param  string  $name
-     * @param  int  $id_no
-     * @param  int  $acc_no
+     * @param  string  $identification
+     * @param  string  $accountNumber
      * @param  string  $code
      * @param  bool $organization
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function createAccount($name, $id_no, $acc_no, $code, $organization)
+    public function createAccount($name, $identification, $accountNumber, $code, bool $organization)
     {
-        $body = compact('name', 'id_no', 'acc_no', 'code', 'organization');
+        $body = compact('name', 'code', 'organization');
+        $body['id_no'] = $identification;
+        $body['acc_no'] = $accountNumber;
 
         return $this->send('POST', "bank_verification_services", [], $body);
     }
