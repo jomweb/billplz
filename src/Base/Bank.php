@@ -21,7 +21,7 @@ abstract class Bank extends Request
     {
         $body = compact('name', 'id_no', 'acc_no', 'code', 'organization');
 
-        return $this->send('POST', "bank_verification_services", [], $body);
+        return $this->send('POST', 'bank_verification_services', [], $body);
     }
 
     /**

@@ -3,7 +3,7 @@
 namespace Billplz\TestCase\Three;
 
 use Billplz\TestCase\TestCase;
-use \Laravie\Codex\Contracts\Response;
+use Laravie\Codex\Contracts\Response;
 
 class PaymentMethodTest extends TestCase
 {
@@ -13,7 +13,7 @@ class PaymentMethodTest extends TestCase
      * @var string
      */
     protected $apiVersion = 'v3';
-    
+
     /** @test */
     public function it_can_get_payment_methods()
     {
