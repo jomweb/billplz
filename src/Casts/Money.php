@@ -13,7 +13,7 @@ class Money extends Cast
      *
      * @return bool
      */
-    protected function isValid($value)
+    protected function isValid($value): bool
     {
         return $value instanceof \Money\Money || $value instanceof \Duit\MYR;
     }
@@ -21,11 +21,11 @@ class Money extends Cast
     /**
      * Cast value from object.
      *
-     * @param  \Money\Money  $value
+     * @param  \Money\Money|\Duit\MYR  $value
      *
      * @return string
      */
-    protected function fromCast($value)
+    protected function fromCast($value): string
     {
         return $value->getAmount();
     }
@@ -37,7 +37,7 @@ class Money extends Cast
      *
      * @return \Money\Money
      */
-    protected function toCast($value)
+    protected function toCast($value): \Money\Money
     {
         return \Money\Money::MYR($value);
     }

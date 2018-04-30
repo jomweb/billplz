@@ -4,14 +4,14 @@ namespace Billplz\TestCase;
 
 use Billplz\Client;
 use Laravie\Codex\Discovery;
-use Laravie\Codex\Testing\FakeRequest;
+use Laravie\Codex\Testing\Faker;
 
 class ClientTest extends TestCase
 {
     /** @test */
     public function it_can_be_initiated_directly()
     {
-        $faker = FakeRequest::create();
+        $faker = Faker::create();
 
         $client = new Client($faker->http(), static::API_KEY, static::X_SIGNATURE);
 
@@ -23,7 +23,7 @@ class ClientTest extends TestCase
     /** @test */
     public function it_can_be_initiated_via_make()
     {
-        $faker = FakeRequest::create();
+        $faker = Faker::create();
 
         Discovery::override($faker->http());
 

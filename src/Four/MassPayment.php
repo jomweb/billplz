@@ -3,6 +3,7 @@
 namespace Billplz\Four;
 
 use Billplz\Request;
+use Laravie\Codex\Contracts\Response;
 
 class MassPayment extends Request
 {
@@ -16,28 +17,28 @@ class MassPayment extends Request
     /**
      * Create a new mass payment instruction (mpi).
      *
-     * @param  string      $collectionId
-     * @param  string      $bankCode
-     * @param  string|int  $bankAccountNumber
-     * @param  string|int  $identityNumber
-     * @param  string      $name
-     * @param  string      $description
-     * @param  int         $total
-     * @param  array       $optional
+     * @param  string  $collectionId
+     * @param  string  $bankCode
+     * @param  string  $bankAccountNumber
+     * @param  string  $identityNumber
+     * @param  string  $name
+     * @param  string  $description
+     * @param  int  $total
+     * @param  array  $optional
      *
      * @return \Laravie\Codex\Contracts\Response
      */
     public function create(
-        $collectionId,
-        $bankCode,
-        $bankAccountNumber,
-        $identityNumber,
-        $name,
-        $description,
+        string $collectionId,
+        string $bankCode,
+        string $bankAccountNumber,
+        string $identityNumber,
+        string $name,
+        string $description,
         $total,
         array $optional = []
-    ) {
-        $body = array_merge(compact('title', 'name', 'description', 'total'), $optional);
+    ): Response {
+        $body = array_merge(compact('name', 'description', 'total'), $optional);
         $body['mass_payment_instruction_collection_id'] = $collectionId;
         $body['bank_code'] = $bankCode;
         $body['bank_account_number'] = $bankAccountNumber;
@@ -53,7 +54,7 @@ class MassPayment extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function get($instructionId)
+    public function get(string $instructionId): Response
     {
         return $this->send('GET', "mass_payment_instructions/{$instructionId}", [], []);
     }

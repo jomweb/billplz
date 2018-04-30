@@ -13,7 +13,7 @@ class Ringgit extends Cast
      *
      * @return bool
      */
-    protected function isValid($value)
+    protected function isValid($value): bool
     {
         return $value instanceof \Money\Money || $value instanceof \Duit\MYR;
     }
@@ -21,11 +21,11 @@ class Ringgit extends Cast
     /**
      * Cast value from object.
      *
-     * @param  \Money\Money  $value
+     * @param  \Money\Money|\Duit\MYR  $value
      *
      * @return string
      */
-    protected function fromCast($value)
+    protected function fromCast($value): string
     {
         return $value->getAmount();
     }
@@ -37,7 +37,7 @@ class Ringgit extends Cast
      *
      * @return \Duit\MYR
      */
-    protected function toCast($value)
+    protected function toCast($value): \Duit\MYR
     {
         return \Duit\MYR::given($value);
     }

@@ -3,11 +3,12 @@
 namespace Billplz\Base;
 
 use Billplz\Request;
-use Laravie\Codex\Support\MultipartRequest;
+use Laravie\Codex\Concerns\Request\Multipart;
+use Laravie\Codex\Contracts\Response;
 
 abstract class Collection extends Request
 {
-    use MultipartRequest;
+    use Multipart;
 
     /**
      * Create a new collection.
@@ -17,7 +18,7 @@ abstract class Collection extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function create($title, array $optional = [])
+    public function create(string $title, array $optional = []): Response
     {
         $files = [];
         $body = array_merge(compact('title'), $optional);
@@ -39,7 +40,7 @@ abstract class Collection extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function get($id)
+    public function get(string $id): Response
     {
         return $this->send('GET', "collections/{$id}", [], []);
     }
@@ -49,61 +50,9 @@ abstract class Collection extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function index(array $optional = [])
-    {
-        return $this->all($optional);
-    }
-
-    /**
-     * Get collection index.
-     *
-     * @return \Laravie\Codex\Contracts\Response
-     */
-    public function all(array $optional = [])
+    public function all(array $optional = []): Response
     {
         return $this->send('GET', 'collections', [], $optional);
-    }
-
-    /**
-     * Create a new open collection.
-     *
-     * @param  string  $title
-     * @param  string  $description
-     * @param  \Money\Money|int  $amount
-     * @param  array  $optional
-     *
-     * @return \Laravie\Codex\Contracts\Response
-     */
-    public function createOpen($title, $description, $amount, array $optional = [])
-    {
-        return $this->client->uses('OpenCollection', $this->getVersion())
-                    ->create($title, $description, $amount, $optional);
-    }
-
-    /**
-     * Get open collection.
-     *
-     * @param  string  $id
-     *
-     * @return \Laravie\Codex\Contracts\Response
-     */
-    public function getOpen($id)
-    {
-        return $this->client->uses('OpenCollection', $this->getVersion())
-                    ->show($id);
-    }
-
-    /**
-     * Get open collection index.
-     *
-     * @param  array  $optional
-     *
-     * @return \Laravie\Codex\Contracts\Response
-     */
-    public function indexOpen(array $optional = [])
-    {
-        return $this->client->uses('OpenCollection', $this->getVersion())
-                    ->all($optional);
     }
 
     /**
@@ -113,7 +62,7 @@ abstract class Collection extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function activate($id)
+    public function activate(string $id): Response
     {
         return $this->send('POST', "collections/{$id}/activate", [], []);
     }
@@ -125,7 +74,7 @@ abstract class Collection extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function deactivate($id)
+    public function deactivate(string $id): Response
     {
         return $this->send('POST', "collections/{$id}/deactivate", [], []);
     }

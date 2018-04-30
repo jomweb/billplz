@@ -18,7 +18,7 @@ class Collection extends Request
      *
      * @return object
      */
-    public function massPayment()
+    public function massPayment(): Collection\MassPayment
     {
         return $this->client->uses('Collection.MassPayment', $this->getVersion());
     }

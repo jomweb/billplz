@@ -13,16 +13,17 @@ class Sanitizer extends BaseSanitizer
      */
     public function __construct(array $casters = [])
     {
-        $money = isset($casters['money']) ? $casters['money'] : Casts\Money::class;
-        $datetime = isset($casters['datetime']) ? $casters['datetime'] : Casts\DateTime::class;
+        $money = $casters['money'] ?? Casts\Ringgit::class;
+        $datetime = $casters['datetime'] ?? Casts\DateTime::class;
 
         $this->casts = [
-            'amount' => new $money(),
-            'due_at' => new $datetime(),
-            'paid_amount' => new $money(),
-            'paid_at' => new $datetime(),
+            'total' => $money,
+            'amount' => $money,
+            'due_at' => $datetime,
+            'paid_amount' => $money,
+            'paid_at' => $datetime,
             'split_payment' => [
-                'fixed_cut' => new $money(),
+                'fixed_cut' => $money,
             ],
         ];
     }

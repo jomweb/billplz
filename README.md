@@ -1,22 +1,38 @@
 PHP framework agnostic library for working with BillPlz API v3 and beyond...
 ==============
 
-[![Build Status](https://travis-ci.org/jomweb/billplz.svg?branch=1.3)](https://travis-ci.org/jomweb/billplz)
+[![Build Status](https://travis-ci.org/jomweb/billplz.svg?branch=master)](https://travis-ci.org/jomweb/billplz)
 [![Latest Stable Version](https://poser.pugx.org/jomweb/billplz/version)](https://packagist.org/packages/jomweb/billplz)
 [![Total Downloads](https://poser.pugx.org/jomweb/billplz/downloads)](https://packagist.org/packages/jomweb/billplz)
 [![Latest Unstable Version](https://poser.pugx.org/jomweb/billplz/v/unstable)](//packagist.org/packages/jomweb/billplz)
 [![License](https://poser.pugx.org/jomweb/billplz/license)](https://packagist.org/packages/jomweb/billplz)
-[![Coverage Status](https://coveralls.io/repos/github/jomweb/billplz/badge.svg?branch=1.3)](https://coveralls.io/github/jomweb/billplz?branch=1.3)
+[![Coverage Status](https://coveralls.io/repos/github/jomweb/billplz/badge.svg?branch=master)](https://coveralls.io/github/jomweb/billplz?branch=master)
 
 * [Installation](#installation)
+* [Getting Started](#getting-started)
+    - [Creating Client](#creating-client)
+    - [Using Sandbox](#using-sandbox)
+    - [API Version](#api-version)
 * [Usages](#usages)
-    - [Creating Billplz Client](#creating-billplz-client)
-    - [Creating Collection Request](#creating-collection-request)
-    - [Creating Bill Request](#creating-bill-request)
-    - [Creating Check Request](#creating-check-request)
-    - [Creating Transaction Request](#creating-transaction-request)
-    - [Creating Bank Request](#creating-bank-request)
+    - [Collection](#collection)
+        + [Create a Collection](#create-a-collection)
+        + [Get Existing Collection](#get-existing-collection)
+    - [Open Collection](#open-collection)
+        + [Create an Open Collection](#create-an-open-collection)
+    - [Bill](#bill)
+        + [Create a Bill](#create-a-bill)
+        + [Get Existing Bill](#get-existing-bill)
+        + [Delete a Bill](#delete-a-bill)
+    - [Payment Completion](#payment-completion)
+        + [Redirect](#redirect)
+        + [Callback](#callback)
+    - [Transaction](#transaction)
+        + [List of Transactions](#list-of-transactions)
+    - [Bank](#bank)
+        + [Check Bank Account Registration Status](#check-bank-account-registration-status)
+        + [Get FPX Banks List](#get-fpx-banks-list)
 * [Handling Response](#handling-response)
+    - [Getting the Response](#getting-the-response)
     - [Checking the Response HTTP Status](#checking-the-response-http-status)
     - [Checking the Response Header](#checking-the-response-header)
 
@@ -27,7 +43,7 @@ To install through composer, simply put the following in your `composer.json` fi
 ```json
 {
     "require": {
-        "jomweb/billplz": "^1.3",
+        "jomweb/billplz": "^2.0",
         "php-http/guzzle6-adapter": "^1.1"
     }
 }
@@ -37,9 +53,10 @@ To install through composer, simply put the following in your `composer.json` fi
 
 Instead of utilizing `php-http/guzzle6-adapter` you might want to use any other adapter that implements `php-http/client-implementation`. Check [Clients & Adapters](http://docs.php-http.org/en/latest/clients.html) for PHP-HTTP.
 
-## Usages
+## Getting Started
 
-### Creating Billplz Client
+<a name="creating-billplz-client"></a>
+### Creating Client
 
 You can start by creating a Billplz client by using the following code (which uses `php-http/guzzle6-adapter` and `php-http/discovery` to automatically pick available adapter installed via composer):
 
@@ -74,7 +91,7 @@ $http = Discovery::client();
 $billplz = new Client($http, 'your-api-key', 'your-x-signature-key');
 ```
 
-#### Using Sandbox
+### Using Sandbox
 
 You can set to use development/sandbox environment by adding the following code:
 
@@ -82,7 +99,8 @@ You can set to use development/sandbox environment by adding the following code:
 $billplz->useSandbox();
 ```
 
-#### Using different API Version
+<a name="using-different-api-version"></a>
+### API Version
 
 By default `jomweb/billplz` would use `v3` API version for any request, however you can customize this in future when new API version is available.
 
@@ -90,7 +108,10 @@ By default `jomweb/billplz` would use `v3` API version for any request, however 
 $billplz->useVersion('v4');
 ```
 
-### Creating Collection Request
+## Usages
+
+<a name="creating-collection-request"></a>
+### Collection
 
 Now you can create an instance of Collection:
 
@@ -133,7 +154,7 @@ $response = $collection->create('My First API Collection', [
     'logo' => '@/Users/Billplz/Documents/uploadPhoto.png',
     'split_payment' => [
         'email' => 'verified@account.com',
-        'fixed_cut' => \Money\Money::MYR(100),
+        'fixed_cut' => \Duit\MYR::given(100),
     ],
 ]);
 
@@ -150,11 +171,51 @@ return [
     ],
     "split_payment" => [
         "email" => "verified@account.com",
-        "fixed_cut" => \Money\Money::MYR(100),
+        "fixed_cut" => \Duit\MYR::given(100),
         "variable_cut" => null
     ]
 ]
 ```
+
+#### Get Existing Collection
+
+You can get existing collection by calling the following code:
+
+```php
+$response = $collection->get('inbmmepb');
+
+var_dump($response->toArray());
+```
+
+```php
+return [
+    "id" => "inbmmepb"
+    "title" => "My First API Collection"
+    "logo" => [
+        "thumb_url" => null,
+        "avatar_url" => null,
+    ],
+    "split_header" => null,
+    "split_payments" => [
+        [
+            "email" => "verified@account.com",
+            "fixed_cut" => 100,
+            "variable_cut" => 2,
+            "stack_order" => 0,
+        ],
+        [
+            "email" => "verified2@account.com",
+            "fixed_cut" => 200,
+            "variable_cut" => 3,
+            "stack_order" => 1,
+        ],
+    ],
+    "status" => "active"
+];
+```
+
+
+### Open Collection
 
 #### Create an Open Collection
 
@@ -162,7 +223,7 @@ return [
 $response = $collection->createOpen(
     'My First API Collection',
     'Maecenas eu placerat ante. Fusce ut neque justo, et aliquet enim. In hac habitasse platea dictumst.',
-    \Money\Money::MYR(299)
+    \Duit\MYR::given(299)
 );
 
 var_dump($response->toArray());
@@ -176,7 +237,7 @@ return [
     "reference_1_label" => null,
     "reference_2_label" => null,
     "email_link" => null,
-    "amount" => \Money\Money::MYR(299),
+    "amount" => \Duit\MYR::given(299),
     "fixed_amount" => true,
     "tax" => null,
     "fixed_quantity" => true,
@@ -194,8 +255,8 @@ return [
 ]
 ```
 
-
-### Creating Bill Request
+<a name="creating-bill-request"></a>
+### Bill
 
 Now you can create an instance of Bill:
 
@@ -215,7 +276,7 @@ $response = $bill->create(
     'api@billplz.com',
     null,
     'Michael API V3',
-    \Money\Money::MYR(200),
+    \Duit\MYR::given(200),
     'http://example.com/webhook/',
     'Maecenas eu placerat ante.'
 );
@@ -229,9 +290,9 @@ return [
     "collection_id" => "inbmmepb",
     "paid" => false,
     "state" => "overdue",
-    "amount" => \Money\Money::MYR(200),
-    "paid_amount" => \Money\Money::MYR(0),
-    "due_at" => new \DateTime("2015-3-9"),
+    "amount" => \Duit\MYR::given(200),
+    "paid_amount" => \Duit\MYR::given(0),
+    "due_at" => new \DateTime('Y-m-d', "2015-3-9"),
     "email" => "api@billplz.com",
     "mobile" => null,
     "name" => "MICHAEL API V3",
@@ -246,36 +307,8 @@ return [
 ];
 ```
 
-#### Payment Completion
-
-You can setup a webhook to receive POST request from Billplz. In order to accept the response all you to do is write the following.
-
-```php
-$data = $billplz->webhook($_POST);
-```
-
-```php
-return [
-    'id' => 'W_79pJDk',
-    'collection_id' => 'inbmmepb',
-    'paid' => true,
-    'state' => 'paid',
-    'amount' => \Money\Money::MYR(200),
-    'paid_amount' => \Money\Money::MYR(0),
-    'due_at' => new \DateTime('2020-12-31'),
-    'email' => 'api@billplz.com',
-    'mobile' => '+60112223333',
-    'name' => 'MICHAEL API',
-    'metadata' => [
-        'id' => 9999,
-        'description' => 'This is to test bill creation',
-    ],
-    'url' => 'https://billplz.dev/bills/W_79pJDk',
-    'paid_at' => new \DateTime('2015-03-09 16:23:59 +0800'),
-];
-```
-
-#### Get a Bill
+<a name="get-a-bill"></a>
+#### Get Existing Bill
 
 ```php
 $response = $bill->show('8X0Iyzaw');
@@ -289,8 +322,8 @@ return [
     "collection_id" => "inbmmepb",
     "paid" => false,
     "state" => "due",
-    "amount" => \Money\Money::MYR(200),
-    "paid_amount" => \Money\Money::MYR(0),
+    "amount" => \Duit\MYR::given(200),
+    "paid_amount" => \Duit\MYR::given(0),
     "due_at" => new \DateTime("2020-12-31"),
     "email" => "api@billplz.com",
     "mobile" => "+60112223333",
@@ -318,7 +351,55 @@ var_dump($response->toArray());
 []
 ```
 
-### Creating Transaction Request
+### Payment Completion
+
+#### Redirect
+
+You can setup a redirect page where user will be redirected after payment is completed. Billplz will redirect user to your specified redirect page along with few URL parameters. In order to capture all the URL parameters, do the following.
+
+```php
+$data = $bill->redirect($_GET);
+```
+
+```php
+return [
+    'id' => 'W_79pJDk',
+    'paid' => true,
+    'paid_at' => new \DateTime('2015-03-09 16:23:59 +0800'),
+];
+```
+
+#### Callback
+
+You can setup a webhook to receive POST request from Billplz. In order to accept the response, all you to do is write the following.
+
+```php
+$data = $bill->webhook($_POST);
+```
+
+```php
+return [
+    'id' => 'W_79pJDk',
+    'collection_id' => 'inbmmepb',
+    'paid' => true,
+    'state' => 'paid',
+    'amount' => \Duit\MYR::given(200),
+    'paid_amount' => \Duit\MYR::given(0),
+    'due_at' => new \DateTime('2020-12-31'),
+    'email' => 'api@billplz.com',
+    'mobile' => '+60112223333',
+    'name' => 'MICHAEL API',
+    'metadata' => [
+        'id' => 9999,
+        'description' => 'This is to test bill creation',
+    ],
+    'url' => 'https://billplz.dev/bills/W_79pJDk',
+    'paid_at' => new \DateTime('2015-03-09 16:23:59 +0800'),
+];
+```
+
+<a name="creating-transaction-request"></a>
+### Transaction
 
 Now you can create an instance of Transaction:
 
@@ -328,7 +409,8 @@ $transaction = $billplz->transaction();
 
 > You can also manually set the API version by doing `$billplz->transaction('v3');`. You can also use `$billplz->uses('Bill.Transaction');` to get the same result.
 
-#### Get Transaction Index
+<a name="get-transaction-index"></a>
+#### List of Transactions
 
 You can get Transaction index by calling following code:
 
@@ -385,7 +467,8 @@ return [
 ]
 ```
 
-### Creating Bank Request
+<a name="creating-bank-request"></a>
+### Bank
 
 Now you can create an instance of Bank:
 
@@ -410,7 +493,6 @@ return [
     "name" => "verified"
 ]
 ```
-
 
 #### Get FPX Banks List
 

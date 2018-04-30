@@ -34,7 +34,7 @@ class Client extends BaseClient
      *
      * @var string
      */
-    protected $defaultVersion = 'v3';
+    protected $defaultVersion = 'v4';
 
     /**
      * List of supported API versions.
@@ -53,7 +53,7 @@ class Client extends BaseClient
      * @param string  $apiKey
      * @param string|null $signatureKey
      */
-    public function __construct(HttpClient $http, $apiKey, $signatureKey = null)
+    public function __construct(HttpClient $http, string $apiKey, ?string $signatureKey = null)
     {
         $this->http = $http;
 
@@ -69,7 +69,7 @@ class Client extends BaseClient
      *
      * @return $this
      */
-    public static function make($apiKey, $signatureKey = null)
+    public static function make(string $apiKey, ?string $signatureKey = null)
     {
         return new static(Discovery::client(), $apiKey, $signatureKey);
     }
@@ -79,7 +79,7 @@ class Client extends BaseClient
      *
      * @return $this
      */
-    public function useSandbox()
+    final public function useSandbox(): self
     {
         return $this->useCustomApiEndpoint('https://billplz-staging.herokuapp.com/api');
     }
@@ -87,9 +87,9 @@ class Client extends BaseClient
     /**
      * Get API Key.
      *
-     * @return string|null
+     * @return string
      */
-    public function getApiKey()
+    final public function getApiKey(): string
     {
         return $this->apiKey;
     }
@@ -101,7 +101,7 @@ class Client extends BaseClient
      *
      * @return $this
      */
-    public function setApiKey($apiKey)
+    final public function setApiKey(string $apiKey): self
     {
         $this->apiKey = $apiKey;
 
@@ -113,7 +113,7 @@ class Client extends BaseClient
      *
      * @return string|null
      */
-    public function getSignatureKey()
+    final public function getSignatureKey(): ?string
     {
         return $this->signatureKey;
     }
@@ -125,7 +125,7 @@ class Client extends BaseClient
      *
      * @return $this
      */
-    public function setSignatureKey($signatureKey = null)
+    final public function setSignatureKey(?string $signatureKey = null): self
     {
         $this->signatureKey = $signatureKey;
 
@@ -133,13 +133,25 @@ class Client extends BaseClient
     }
 
     /**
-     * Get collection resource.
+     * Get Collection resource.
      *
      * @param  string|null  $version
      *
-     * @return object
+     * @return \BIllplz\Base\Collection
      */
-    public function collection($version = null)
+    final public function collection(?string $version = null): Base\Collection
+    {
+        return $this->uses('Collection', $version);
+    }
+
+    /**
+     * Get Open Collection resource.
+     *
+     * @param  string|null  $version
+     *
+     * @return \BIllplz\Base\OpenCollection
+     */
+    final public function openCollection(?string $version = null): Base\OpenCollection
     {
         return $this->uses('Collection', $version);
     }
@@ -149,9 +161,9 @@ class Client extends BaseClient
      *
      * @param  string|null  $version
      *
-     * @return object
+     * @return \Billplz\Base\Bill
      */
-    public function bill($version = null)
+    final public function bill(?string $version = null): Base\Bill
     {
         return $this->uses('Bill', $version);
     }
@@ -161,9 +173,9 @@ class Client extends BaseClient
      *
      * @param  string|null  $version
      *
-     * @return object
+     * @return \Billplz\Base\Check
      */
-    public function check($version = null)
+    final public function check(?string $version = null): Base\Check
     {
         return $this->uses('Check', $version);
     }
@@ -173,9 +185,9 @@ class Client extends BaseClient
      *
      * @param  string|null  $version
      *
-     * @return object
+     * @return \Billplz\Base\Bill\Transaction
      */
-    public function transaction($version = null)
+    final public function transaction(?string $version = null): Base\Bill\Transaction
     {
         return $this->uses('Bill.Transaction', $version);
     }
@@ -183,9 +195,9 @@ class Client extends BaseClient
     /**
      * Get mass payment instruction collection resource.
      *
-     * @return object
+     * @return \BIllplz\Four\Collection\MassPayment
      */
-    public function massPaymentCollection()
+    final public function massPaymentCollection(): Four\Collection\MassPayment
     {
         return $this->uses('Collection.MassPayment', 'v4');
     }
@@ -193,9 +205,9 @@ class Client extends BaseClient
     /**
      * Get mass payment instruction resource.
      *
-     * @return object
+     * @return \Billplz\Four\MassPayment
      */
-    public function massPayment()
+    final public function massPayment(): Four\MassPayment
     {
         return $this->uses('MassPayment', 'v4');
     }
@@ -205,9 +217,9 @@ class Client extends BaseClient
      *
      * @param  string|null  $version
      *
-     * @return object
+     * @return \Billplz\Base\Bank
      */
-    public function bank($version = null)
+    final public function bank(?string $version = null): Base\Bank
     {
         return $this->uses('Bank', $version);
     }
@@ -217,7 +229,7 @@ class Client extends BaseClient
      *
      * @return string
      */
-    protected function getResourceNamespace()
+    final protected function getResourceNamespace(): string
     {
         return __NAMESPACE__;
     }

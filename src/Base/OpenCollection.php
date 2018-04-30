@@ -3,6 +3,7 @@
 namespace Billplz\Base;
 
 use Billplz\Request;
+use Laravie\Codex\Contracts\Response;
 
 class OpenCollection extends Request
 {
@@ -17,11 +18,11 @@ class OpenCollection extends Request
      * @return \Laravie\Codex\Contracts\Response
      */
     public function create(
-        $title,
-        $description,
+        string $title,
+        string $description,
         $amount,
         array $optional = []
-    ) {
+    ): Response {
         $body = array_merge(compact('title', 'description', 'amount'), $optional);
 
         return $this->send('POST', 'open_collections', [], $body);
@@ -34,7 +35,7 @@ class OpenCollection extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function get($collectionId)
+    public function get(string $collectionId): Response
     {
         return $this->send('GET', "open_collections/{$collectionId}", [], []);
     }
@@ -46,7 +47,7 @@ class OpenCollection extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function all(array $optional = [])
+    public function all(array $optional = []): Response
     {
         return $this->send('GET', 'open_collections', [], $optional);
     }

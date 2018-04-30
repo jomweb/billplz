@@ -3,6 +3,7 @@
 namespace Billplz\Base;
 
 use Billplz\Request;
+use Laravie\Codex\Contracts\Response;
 
 abstract class Bank extends Request
 {
@@ -31,7 +32,7 @@ abstract class Bank extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function checkAccount($number)
+    public function checkAccount($number): Response
     {
         return $this->send('GET', "check/bank_account_number/{$number}");
     }
@@ -41,7 +42,7 @@ abstract class Bank extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function supportedForFpx()
+    public function supportedForFpx(): Response
     {
         return $this->send('GET', 'fpx_banks');
     }
