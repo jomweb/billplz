@@ -10,13 +10,13 @@ abstract class Check extends Request
     /**
      * Check Bank Account Number.
      *
-     * @param  string|int  $number
+     * @param  string  $accountNumber
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function bankAccount($number): Response
+    public function bankAccount(string $accountNumber): Response
     {
         return $this->client->uses('Bank', $this->getVersion())
-                    ->checkAccount($number);
+                    ->checkAccount($accountNumber);
     }
 }

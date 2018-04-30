@@ -17,6 +17,24 @@ abstract class BankTestCase extends TestCase
     }
 
     /** @test */
+    public function it_can_get_a_bank_account()
+    {
+        $bank_account_number = 1234567890;
+        $expected = '{"name":"sara","id_no":"820909101001","acc_no":"1234567890","code":"MBBEMYKL","organization":false,"authorization_date":"2015-12-03","status":"pending","processed_at":null,"rejected_desc":null}';
+
+        $faker = $this->expectRequest('GET', "bank_verification_services/{$bank_account_number}")
+                        ->shouldResponseWith(200, $expected);
+
+        $response = $this->makeClient($faker)
+                        ->uses('Bank')
+                        ->get($bank_account_number);
+
+        $this->assertInstanceOf(Response::class, $response);
+        $this->assertSame(200, $response->getStatusCode());
+        $this->assertSame($expected, $response->getBody());
+    }
+
+    /** @test */
     public function it_can_create_bank_account()
     {
         $expected = '{"name":"Insan Jaya","id_no":"91234567890","acc_no":"999988887777","code":"MBBEMYKL","organization":true,"authorization_date":"2017-07-03","status":"pending","processed_at":null,"rejected_desc":null}';

@@ -8,6 +8,18 @@ use Laravie\Codex\Contracts\Response;
 abstract class Bank extends Request
 {
     /**
+     * Get A Bank Account.
+     *
+     * @param  string  $accountNumber
+     *
+     * @return \Laravie\Codex\Contracts\Response
+     */
+    public function get(string $accountNumber)
+    {
+        return $this->send('GET', "bank_verification_services/{$accountNumber}");
+    }
+
+    /**
      * Create A Bank Account.
      *
      * @param  string  $name
@@ -35,13 +47,13 @@ abstract class Bank extends Request
     /**
      * Check Bank Account Number.
      *
-     * @param  string|int  $number
+     * @param  string  $accountNumber
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function checkAccount($number): Response
+    public function checkAccount(string $accountNumber): Response
     {
-        return $this->send('GET', "check/bank_account_number/{$number}");
+        return $this->send('GET', "check/bank_account_number/{$accountNumber}");
     }
 
     /**
