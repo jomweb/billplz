@@ -18,8 +18,13 @@ abstract class Bank extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function createAccount($name, $identification, $accountNumber, $code, bool $organization)
-    {
+    public function createAccount(
+        string $name,
+        string $identification,
+        string $accountNumber,
+        string $code,
+        bool $organization
+    ): Response {
         $body = compact('name', 'code', 'organization');
         $body['id_no'] = $identification;
         $body['acc_no'] = $accountNumber;
