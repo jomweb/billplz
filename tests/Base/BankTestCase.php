@@ -20,13 +20,13 @@ abstract class BankTestCase extends TestCase
     public function it_can_create_bank_account()
     {
         $expected = '{"name":"Insan Jaya","id_no":"91234567890","acc_no":"999988887777","code":"MBBEMYKL","organization":true,"authorization_date":"2017-07-03","status":"pending","processed_at":null,"rejected_desc":null}';
-        
+
         $data = [
             'name' => 'Insan Jaya',
+            'code' => 'MBBEMYKL',
+            'organization' => true,
             'id_no' => '91234567890',
             'acc_no' => '999988887777',
-            'code' => 'MBBEMYKL',
-            'organization' => true
         ];
 
         $faker = $this->expectRequest('POST', 'bank_verification_services', [], $data)
