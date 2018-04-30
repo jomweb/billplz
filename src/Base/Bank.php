@@ -17,7 +17,7 @@ abstract class Bank extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function createAccount($name, $identification, $accountNumber, $code, bool $organization)
+    public function createAccount($name, $identification, $accountNumber, $code, $organization)
     {
         $body = compact('name', 'code', 'organization');
         $body['id_no'] = $identification;
