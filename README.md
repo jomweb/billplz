@@ -413,6 +413,54 @@ $bank = $billplz->bank();
 
 > You can also manually set the API version by doing `$billplz->bank('v3');`. You can also use `$billplz->uses('Bank');` to get the same result.
 
+#### Create A Bank Account
+
+Request Bank Account Direct Verification Service by creating bank records thru this API.
+
+```php
+$response = $bank->createAccount('Insan Jaya', '91234567890', '999988887777', 'MBBEMYKL', true);
+
+var_dump($response->toArray());
+```
+
+```php
+return [
+    "name" => "Insan Jaya",
+    "id_no" => "91234567890",
+    "acc_no" => "999988887777",
+    "code" => "MBBEMYKL",
+    "organization" => true,
+    "authorization_date" => "2017-07-03",
+    "status" => "pending",
+    "processed_at" => null,
+    "rejected_desc" => null
+]
+```
+
+#### Get A Bank Account
+
+Query Billplz Bank Account Direct Verification Service by passing single account number arguement. This API will only return latest, single matched bank account.
+
+```php
+$response = $bank->get('1234567890');
+
+var_dump($response->toArray());
+```
+
+```php
+return [
+    "name" => "sara",
+    "id_no" => "820909101001",
+    "acc_no" => "1234567890",
+    "code" => "MBBEMYKL",
+    "organization" => false,
+    "authorization_date" => "2015-12-03",
+    "status" => "pending",
+    "processed_at" => null,
+    "rejected_desc" => null
+]
+```
+
 #### Check Bank Account Registration Status
 
 At any given time, you can request to check on a registration status by bank account number.
