@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 1.3.3
+
+Released: 2018-05-04
+
+### Added
+
+* Add creating verification bank account.
+* Add getting verification status for a bank account.
+
 ## 1.3.2
 
 Released: 2018-04-25
