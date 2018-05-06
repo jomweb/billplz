@@ -217,10 +217,18 @@ return [
 
 ### Open Collection
 
+Now you can create an instance of Collection:
+
+```php
+$collection = $billplz->openCollection();
+```
+
+> You can also manually set the API version by doing `$billplz->openCollection('v3');`. You can also use `$billplz->uses('OpenCollection');` to get the same result.
+> 
 #### Create an Open Collection
 
 ```php
-$response = $collection->createOpen(
+$response = $collection->create(
     'My First API Collection',
     'Maecenas eu placerat ante. Fusce ut neque justo, et aliquet enim. In hac habitasse platea dictumst.',
     \Duit\MYR::given(299)

@@ -6,6 +6,10 @@ This changelog references the relevant changes (bug and security fixes) done to 
 
 Released: 2018-04-26
 
+### Added
+
+* Added `Billplz\Base\OpenCollection` which can be accessed via `$client->openCollection()`.
+
 ### Changes
 
 * Bump minimum stability to PHP 7.1 and above, and introduce scalar typehint and scalar return type.
@@ -14,6 +18,7 @@ Released: 2018-04-26
 
 ### Removed
 
+* Remove `Billplz\Base\Collection::index()`, use `all()` instead.
 * Remove `Billplz\Base\Bill::show()`, use `get()` instead.
 * Remove handling Open Collection using `Billplz\Base\Collection`, use `Billplz\Base\OpenCollection` instead. You can also use `$client->openCollection()` helper.
 * Remove `nesbot/carbon` suggested dependency.
