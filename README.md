@@ -319,7 +319,7 @@ return [
 #### Get Existing Bill
 
 ```php
-$response = $bill->show('8X0Iyzaw');
+$response = $bill->get('8X0Iyzaw');
 
 var_dump($response->toArray());
 ```
