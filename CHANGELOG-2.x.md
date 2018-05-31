@@ -2,6 +2,16 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 2.0.1
+
+### Changes
+
+* Allows to install `jomweb/ringgit` `v2.0+`.
+
+### Deprecated
+
+* Deprecate `Billplz\Base\Bill\Transaction::show()`, use `get()` instead.
+
 ## 2.0.0
 
 Released: 2018-04-26
