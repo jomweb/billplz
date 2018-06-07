@@ -4,6 +4,8 @@ This changelog references the relevant changes (bug and security fixes) done to 
 
 ## 2.0.1
 
+Released: 2018-05-31
+
 ### Changes
 
 * Allows to install `jomweb/ringgit` `v2.0+`.
