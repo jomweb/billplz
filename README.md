@@ -254,7 +254,7 @@ return [
         "retina_url" =>  null,
         "avatar_url" =>  null
     ],
-        "split_payment" => [
+    "split_payment" => [
         "email" => null,
         "fixed_cut" => null,
         "variable_cut" => null
