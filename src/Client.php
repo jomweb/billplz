@@ -153,7 +153,7 @@ class Client extends BaseClient
      */
     final public function openCollection(?string $version = null): Base\OpenCollection
     {
-        return $this->uses('Collection', $version);
+        return $this->uses('OpenCollection', $version);
     }
 
     /**

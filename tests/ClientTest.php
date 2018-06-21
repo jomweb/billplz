@@ -56,6 +56,17 @@ class ClientTest extends TestCase
     }
 
     /** @test */
+    public function it_can_retrieve_open_collection_instance()
+    {
+        $client = $this->makeClient();
+
+        $collection = $client->openCollection('v3');
+
+        $this->assertInstanceOf('Billplz\Base\OpenCollection', $collection);
+        $this->assertInstanceOf('Billplz\Three\OpenCollection', $collection);
+    }
+
+    /** @test */
     public function it_can_retrieve_bill_instance()
     {
         $client = $this->makeClient();
