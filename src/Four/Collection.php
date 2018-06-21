@@ -16,7 +16,7 @@ class Collection extends Request
     /**
      * Get mass payment instruction collection resource.
      *
-     * @return object
+     * @return \Billplz\Four\Collection\MassPayment
      */
     public function massPayment(): Collection\MassPayment
     {
