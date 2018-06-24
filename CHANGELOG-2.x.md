@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 2.0.2
+
+Released: 2018-06-24
+
+### Fixes
+
+* Fixes call via `$billplz->openCollection()` to resolve proper instance.
+
 ## 2.0.1
 
 Released: 2018-05-31
