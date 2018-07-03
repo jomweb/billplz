@@ -315,6 +315,47 @@ return [
 ];
 ```
 
+> `redirect_url` can be passed on the 8th parameters which is `(array) $optional`
+
+##### Alternative Way to Set Redirect URL
+
+```php
+$response = $bill->create(
+    'inbmmepb',
+    'api@billplz.com',
+    null,
+    'Michael API V3',
+    \Duit\MYR::given(200),
+    ['callback_url' => 'http://example.com/webhook/', 'redirect_url' => 'http://example.com/redirect/'],
+    'Maecenas eu placerat ante.'
+);
+
+var_dump($response->toArray());
+```
+
+```php
+return [
+    "id" => "8X0Iyzaw",
+    "collection_id" => "inbmmepb",
+    "paid" => false,
+    "state" => "overdue",
+    "amount" => \Duit\MYR::given(200),
+    "paid_amount" => \Duit\MYR::given(0),
+    "due_at" => new \DateTime('Y-m-d', "2015-3-9"),
+    "email" => "api@billplz.com",
+    "mobile" => null,
+    "name" => "MICHAEL API V3",
+    "url" => "https://www.billplz.com/bills/8X0Iyzaw",
+    "reference_1_label" => "Reference 1",
+    "reference_1" => null,
+    "reference_2_label" => "Reference 2",
+    "reference_2" => null,
+    "redirect_url" => "http://example.com/redirect/",
+    "callback_url" => "http://example.com/webhook/",
+    "description" => "Maecenas eu placerat ante."
+];
+```
+
 <a name="get-a-bill"></a>
 #### Get Existing Bill
 
