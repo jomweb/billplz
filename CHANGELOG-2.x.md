@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 2.0.3
+
+Released: 2018-07-31
+
+### Added
+
+* Added `Billplz\Four\Webhook` to allow querying Webhook Ranking from Billplz API.
+
 ## 2.0.2
 
 Released: 2018-06-24
