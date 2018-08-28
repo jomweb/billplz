@@ -41,7 +41,7 @@ abstract class Bank extends Request
         $body['id_no'] = $identification;
         $body['acc_no'] = $accountNumber;
 
-        return $this->send('POST', "bank_verification_services", [], $body);
+        return $this->send('POST', 'bank_verification_services', [], $body);
     }
 
     /**

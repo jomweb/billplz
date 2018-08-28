@@ -13,7 +13,6 @@ class PaymentMethodTest extends PaymentMethodTestCase
      */
     protected $apiVersion = 'v3';
 
-
     /** @test */
     public function it_resolve_the_correct_version()
     {

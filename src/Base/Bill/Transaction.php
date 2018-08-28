@@ -16,7 +16,6 @@ abstract class Transaction extends Request
      * @return \Laravie\Codex\Contracts\Response
      *
      * @deprecated v2.0.1
-     *
      * @see static::get()
      */
     public function show(string $id, array $optional = []): Response
