@@ -3,7 +3,6 @@
 namespace Billplz\TestCase\Base;
 
 use Duit\MYR;
-use Money\Money;
 use Laravie\Codex\Response;
 use Billplz\TestCase\TestCase;
 

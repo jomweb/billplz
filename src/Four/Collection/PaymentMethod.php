@@ -6,5 +6,5 @@ use Billplz\Three\Collection\PaymentMethod as Request;
 
 class PaymentMethod extends Request
 {
-   //
+    //
 }
