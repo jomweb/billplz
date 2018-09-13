@@ -78,4 +78,19 @@ abstract class Collection extends Request
     {
         return $this->send('POST', "collections/{$id}/deactivate", [], []);
     }
+
+    /**
+     * Interacts with Response.
+     *
+     * @param  \Laravie\Codex\Contracts\Response $response
+     *
+     * @return \Laravie\Codex\Contracts\Response
+     */
+    protected function interactsWithResponse(Response $response): Response
+    {
+        return parent::interactsWithResponse($response)
+                    ->validateWith(function ($code, $response) {
+                        $response->abortIfRequestHasFailed();
+                    });
+    }
 }

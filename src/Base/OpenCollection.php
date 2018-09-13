@@ -51,4 +51,19 @@ class OpenCollection extends Request
     {
         return $this->send('GET', 'open_collections', [], $optional);
     }
+
+    /**
+     * Interacts with Response.
+     *
+     * @param  \Laravie\Codex\Contracts\Response $response
+     *
+     * @return \Laravie\Codex\Contracts\Response
+     */
+    protected function interactsWithResponse(Response $response): Response
+    {
+        return parent::interactsWithResponse($response)
+                    ->validateWith(function ($code, $response) {
+                        $response->abortIfRequestHasFailed();
+                    });
+    }
 }
