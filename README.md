@@ -214,6 +214,22 @@ return [
 ];
 ```
 
+#### Deactivate a collection
+
+To use `activate()` and `deactivate()` function, you must explicitely use version `v3`.
+You can deactivate a collection by calling the following code:
+
+```php
+$response = $collection->deactivate('inbmmepb');
+```
+
+#### Activate a collection
+
+You can deactivate a collection by calling the following code:
+
+```php
+$response = $collection->deactivate('inbmmepb');
+```
 
 ### Open Collection
 
