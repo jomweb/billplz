@@ -54,6 +54,7 @@ abstract class Request extends BaseRequest
 
     /**
      * Proxy route response via version.
+     *
      * @param  string   $version
      * @param  callable $callback
      *
