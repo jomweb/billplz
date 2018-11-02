@@ -7,11 +7,28 @@ use Billplz\TestCase\Base\CollectionTestCase;
 class CollectionTest extends CollectionTestCase
 {
     /**
-     * API Version.
-     *
-     * @var string
+     * Setup the test environment.
      */
-    protected $apiVersion = 'v4';
+    protected function setUp(): void
+    {
+        $this->apiVersion = 'v4';
+    }
+
+    /** @test */
+    public function it_can_activate_collection()
+    {
+        $this->apiVersion = 'v3';
+
+        parent::it_can_activate_collection();
+    }
+
+    /** @test */
+    public function it_can_deactivate_collection()
+    {
+        $this->apiVersion = 'v3';
+
+        parent::it_can_deactivate_collection();
+    }
 
     /** @test */
     public function it_can_called_via_helper()

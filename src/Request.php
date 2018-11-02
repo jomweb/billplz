@@ -51,4 +51,25 @@ abstract class Request extends BaseRequest
 
         return $body;
     }
+
+    /**
+     * Proxy route response via version.
+     *
+     * @param  string   $version
+     * @param  callable $callback
+     *
+     * @return \Billplz\Response
+     */
+    final protected function proxyRequestUsingVersion(string $version, callable $callback): Response
+    {
+        $currentVersion = $this->version;
+
+        try {
+            $this->version = $version;
+
+            return call_user_func($callback);
+        } finally {
+            $this->version = $currentVersion;
+        }
+    }
 }
