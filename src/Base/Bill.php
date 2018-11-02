@@ -5,10 +5,12 @@ namespace Billplz\Base;
 use Billplz\Request;
 use InvalidArgumentException;
 use Laravie\Codex\Contracts\Response;
+use Laravie\Codex\Concerns\Request\Multipart;
 
 abstract class Bill extends Request
 {
-    use PaymentCompletion;
+    use Multipart,
+        PaymentCompletion;
 
     /**
      * Create a new bill.
@@ -49,7 +51,9 @@ abstract class Bill extends Request
 
         $body = $this->parseRedirectAndCallbackUrlFromRequest($body, $callbackUrl);
 
-        return $this->send('POST', 'bills', [], $body);
+        list($headers, $stream) = $this->prepareMultipartRequestPayloads([], $body);
+
+        return $this->send('POST', 'bills', $headers, $stream);
     }
 
     /**
