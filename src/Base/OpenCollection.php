@@ -28,7 +28,6 @@ class OpenCollection extends Request
     ): Response {
         $body = array_merge(compact('title', 'description', 'amount'), $optional);
 
-
         list($headers, $stream) = $this->prepareMultipartRequestPayloads([], $body);
 
         return $this->send('POST', 'open_collections', $headers, $body);

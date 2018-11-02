@@ -4,6 +4,7 @@ namespace Billplz;
 
 use Laravie\Codex\Contracts\Endpoint;
 use Laravie\Codex\Request as BaseRequest;
+use Laravie\Codex\Contracts\Response as ResponseContract;
 
 abstract class Request extends BaseRequest
 {
@@ -58,9 +59,9 @@ abstract class Request extends BaseRequest
      * @param  string   $version
      * @param  callable $callback
      *
-     * @return \Billplz\Response
+     * @return \Laravie\Codex\Contracts\Response
      */
-    final protected function proxyRequestUsingVersion(string $version, callable $callback): Response
+    final protected function proxyRequestUsingVersion(string $version, callable $callback): ResponseContract
     {
         $currentVersion = $this->version;
 
