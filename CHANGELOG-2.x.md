@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 2.0.4
+
+Released: 2018-11-06
+
+### Changes
+
+* Add ability to proxy activating and deactivating Collection via `v3` when using `v4`.
+* Use multipart request when creating bill and open collection.
+
 ## 2.0.3
 
 Released: 2018-07-31
