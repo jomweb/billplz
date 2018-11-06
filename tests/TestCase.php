@@ -58,6 +58,26 @@ class TestCase extends PHPUnit
     }
 
     /**
+     * Create a fake HTTP request.
+     *
+     * @param  string  $method
+     * @param  array  $headers
+     * @param  array  $body
+     *
+     * @return array
+     */
+    protected function expectStreamRequest($method = 'GET', $uri = '/', array $headers = [], array $body = [])
+    {
+        $endpoint = sprintf(
+            'https://%s@%s/%s/%s', '73eb57f0-7d4e-42b9-a544-aeac6e4b0f81', $this->apiEndpoint, $this->apiVersion, $uri
+        );
+
+        return Faker::create()
+                    ->expectEndpointIs($endpoint)
+                    ->stream($method, $headers, $body);
+    }
+
+    /**
      * Create a fake client.
      *
      * @param  \Laravie\Codex\Testing\FakeRequest|null  $faker
