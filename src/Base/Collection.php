@@ -30,7 +30,7 @@ abstract class Collection extends Request
 
         list($headers, $stream) = $this->prepareMultipartRequestPayloads([], $body, $files);
 
-        return $this->send('POST', 'collections', $headers, $stream);
+        return $this->stream('POST', 'collections', $headers, $stream);
     }
 
     /**

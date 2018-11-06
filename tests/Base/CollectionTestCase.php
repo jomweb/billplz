@@ -25,7 +25,7 @@ abstract class CollectionTestCase extends TestCase
 
         $expected = '{"id":"inbmmepb","title":"My First V4 API Collection","logo":{"thumb_url":null,"avatar_url":null},"split_header":false,"split_payments":[]}';
 
-        $faker = $this->expectRequest('POST', 'collections', [], $payload)
+        $faker = $this->expectStreamRequest('POST', 'collections', [], $payload)
                         ->shouldResponseWith(200, $expected);
 
         $response = $this->makeClient($faker)

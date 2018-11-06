@@ -27,7 +27,7 @@ abstract class OpenCollectionTestCase extends TestCase
 
         $expected = '{"id":"0pp87t_6","title":"My First API Collection","description":"Maecenas eu placerat ante. Fusce ut neque justo, et aliquet enim. In hac habitasse platea dictumst.","reference_1_label":null,"reference_2_label":null,"email_link":null,"amount":299,"fixed_amount":true,"tax":null,"fixed_quantity":true,"payment_button":"pay","photo":["retina_url":null,"avatar_url":null],"split_payment":["email":null,"fixed_cut":null,"variable_cut":null],"url":"https://www.billplz.com/0pp87t_6"}';
 
-        $faker = $this->expectRequest('POST', 'open_collections', [], $payload)
+        $faker = $this->expectStreamRequest('POST', 'open_collections', [], $payload)
                         ->shouldResponseWith(200, $expected);
 
         $response = $this->makeClient($faker)

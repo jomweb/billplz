@@ -53,7 +53,7 @@ abstract class Bill extends Request
 
         list($headers, $stream) = $this->prepareMultipartRequestPayloads([], $body);
 
-        return $this->send('POST', 'bills', $headers, $stream);
+        return $this->stream('POST', 'bills', $headers, $stream);
     }
 
     /**

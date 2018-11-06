@@ -30,7 +30,7 @@ class OpenCollection extends Request
 
         list($headers, $stream) = $this->prepareMultipartRequestPayloads([], $body);
 
-        return $this->send('POST', 'open_collections', $headers, $body);
+        return $this->stream('POST', 'open_collections', $headers, $body);
     }
 
     /**
