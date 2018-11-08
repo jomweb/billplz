@@ -23,7 +23,7 @@ class Collection extends Request
      */
     public function activate(string $id): Response
     {
-        return $this->proxyRequestUsingVersion('v3', function () use ($id) {
+        return $this->proxyRequestViaVersion('v3', function () use ($id) {
             return parent::activate($id);
         });
     }
@@ -37,7 +37,7 @@ class Collection extends Request
      */
     public function deactivate(string $id): Response
     {
-        return $this->proxyRequestUsingVersion('v3', function () use ($id) {
+        return $this->proxyRequestViaVersion('v3', function () use ($id) {
             return parent::deactivate($id);
         });
     }
