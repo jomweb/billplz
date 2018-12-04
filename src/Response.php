@@ -13,6 +13,7 @@ class Response extends BaseResponse
      */
     public function validate()
     {
+        $this->abortIfRequestNotFound();
         $this->abortIfRequestUnauthorized();
         $this->abortIfRequestHasFailed();
 
