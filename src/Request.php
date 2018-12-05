@@ -3,9 +3,7 @@
 namespace Billplz;
 
 use Laravie\Codex\Contracts\Endpoint;
-use Psr\Http\Message\ResponseInterface;
 use Laravie\Codex\Request as BaseRequest;
-use Laravie\Codex\Contracts\Response as ResponseContract;
 
 abstract class Request extends BaseRequest
 {
@@ -22,18 +20,6 @@ abstract class Request extends BaseRequest
 
         return parent::getApiEndpoint($path)
                     ->withUserInfo($this->client->getApiKey());
-    }
-
-    /**
-     * Resolve the responder class.
-     *
-     * @param  \Psr\Http\Message\ResponseInterface  $response
-     *
-     * @return \Laravie\Codex\Contracts\Response
-     */
-    protected function responseWith(ResponseInterface $message): ResponseContract
-    {
-        return new Response($message);
     }
 
     /**
