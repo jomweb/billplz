@@ -2,9 +2,9 @@
 
 namespace Billplz\Three;
 
-use Billplz\Base\Check as Request;
+use Billplz\Base\BankAccount as Request;
 
-class Check extends Request
+class BankAccount extends Request
 {
     /**
      * Version namespace.

@@ -171,18 +171,6 @@ class Client extends BaseClient
     }
 
     /**
-     * Get check resource.
-     *
-     * @param  string|null  $version
-     *
-     * @return \Billplz\Base\Check
-     */
-    final public function check(?string $version = null): Base\Check
-    {
-        return $this->uses('Check', $version);
-    }
-
-    /**
      * Get transaction resource.
      *
      * @param  string|null  $version
@@ -219,11 +207,11 @@ class Client extends BaseClient
      *
      * @param  string|null  $version
      *
-     * @return \Billplz\Base\Bank
+     * @return \Billplz\Base\BankAccount
      */
-    final public function bank(?string $version = null): Base\Bank
+    final public function bank(?string $version = null): Base\BankAccount
     {
-        return $this->uses('Bank', $version);
+        return $this->uses('BankAccount', $version);
     }
 
     /**

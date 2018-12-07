@@ -2,9 +2,9 @@
 
 namespace Billplz\TestCase\Three;
 
-use Billplz\TestCase\Base\BankTestCase;
+use Billplz\TestCase\Base\BankAccountTestCase;
 
-class BankTest extends BankTestCase
+class BankAccountTest extends BankAccountTestCase
 {
     /**
      * API Version.
@@ -18,7 +18,7 @@ class BankTest extends BankTestCase
     {
         $bank = $this->makeClient()->bank('v3');
 
-        $this->assertInstanceOf('Billplz\Three\Bank', $bank);
+        $this->assertInstanceOf('Billplz\Three\BankAccount', $bank);
         $this->assertSame('v3', $bank->getVersion());
     }
 }

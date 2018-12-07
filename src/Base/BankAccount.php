@@ -5,7 +5,7 @@ namespace Billplz\Base;
 use Billplz\Request;
 use Laravie\Codex\Contracts\Response;
 
-abstract class Bank extends Request
+abstract class BankAccount extends Request
 {
     /**
      * Get A Bank Account.
@@ -14,7 +14,7 @@ abstract class Bank extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function get(string $accountNumber)
+    public function get(string $accountNumber): Response
     {
         return $this->send('GET', "bank_verification_services/{$accountNumber}");
     }
@@ -30,7 +30,7 @@ abstract class Bank extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function createAccount(
+    public function create(
         string $name,
         string $identification,
         string $accountNumber,

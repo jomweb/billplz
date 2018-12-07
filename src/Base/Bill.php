@@ -5,9 +5,10 @@ namespace Billplz\Base;
 use Billplz\Request;
 use InvalidArgumentException;
 use Laravie\Codex\Contracts\Response;
+use Billplz\Contracts\Bill as Contract;
 use Laravie\Codex\Concerns\Request\Multipart;
 
-abstract class Bill extends Request
+abstract class Bill extends Request implements Contract
 {
     use Multipart,
         PaymentCompletion;

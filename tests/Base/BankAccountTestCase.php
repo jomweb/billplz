@@ -5,14 +5,14 @@ namespace Billplz\TestCase\Base;
 use Laravie\Codex\Response;
 use Billplz\TestCase\TestCase;
 
-abstract class BankTestCase extends TestCase
+abstract class BankAccountTestCase extends TestCase
 {
     /** @test */
     public function it_has_proper_signature()
     {
         $bank = $this->makeClient()->bank();
 
-        $this->assertInstanceOf('Billplz\Base\Bank', $bank);
+        $this->assertInstanceOf('Billplz\Base\BankAccount', $bank);
         $this->assertSame($this->apiVersion, $bank->getVersion());
     }
 
@@ -26,7 +26,7 @@ abstract class BankTestCase extends TestCase
                         ->shouldResponseWith(200, $expected);
 
         $response = $this->makeClient($faker)
-                        ->uses('Bank')
+                        ->uses('BankAccount')
                         ->get($bank_account_number);
 
         $this->assertInstanceOf(Response::class, $response);
@@ -51,8 +51,8 @@ abstract class BankTestCase extends TestCase
                 ->shouldResponseWith(200, $expected);
 
         $response = $this->makeClient($faker)
-                        ->uses('Bank')
-                        ->createAccount(
+                        ->uses('BankAccount')
+                        ->create(
                             $data['name'],
                             $data['id_no'],
                             $data['acc_no'],
@@ -74,7 +74,7 @@ abstract class BankTestCase extends TestCase
                         ->shouldResponseWith(200, $expected);
 
         $response = $this->makeClient($faker)
-                        ->uses('Bank')
+                        ->uses('BankAccount')
                         ->checkAccount('jomlaunch');
 
         $this->assertInstanceOf(Response::class, $response);
@@ -91,7 +91,7 @@ abstract class BankTestCase extends TestCase
                         ->shouldResponseWith(200, $expected);
 
         $response = $this->makeClient($faker)
-                        ->uses('Bank')
+                        ->uses('BankAccount')
                         ->supportedForFpx();
 
         $this->assertInstanceOf(Response::class, $response);

@@ -5,8 +5,9 @@ namespace Billplz\Base;
 use Billplz\Request;
 use Laravie\Codex\Contracts\Response;
 use Laravie\Codex\Concerns\Request\Multipart;
+use Billplz\Contracts\OpenCollection as Contract;
 
-class OpenCollection extends Request
+class OpenCollection extends Request implements Contract
 {
     use Multipart;
 

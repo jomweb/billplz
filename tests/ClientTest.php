@@ -78,17 +78,6 @@ class ClientTest extends TestCase
     }
 
     /** @test */
-    public function it_can_retrieve_check_instance()
-    {
-        $client = $this->makeClient();
-
-        $check = $client->check('v3');
-
-        $this->assertInstanceOf('Billplz\Base\Check', $check);
-        $this->assertInstanceOf('Billplz\Three\Check', $check);
-    }
-
-    /** @test */
     public function it_can_retrieve_transaction_instance()
     {
         $client = $this->makeClient();
@@ -126,7 +115,7 @@ class ClientTest extends TestCase
 
         $bank = $client->bank('v3');
 
-        $this->assertInstanceOf('Billplz\Base\Bank', $bank);
-        $this->assertInstanceOf('Billplz\Three\Bank', $bank);
+        $this->assertInstanceOf('Billplz\Base\BankAccount', $bank);
+        $this->assertInstanceOf('Billplz\Three\BankAccount', $bank);
     }
 }
