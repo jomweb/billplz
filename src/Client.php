@@ -139,9 +139,9 @@ class Client extends BaseClient
      *
      * @param  string|null  $version
      *
-     * @return \BIllplz\Base\Collection
+     * @return \BIllplz\Contracts\Collection
      */
-    final public function collection(?string $version = null): Base\Collection
+    final public function collection(?string $version = null): Contracts\Collection
     {
         return $this->uses('Collection', $version);
     }
@@ -151,9 +151,9 @@ class Client extends BaseClient
      *
      * @param  string|null  $version
      *
-     * @return \BIllplz\Base\OpenCollection
+     * @return \BIllplz\Contracts\OpenCollection
      */
-    final public function openCollection(?string $version = null): Base\OpenCollection
+    final public function openCollection(?string $version = null): Contracts\OpenCollection
     {
         return $this->uses('OpenCollection', $version);
     }
@@ -163,9 +163,9 @@ class Client extends BaseClient
      *
      * @param  string|null  $version
      *
-     * @return \Billplz\Base\Bill
+     * @return \Billplz\Contracts\Bill
      */
-    final public function bill(?string $version = null): Base\Bill
+    final public function bill(?string $version = null): Contracts\Bill
     {
         return $this->uses('Bill', $version);
     }
@@ -175,9 +175,9 @@ class Client extends BaseClient
      *
      * @param  string|null  $version
      *
-     * @return \Billplz\Base\Bill\Transaction
+     * @return \Billplz\Contracts\Bill\Transaction
      */
-    final public function transaction(?string $version = null): Base\Bill\Transaction
+    final public function transaction(?string $version = null): Contracts\Bill\Transaction
     {
         return $this->uses('Bill.Transaction', $version);
     }
@@ -185,9 +185,9 @@ class Client extends BaseClient
     /**
      * Get mass payment instruction collection resource.
      *
-     * @return \BIllplz\Four\Collection\MassPayment
+     * @return \BIllplz\Contracts\Collection\MassPayment
      */
-    final public function massPaymentCollection(): Four\Collection\MassPayment
+    final public function massPaymentCollection(): Contracts\Collection\MassPayment
     {
         return $this->uses('Collection.MassPayment', 'v4');
     }
@@ -195,9 +195,9 @@ class Client extends BaseClient
     /**
      * Get mass payment instruction resource.
      *
-     * @return \Billplz\Four\MassPayment
+     * @return \Billplz\Contracts\MassPayment
      */
-    final public function massPayment(): Four\MassPayment
+    final public function massPayment(): Contracts\MassPayment
     {
         return $this->uses('MassPayment', 'v4');
     }
@@ -207,9 +207,9 @@ class Client extends BaseClient
      *
      * @param  string|null  $version
      *
-     * @return \Billplz\Base\BankAccount
+     * @return \Billplz\Contracts\BankAccount
      */
-    final public function bank(?string $version = null): Base\BankAccount
+    final public function bank(?string $version = null): Contracts\BankAccount
     {
         return $this->uses('BankAccount', $version);
     }

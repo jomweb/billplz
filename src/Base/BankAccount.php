@@ -4,8 +4,9 @@ namespace Billplz\Base;
 
 use Billplz\Request;
 use Laravie\Codex\Contracts\Response;
+use Billplz\Contracts\BankAccount as Contract;
 
-abstract class BankAccount extends Request
+abstract class BankAccount extends Request implements Contract
 {
     /**
      * Get A Bank Account.

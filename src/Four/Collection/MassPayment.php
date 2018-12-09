@@ -4,8 +4,9 @@ namespace Billplz\Four\Collection;
 
 use Billplz\Request;
 use Laravie\Codex\Contracts\Response;
+use Billplz\Contracts\Collection\MassPayment as Contract;
 
-class MassPayment extends Request
+class MassPayment extends Request implements Contract
 {
     /**
      * Version namespace.

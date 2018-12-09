@@ -1,20 +1,11 @@
 <?php
 
-namespace Billplz\Four;
+namespace Billplz\Contracts;
 
-use Billplz\Request;
 use Laravie\Codex\Contracts\Response;
-use Billplz\Contracts\MassPayment as Contract;
 
-class MassPayment extends Request implements Contract
+interface MassPayment
 {
-    /**
-     * Version namespace.
-     *
-     * @var string
-     */
-    protected $version = 'v4';
-
     /**
      * Create a new mass payment instruction (mpi).
      *
@@ -38,15 +29,7 @@ class MassPayment extends Request implements Contract
         string $description,
         $total,
         array $optional = []
-    ): Response {
-        $body = array_merge(compact('name', 'description', 'total'), $optional);
-        $body['mass_payment_instruction_collection_id'] = $collectionId;
-        $body['bank_code'] = $bankCode;
-        $body['bank_account_number'] = $bankAccountNumber;
-        $body['identity_number'] = $identityNumber;
-
-        return $this->send('POST', 'mass_payment_instructions', [], $body);
-    }
+    ): Response;
 
     /**
      * Get mass payment instruction (mpi).
@@ -55,8 +38,5 @@ class MassPayment extends Request implements Contract
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function get(string $instructionId): Response
-    {
-        return $this->send('GET', "mass_payment_instructions/{$instructionId}", [], []);
-    }
+    public function get(string $instructionId): Response;
 }
