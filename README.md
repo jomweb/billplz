@@ -102,10 +102,10 @@ $billplz->useSandbox();
 <a name="using-different-api-version"></a>
 ### API Version
 
-By default `jomweb/billplz` would use `v3` API version for any request, however you can customize this in future when new API version is available.
+By default `jomweb/billplz` would use `v4` API version for any request, however you can customize this in future when new API version is available.
 
 ```php
-$billplz->useVersion('v4');
+$billplz->useVersion('v3');
 ```
 
 ## Usages
