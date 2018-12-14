@@ -25,7 +25,7 @@ trait PaymentCompletion
             'billplzid' => $data['billplz']['id'],
             'billplzpaid' => $data['billplz']['paid'],
             'billplzpaid_at' => $data['billplz']['paid_at'],
-            'x_signature' => isset($data['billplz']['x_signature']) ? $data['billplz']['x_signature'] : null,
+            'x_signature' => $data['billplz']['x_signature'] ?? null,
         ];
 
         $validated = $this->validateAgainstSignature($bill, $this->client->getSignatureKey(), [
