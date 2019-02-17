@@ -33,7 +33,7 @@ class PaymentMethod extends Request implements Contract
         $payments = [];
 
         foreach ($codes as $code) {
-            array_push($payments, compact('code'));
+            \array_push($payments, \compact('code'));
         }
 
         return $this->send('PUT', "collections/{$collectionId}/payment_methods", [], $payments);

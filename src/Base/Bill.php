@@ -43,9 +43,8 @@ abstract class Bill extends Request implements Contract
             throw new InvalidArgumentException('Either $email or $mobile should be present');
         }
 
-        $body = array_merge(
-            compact('email', 'mobile', 'name', 'amount', 'description'),
-            $optional
+        $body = \array_merge(
+            \compact('email', 'mobile', 'name', 'amount', 'description'), $optional
         );
 
         $body['collection_id'] = $collectionId;

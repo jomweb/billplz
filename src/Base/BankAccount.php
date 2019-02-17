@@ -38,7 +38,7 @@ abstract class BankAccount extends Request implements Contract
         string $code,
         bool $organization
     ): Response {
-        $body = compact('name', 'code', 'organization');
+        $body = \compact('name', 'code', 'organization');
         $body['id_no'] = $identification;
         $body['acc_no'] = $accountNumber;
 

@@ -27,7 +27,7 @@ class OpenCollection extends Request implements Contract
         $amount,
         array $optional = []
     ): Response {
-        $body = array_merge(compact('title', 'description', 'amount'), $optional);
+        $body = \array_merge(\compact('title', 'description', 'amount'), $optional);
 
         list($headers, $stream) = $this->prepareMultipartRequestPayloads([], $body);
 

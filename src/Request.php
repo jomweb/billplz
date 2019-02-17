@@ -56,9 +56,9 @@ abstract class Request extends BaseRequest
      */
     final protected function parseRedirectAndCallbackUrlFromRequest(array $body, $url): array
     {
-        if (is_string($url)) {
+        if (\is_string($url)) {
             $body['callback_url'] = $url;
-        } elseif (is_array($url)) {
+        } elseif (\is_array($url)) {
             $body['callback_url'] = $url['callback_url'] ?? null;
             $body['redirect_url'] = $url['redirect_url'] ?? null;
         }

@@ -43,11 +43,11 @@ class Signature
         $keys = [];
 
         foreach ($this->attributes as $attribute) {
-            array_push($keys, $attribute.($data[$attribute] ?? ''));
+            \array_push($keys, $attribute.($data[$attribute] ?? ''));
         }
 
-        $compared = hash_hmac('sha256', implode('|', $keys), $this->key);
+        $compared = \hash_hmac('sha256', \implode('|', $keys), $this->key);
 
-        return hash_equals($compared, $hash);
+        return \hash_equals($compared, $hash);
     }
 }

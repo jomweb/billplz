@@ -39,7 +39,7 @@ class MassPayment extends Request implements Contract
         $total,
         array $optional = []
     ): Response {
-        $body = array_merge(compact('name', 'description', 'total'), $optional);
+        $body = \array_merge(\compact('name', 'description', 'total'), $optional);
         $body['mass_payment_instruction_collection_id'] = $collectionId;
         $body['bank_code'] = $bankCode;
         $body['bank_account_number'] = $bankAccountNumber;

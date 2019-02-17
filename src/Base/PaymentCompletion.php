@@ -17,7 +17,7 @@ trait PaymentCompletion
      */
     public function redirect(array $data = []): ?array
     {
-        if (! isset($data['billplz']) || ! is_array($data['billplz'])) {
+        if (! isset($data['billplz']) || ! \is_array($data['billplz'])) {
             throw new InvalidArgumentException('Expected $billplz to be an array!');
         }
 
@@ -73,7 +73,7 @@ trait PaymentCompletion
      */
     final protected function validateAgainstSignature(array $bill, ?string $signatureKey = null, array $parameters = []): bool
     {
-        if (is_null($signatureKey)) {
+        if (\is_null($signatureKey)) {
             return true;
         }
 
