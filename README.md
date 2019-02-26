@@ -38,6 +38,8 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
 
 ## Installation
 
+### Composer
+
 To install through composer, simply put the following in your `composer.json` file:
 
 ```json
@@ -49,9 +51,24 @@ To install through composer, simply put the following in your `composer.json` fi
 }
 ```
 
-### HTTP Adapter
+#### HTTP Adapter
 
 Instead of utilizing `php-http/guzzle6-adapter` you might want to use any other adapter that implements `php-http/client-implementation`. Check [Clients & Adapters](http://docs.php-http.org/en/latest/clients.html) for PHP-HTTP.
+
+
+### PHAR
+
+The preferred method of installation is to use the Billplz PHAR which can be downloaded from the most recent [GitHub Release](https://github.com/jomweb/billplz/releases). This method ensures you will not have any dependency conflict issue.
+
+You should received `billplz.phar` file which you can include to your project.
+
+```php
+<?php
+
+require "billplz.phar";
+
+$client = Billplz\Client::make('your-api-key', 'your-x-signature-key');
+```
 
 ## Getting Started
 
