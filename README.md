@@ -58,7 +58,7 @@ Instead of utilizing `php-http/guzzle6-adapter` you might want to use any other 
 
 ### PHAR
 
-The preferred method of installation is to use the Billplz PHAR which can be downloaded from the most recent [GitHub Release](https://github.com/jomweb/billplz/releases). This method ensures you will not have any dependency conflict issue.
+If Composer isn't available on your application, you can opt for use Billplz PHAR which can be downloaded from the most recent [GitHub Release](https://github.com/jomweb/billplz/releases). This build uses `guzzlehttp/guzzle` under the hood for all request to Billplz API.
 
 You should received `billplz.phar` file which you can include to your project.
 
