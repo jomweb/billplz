@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 3.0.1
+
+Released: 2019-03-02
+
+### Changes
+
+* Improve performance by prefixing all global functions calls with `\` to skip the look up and resolve process and go straight to the global function.
+
 ## 3.0.0
 
 Released: 2018-12-13
