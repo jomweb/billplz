@@ -91,13 +91,12 @@ abstract class BillTestCase extends TestCase
         $this->assertSame($expected, $response->getBody());
     }
 
-    /**
-     * @test
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Either $email or $mobile should be present
-     */
+    /** @test */
     public function it_cant_be_created_given_empty_email_and_mobile()
     {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('Either $email or $mobile should be present');
+
         $payload = [
             'email' => '',
             'mobile' => null,
@@ -244,12 +243,11 @@ abstract class BillTestCase extends TestCase
         $this->assertNull($bill);
     }
 
-    /**
-     * @test
-     * @expectedException \Billplz\Exceptions\FailedSignatureVerification
-     */
+    /** @test */
     public function it_can_detect_invalid_redirect_data_with_signature()
     {
+        $this->expectException('Billplz\Exceptions\FailedSignatureVerification');
+
         $payload = [
             'billplz' => [
                 'id' => 'W_79pJDk',
@@ -265,13 +263,12 @@ abstract class BillTestCase extends TestCase
                     ->redirect($payload);
     }
 
-    /**
-     * @test
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Expected $billplz to be an array!
-     */
+    /** @test */
     public function it_can_detect_missing_redirect_data()
     {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('Expected $billplz to be an array!');
+
         $bill = $this->makeClient()
                     ->setSignatureKey('foobar')
                     ->uses('Bill')
@@ -364,12 +361,11 @@ abstract class BillTestCase extends TestCase
         $this->assertNull($bill);
     }
 
-    /**
-     * @test
-     * @expectedException \Billplz\Exceptions\FailedSignatureVerification
-     */
+    /** @test */
     public function it_can_detect_invalid_webhook_data_with_signature()
     {
+        $this->expectException('Billplz\Exceptions\FailedSignatureVerification');
+
         $payload = [
             'id' => 'W_79pJDk',
             'collection_id' => '599',
