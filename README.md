@@ -51,6 +51,12 @@ To install through composer, simply put the following in your `composer.json` fi
 }
 ```
 
+#### Quick Installation
+
+Above installation can also be simplify by using the following command:
+
+    composer require "php-http/guzzle6-adapter" "jomweb/billplz=^3.0"
+
 #### HTTP Adapter
 
 Instead of utilizing `php-http/guzzle6-adapter` you might want to use any other adapter that implements `php-http/client-implementation`. Check [Clients & Adapters](http://docs.php-http.org/en/latest/clients.html) for PHP-HTTP.
