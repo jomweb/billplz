@@ -46,7 +46,7 @@ To install through composer, simply put the following in your `composer.json` fi
 {
     "require": {
         "jomweb/billplz": "^3.0",
-        "php-http/guzzle6-adapter": "^1.1 || ^2.0"
+        "php-http/guzzle6-adapter": "^2.0"
     }
 }
 ```
