@@ -61,7 +61,6 @@ Above installation can also be simplify by using the following command:
 
 Instead of utilizing `php-http/guzzle6-adapter` you might want to use any other adapter that implements `php-http/client-implementation`. Check [Clients & Adapters](http://docs.php-http.org/en/latest/clients.html) for PHP-HTTP.
 
-
 ### PHAR
 
 If Composer isn't available on your application, you can opt for use Billplz PHAR which can be downloaded from the most recent [GitHub Release](https://github.com/jomweb/billplz/releases). This build uses `guzzlehttp/guzzle` under the hood for all request to Billplz API.
