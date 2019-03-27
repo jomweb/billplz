@@ -2,8 +2,8 @@
 
 namespace Billplz\Tests\Base\Bill;
 
-use Laravie\Codex\Response;
 use Billplz\Tests\TestCase;
+use Laravie\Codex\Response;
 
 abstract class TransactionTestCase extends TestCase
 {

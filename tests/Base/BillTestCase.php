@@ -3,8 +3,8 @@
 namespace Billplz\Tests\Base;
 
 use Duit\MYR;
-use Laravie\Codex\Response;
 use Billplz\Tests\TestCase;
+use Laravie\Codex\Response;
 
 abstract class BillTestCase extends TestCase
 {
