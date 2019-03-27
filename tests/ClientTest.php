@@ -4,7 +4,7 @@ namespace Billplz\Tests;
 
 use Billplz\Client;
 use Laravie\Codex\Testing\Faker;
-use Laravie\Codex\Common\Discovery;
+use Laravie\Codex\Discovery;
 
 class ClientTest extends TestCase
 {
