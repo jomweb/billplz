@@ -2,8 +2,8 @@
 
 namespace Billplz\Tests\Base;
 
-use Laravie\Codex\Response;
 use Billplz\Tests\TestCase;
+use Laravie\Codex\Response;
 
 abstract class OpenCollectionTestCase extends TestCase
 {
