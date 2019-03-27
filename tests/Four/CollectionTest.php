@@ -1,8 +1,8 @@
 <?php
 
-namespace Billplz\TestCase\Four;
+namespace Billplz\Tests\Four;
 
-use Billplz\TestCase\Base\CollectionTestCase;
+use Billplz\Tests\Base\CollectionTestCase;
 
 class CollectionTest extends CollectionTestCase
 {

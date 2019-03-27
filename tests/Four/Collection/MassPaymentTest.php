@@ -1,8 +1,8 @@
 <?php
 
-namespace Billplz\TestCase\Four\Collection;
+namespace Billplz\Tests\Four\Collection;
 
-use Billplz\TestCase\TestCase;
+use Billplz\Tests\TestCase;
 use Laravie\Codex\Contracts\Response;
 
 class MassPaymentTest extends TestCase

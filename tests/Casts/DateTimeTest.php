@@ -1,6 +1,6 @@
 <?php
 
-namespace Billplz\TestCase\Casts;
+namespace Billplz\Tests\Casts;
 
 use Billplz\Casts\DateTime;
 use PHPUnit\Framework\TestCase;

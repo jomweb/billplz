@@ -1,8 +1,8 @@
 <?php
 
-namespace Billplz\TestCase\Three\Bill;
+namespace Billplz\Tests\Three\Bill;
 
-use Billplz\TestCase\Base\Bill\TransactionTestCase;
+use Billplz\Tests\Base\Bill\TransactionTestCase;
 
 class TransactionTest extends TransactionTestCase
 {

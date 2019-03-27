@@ -1,8 +1,8 @@
 <?php
 
-namespace Billplz\TestCase\Four;
+namespace Billplz\Tests\Four;
 
-use Billplz\TestCase\Base\OpenCollectionTestCase;
+use Billplz\Tests\Base\OpenCollectionTestCase;
 
 class OpenCollectionTest extends OpenCollectionTestCase
 {
