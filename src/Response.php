@@ -4,9 +4,8 @@ namespace Billplz;
 
 use Laravie\Codex\Contracts\Filterable;
 use Laravie\Codex\Filter\WithSanitizer;
-use Laravie\Codex\Response as BaseResponse;
 
-class Response extends BaseResponse implements Filterable
+class Response extends \Laravie\Codex\Response implements Filterable
 {
     use WithSanitizer;
 
