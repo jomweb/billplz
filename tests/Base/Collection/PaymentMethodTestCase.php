@@ -1,9 +1,9 @@
 <?php
 
-namespace Billplz\TestCase\Base\Collection;
+namespace Billplz\Tests\Base\Collection;
 
 use Laravie\Codex\Response;
-use Billplz\TestCase\TestCase;
+use Billplz\Tests\TestCase;
 
 class PaymentMethodTestCase extends TestCase
 {

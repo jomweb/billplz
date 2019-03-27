@@ -1,6 +1,6 @@
 <?php
 
-namespace Billplz\TestCase;
+namespace Billplz\Tests;
 
 use Mockery as m;
 use Billplz\Client;

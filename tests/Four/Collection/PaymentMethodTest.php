@@ -1,8 +1,8 @@
 <?php
 
-namespace Billplz\TestCase\Four\Collection;
+namespace Billplz\Tests\Four\Collection;
 
-use Billplz\TestCase\Base\Collection\PaymentMethodTestCase;
+use Billplz\Tests\Base\Collection\PaymentMethodTestCase;
 
 class PaymentMethodTest extends PaymentMethodTestCase
 {

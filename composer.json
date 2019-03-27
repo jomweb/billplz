@@ -17,7 +17,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Billplz\\TestCase\\": "tests/"
+            "Billplz\\Tests\\": "tests/"
         }
     },
     "require": {

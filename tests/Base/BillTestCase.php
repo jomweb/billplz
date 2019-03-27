@@ -1,10 +1,10 @@
 <?php
 
-namespace Billplz\TestCase\Base;
+namespace Billplz\Tests\Base;
 
 use Duit\MYR;
 use Laravie\Codex\Response;
-use Billplz\TestCase\TestCase;
+use Billplz\Tests\TestCase;
 
 abstract class BillTestCase extends TestCase
 {

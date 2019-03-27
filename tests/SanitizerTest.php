@@ -1,6 +1,6 @@
 <?php
 
-namespace Billplz\TestCase;
+namespace Billplz\Tests;
 
 use Billplz\Sanitizer;
 use PHPUnit\Framework\TestCase as PHPUnit;
