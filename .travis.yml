@@ -5,7 +5,6 @@ php:
   - 7.1
   - 7.2
   - 7.3
-  - nightly
 
 env:
   global:
@@ -27,7 +26,7 @@ script:
   - if [[ $coverage = 'no' ]]; then vendor/bin/phpunit -c phpunit.xml --testdox; fi
 
 after_script:
-  - if [[ $setup = 'coveralls' ]]; then php vendor/bin/coveralls -v; fi
+  - if [[ $setup = 'coveralls' ]]; then php vendor/bin/php-coveralls -v; fi
 
 matrix:
   include:
