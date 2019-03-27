@@ -2,7 +2,7 @@
 
 namespace Billplz\Casts;
 
-use Laravie\Codex\Cast;
+use Laravie\Codex\Filter\Cast;
 
 class Money extends Cast
 {

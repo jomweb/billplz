@@ -4,8 +4,8 @@ namespace Billplz\TestCase;
 
 use Mockery as m;
 use Billplz\Client;
-use Laravie\Codex\Discovery;
 use Laravie\Codex\Testing\Faker;
+use Laravie\Codex\Common\Discovery;
 use PHPUnit\Framework\TestCase as PHPUnit;
 
 class TestCase extends PHPUnit

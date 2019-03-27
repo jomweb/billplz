@@ -2,9 +2,7 @@
 
 namespace Billplz;
 
-use Laravie\Codex\Sanitizer as BaseSanitizer;
-
-class Sanitizer extends BaseSanitizer
+class Sanitizer extends \Laravie\Codex\Filter\Sanitizer
 {
     /**
      * Construct a new sanitizer.

@@ -2,10 +2,14 @@
 
 namespace Billplz;
 
+use Laravie\Codex\Contracts\Filterable;
+use Laravie\Codex\Filter\WithSanitizer;
 use Laravie\Codex\Response as BaseResponse;
 
-class Response extends BaseResponse
+class Response extends BaseResponse implements Filterable
 {
+    use WithSanitizer;
+
     /**
      * Validate the response object.
      *

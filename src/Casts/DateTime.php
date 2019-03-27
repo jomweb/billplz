@@ -3,7 +3,7 @@
 namespace Billplz\Casts;
 
 use DateTimeInterface;
-use Laravie\Codex\Cast;
+use Laravie\Codex\Filter\Cast;
 
 class DateTime extends Cast
 {

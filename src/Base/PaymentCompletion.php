@@ -33,7 +33,7 @@ trait PaymentCompletion
         ]);
 
         if ((bool) $validated) {
-            return $this->sanitizeTo($data['billplz']);
+            return $this->filterResponse($data['billplz']);
         }
 
         return null;
@@ -54,7 +54,7 @@ trait PaymentCompletion
         ]);
 
         if ((bool) $validated) {
-            return $this->sanitizeTo($data);
+            return $this->filterResponse($data);
         }
 
         return null;

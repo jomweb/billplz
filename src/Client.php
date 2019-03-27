@@ -2,11 +2,10 @@
 
 namespace Billplz;
 
-use Laravie\Codex\Discovery;
-use Laravie\Codex\Client as BaseClient;
+use Laravie\Codex\Common\Discovery;
 use Http\Client\Common\HttpMethodsClient as HttpClient;
 
-class Client extends BaseClient
+class Client extends \Laravie\Codex\Client
 {
     /**
      * Billplz API Key.

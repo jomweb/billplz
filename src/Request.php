@@ -3,12 +3,15 @@
 namespace Billplz;
 
 use Laravie\Codex\Contracts\Endpoint;
+use Laravie\Codex\Contracts\Filterable;
+use Laravie\Codex\Filter\WithSanitizer;
 use Psr\Http\Message\ResponseInterface;
-use Laravie\Codex\Request as BaseRequest;
 use Laravie\Codex\Contracts\Response as ResponseContract;
 
-abstract class Request extends BaseRequest
+abstract class Request extends \Laravie\Codex\Request implements Filterable
 {
+    use WithSanitizer;
+
     /**
      * Get URI Endpoint.
      *

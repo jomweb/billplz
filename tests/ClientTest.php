@@ -3,8 +3,8 @@
 namespace Billplz\TestCase;
 
 use Billplz\Client;
-use Laravie\Codex\Discovery;
 use Laravie\Codex\Testing\Faker;
+use Laravie\Codex\Common\Discovery;
 
 class ClientTest extends TestCase
 {
