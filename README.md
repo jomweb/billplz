@@ -107,7 +107,7 @@ Alternatively, you could also manually configure `Http\Client\Common\HttpMethods
 
 use Billplz\Client;
 
-$http = Laravie\Codex\Discovery::client();
+$http = Laravie\Codex\Common\Discovery::client();
 
 $billplz = new Client($http, 'your-api-key', 'your-x-signature-key');
 ```
