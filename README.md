@@ -17,6 +17,8 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
     - [Collection](#collection)
         + [Create a Collection](#create-a-collection)
         + [Get Existing Collection](#get-existing-collection)
+        + [Deactivate a collection](#deactivate-a-collection)
+        + [Activate a collection](#activate-a-collection)
     - [Open Collection](#open-collection)
         + [Create an Open Collection](#create-an-open-collection)
     - [Bill](#bill)
