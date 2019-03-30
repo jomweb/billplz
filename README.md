@@ -199,6 +199,86 @@ return [
     ]
 ]
 ```
+#### List of Collections
+
+You can get Collection index by calling following code:
+
+```php
+$response = $collection->all();
+
+var_dump($response->toArray());
+```
+
+```php
+return [
+    "collections": [{
+        "id" => "inbmmepb"
+        "title" => "My First API Collection"
+        "logo" => [
+            "thumb_url" => null,
+            "avatar_url" => null,
+        ],
+        "split_header" => null,
+        "split_payments" => [
+            [
+                "email" => "verified@account.com",
+                "fixed_cut" => 100,
+                "variable_cut" => 2,
+                "stack_order" => 0,
+            ],
+            [
+                "email" => "verified2@account.com",
+                "fixed_cut" => 200,
+                "variable_cut" => 3,
+                "stack_order" => 1,
+            ],
+        ],
+        "status" => "active"
+    }],
+    "page" => 1
+];
+```
+
+u also can provide optional parameters (page, status):
+
+```php
+$response = $collection->all([
+    'page' => 2,
+    'status' => 'active',
+]);
+
+var_dump($response->toArray());
+```
+
+```php
+return [
+    "collections": [{
+        "id" => "inbmmepb"
+        "title" => "My First API Collection"
+        "logo" => [
+            "thumb_url" => null,
+            "avatar_url" => null,
+        ],
+        "split_header" => null,
+        "split_payments" => [
+            [
+                "email" => "verified@account.com",
+                "fixed_cut" => 100,
+                "variable_cut" => 2,
+                "stack_order" => 0,
+            ],
+            [
+                "email" => "verified2@account.com",
+                "fixed_cut" => 200,
+                "variable_cut" => 3,
+                "stack_order" => 1,
+            ],
+        ],
+        "status" => "active"
+    }],
+    "page" => 2
+];
+```
 
 #### Get Existing Collection
 
