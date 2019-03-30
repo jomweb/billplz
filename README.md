@@ -16,6 +16,7 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
 * [Usages](#usages)
     - [Collection](#collection)
         + [Create a Collection](#create-a-collection)
+        + [List of Collections](#list-of-collections)
         + [Get Existing Collection](#get-existing-collection)
         + [Deactivate a collection](#deactivate-a-collection)
         + [Activate a collection](#activate-a-collection)
