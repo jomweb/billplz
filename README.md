@@ -22,6 +22,7 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
         + [Activate a collection](#activate-a-collection)
     - [Open Collection](#open-collection)
         + [Create an Open Collection](#create-an-open-collection)
+        + [List of Open Collections](#list-of-open-collections)
     - [Bill](#bill)
         + [Create a Bill](#create-a-bill)
         + [Get Existing Bill](#get-existing-bill)
@@ -161,12 +162,12 @@ return [
     "title" => "My First API Collection",
     "logo" => [
         "thumb_url" => null,
-        "avatar_url" => null
+        "avatar_url" => null,
     ],
     "split_payment" => [
         "email" => null,
         "fixed_cut" => null,
-        "variable_cut" => null
+        "variable_cut" => null,
     ]
 ];
 ```
@@ -191,14 +192,14 @@ return [
     "title" => "My First API Collection",
     "logo" => [
         "thumb_url" => "https://sample.net/assets/uploadPhoto.png",
-        "avatar_url" => "https://sample.net/assets/uploadPhoto.png"
+        "avatar_url" => "https://sample.net/assets/uploadPhoto.png",
     ],
     "split_payment" => [
         "email" => "verified@account.com",
         "fixed_cut" => \Duit\MYR::given(100),
-        "variable_cut" => null
-    ]
-]
+        "variable_cut" => null,
+    ],
+];
 ```
 #### List of Collections
 
@@ -213,8 +214,8 @@ var_dump($response->toArray());
 ```php
 return [
     "collections": [{
-        "id" => "inbmmepb"
-        "title" => "My First API Collection"
+        "id" => "inbmmepb",
+        "title" => "My First API Collection",
         "logo" => [
             "thumb_url" => null,
             "avatar_url" => null,
@@ -234,9 +235,9 @@ return [
                 "stack_order" => 1,
             ],
         ],
-        "status" => "active"
+        "status" => "active",
     }],
-    "page" => 1
+    "page" => 1,
 ];
 ```
 
@@ -254,8 +255,8 @@ var_dump($response->toArray());
 ```php
 return [
     "collections": [{
-        "id" => "inbmmepb"
-        "title" => "My First API Collection"
+        "id" => "inbmmepb",
+        "title" => "My First API Collection",
         "logo" => [
             "thumb_url" => null,
             "avatar_url" => null,
@@ -275,9 +276,9 @@ return [
                 "stack_order" => 1,
             ],
         ],
-        "status" => "active"
+        "status" => "active",
     }],
-    "page" => 2
+    "page" => 2,
 ];
 ```
 
@@ -293,8 +294,8 @@ var_dump($response->toArray());
 
 ```php
 return [
-    "id" => "inbmmepb"
-    "title" => "My First API Collection"
+    "id" => "inbmmepb",
+    "title" => "My First API Collection",
     "logo" => [
         "thumb_url" => null,
         "avatar_url" => null,
@@ -314,7 +315,7 @@ return [
             "stack_order" => 1,
         ],
     ],
-    "status" => "active"
+    "status" => "active",
 ];
 ```
 
@@ -344,7 +345,7 @@ $collection = $billplz->openCollection();
 ```
 
 > You can also manually set the API version by doing `$billplz->openCollection('v3');`. You can also use `$billplz->uses('OpenCollection');` to get the same result.
-> 
+
 #### Create an Open Collection
 
 ```php
@@ -372,15 +373,94 @@ return [
     "payment_button" => "pay",
     "photo" => [
         "retina_url" =>  null,
-        "avatar_url" =>  null
+        "avatar_url" =>  null,
     ],
     "split_payment" => [
         "email" => null,
         "fixed_cut" => null,
-        "variable_cut" => null
+        "variable_cut" => null,
     ],
-    "url" => "https://www.billplz.com/0pp87t_6"
-]
+    "url" => "https://www.billplz.com/0pp87t_6",
+];
+```
+
+#### List of Open Collections
+
+You can get Open Collection index by calling following code:
+
+```php
+$response = $collection->all();
+
+var_dump($response->toArray());
+```
+
+```php
+return [
+    "open_collections": [{
+        "id" => "0pp87t_6",
+        "title" => ""MY FIRST API OPEN COLLECTION",
+        "description" => "Maecenas eu placerat ante. Fusce ut neque justo, et aliquet enim. In hac habitasse platea dictumst.",
+        "reference_1_label" => null,
+        "reference_2_label" => null,
+        "email_link" => null,
+        "amount" => \Duit\MYR::given(299),
+        "fixed_amount" => true,
+        "tax" => null,
+        "fixed_quantity" => true,
+        "payment_button" => "pay",
+        "photo" => [
+            "retina_url" =>  null,
+            "avatar_url" =>  null,
+        ],
+        "split_payment" => [
+            "email" => null,
+            "fixed_cut" => null,
+            "variable_cut" => null,
+        ],
+        "url" => "https://www.billplz.com/0pp87t_6",
+    }],
+    "page" => 1,
+];
+```
+
+u also can provide optional parameters (page, status):
+
+```php
+$response = $collection->all([
+    'page' => 2,
+    'status' => 'active',
+]);
+
+var_dump($response->toArray());
+```
+
+```php
+return [
+    "open_collections": [{
+        "id" => "0pp87t_6",
+        "title" => ""MY FIRST API OPEN COLLECTION",
+        "description" => "Maecenas eu placerat ante. Fusce ut neque justo, et aliquet enim. In hac habitasse platea dictumst.",
+        "reference_1_label" => null,
+        "reference_2_label" => null,
+        "email_link" => null,
+        "amount" => \Duit\MYR::given(299),
+        "fixed_amount" => true,
+        "tax" => null,
+        "fixed_quantity" => true,
+        "payment_button" => "pay",
+        "photo" => [
+            "retina_url" =>  null,
+            "avatar_url" =>  null,
+        ],
+        "split_payment" => [
+            "email" => null,
+            "fixed_cut" => null,
+            "variable_cut" => null,
+        ],
+        "url" => "https://www.billplz.com/0pp87t_6",
+    }],
+    "page" => 2
+];
 ```
 
 <a name="creating-bill-request"></a>
