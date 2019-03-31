@@ -23,6 +23,7 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
     - [Open Collection](#open-collection)
         + [Create an Open Collection](#create-an-open-collection)
         + [List of Open Collections](#list-of-open-collections)
+        + [Get existing Open Collection](#get-existing-open-collection)
     - [Bill](#bill)
         + [Create a Bill](#create-a-bill)
         + [Get existing Bill](#get-existing-bill)
@@ -460,6 +461,42 @@ return [
         "url" => "https://www.billplz.com/0pp87t_6",
     }],
     "page" => 2
+];
+```
+
+#### Get existing Open Collection
+
+You can get existing open collection by calling the following code:
+
+```php
+$response = $collection->get('0pp87t_6');
+
+var_dump($response->toArray());
+```
+
+```php
+return [
+    "id" => "0pp87t_6",
+    "title" => ""MY FIRST API OPEN COLLECTION",
+    "description" => "Maecenas eu placerat ante. Fusce ut neque justo, et aliquet enim. In hac habitasse platea dictumst.",
+    "reference_1_label" => null,
+    "reference_2_label" => null,
+    "email_link" => null,
+    "amount" => \Duit\MYR::given(299),
+    "fixed_amount" => true,
+    "tax" => null,
+    "fixed_quantity" => true,
+    "payment_button" => "pay",
+    "photo" => [
+        "retina_url" =>  null,
+        "avatar_url" =>  null,
+    ],
+    "split_payment" => [
+        "email" => null,
+        "fixed_cut" => null,
+        "variable_cut" => null,
+    ],
+    "url" => "https://www.billplz.com/0pp87t_6",
 ];
 ```
 
