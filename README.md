@@ -17,7 +17,7 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
     - [Collection](#collection)
         + [Create a Collection](#create-a-collection)
         + [List of Collections](#list-of-collections)
-        + [Get Existing Collection](#get-existing-collection)
+        + [Get existing Collection](#get-existing-collection)
         + [Deactivate a collection](#deactivate-a-collection)
         + [Activate a collection](#activate-a-collection)
     - [Open Collection](#open-collection)
@@ -25,7 +25,7 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
         + [List of Open Collections](#list-of-open-collections)
     - [Bill](#bill)
         + [Create a Bill](#create-a-bill)
-        + [Get Existing Bill](#get-existing-bill)
+        + [Get existing Bill](#get-existing-bill)
         + [Delete a Bill](#delete-a-bill)
     - [Payment Completion](#payment-completion)
         + [Redirect](#redirect)
@@ -282,7 +282,7 @@ return [
 ];
 ```
 
-#### Get Existing Collection
+#### Get existing Collection
 
 You can get existing collection by calling the following code:
 
@@ -557,7 +557,7 @@ return [
 ```
 
 <a name="get-a-bill"></a>
-#### Get Existing Bill
+#### Get existing Bill
 
 ```php
 $response = $bill->get('8X0Iyzaw');
