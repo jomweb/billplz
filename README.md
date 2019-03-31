@@ -16,12 +16,17 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
 * [Usages](#usages)
     - [Collection](#collection)
         + [Create a Collection](#create-a-collection)
-        + [Get Existing Collection](#get-existing-collection)
+        + [List of Collections](#list-of-collections)
+        + [Get existing Collection](#get-existing-collection)
+        + [Deactivate a collection](#deactivate-a-collection)
+        + [Activate a collection](#activate-a-collection)
     - [Open Collection](#open-collection)
         + [Create an Open Collection](#create-an-open-collection)
+        + [List of Open Collections](#list-of-open-collections)
+        + [Get existing Open Collection](#get-existing-open-collection)
     - [Bill](#bill)
         + [Create a Bill](#create-a-bill)
-        + [Get Existing Bill](#get-existing-bill)
+        + [Get existing Bill](#get-existing-bill)
         + [Delete a Bill](#delete-a-bill)
     - [Payment Completion](#payment-completion)
         + [Redirect](#redirect)
@@ -158,12 +163,12 @@ return [
     "title" => "My First API Collection",
     "logo" => [
         "thumb_url" => null,
-        "avatar_url" => null
+        "avatar_url" => null,
     ],
     "split_payment" => [
         "email" => null,
         "fixed_cut" => null,
-        "variable_cut" => null
+        "variable_cut" => null,
     ]
 ];
 ```
@@ -188,17 +193,97 @@ return [
     "title" => "My First API Collection",
     "logo" => [
         "thumb_url" => "https://sample.net/assets/uploadPhoto.png",
-        "avatar_url" => "https://sample.net/assets/uploadPhoto.png"
+        "avatar_url" => "https://sample.net/assets/uploadPhoto.png",
     ],
     "split_payment" => [
         "email" => "verified@account.com",
         "fixed_cut" => \Duit\MYR::given(100),
-        "variable_cut" => null
-    ]
-]
+        "variable_cut" => null,
+    ],
+];
+```
+#### List of Collections
+
+You can get Collection index by calling following code:
+
+```php
+$response = $collection->all();
+
+var_dump($response->toArray());
 ```
 
-#### Get Existing Collection
+```php
+return [
+    "collections": [{
+        "id" => "inbmmepb",
+        "title" => "My First API Collection",
+        "logo" => [
+            "thumb_url" => null,
+            "avatar_url" => null,
+        ],
+        "split_header" => null,
+        "split_payments" => [
+            [
+                "email" => "verified@account.com",
+                "fixed_cut" => 100,
+                "variable_cut" => 2,
+                "stack_order" => 0,
+            ],
+            [
+                "email" => "verified2@account.com",
+                "fixed_cut" => 200,
+                "variable_cut" => 3,
+                "stack_order" => 1,
+            ],
+        ],
+        "status" => "active",
+    }],
+    "page" => 1,
+];
+```
+
+u also can provide optional parameters (page, status):
+
+```php
+$response = $collection->all([
+    'page' => 2,
+    'status' => 'active',
+]);
+
+var_dump($response->toArray());
+```
+
+```php
+return [
+    "collections": [{
+        "id" => "inbmmepb",
+        "title" => "My First API Collection",
+        "logo" => [
+            "thumb_url" => null,
+            "avatar_url" => null,
+        ],
+        "split_header" => null,
+        "split_payments" => [
+            [
+                "email" => "verified@account.com",
+                "fixed_cut" => 100,
+                "variable_cut" => 2,
+                "stack_order" => 0,
+            ],
+            [
+                "email" => "verified2@account.com",
+                "fixed_cut" => 200,
+                "variable_cut" => 3,
+                "stack_order" => 1,
+            ],
+        ],
+        "status" => "active",
+    }],
+    "page" => 2,
+];
+```
+
+#### Get existing Collection
 
 You can get existing collection by calling the following code:
 
@@ -210,8 +295,8 @@ var_dump($response->toArray());
 
 ```php
 return [
-    "id" => "inbmmepb"
-    "title" => "My First API Collection"
+    "id" => "inbmmepb",
+    "title" => "My First API Collection",
     "logo" => [
         "thumb_url" => null,
         "avatar_url" => null,
@@ -231,7 +316,7 @@ return [
             "stack_order" => 1,
         ],
     ],
-    "status" => "active"
+    "status" => "active",
 ];
 ```
 
@@ -261,7 +346,7 @@ $collection = $billplz->openCollection();
 ```
 
 > You can also manually set the API version by doing `$billplz->openCollection('v3');`. You can also use `$billplz->uses('OpenCollection');` to get the same result.
-> 
+
 #### Create an Open Collection
 
 ```php
@@ -289,15 +374,130 @@ return [
     "payment_button" => "pay",
     "photo" => [
         "retina_url" =>  null,
-        "avatar_url" =>  null
+        "avatar_url" =>  null,
     ],
     "split_payment" => [
         "email" => null,
         "fixed_cut" => null,
-        "variable_cut" => null
+        "variable_cut" => null,
     ],
-    "url" => "https://www.billplz.com/0pp87t_6"
-]
+    "url" => "https://www.billplz.com/0pp87t_6",
+];
+```
+
+#### List of Open Collections
+
+You can get Open Collection index by calling following code:
+
+```php
+$response = $collection->all();
+
+var_dump($response->toArray());
+```
+
+```php
+return [
+    "open_collections": [{
+        "id" => "0pp87t_6",
+        "title" => ""MY FIRST API OPEN COLLECTION",
+        "description" => "Maecenas eu placerat ante. Fusce ut neque justo, et aliquet enim. In hac habitasse platea dictumst.",
+        "reference_1_label" => null,
+        "reference_2_label" => null,
+        "email_link" => null,
+        "amount" => \Duit\MYR::given(299),
+        "fixed_amount" => true,
+        "tax" => null,
+        "fixed_quantity" => true,
+        "payment_button" => "pay",
+        "photo" => [
+            "retina_url" =>  null,
+            "avatar_url" =>  null,
+        ],
+        "split_payment" => [
+            "email" => null,
+            "fixed_cut" => null,
+            "variable_cut" => null,
+        ],
+        "url" => "https://www.billplz.com/0pp87t_6",
+    }],
+    "page" => 1,
+];
+```
+
+u also can provide optional parameters (page, status):
+
+```php
+$response = $collection->all([
+    'page' => 2,
+    'status' => 'active',
+]);
+
+var_dump($response->toArray());
+```
+
+```php
+return [
+    "open_collections": [{
+        "id" => "0pp87t_6",
+        "title" => ""MY FIRST API OPEN COLLECTION",
+        "description" => "Maecenas eu placerat ante. Fusce ut neque justo, et aliquet enim. In hac habitasse platea dictumst.",
+        "reference_1_label" => null,
+        "reference_2_label" => null,
+        "email_link" => null,
+        "amount" => \Duit\MYR::given(299),
+        "fixed_amount" => true,
+        "tax" => null,
+        "fixed_quantity" => true,
+        "payment_button" => "pay",
+        "photo" => [
+            "retina_url" =>  null,
+            "avatar_url" =>  null,
+        ],
+        "split_payment" => [
+            "email" => null,
+            "fixed_cut" => null,
+            "variable_cut" => null,
+        ],
+        "url" => "https://www.billplz.com/0pp87t_6",
+    }],
+    "page" => 2
+];
+```
+
+#### Get existing Open Collection
+
+You can get existing open collection by calling the following code:
+
+```php
+$response = $collection->get('0pp87t_6');
+
+var_dump($response->toArray());
+```
+
+```php
+return [
+    "id" => "0pp87t_6",
+    "title" => ""MY FIRST API OPEN COLLECTION",
+    "description" => "Maecenas eu placerat ante. Fusce ut neque justo, et aliquet enim. In hac habitasse platea dictumst.",
+    "reference_1_label" => null,
+    "reference_2_label" => null,
+    "email_link" => null,
+    "amount" => \Duit\MYR::given(299),
+    "fixed_amount" => true,
+    "tax" => null,
+    "fixed_quantity" => true,
+    "payment_button" => "pay",
+    "photo" => [
+        "retina_url" =>  null,
+        "avatar_url" =>  null,
+    ],
+    "split_payment" => [
+        "email" => null,
+        "fixed_cut" => null,
+        "variable_cut" => null,
+    ],
+    "url" => "https://www.billplz.com/0pp87t_6",
+];
 ```
 
 <a name="creating-bill-request"></a>
@@ -394,7 +594,7 @@ return [
 ```
 
 <a name="get-a-bill"></a>
-#### Get Existing Bill
+#### Get existing Bill
 
 ```php
 $response = $bill->get('8X0Iyzaw');
