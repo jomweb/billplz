@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 3.1.0
+
+Released: 2019-03-31
+
+### Changes
+
+* Update Laravie Codex to v5.0+.
+
 ## 3.0.2
 
 Released: 2019-03-31
