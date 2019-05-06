@@ -28,7 +28,7 @@
         "php-http/multipart-stream-builder": "^1.0"
     },
     "require-dev": {
-        "mockery/mockery": "^1.0",
+        "mockery/mockery": "^1.2",
         "php-http/curl-client": "^2.0",
         "phpunit/phpunit": "^7.5 || ^8.0"
     },
