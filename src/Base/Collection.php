@@ -17,7 +17,7 @@ abstract class Collection extends Request implements Contract
      * @param  string  $title
      * @param  array  $optional
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Billplz\Response
      */
     public function create(string $title, array $optional = []): Response
     {
@@ -39,7 +39,7 @@ abstract class Collection extends Request implements Contract
      *
      * @param  string  $id
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Billplz\Response
      */
     public function get(string $id): Response
     {
@@ -49,7 +49,7 @@ abstract class Collection extends Request implements Contract
     /**
      * Get collection index.
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Billplz\Response
      */
     public function all(array $optional = []): Response
     {
@@ -61,7 +61,7 @@ abstract class Collection extends Request implements Contract
      *
      * @param  string  $id
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Billplz\Response
      */
     public function activate(string $id): Response
     {
@@ -73,7 +73,7 @@ abstract class Collection extends Request implements Contract
      *
      * @param  string  $id
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Billplz\Response
      */
     public function deactivate(string $id): Response
     {

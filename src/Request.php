@@ -32,7 +32,7 @@ abstract class Request extends \Laravie\Codex\Request implements Filterable
      *
      * @param  \Psr\Http\Message\ResponseInterface  $response
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Billplz\Response
      */
     protected function responseWith(ResponseInterface $message): ResponseContract
     {

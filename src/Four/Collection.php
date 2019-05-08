@@ -19,7 +19,7 @@ class Collection extends Request
      *
      * @param  string  $id
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Billplz\Response
      */
     public function activate(string $id): Response
     {
@@ -33,7 +33,7 @@ class Collection extends Request
      *
      * @param  string  $id
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Billplz\Response
      */
     public function deactivate(string $id): Response
     {

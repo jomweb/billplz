@@ -27,7 +27,7 @@ abstract class Bill extends Request implements Contract
      *
      * @throws \InvalidArgumentException
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Billplz\Response
      */
     public function create(
         string $collectionId,
@@ -61,7 +61,7 @@ abstract class Bill extends Request implements Contract
      *
      * @param  string  $id
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Billplz\Response
      */
     public function get(string $id): Response
     {
@@ -74,7 +74,7 @@ abstract class Bill extends Request implements Contract
      * @param  string  $id
      * @param  array   $optional
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Billplz\Response
      */
     public function transaction(string $id, array $optional = []): Response
     {
@@ -87,7 +87,7 @@ abstract class Bill extends Request implements Contract
      *
      * @param  string  $id
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Billplz\Response
      */
     public function destroy(string $id): Response
     {
