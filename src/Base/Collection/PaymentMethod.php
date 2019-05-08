@@ -13,7 +13,7 @@ class PaymentMethod extends Request implements Contract
      *
      * @param  string  $collectionId
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Billplz\Response
      */
     public function get(string $collectionId): Response
     {
@@ -26,7 +26,7 @@ class PaymentMethod extends Request implements Contract
      * @param  string  $id
      * @param  array   $codes
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Billplz\Response
      */
     public function update(string $collectionId, array $codes = []): Response
     {

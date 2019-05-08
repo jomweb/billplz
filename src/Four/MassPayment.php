@@ -27,7 +27,7 @@ class MassPayment extends Request implements Contract
      * @param  int  $total
      * @param  array  $optional
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Billplz\Response
      */
     public function create(
         string $collectionId,
@@ -53,7 +53,7 @@ class MassPayment extends Request implements Contract
      *
      * @param  string  $instructionId
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Billplz\Response
      */
     public function get(string $instructionId): Response
     {

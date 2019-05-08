@@ -13,7 +13,7 @@ abstract class Transaction extends Request
      * @param  string  $id
      * @param  array   $optional
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Billplz\Response
      *
      * @deprecated v2.0.1
      * @see static::get()
@@ -29,7 +29,7 @@ abstract class Transaction extends Request
      * @param  string  $id
      * @param  array   $optional
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Billplz\Response
      */
     public function get(string $id, array $optional = []): Response
     {

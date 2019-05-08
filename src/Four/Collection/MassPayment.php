@@ -20,7 +20,7 @@ class MassPayment extends Request implements Contract
      *
      * @param  string  $title
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Billplz\Response
      */
     public function create(string $title): Response
     {
@@ -32,7 +32,7 @@ class MassPayment extends Request implements Contract
      *
      * @param  string  $collectionId
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Billplz\Response
      */
     public function get(string $collectionId): Response
     {

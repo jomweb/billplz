@@ -29,7 +29,7 @@ abstract class Request extends BaseRequest
      *
      * @param  \Psr\Http\Message\ResponseInterface  $response
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Billplz\Response
      */
     protected function responseWith(ResponseInterface $message): ResponseContract
     {

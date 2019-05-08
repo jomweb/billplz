@@ -13,7 +13,7 @@ abstract class BankAccount extends Request implements Contract
      *
      * @param  string  $accountNumber
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Billplz\Response
      */
     public function get(string $accountNumber): Response
     {
@@ -29,7 +29,7 @@ abstract class BankAccount extends Request implements Contract
      * @param  string  $code
      * @param  bool $organization
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Billplz\Response
      */
     public function create(
         string $name,
@@ -50,7 +50,7 @@ abstract class BankAccount extends Request implements Contract
      *
      * @param  string  $accountNumber
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Billplz\Response
      */
     public function checkAccount(string $accountNumber): Response
     {
@@ -60,7 +60,7 @@ abstract class BankAccount extends Request implements Contract
     /**
      * Get list of bank for Bank Direct Feature.
      *
-     * @return \Laravie\Codex\Contracts\Response
+     * @return \Billplz\Response
      */
     public function supportedForFpx(): Response
     {
