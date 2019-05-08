@@ -14,7 +14,7 @@ class PaymentGateway extends Request
      */
     protected $version = 'v4';
 
-     /**
+    /**
      * Get payment gateways index.
      *
      * @return \Billplz\Response
