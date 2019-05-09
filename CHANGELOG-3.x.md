@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 3.1.1
+
+Released: 2019-05-09
+
+### Added
+
+* Added `Billplz\Four\PaymentGateway` based on <https://billplz.com/api#get-payment-gateways>.
+
 ## 3.1.0
 
 Released: 2019-03-31
