@@ -18,6 +18,14 @@ Released: 2019-03-31
 
 * Update Laravie Codex to v5.0+.
 
+## 3.0.3
+
+Released: 2019-05-24
+
+### Added
+
+* Added `Billplz\Four\PaymentGateway` based on <https://billplz.com/api#get-payment-gateways>.
+
 ## 3.0.2
 
 Released: 2019-03-31
