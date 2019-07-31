@@ -207,10 +207,8 @@ class Client extends \Laravie\Codex\Client
      * Get payout instruction collection resource.
      *
      * @return \BIllplz\Contracts\Collection\Payout
-     *
-     * @deprecated v3.2.0
      */
-    final public function massPaymentCollection(): Contracts\Collection\Payout
+    final public function payoutCollection(): Contracts\Collection\Payout
     {
         return $this->uses('Collection.Payout', 'v4');
     }
