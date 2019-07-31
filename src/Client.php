@@ -183,6 +183,8 @@ class Client extends \Laravie\Codex\Client
      * Get mass payment instruction collection resource.
      *
      * @return \BIllplz\Contracts\Collection\MassPayment
+     *
+     * @deprecated v3.2.0
      */
     final public function massPaymentCollection(): Contracts\Collection\MassPayment
     {
@@ -193,10 +195,34 @@ class Client extends \Laravie\Codex\Client
      * Get mass payment instruction resource.
      *
      * @return \Billplz\Contracts\MassPayment
+     *
+     * @deprecated v3.2.0
      */
     final public function massPayment(): Contracts\MassPayment
     {
         return $this->uses('MassPayment', 'v4');
+    }
+
+    /**
+     * Get payout instruction collection resource.
+     *
+     * @return \BIllplz\Contracts\Collection\Payout
+     *
+     * @deprecated v3.2.0
+     */
+    final public function massPaymentCollection(): Contracts\Collection\Payout
+    {
+        return $this->uses('Collection.Payout', 'v4');
+    }
+
+    /**
+     * Get payout instruction resource.
+     *
+     * @return \Billplz\Contracts\Payout
+     */
+    final public function payout(): Contracts\Payout
+    {
+        return $this->uses('Payout', 'v4');
     }
 
     /**
