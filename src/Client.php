@@ -136,7 +136,7 @@ class Client extends \Laravie\Codex\Client
      *
      * @param  string|null  $version
      *
-     * @return \BIllplz\Contracts\Collection
+     * @return \Billplz\Contracts\Collection
      */
     final public function collection(?string $version = null): Contracts\Collection
     {
@@ -148,7 +148,7 @@ class Client extends \Laravie\Codex\Client
      *
      * @param  string|null  $version
      *
-     * @return \BIllplz\Contracts\OpenCollection
+     * @return \Billplz\Contracts\OpenCollection
      */
     final public function openCollection(?string $version = null): Contracts\OpenCollection
     {
@@ -182,7 +182,7 @@ class Client extends \Laravie\Codex\Client
     /**
      * Get mass payment instruction collection resource.
      *
-     * @return \BIllplz\Contracts\Collection\MassPayment
+     * @return \Billplz\Contracts\Collection\MassPayment
      *
      * @deprecated v3.2.0
      */
@@ -206,7 +206,7 @@ class Client extends \Laravie\Codex\Client
     /**
      * Get payout instruction collection resource.
      *
-     * @return \BIllplz\Contracts\Collection\Payout
+     * @return \Billplz\Contracts\Collection\Payout
      */
     final public function payoutCollection(): Contracts\Collection\Payout
     {

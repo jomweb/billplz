@@ -2,6 +2,20 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 3.2.0
+
+Released: 2019-08-28
+
+### Added
+
+* Added `Billplz\Contracts\Payout` and `Billplz\Contracts\Collection\Payout` contract and it's implementation.
+* Added `Billplz\Client::payout()` and `Billplz\Client::payoutCollection()`.
+
+### Deprecated
+
+* Added `Billplz\Contracts\MassPayment` and `Billplz\Contracts\Collection\MassPayment` contract and it's implementation.
+* Added `Billplz\Client::massPayment()` and `Billplz\Client::massPaymentCollection()`.
+
 ## 3.1.1
 
 Released: 2019-05-09
