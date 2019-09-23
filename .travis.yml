@@ -33,7 +33,7 @@ matrix:
     - php: 7.4snapshot
       env: setup=basic
     - php: 7.4snapshot
-      env: setup=latest
+      env: setup=stable
     - php: 7.1
       env: setup=coveralls coverage=yes
   allow_failures:
