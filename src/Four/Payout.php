@@ -4,7 +4,7 @@ namespace Billplz\Four;
 
 use Billplz\Request;
 use Laravie\Codex\Contracts\Response;
-use Billplz\Contracts\MassPayment as Contract;
+use Billplz\Contracts\Payout as Contract;
 
 class Payout extends Request implements Contract
 {

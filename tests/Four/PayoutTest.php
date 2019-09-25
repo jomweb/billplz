@@ -5,7 +5,7 @@ namespace Billplz\Tests\Four;
 use Billplz\Tests\TestCase;
 use Laravie\Codex\Contracts\Response;
 
-class MassPaymentTest extends TestCase
+class PayoutTest extends TestCase
 {
     /**
      * API Version.
@@ -17,9 +17,9 @@ class MassPaymentTest extends TestCase
     /** @test */
     public function it_resolve_the_correct_version()
     {
-        $payment = $this->makeClient()->uses('MassPayment', 'v4');
+        $payment = $this->makeClient()->uses('Payout', 'v4');
 
-        $this->assertInstanceOf('Billplz\Four\MassPayment', $payment);
+        $this->assertInstanceOf('Billplz\Four\Payout', $payment);
         $this->assertSame('v4', $payment->getVersion());
     }
 
@@ -31,7 +31,7 @@ class MassPaymentTest extends TestCase
         $faker = $this->expectRequest('GET', 'mass_payment_instructions/afae4bqf')
                     ->shouldResponseWith(200, $expected);
 
-        $response = $this->makeClient($faker)->uses('MassPayment')->get('afae4bqf');
+        $response = $this->makeClient($faker)->uses('Payout')->get('afae4bqf');
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
@@ -56,7 +56,7 @@ class MassPaymentTest extends TestCase
         $faker = $this->expectRequest('POST', 'mass_payment_instructions', [], $payload)
                     ->shouldResponseWith(200, $expected);
 
-        $response = $this->makeClient($faker)->uses('MassPayment')->create(
+        $response = $this->makeClient($faker)->uses('Payout')->create(
             '4po8no8h', 'MBBEMYKL', '820808062202123', '820808062202', 'Michael Yap', 'Maecenas eu placerat ante.', 2000
         );
 

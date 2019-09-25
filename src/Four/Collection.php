@@ -45,10 +45,10 @@ class Collection extends Request
     /**
      * Get mass payment instruction collection resource.
      *
-     * @return \Billplz\Four\Collection\MassPayment
+     * @return \Billplz\Four\Collection\Payout
      */
-    public function massPayment(): Collection\MassPayment
+    public function payout(): Collection\Payout
     {
-        return $this->client->uses('Collection.MassPayment', $this->getVersion());
+        return $this->client->uses('Collection.Payout', $this->getVersion());
     }
 }

@@ -5,7 +5,7 @@ namespace Billplz\Tests\Four\Collection;
 use Billplz\Tests\TestCase;
 use Laravie\Codex\Contracts\Response;
 
-class MassPaymentTest extends TestCase
+class PayoutTest extends TestCase
 {
     /**
      * API Version.
@@ -17,9 +17,9 @@ class MassPaymentTest extends TestCase
     /** @test */
     public function it_resolve_the_correct_version()
     {
-        $payment = $this->makeClient()->uses('Collection.MassPayment', 'v4');
+        $payment = $this->makeClient()->uses('Collection.Payout', 'v4');
 
-        $this->assertInstanceOf('Billplz\Four\Collection\MassPayment', $payment);
+        $this->assertInstanceOf('Billplz\Four\Collection\Payout', $payment);
         $this->assertSame('v4', $payment->getVersion());
     }
 
@@ -31,7 +31,7 @@ class MassPaymentTest extends TestCase
         $faker = $this->expectRequest('GET', 'mass_payment_instruction_collections/4po8no8h')
                     ->shouldResponseWith(200, $expected);
 
-        $response = $this->makeClient($faker)->uses('Collection.MassPayment')->get('4po8no8h');
+        $response = $this->makeClient($faker)->uses('Collection.Payout')->get('4po8no8h');
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
@@ -46,7 +46,7 @@ class MassPaymentTest extends TestCase
         $faker = $this->expectRequest('POST', 'mass_payment_instruction_collections', [], ['title' => 'My First API MPI Collection'])
                     ->shouldResponseWith(200, $expected);
 
-        $response = $this->makeClient($faker)->uses('Collection.MassPayment')->create('My First API MPI Collection');
+        $response = $this->makeClient($faker)->uses('Collection.Payout')->create('My First API MPI Collection');
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());

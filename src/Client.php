@@ -180,30 +180,6 @@ class Client extends \Laravie\Codex\Client
     }
 
     /**
-     * Get mass payment instruction collection resource.
-     *
-     * @return \Billplz\Contracts\Collection\MassPayment
-     *
-     * @deprecated v3.2.0
-     */
-    final public function massPaymentCollection(): Contracts\Collection\MassPayment
-    {
-        return $this->uses('Collection.MassPayment', 'v4');
-    }
-
-    /**
-     * Get mass payment instruction resource.
-     *
-     * @return \Billplz\Contracts\MassPayment
-     *
-     * @deprecated v3.2.0
-     */
-    final public function massPayment(): Contracts\MassPayment
-    {
-        return $this->uses('MassPayment', 'v4');
-    }
-
-    /**
      * Get payout instruction collection resource.
      *
      * @return \Billplz\Contracts\Collection\Payout

@@ -39,11 +39,11 @@ class CollectionTest extends CollectionTestCase
     }
 
     /** @test */
-    public function it_can_retrieve_mass_payment_instance()
+    public function it_can_retrieve_payout_instance()
     {
-        $massPayment = $this->makeClient()->collection('v4')->massPayment();
+        $massPayment = $this->makeClient()->collection('v4')->payout();
 
-        $this->assertInstanceOf('Billplz\Four\Collection\MassPayment', $massPayment);
+        $this->assertInstanceOf('Billplz\Four\Collection\Payout', $massPayment);
         $this->assertSame('v4', $massPayment->getVersion());
     }
 }

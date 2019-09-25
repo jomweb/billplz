@@ -89,23 +89,23 @@ class ClientTest extends TestCase
     }
 
     /** @test */
-    public function it_can_retrieve_mass_payment_collection_instance()
+    public function it_can_retrieve_payout_collection_instance()
     {
         $client = $this->makeClient();
 
-        $massPaymentCollection = $client->massPaymentCollection('v4');
+        $payoutCollection = $client->payoutCollection('v4');
 
-        $this->assertInstanceOf('Billplz\Four\Collection\MassPayment', $massPaymentCollection);
+        $this->assertInstanceOf('Billplz\Four\Collection\Payout', $payoutCollection);
     }
 
     /** @test */
-    public function it_can_retrieve_mass_payment_instance()
+    public function it_can_retrieve_payout_instance()
     {
         $client = $this->makeClient();
 
-        $massPayment = $client->massPayment('v4');
+        $payout = $client->payout('v4');
 
-        $this->assertInstanceOf('Billplz\Four\MassPayment', $massPayment);
+        $this->assertInstanceOf('Billplz\Four\Payout', $payout);
     }
 
     /** @test */
