@@ -21,15 +21,9 @@ abstract class Collection extends Request implements Contract
      */
     public function create(string $title, array $optional = []): Response
     {
-        $files = [];
         $body = \array_merge(\compact('title'), $optional);
 
-        if (isset($body['logo'])) {
-            $files['logo'] = \ltrim($body['logo'], '@');
-            unset($body['logo']);
-        }
-
-        list($headers, $stream) = $this->prepareMultipartRequestPayloads([], $body, $files);
+        [$headers, $stream] = $this->prepareMultipartRequestPayloads([], $body);
 
         return $this->stream('POST', 'collections', $headers, $stream);
     }
