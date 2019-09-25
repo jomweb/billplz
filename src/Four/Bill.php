@@ -91,4 +91,23 @@ class Bill extends Request
             return parent::destroy($id);
         });
     }
+
+    /**
+     * Bill payment using Visa/MasterCard card via generated token.
+     *
+     * @param  string  $id
+     * @param  string  $cardId
+     * @param  string  $cardToken
+     *
+     * @return \Billplz\Response
+     */
+    public function charge(string $id, string $cardId, string $cardToken): Response
+    {
+        $body = [
+            'card_id' => $cardId,
+            'token' => $cardToken,
+        ];
+
+        return $this->send('POST', "bills/{$id}/charge", [], $body);
+    }
 }
