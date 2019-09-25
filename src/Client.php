@@ -212,6 +212,18 @@ class Client extends \Laravie\Codex\Client
     }
 
     /**
+     * Get card resource.
+     *
+     * @param  string|null  $version
+     *
+     * @return \Billplz\Contracts\Card
+     */
+    final public function card(): Contracts\Card
+    {
+        return $this->uses('Card', 'v4');
+    }
+
+    /**
      * Get resource default namespace.
      *
      * @return string
