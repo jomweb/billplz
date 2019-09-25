@@ -47,7 +47,6 @@ class Bill extends Request
         });
     }
 
-
     /**
      * Show an existing bill.
      *
@@ -76,7 +75,6 @@ class Bill extends Request
             return parent::transaction($id, $optional);
         });
     }
-
 
     /**
      * Destroy an existing bill.

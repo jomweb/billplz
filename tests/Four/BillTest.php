@@ -2,8 +2,8 @@
 
 namespace Billplz\Tests\Four;
 
-use Billplz\Tests\Base\BillTestCase;
 use Duit\MYR;
+use Billplz\Tests\Base\BillTestCase;
 use Laravie\Codex\Contracts\Response;
 
 class BillTest extends BillTestCase
