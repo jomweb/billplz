@@ -2,7 +2,7 @@
 
 namespace Billplz\Four;
 
-use Billplz\Three\Bill as Request;
+use Billplz\Base\Bill as Request;
 use Laravie\Codex\Contracts\Response;
 
 class Bill extends Request

@@ -19,7 +19,7 @@ class BillTest extends BillTestCase
         $bill = $this->makeClient()->bill('v4');
 
         $this->assertInstanceOf('Billplz\Four\Bill', $bill);
-        $this->assertInstanceOf('Billplz\Three\Bill', $bill);
+        $this->assertInstanceOf('Billplz\Base\Bill', $bill);
         $this->assertSame('v4', $bill->getVersion());
     }
 
