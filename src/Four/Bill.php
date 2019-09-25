@@ -40,7 +40,7 @@ class Bill extends Request
         string $description,
         array $optional = []
     ): Response {
-        $parameters = func_get_args();
+        $parameters = \func_get_args();
 
         return $this->proxyRequestViaVersion('v3', function () use ($parameters) {
             return parent::create(...$parameters);
