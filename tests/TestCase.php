@@ -28,6 +28,13 @@ class TestCase extends PHPUnit
     protected $apiVersion;
 
     /**
+     * API Version on the request.
+     *
+     * @var string
+     */
+    protected $proxyApiVersion;
+
+    /**
      * Teardown the test environment.
      */
     protected function tearDown(): void
@@ -49,7 +56,7 @@ class TestCase extends PHPUnit
     protected function expectRequest($method = 'GET', $uri = '/', array $headers = [], array $body = [])
     {
         $endpoint = sprintf(
-            'https://%s@%s/%s/%s', '73eb57f0-7d4e-42b9-a544-aeac6e4b0f81', $this->apiEndpoint, $this->apiVersion, $uri
+            'https://%s@%s/%s/%s', '73eb57f0-7d4e-42b9-a544-aeac6e4b0f81', $this->apiEndpoint, $this->proxyApiVersion ?? $this->apiVersion, $uri
         );
 
         return Faker::create()
@@ -69,7 +76,7 @@ class TestCase extends PHPUnit
     protected function expectStreamRequest($method = 'GET', $uri = '/', array $headers = [], array $body = [])
     {
         $endpoint = sprintf(
-            'https://%s@%s/%s/%s', '73eb57f0-7d4e-42b9-a544-aeac6e4b0f81', $this->apiEndpoint, $this->apiVersion, $uri
+            'https://%s@%s/%s/%s', '73eb57f0-7d4e-42b9-a544-aeac6e4b0f81', $this->apiEndpoint, $this->proxyApiVersion ?? $this->apiVersion, $uri
         );
 
         return Faker::create()
