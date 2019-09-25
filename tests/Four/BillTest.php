@@ -28,7 +28,7 @@ class BillTest extends BillTestCase
     /** @test */
     public function it_can_be_created()
     {
-        $this->apiVersion = 'v3';
+        $this->proxyApiVersion = 'v3';
 
         parent::it_can_be_created();
     }
@@ -36,7 +36,7 @@ class BillTest extends BillTestCase
     /** @test */
     public function it_can_be_created_with_url_as_array()
     {
-        $this->apiVersion = 'v3';
+        $this->proxyApiVersion = 'v3';
 
         parent::it_can_be_created_with_url_as_array();
     }
@@ -44,7 +44,7 @@ class BillTest extends BillTestCase
     /** @test */
     public function it_can_show_existing_bill()
     {
-        $this->apiVersion = 'v3';
+        $this->proxyApiVersion = 'v3';
 
         parent::it_can_show_existing_bill();
     }
@@ -52,7 +52,7 @@ class BillTest extends BillTestCase
     /** @test */
     public function it_can_delete_existing_bill()
     {
-        $this->apiVersion = 'v3';
+        $this->proxyApiVersion = 'v3';
 
         parent::it_can_delete_existing_bill();
     }
@@ -60,7 +60,7 @@ class BillTest extends BillTestCase
     /** @test */
     public function it_can_check_bill_transaction()
     {
-        $this->apiVersion = 'v3';
+        $this->proxyApiVersion = 'v3';
 
         parent::it_can_check_bill_transaction();
     }
