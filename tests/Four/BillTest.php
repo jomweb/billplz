@@ -11,7 +11,7 @@ class BillTest extends BillTestCase
      *
      * @var string
      */
-    protected $apiVersion = 'v3';
+    protected $apiVersion = 'v4';
 
     /** @test */
     public function it_can_called_via_helper()
@@ -20,6 +20,46 @@ class BillTest extends BillTestCase
 
         $this->assertInstanceOf('Billplz\Four\Bill', $bill);
         $this->assertInstanceOf('Billplz\Three\Bill', $bill);
-        $this->assertSame('v3', $bill->getVersion());
+        $this->assertSame('v4', $bill->getVersion());
+    }
+
+    /** @test */
+    public function it_can_be_created()
+    {
+        $this->apiVersion = 'v3';
+
+        parent::it_can_be_created();
+    }
+
+    /** @test */
+    public function it_can_be_created_with_url_as_array()
+    {
+        $this->apiVersion = 'v3';
+
+        parent::it_can_be_created_with_url_as_array();
+    }
+
+    /** @test */
+    public function it_can_show_existing_bill()
+    {
+        $this->apiVersion = 'v3';
+
+        parent::it_can_show_existing_bill();
+    }
+
+    /** @test */
+    public function it_can_delete_existing_bill()
+    {
+        $this->apiVersion = 'v3';
+
+        parent::it_can_delete_existing_bill();
+    }
+
+    /** @test */
+    public function it_can_check_bill_transaction()
+    {
+        $this->apiVersion = 'v3';
+
+        parent::it_can_check_bill_transaction();
     }
 }

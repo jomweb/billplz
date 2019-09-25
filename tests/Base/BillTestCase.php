@@ -14,7 +14,7 @@ abstract class BillTestCase extends TestCase
         $bill = $this->makeClient()->bill();
 
         $this->assertInstanceOf('Billplz\Base\Bill', $bill);
-        $this->assertSame('v3', $bill->getVersion());
+        $this->assertSame($this->apiVersion, $bill->getVersion());
     }
 
     /** @test */
