@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 3.2.1
+
+Released: 2019-09-26
+
+### Changes
+
+* Only process `logo` options when creating Collection on `Billplz\Three\Collection` request.
+* Refactor proxy requests on `Billplz\Four\Client`.
+
 ## 3.2.0
 
 Released: 2019-08-28

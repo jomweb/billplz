@@ -29,7 +29,7 @@ class OpenCollection extends Request implements Contract
     ): Response {
         $body = \array_merge(\compact('title', 'description', 'amount'), $optional);
 
-        list($headers, $stream) = $this->prepareMultipartRequestPayloads([], $body);
+        [$headers, $stream] = $this->prepareMultipartRequestPayloads([], $body);
 
         return $this->stream('POST', 'open_collections', $headers, $body);
     }
