@@ -2,9 +2,10 @@
 
 namespace Billplz\Contracts;
 
+use Laravie\Codex\Contracts\Request;
 use Laravie\Codex\Contracts\Response;
 
-interface OpenCollection
+interface OpenCollection extends Request
 {
     /**
      * Create a new open collection.

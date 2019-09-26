@@ -7,8 +7,9 @@ use InvalidArgumentException;
 use Laravie\Codex\Contracts\Response;
 use Billplz\Contracts\Bill as Contract;
 use Laravie\Codex\Concerns\Request\Multipart;
+use Billplz\Contracts\PaymentCompletion as PaymentCompletionContract;
 
-abstract class Bill extends Request implements Contract
+abstract class Bill extends Request implements Contract, PaymentCompletionContract
 {
     use Multipart,
         PaymentCompletion;

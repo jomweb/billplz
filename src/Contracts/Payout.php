@@ -2,9 +2,10 @@
 
 namespace Billplz\Contracts;
 
+use Laravie\Codex\Contracts\Request;
 use Laravie\Codex\Contracts\Response;
 
-interface Payout
+interface Payout extends Request
 {
     /**
      * Create a new mass payment instruction (mpi).

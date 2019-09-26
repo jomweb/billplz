@@ -2,9 +2,10 @@
 
 namespace Billplz\Contracts;
 
+use Laravie\Codex\Contracts\Request;
 use Laravie\Codex\Contracts\Response;
 
-interface Card
+interface Card extends Request
 {
     /**
      * Create new card token.
