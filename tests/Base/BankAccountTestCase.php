@@ -23,7 +23,7 @@ abstract class BankAccountTestCase extends TestCase
         $expected = '{"name":"sara","id_no":"820909101001","acc_no":"1234567890","code":"MBBEMYKL","organization":false,"authorization_date":"2015-12-03","status":"pending","processed_at":null,"rejected_desc":null}';
 
         $faker = $this->expectRequest('GET', "bank_verification_services/{$bank_account_number}")
-                        ->shouldResponseWith(200, $expected);
+                        ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)
                         ->uses('BankAccount')
@@ -32,6 +32,9 @@ abstract class BankAccountTestCase extends TestCase
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame($expected, $response->getBody());
+        $this->assertNull($response->rateLimit());
+        $this->assertNull($response->remainingRateLimit());
+        $this->assertSame(0, $response->rateLimitNextReset());
     }
 
     /** @test */
@@ -48,7 +51,7 @@ abstract class BankAccountTestCase extends TestCase
         ];
 
         $faker = $this->expectRequest('POST', 'bank_verification_services', [], $data)
-                ->shouldResponseWith(200, $expected);
+                ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)
                         ->uses('BankAccount')
@@ -63,6 +66,9 @@ abstract class BankAccountTestCase extends TestCase
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame($expected, $response->getBody());
+        $this->assertNull($response->rateLimit());
+        $this->assertNull($response->remainingRateLimit());
+        $this->assertSame(0, $response->rateLimitNextReset());
     }
 
     /** @test */
@@ -71,7 +77,7 @@ abstract class BankAccountTestCase extends TestCase
         $expected = '{"verified":true}';
 
         $faker = $this->expectRequest('GET', 'check/bank_account_number/jomlaunch')
-                        ->shouldResponseWith(200, $expected);
+                        ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)
                         ->uses('BankAccount')
@@ -80,6 +86,9 @@ abstract class BankAccountTestCase extends TestCase
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame($expected, $response->getBody());
+        $this->assertNull($response->rateLimit());
+        $this->assertNull($response->remainingRateLimit());
+        $this->assertSame(0, $response->rateLimitNextReset());
     }
 
     /** @test */
@@ -88,7 +97,7 @@ abstract class BankAccountTestCase extends TestCase
         $expected = '{"bank":[{"name":"PBB0233","active":true},{"name":"MBB0227","active":true},{"name":"MBB0228","active":true}]}';
 
         $faker = $this->expectRequest('GET', 'fpx_banks')
-                        ->shouldResponseWith(200, $expected);
+                        ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)
                         ->uses('BankAccount')
@@ -97,5 +106,8 @@ abstract class BankAccountTestCase extends TestCase
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame($expected, $response->getBody());
+        $this->assertNull($response->rateLimit());
+        $this->assertNull($response->remainingRateLimit());
+        $this->assertSame(0, $response->rateLimitNextReset());
     }
 }

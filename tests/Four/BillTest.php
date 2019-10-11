@@ -50,6 +50,22 @@ class BillTest extends BillTestCase
     }
 
     /** @test */
+    public function it_can_show_existing_bill_with_unlimited_request_limiter()
+    {
+        $this->proxyApiVersion = 'v3';
+
+        parent::it_can_show_existing_bill_with_unlimited_request_limiter();
+    }
+
+    /** @test */
+    public function it_cant_show_existing_bill_when_exceed_request_limiter()
+    {
+        $this->proxyApiVersion = 'v3';
+
+        parent::it_cant_show_existing_bill_when_exceed_request_limiter();
+    }
+
+    /** @test */
     public function it_can_delete_existing_bill()
     {
         $this->proxyApiVersion = 'v3';

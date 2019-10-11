@@ -29,13 +29,16 @@ class PayoutTest extends TestCase
         $expected = '{"id":"afae4bqf","mass_payment_instruction_collection_id":"4po8no8h","bank_code":"MBBEMYKL","bank_account_number":"820808062202123","identity_number":820808062202,"name":"Michael Yap","description":"Maecenas eu placerat ante.","email":"hello@billplz.com","status":"processing","notification":false,"recipient_notification":true,"total":"2000"}';
 
         $faker = $this->expectRequest('GET', 'mass_payment_instructions/afae4bqf')
-                    ->shouldResponseWith(200, $expected);
+                    ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)->uses('Payout')->get('afae4bqf');
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame($expected, $response->getBody());
+        $this->assertNull($response->rateLimit());
+        $this->assertNull($response->remainingRateLimit());
+        $this->assertSame(0, $response->rateLimitNextReset());
     }
 
     /** @test */
@@ -54,7 +57,7 @@ class PayoutTest extends TestCase
         ];
 
         $faker = $this->expectRequest('POST', 'mass_payment_instructions', [], $payload)
-                    ->shouldResponseWith(200, $expected);
+                    ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)->uses('Payout')->create(
             '4po8no8h', 'MBBEMYKL', '820808062202123', '820808062202', 'Michael Yap', 'Maecenas eu placerat ante.', 2000
@@ -63,5 +66,8 @@ class PayoutTest extends TestCase
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame($expected, $response->getBody());
+        $this->assertNull($response->rateLimit());
+        $this->assertNull($response->remainingRateLimit());
+        $this->assertSame(0, $response->rateLimitNextReset());
     }
 }

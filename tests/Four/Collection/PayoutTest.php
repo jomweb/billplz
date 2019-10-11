@@ -29,13 +29,16 @@ class PayoutTest extends TestCase
         $expected = '{"id":"4po8no8h","title":"My First API MPI Collection","mass_payment_instructions_count":"0","paid_amount":"0","status":"active"}';
 
         $faker = $this->expectRequest('GET', 'mass_payment_instruction_collections/4po8no8h')
-                    ->shouldResponseWith(200, $expected);
+                    ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)->uses('Collection.Payout')->get('4po8no8h');
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame($expected, $response->getBody());
+        $this->assertNull($response->rateLimit());
+        $this->assertNull($response->remainingRateLimit());
+        $this->assertSame(0, $response->rateLimitNextReset());
     }
 
     /** @test */
@@ -44,12 +47,15 @@ class PayoutTest extends TestCase
         $expected = '{"id":"4po8no8h","title":"My First API MPI Collection","mass_payment_instructions_count":"0","paid_amount":"0","status":"active"}';
 
         $faker = $this->expectRequest('POST', 'mass_payment_instruction_collections', [], ['title' => 'My First API MPI Collection'])
-                    ->shouldResponseWith(200, $expected);
+                    ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)->uses('Collection.Payout')->create('My First API MPI Collection');
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame($expected, $response->getBody());
+        $this->assertNull($response->rateLimit());
+        $this->assertNull($response->remainingRateLimit());
+        $this->assertSame(0, $response->rateLimitNextReset());
     }
 }

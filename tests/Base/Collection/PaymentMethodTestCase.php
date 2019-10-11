@@ -12,13 +12,17 @@ class PaymentMethodTestCase extends TestCase
     {
         $expected = '{"payment_methods":[{"code": "paypal","name": "PAYPAL","active": true},{"code": "fpx","name": "Online Banking","active": false}]}';
 
-        $faker = $this->expectRequest('GET', 'collections/0idsxnh5/payment_methods')->shouldResponseWith(200, $expected);
+        $faker = $this->expectRequest('GET', 'collections/0idsxnh5/payment_methods')
+            ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)->uses('Collection.PaymentMethod')->get('0idsxnh5');
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame($expected, $response->getBody());
+        $this->assertNull($response->rateLimit());
+        $this->assertNull($response->remainingRateLimit());
+        $this->assertSame(0, $response->rateLimitNextReset());
     }
 
     /** @test */
@@ -31,12 +35,15 @@ class PaymentMethodTestCase extends TestCase
         ];
 
         $faker = $this->expectRequest('PUT', 'collections/0idsxnh5/payment_methods', [], $payload)
-                        ->shouldResponseWith(200, $expected);
+                        ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)->uses('Collection.PaymentMethod')->update('0idsxnh5', ['fpx', 'paypal']);
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame($expected, $response->getBody());
+        $this->assertNull($response->rateLimit());
+        $this->assertNull($response->remainingRateLimit());
+        $this->assertSame(0, $response->rateLimitNextReset());
     }
 }

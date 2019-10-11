@@ -5,6 +5,7 @@ namespace Billplz\Tests\Base;
 use Duit\MYR;
 use Billplz\Tests\TestCase;
 use Laravie\Codex\Response;
+use Laravie\Codex\Exceptions\HttpException;
 
 abstract class BillTestCase extends TestCase
 {
@@ -33,7 +34,7 @@ abstract class BillTestCase extends TestCase
         $expected = '{"id":"8X0Iyzaw","collection_id":"inbmmepb","paid":false,"state":"due","amount":200,"paid_amount":0,"due_at":"2015-3-9","email":"api@billplz.com","mobile":null,"name":"MICHAEL API V3","url":"https:\/\/www.billplz.com\/bills\/8X0Iyzaw","reference_1_label":"Reference 1","reference_1":null,"reference_2_label":"Reference 2","reference_2":null,"redirect_url":null,"callback_url":"http:\/\/example.com\/webhook\/","description":"Maecenas eu placerat ante."}';
 
         $faker = $this->expectStreamRequest('POST', 'bills', [], $payload)
-                        ->shouldResponseWith(200, $expected);
+                        ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)
                         ->uses('Bill')
@@ -50,6 +51,9 @@ abstract class BillTestCase extends TestCase
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame($expected, $response->getBody());
+        $this->assertNull($response->rateLimit());
+        $this->assertNull($response->remainingRateLimit());
+        $this->assertSame(0, $response->rateLimitNextReset());
     }
 
     /** @test */
@@ -69,7 +73,7 @@ abstract class BillTestCase extends TestCase
         $expected = '{"id":"8X0Iyzaw","collection_id":"inbmmepb","paid":false,"state":"due","amount":200,"paid_amount":0,"due_at":"2015-3-9","email":"api@billplz.com","mobile":null,"name":"MICHAEL API V3","url":"https:\/\/www.billplz.com\/bills\/8X0Iyzaw","reference_1_label":"Reference 1","reference_1":null,"reference_2_label":"Reference 2","reference_2":null,"redirect_url":"http:\/\/example.com\/paid\/","callback_url":"http:\/\/example.com\/webhook\/","description":"Maecenas eu placerat ante."}';
 
         $faker = $this->expectStreamRequest('POST', 'bills', [], $payload)
-                        ->shouldResponseWith(200, $expected);
+                        ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)
                         ->uses('Bill')
@@ -89,6 +93,9 @@ abstract class BillTestCase extends TestCase
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame($expected, $response->getBody());
+        $this->assertNull($response->rateLimit());
+        $this->assertNull($response->remainingRateLimit());
+        $this->assertSame(0, $response->rateLimitNextReset());
     }
 
     /** @test */
@@ -126,7 +133,11 @@ abstract class BillTestCase extends TestCase
         $expected = '{"id":"8X0Iyzaw","collection_id":"inbmmepb","paid":false,"state":"due","amount":200,"paid_amount":0,"due_at":"2020-12-31","email":"api@billplz.com","mobile":"+60112223333","name":"MICHAEL API V3","url":"https:\/\/www.billplz.com\/bills\/8X0Iyzaw","reference_1_label":"First Name","reference_1":"Jordan","reference_2_label":"Last Name","reference_2":"Michael","redirect_url":"http:\/\/example.com\/redirect\/","callback_url":"http:\/\/example.com\/webhook\/","description":"Maecenas eu placerat ante."}';
 
         $faker = $this->expectRequest('GET', 'bills/8X0Iyzaw')
-                        ->shouldResponseWith(200, $expected);
+                        ->shouldResponseWithJson(200, $expected, [
+                            'RateLimit-Limit' => 300,
+                            'RateLimit-Remaining' => 299,
+                            'RateLimit-Reset' => 899,
+                        ]);
 
         $response = $this->makeClient($faker)
                         ->uses('Bill')
@@ -141,6 +152,59 @@ abstract class BillTestCase extends TestCase
         $this->assertInstanceOf(MYR::class, $bill['amount']);
         $this->assertSame('2.00', $bill['amount']->amount());
         $this->assertSame('inbmmepb', $bill['collection_id']);
+        $this->assertSame(300, $response->rateLimit());
+        $this->assertSame(299, $response->remainingRateLimit());
+        $this->assertSame(899, $response->rateLimitNextReset());
+    }
+
+    /** @test */
+    public function it_can_show_existing_bill_with_unlimited_request_limiter()
+    {
+        $expected = '{"id":"8X0Iyzaw","collection_id":"inbmmepb","paid":false,"state":"due","amount":200,"paid_amount":0,"due_at":"2020-12-31","email":"api@billplz.com","mobile":"+60112223333","name":"MICHAEL API V3","url":"https:\/\/www.billplz.com\/bills\/8X0Iyzaw","reference_1_label":"First Name","reference_1":"Jordan","reference_2_label":"Last Name","reference_2":"Michael","redirect_url":"http:\/\/example.com\/redirect\/","callback_url":"http:\/\/example.com\/webhook\/","description":"Maecenas eu placerat ante."}';
+
+        $faker = $this->expectRequest('GET', 'bills/8X0Iyzaw')
+                        ->shouldResponseWithJson(200, $expected, [
+                            'RateLimit-Limit' => 'unlimited',
+                            'RateLimit-Remaining' => 'unlimited',
+                            'RateLimit-Reset' => 'unlimited',
+                        ]);
+
+        $response = $this->makeClient($faker)
+                        ->uses('Bill')
+                        ->get('8X0Iyzaw');
+
+        $bill = $response->toArray();
+
+        $this->assertInstanceOf(MYR::class, $bill['amount']);
+        $this->assertSame('2.00', $bill['amount']->amount());
+        $this->assertSame('inbmmepb', $bill['collection_id']);
+        $this->assertNull($response->rateLimit());
+        $this->assertNull($response->remainingRateLimit());
+        $this->assertSame(0, $response->rateLimitNextReset());
+    }
+
+    /** @test */
+    public function it_cant_show_existing_bill_when_exceed_request_limiter()
+    {
+        $this->expectException('Billplz\Exceptions\ExceedRequestLimiter');
+
+        $expected = '{"error":{"type":"RateLimit","message":"Too many requests"}}';
+
+        $faker = $this->expectRequest('GET', 'bills/8X0Iyzaw')
+                        ->shouldResponseWithJson(419, $expected, [
+                            'RateLimit-Limit' => 300,
+                            'RateLimit-Remaining' => 0,
+                            'RateLimit-Reset' => 299,
+                        ]);
+
+        try {
+            $response = $this->makeClient($faker)
+                            ->uses('Bill')
+                            ->get('8X0Iyzaw');
+        } catch (HttpException $e) {
+            $this->assertSame(299, $e->timeRemaining());
+            throw $e;
+        }
     }
 
     /** @test */
@@ -149,7 +213,7 @@ abstract class BillTestCase extends TestCase
         $expected = '[]';
 
         $faker = $this->expectRequest('DELETE', 'bills/8X0Iyzaw')
-                        ->shouldResponseWith(200, $expected);
+                        ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)
                         ->uses('Bill')
@@ -159,6 +223,9 @@ abstract class BillTestCase extends TestCase
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame($expected, $response->getBody());
         $this->assertSame([], $response->toArray());
+        $this->assertNull($response->rateLimit());
+        $this->assertNull($response->remainingRateLimit());
+        $this->assertSame(0, $response->rateLimitNextReset());
     }
 
     /** @test */
@@ -167,7 +234,7 @@ abstract class BillTestCase extends TestCase
         $expected = '{"bill_id":"inbmmepb","transactions":[{"id":"60793D4707CD","status":"completed","completed_at":"2017-02-23T12:49:23.612+08:00","payment_channel":"FPX"},{"id":"28F3D3194138","status":"failed","completed_at":,"payment_channel":"FPX"}],"page":1}';
 
         $faker = $this->expectRequest('GET', 'bills/inbmmepb/transactions')
-                        ->shouldResponseWith(200, $expected);
+                        ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)
                         ->uses('Bill')
@@ -176,6 +243,9 @@ abstract class BillTestCase extends TestCase
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame($expected, $response->getBody());
+        $this->assertNull($response->rateLimit());
+        $this->assertNull($response->remainingRateLimit());
+        $this->assertSame(0, $response->rateLimitNextReset());
     }
 
     /** @test */
