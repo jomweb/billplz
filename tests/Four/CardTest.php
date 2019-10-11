@@ -64,7 +64,6 @@ class CardTest extends TestCase
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame($expected, $response->getBody());
 
-
         $card = $response->toArray();
 
         $this->assertSame('8727fc3a-c04c-4c2b-9b67-947b5cfc2fb6', $card['id']);
@@ -97,7 +96,6 @@ class CardTest extends TestCase
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame($expected, $response->getBody());
 
-
         $card = $response->toArray();
 
         $this->assertSame('8727fc3a-c04c-4c2b-9b67-947b5cfc2fb6', $card['id']);
@@ -108,7 +106,7 @@ class CardTest extends TestCase
         $this->assertTrue($card['active']);
     }
 
-     /** @test */
+    /** @test */
     public function it_can_deactivate_a_credit_card()
     {
         $cardId = '8727fc3a-c04c-4c2b-9b67-947b5cfc2fb6';
@@ -130,7 +128,6 @@ class CardTest extends TestCase
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame($expected, $response->getBody());
 
-
         $card = $response->toArray();
 
         $this->assertSame('8727fc3a-c04c-4c2b-9b67-947b5cfc2fb6', $card['id']);
@@ -140,5 +137,4 @@ class CardTest extends TestCase
         $this->assertSame('77d62ad5a3ae56aafc8e3529b89d0268afa205303f6017afbd9826afb8394740', $card['token']);
         $this->assertFalse($card['active']);
     }
-
 }
