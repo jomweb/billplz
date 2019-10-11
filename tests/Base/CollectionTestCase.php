@@ -26,7 +26,7 @@ abstract class CollectionTestCase extends TestCase
         $expected = '{"id":"inbmmepb","title":"My First V4 API Collection","logo":{"thumb_url":null,"avatar_url":null},"split_header":false,"split_payments":[]}';
 
         $faker = $this->expectStreamRequest('POST', 'collections', [], $payload)
-                        ->shouldResponseWith(200, $expected);
+                        ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)
                         ->uses('Collection')
@@ -35,6 +35,9 @@ abstract class CollectionTestCase extends TestCase
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame($expected, $response->getBody());
+        $this->assertNull($response->rateLimit());
+        $this->assertNull($response->remainingRateLimit());
+        $this->assertSame(0, $response->rateLimitNextReset());
     }
 
     /** @test */
@@ -43,7 +46,7 @@ abstract class CollectionTestCase extends TestCase
         $expected = '{"collections":[{"id":"inbmmepb","title":"My First API Collection","logo":{"thumb_url":null,"avatar_url":null},"split_payment":{"email":null,"fixed_cut":null,"variable_cut":null,"split_header":false},"status":"active"}],"page":1}';
 
         $faker = $this->expectRequest('GET', 'collections')
-                        ->shouldResponseWith(200, $expected);
+                        ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)
                         ->uses('Collection')
@@ -52,6 +55,9 @@ abstract class CollectionTestCase extends TestCase
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame($expected, $response->getBody());
+        $this->assertNull($response->rateLimit());
+        $this->assertNull($response->remainingRateLimit());
+        $this->assertSame(0, $response->rateLimitNextReset());
     }
 
     /** @test */
@@ -60,7 +66,7 @@ abstract class CollectionTestCase extends TestCase
         $expected = '{"id":"inbmmepb","title":"My First API Collection","logo":{"thumb_url":null,"avatar_url":null},"split_payment":{"email":null,"fixed_cut":null,"variable_cut":null,"split_header":false},"status":"active"}';
 
         $faker = $this->expectRequest('GET', 'collections/inbmmepb')
-                        ->shouldResponseWith(200, $expected);
+                        ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)
                         ->uses('Collection')
@@ -69,6 +75,9 @@ abstract class CollectionTestCase extends TestCase
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame($expected, $response->getBody());
+        $this->assertNull($response->rateLimit());
+        $this->assertNull($response->remainingRateLimit());
+        $this->assertSame(0, $response->rateLimitNextReset());
     }
 
     /** @test */
@@ -77,7 +86,7 @@ abstract class CollectionTestCase extends TestCase
         $expected = '{}';
 
         $faker = $this->expectRequest('POST', 'collections/inbmmepb/activate')
-                        ->shouldResponseWith(200, $expected);
+                        ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)
                         ->uses('Collection')
@@ -86,6 +95,9 @@ abstract class CollectionTestCase extends TestCase
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame($expected, $response->getBody());
+        $this->assertNull($response->rateLimit());
+        $this->assertNull($response->remainingRateLimit());
+        $this->assertSame(0, $response->rateLimitNextReset());
     }
 
     /** @test */
@@ -94,7 +106,7 @@ abstract class CollectionTestCase extends TestCase
         $expected = '{}';
 
         $faker = $this->expectRequest('POST', 'collections/inbmmepb/deactivate')
-                        ->shouldResponseWith(200, $expected);
+                        ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)
                         ->uses('Collection')
@@ -103,5 +115,8 @@ abstract class CollectionTestCase extends TestCase
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame($expected, $response->getBody());
+        $this->assertNull($response->rateLimit());
+        $this->assertNull($response->remainingRateLimit());
+        $this->assertSame(0, $response->rateLimitNextReset());
     }
 }

@@ -28,7 +28,7 @@ abstract class OpenCollectionTestCase extends TestCase
         $expected = '{"id":"0pp87t_6","title":"My First API Collection","description":"Maecenas eu placerat ante. Fusce ut neque justo, et aliquet enim. In hac habitasse platea dictumst.","reference_1_label":null,"reference_2_label":null,"email_link":null,"amount":299,"fixed_amount":true,"tax":null,"fixed_quantity":true,"payment_button":"pay","photo":["retina_url":null,"avatar_url":null],"split_payment":["email":null,"fixed_cut":null,"variable_cut":null],"url":"https://www.billplz.com/0pp87t_6"}';
 
         $faker = $this->expectStreamRequest('POST', 'open_collections', [], $payload)
-                        ->shouldResponseWith(200, $expected);
+                        ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)
                         ->uses('OpenCollection')
@@ -37,6 +37,9 @@ abstract class OpenCollectionTestCase extends TestCase
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame($expected, $response->getBody());
+        $this->assertNull($response->rateLimit());
+        $this->assertNull($response->remainingRateLimit());
+        $this->assertSame(0, $response->rateLimitNextReset());
     }
 
     /** @test */
@@ -45,7 +48,7 @@ abstract class OpenCollectionTestCase extends TestCase
         $expected = '{"collections":[{"id":"0pp87t_6","title":"My First API Collection","description":"Maecenas eu placerat ante. Fusce ut neque justo, et aliquet enim. In hac habitasse platea dictumst.","reference_1_label":null,"reference_2_label":null,"email_link":null,"amount":299,"fixed_amount":true,"tax":null,"fixed_quantity":true,"payment_button":"pay","photo":["retina_url":null,"avatar_url":null],"split_payment":["email":null,"fixed_cut":null,"variable_cut":null],"url":"https://www.billplz.com/0pp87t_6"}],"page":1}';
 
         $faker = $this->expectRequest('GET', 'open_collections')
-                        ->shouldResponseWith(200, $expected);
+                        ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)
                         ->uses('OpenCollection')
@@ -54,6 +57,9 @@ abstract class OpenCollectionTestCase extends TestCase
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame($expected, $response->getBody());
+        $this->assertNull($response->rateLimit());
+        $this->assertNull($response->remainingRateLimit());
+        $this->assertSame(0, $response->rateLimitNextReset());
     }
 
     /** @test */
@@ -62,7 +68,7 @@ abstract class OpenCollectionTestCase extends TestCase
         $expected = '{"id":"0pp87t_6","title":"My First API Collection","description":"Maecenas eu placerat ante. Fusce ut neque justo, et aliquet enim. In hac habitasse platea dictumst.","reference_1_label":null,"reference_2_label":null,"email_link":null,"amount":299,"fixed_amount":true,"tax":null,"fixed_quantity":true,"payment_button":"pay","photo":["retina_url":null,"avatar_url":null],"split_payment":["email":null,"fixed_cut":null,"variable_cut":null],"url":"https://www.billplz.com/0pp87t_6"}';
 
         $faker = $this->expectRequest('GET', 'open_collections/0pp87t_6')
-                        ->shouldResponseWith(200, $expected);
+                        ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)
                         ->uses('OpenCollection')
@@ -71,5 +77,8 @@ abstract class OpenCollectionTestCase extends TestCase
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame($expected, $response->getBody());
+        $this->assertNull($response->rateLimit());
+        $this->assertNull($response->remainingRateLimit());
+        $this->assertSame(0, $response->rateLimitNextReset());
     }
 }

@@ -24,6 +24,7 @@
         "php": ">=7.1",
         "jomweb/ringgit": "^2.1",
         "laravie/codex": "^5.0",
+        "laravie/codex-common": "^1.2",
         "laravie/codex-filter": "^1.0",
         "php-http/multipart-stream-builder": "^1.0"
     },
