@@ -34,8 +34,8 @@ class ExceedRequestLimiter extends HttpException
      */
     public function timeRemaining(): int
     {
-        $remaining = $this->response->getHeader('RateLimit-Reset')[0] ?? 'unlimited';
+        $value = $this->response->getHeaderLine('RateLimit-Reset');
 
-        return $remaining !== 'unlimited' ? $remaining : 0;
+        return ! \in_array($value, ['', 'unlimited']) ? (int) $value : 0;
     }
 }
