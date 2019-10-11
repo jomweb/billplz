@@ -9,7 +9,7 @@ class ExceedRequestLimiter extends HttpException
     /**
      * Construct a new HTTP exception.
      *
-     * @param \Psr\Http\Message\ResponseInterface|\Laravie\Codex\Contracts\Response  $response
+     * @param \Billplz\Response  $response
      * @param string  $message
      * @param \Exception|null  $previous
      * @param int  $code
@@ -34,8 +34,6 @@ class ExceedRequestLimiter extends HttpException
      */
     public function timeRemaining(): int
     {
-        $value = $this->response->getHeaderLine('RateLimit-Reset');
-
-        return ! \in_array($value, ['', 'unlimited']) ? (int) $value : 0;
+        return $this->response->rateLimitNextReset();
     }
 }
