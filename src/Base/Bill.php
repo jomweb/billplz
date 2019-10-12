@@ -51,9 +51,7 @@ abstract class Bill extends Request implements Contract
 
         $body = $this->parseRedirectAndCallbackUrlFromRequest($body, $callbackUrl);
 
-        [$headers, $stream] = $this->prepareMultipartRequestPayloads([], $body);
-
-        return $this->stream('POST', 'bills', $headers, $stream);
+        return $this->stream('POST', 'bills', [], $body);
     }
 
     /**
