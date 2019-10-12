@@ -9,7 +9,7 @@ Unreleased
 ### Added
 
 * Added `Billplz\Contracts\Card` contract and it's implementation based on [Card Tokenization API](https://www.billplz.com/api#card-tokenization).
-* Added `Billplz\Exceptions\ExceedRequestLimits` exception class when response received `419` HTTP status code.
+* Added `Billplz\Exceptions\ExceedRequestLimits` exception class when response received `429` HTTP status code.
 * Added `Billplz\Client::card()` helper method.
 * Added `rateLimit()`, `remainingRateLimit()` and `rateLimitNextReset()` to `Billplz\Response` class.
 * Added `Billplz\Four\Bill::charge()` to make payment via Card Tokenization based on [Payment with Token API](https://www.billplz.com/api#payment-with-token).

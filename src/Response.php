@@ -35,7 +35,7 @@ class Response extends \Laravie\Codex\Response implements Filterable
      */
     public function abortIfRequestExceedLimiter(?string $message = null): void
     {
-        if (\in_array($this->getStatusCode(), [419])) {
+        if (\in_array($this->getStatusCode(), [429])) {
             throw new Exceptions\ExceedRequestLimits($this, $message);
         }
     }

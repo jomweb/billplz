@@ -191,7 +191,7 @@ abstract class BillTestCase extends TestCase
         $expected = '{"error":{"type":"RateLimit","message":"Too many requests"}}';
 
         $faker = $this->expectRequest('GET', 'bills/8X0Iyzaw')
-                        ->shouldResponseWithJson(419, $expected, [
+                        ->shouldResponseWithJson(429, $expected, [
                             'RateLimit-Limit' => 300,
                             'RateLimit-Remaining' => 0,
                             'RateLimit-Reset' => 299,
