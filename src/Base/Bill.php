@@ -80,7 +80,7 @@ abstract class Bill extends Request implements Contract, PaymentCompletionContra
     public function transaction(string $id, array $optional = []): Response
     {
         return $this->client->uses('Bill.Transaction', $this->getVersion())
-                    ->show($id, $optional);
+                    ->get($id, $optional);
     }
 
     /**

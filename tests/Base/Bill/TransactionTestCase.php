@@ -26,7 +26,7 @@ abstract class TransactionTestCase extends TestCase
 
         $response = $this->makeClient($faker)
                         ->uses('Bill.Transaction')
-                        ->show('inbmmepb');
+                        ->get('inbmmepb');
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
