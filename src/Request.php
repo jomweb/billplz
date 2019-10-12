@@ -21,10 +21,8 @@ abstract class Request extends \Laravie\Codex\Request implements Filterable
      */
     protected function getApiEndpoint($path = []): Endpoint
     {
-        $path = [$this->getVersion(), $path];
-
-        return parent::getApiEndpoint($path)
-                    ->withUserInfo($this->client->getApiKey());
+        return parent::getApiEndpoint([$this->getVersion(), $path])
+            ->withUserInfo($this->client->getApiKey());
     }
 
     /**

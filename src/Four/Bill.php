@@ -101,11 +101,9 @@ class Bill extends Request
      */
     public function charge(string $id, string $cardId, string $cardToken): Response
     {
-        $body = [
+        return $this->send('POST', "bills/{$id}/charge", [], [
             'card_id' => $cardId,
             'token' => $cardToken,
-        ];
-
-        return $this->send('POST', "bills/{$id}/charge", [], $body);
+        ]);
     }
 }
