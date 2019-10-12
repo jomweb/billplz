@@ -4,7 +4,7 @@ namespace Billplz\Exceptions;
 
 use Laravie\Codex\Exceptions\HttpException;
 
-class ExceedRequestLimiter extends HttpException
+class ExceedRequestLimits extends HttpException
 {
     /**
      * Construct a new HTTP exception.

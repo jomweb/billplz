@@ -186,7 +186,7 @@ abstract class BillTestCase extends TestCase
     /** @test */
     public function it_cant_show_existing_bill_when_exceed_request_limiter()
     {
-        $this->expectException('Billplz\Exceptions\ExceedRequestLimiter');
+        $this->expectException('Billplz\Exceptions\ExceedRequestLimits');
 
         $expected = '{"error":{"type":"RateLimit","message":"Too many requests"}}';
 

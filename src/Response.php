@@ -29,14 +29,14 @@ class Response extends \Laravie\Codex\Response implements Filterable
      *
      * @param  string|null  $message
      *
-     * @throws \Billplz\Exceptions\ExceedRequestLimiter
+     * @throws \Billplz\Exceptions\ExceedRequestLimits
      *
      * @return void
      */
     public function abortIfRequestExceedLimiter(?string $message = null): void
     {
         if (\in_array($this->getStatusCode(), [419])) {
-            throw new Exceptions\ExceedRequestLimiter($this, $message);
+            throw new Exceptions\ExceedRequestLimits($this, $message);
         }
     }
 
