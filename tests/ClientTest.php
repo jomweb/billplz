@@ -96,6 +96,7 @@ class ClientTest extends TestCase
         $payoutCollection = $client->payoutCollection('v4');
 
         $this->assertInstanceOf('Billplz\Four\Collection\Payout', $payoutCollection);
+        $this->assertInstanceOf('Billplz\Contracts\Collection\Payout', $payoutCollection);
     }
 
     /** @test */
@@ -106,6 +107,7 @@ class ClientTest extends TestCase
         $payout = $client->payout('v4');
 
         $this->assertInstanceOf('Billplz\Four\Payout', $payout);
+        $this->assertInstanceOf('Billplz\Contracts\Payout', $payout);
     }
 
     /** @test */

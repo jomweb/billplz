@@ -19,7 +19,14 @@ interface Card extends Request
      *
      * @return \Laravie\Codex\Contracts\Response
      */
-    public function create(string $name, string $email, string $phoneNumber, string $cardNumber, string $cvv, string $expiry): Response;
+    public function create(
+        string $name,
+        string $email,
+        string $phoneNumber,
+        string $cardNumber,
+        string $cvv,
+        string $expiry
+    ): Response;
 
     /**
      * Activate the card.

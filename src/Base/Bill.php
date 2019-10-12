@@ -52,9 +52,7 @@ abstract class Bill extends Request implements Contract, PaymentCompletionContra
 
         $body = $this->parseRedirectAndCallbackUrlFromRequest($body, $callbackUrl);
 
-        [$headers, $stream] = $this->prepareMultipartRequestPayloads([], $body);
-
-        return $this->stream('POST', 'bills', $headers, $stream);
+        return $this->stream('POST', 'bills', [], $body);
     }
 
     /**
@@ -79,8 +77,9 @@ abstract class Bill extends Request implements Contract, PaymentCompletionContra
      */
     public function transaction(string $id, array $optional = []): Response
     {
-        return $this->client->uses('Bill.Transaction', $this->getVersion())
-                    ->get($id, $optional);
+        return $this->client->uses(
+            'Bill.Transaction', $this->getVersion()
+        )->get($id, $optional);
     }
 
     /**

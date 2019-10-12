@@ -2,6 +2,22 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 3.3.0
+
+Released: 2019-10-12
+
+### Added
+
+* Added `Billplz\Contracts\Card` contract and it's implementation based on [Card Tokenization API](https://www.billplz.com/api#card-tokenization).
+* Added `Billplz\Exceptions\ExceedRequestLimits` exception class when response received `429` HTTP status code.
+* Added `Billplz\Client::card()` helper method.
+* Added `rateLimit()`, `remainingRateLimit()` and `rateLimitNextReset()` to `Billplz\Response` class.
+* Added `Billplz\Four\Bill::charge()` to make payment via Card Tokenization based on [Payment with Token API](https://www.billplz.com/api#payment-with-token).
+
+### Changes
+
+* Improves POST with `Laravie\Codex\Concerns\Request\Multipart::stream()` usages.
+
 ## 3.2.1
 
 Released: 2019-09-26
@@ -31,7 +47,7 @@ Released: 2019-05-09
 
 ### Added
 
-* Added `Billplz\Four\PaymentGateway` based on <https://billplz.com/api#get-payment-gateways>.
+* Added `Billplz\Four\PaymentGateway` based on [Get Payment Gateways API](https://www.billplz.com/api#get-payment-gateways).
 
 ## 3.1.0
 
@@ -47,7 +63,7 @@ Released: 2019-05-24
 
 ### Added
 
-* Added `Billplz\Four\PaymentGateway` based on <https://billplz.com/api#get-payment-gateways>.
+* Added `Billplz\Four\PaymentGateway` based on [Get Payment Gateways API](https://www.billplz.com/api#get-payment-gateways).
 
 ## 3.0.2
 

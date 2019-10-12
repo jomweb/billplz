@@ -56,7 +56,11 @@ class TestCase extends PHPUnit
     protected function expectRequest($method = 'GET', $uri = '/', array $headers = [], array $body = [])
     {
         $endpoint = sprintf(
-            'https://%s@%s/%s/%s', '73eb57f0-7d4e-42b9-a544-aeac6e4b0f81', $this->apiEndpoint, $this->proxyApiVersion ?? $this->apiVersion, $uri
+            'https://%s@%s/%s/%s',
+            '73eb57f0-7d4e-42b9-a544-aeac6e4b0f81',
+            $this->apiEndpoint,
+            $this->proxyApiVersion ?? $this->apiVersion,
+            $uri
         );
 
         return Faker::create()
@@ -73,15 +77,19 @@ class TestCase extends PHPUnit
      *
      * @return array
      */
-    protected function expectStreamRequest($method = 'GET', $uri = '/', array $headers = [], array $body = [])
+    protected function expectStreamRequest($method = 'GET', $uri = '/', array $headers = [], array $body = [], array $files = [])
     {
         $endpoint = sprintf(
-            'https://%s@%s/%s/%s', '73eb57f0-7d4e-42b9-a544-aeac6e4b0f81', $this->apiEndpoint, $this->proxyApiVersion ?? $this->apiVersion, $uri
+            'https://%s@%s/%s/%s',
+            '73eb57f0-7d4e-42b9-a544-aeac6e4b0f81',
+            $this->apiEndpoint,
+            $this->proxyApiVersion ?? $this->apiVersion,
+            $uri
         );
 
         return Faker::create()
                     ->expectEndpointIs($endpoint)
-                    ->stream($method, $headers, $body);
+                    ->stream($method, $headers);
     }
 
     /**

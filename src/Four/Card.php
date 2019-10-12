@@ -27,8 +27,14 @@ class Card extends Request implements Contract
      *
      * @return \Billplz\Response
      */
-    public function create(string $name, string $email, string $phoneNumber, string $cardNumber, string $cvv, string $expiry): Response
-    {
+    public function create(
+        string $name,
+        string $email,
+        string $phoneNumber,
+        string $cardNumber,
+        string $cvv,
+        string $expiry
+    ): Response {
         $body = \compact('name', 'email', 'cvv', 'expiry');
         $body['phone'] = $phoneNumber;
         $body['card_number'] = $cardNumber;
@@ -46,12 +52,10 @@ class Card extends Request implements Contract
      */
     public function activate(string $cardId, string $cardToken): Response
     {
-        $body = [
+        return $this->send('PUT', "cards/{$cardId}", [], [
             'token' => $cardToken,
             'active' => true,
-        ];
-
-        return $this->send('PUT', "cards/{$cardId}", [], $body);
+        ]);
     }
 
     /**
@@ -64,11 +68,9 @@ class Card extends Request implements Contract
      */
     public function deactivate(string $cardId, string $cardToken): Response
     {
-        $body = [
+        return $this->send('PUT', "cards/{$cardId}", [], [
             'token' => $cardToken,
             'active' => false,
-        ];
-
-        return $this->send('PUT', "cards/{$cardId}", [], $body);
+        ]);
     }
 }

@@ -32,8 +32,6 @@ class Collection extends Request
             unset($body['logo']);
         }
 
-        [$headers, $stream] = $this->prepareMultipartRequestPayloads([], $body, $files);
-
-        return $this->stream('POST', 'collections', $headers, $stream);
+        return $this->stream('POST', 'collections', [], $body, $files);
     }
 }
