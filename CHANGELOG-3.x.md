@@ -4,7 +4,7 @@ This changelog references the relevant changes (bug and security fixes) done to 
 
 ## 3.3.0
 
-Unreleased
+Released: 2019-10-12
 
 ### Added
 
@@ -13,6 +13,10 @@ Unreleased
 * Added `Billplz\Client::card()` helper method.
 * Added `rateLimit()`, `remainingRateLimit()` and `rateLimitNextReset()` to `Billplz\Response` class.
 * Added `Billplz\Four\Bill::charge()` to make payment via Card Tokenization based on [Payment with Token API](https://www.billplz.com/api#payment-with-token).
+
+### Changes
+
+* Improves POST with `Laravie\Codex\Concerns\Request\Multipart::stream()` usages.
 
 ## 3.2.1
 
