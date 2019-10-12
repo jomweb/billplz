@@ -23,9 +23,7 @@ abstract class Collection extends Request implements Contract
     {
         $body = \array_merge(\compact('title'), $optional);
 
-        [$headers, $stream] = $this->prepareMultipartRequestPayloads([], $body);
-
-        return $this->stream('POST', 'collections', $headers, $stream);
+        return $this->stream('POST', 'collections', [], $body);
     }
 
     /**
