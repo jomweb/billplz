@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 3.3.1
+
+Released: 2019-10-18
+
+### Fixes
+
+* Fixes `Billplz\Base\PaymentCompletion::redirect()` when applicaiton is configured without X-Signature support.
+
 ## 3.3.0
 
 Released: 2019-10-12
