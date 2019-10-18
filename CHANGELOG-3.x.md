@@ -8,7 +8,7 @@ Released: 2019-10-18
 
 ### Fixes
 
-* Fixes `Billplz\Base\PaymentCompletion::redirect()` when applicaiton is configured without X-Signature support.
+* Fixes `Billplz\Base\PaymentCompletion::redirect()` when application is configured without X-Signature support.
 
 ## 3.3.0
 
