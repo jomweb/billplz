@@ -214,8 +214,6 @@ class Client extends \Laravie\Codex\Client
     /**
      * Get card resource.
      *
-     * @param  string|null  $version
-     *
      * @return \Billplz\Contracts\Card
      */
     final public function card(): Contracts\Card

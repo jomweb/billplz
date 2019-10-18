@@ -21,6 +21,10 @@ trait PaymentCompletion
             throw new InvalidArgumentException('Expected $billplz to be an array!');
         }
 
+        if (! isset($data['billplz']['x_signature']) && isset($data['billplz']['id'])) {
+            return \is_null($this->client->getSignatureKey()) ? $data['billplz'] : null;
+        }
+
         $bill = [
             'billplzid' => $data['billplz']['id'],
             'billplzpaid' => $data['billplz']['paid'],
