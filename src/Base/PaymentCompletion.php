@@ -36,11 +36,7 @@ trait PaymentCompletion
             'billplzid', 'billplzpaid_at', 'billplzpaid',
         ]);
 
-        if ((bool) $validated) {
-            return $this->filterResponse($data['billplz']);
-        }
-
-        return null;
+        return $validated === true ? $this->filterResponse($data['billplz']) : null;
     }
 
     /**
@@ -57,11 +53,7 @@ trait PaymentCompletion
             'paid_amount', 'paid_at', 'paid', 'state', 'url',
         ]);
 
-        if ((bool) $validated) {
-            return $this->filterResponse($data);
-        }
-
-        return null;
+        return $validated === true ? $this->filterResponse($data) : null;
     }
 
     /**
