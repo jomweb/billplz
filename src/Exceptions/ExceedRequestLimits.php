@@ -12,7 +12,6 @@ class ExceedRequestLimits extends HttpException
      * @param \Billplz\Response  $response
      * @param string  $message
      * @param \Exception|null  $previous
-     * @param int  $code
      */
     public function __construct(
         $response,
@@ -29,8 +28,6 @@ class ExceedRequestLimits extends HttpException
 
     /**
      * Get time remaining before rate limit reset.
-     *
-     * @return int
      */
     public function timeRemaining(): int
     {

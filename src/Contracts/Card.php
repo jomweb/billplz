@@ -8,15 +8,6 @@ interface Card
 {
     /**
      * Create new card token.
-     *
-     * @param  string  $name
-     * @param  string  $email
-     * @param  string  $phoneNumber
-     * @param  string  $cardNumber
-     * @param  string  $cvv
-     * @param  string  $expiry
-     *
-     * @return \Laravie\Codex\Contracts\Response
      */
     public function create(
         string $name,
@@ -30,18 +21,12 @@ interface Card
     /**
      * Activate the card.
      *
-     * @param  string  $cardId
-     * @param  string  $cardToken
-     *
      * @return \Billplz\Response
      */
     public function activate(string $cardId, string $cardToken): Response;
 
     /**
      * Deactivate the card.
-     *
-     * @param  string  $cardId
-     * @param  string  $cardToken
      *
      * @return \Billplz\Response
      */

@@ -47,10 +47,6 @@ class Client extends \Laravie\Codex\Client
 
     /**
      * Construct a new Billplz Client.
-     *
-     * @param \Http\Client\Common\HttpMethodsClient  $http
-     * @param string  $apiKey
-     * @param string|null $signatureKey
      */
     public function __construct(HttpClient $http, string $apiKey, ?string $signatureKey = null)
     {
@@ -62,9 +58,6 @@ class Client extends \Laravie\Codex\Client
 
     /**
      * Make a client.
-     *
-     * @param string  $apiKey
-     * @param string|null $signatureKey
      *
      * @return $this
      */
@@ -85,8 +78,6 @@ class Client extends \Laravie\Codex\Client
 
     /**
      * Get API Key.
-     *
-     * @return string
      */
     final public function getApiKey(): string
     {
@@ -95,8 +86,6 @@ class Client extends \Laravie\Codex\Client
 
     /**
      * Set API Key.
-     *
-     * @param  string  $apiKey
      *
      * @return $this
      */
@@ -109,8 +98,6 @@ class Client extends \Laravie\Codex\Client
 
     /**
      * Get X-Signature Key.
-     *
-     * @return string|null
      */
     final public function getSignatureKey(): ?string
     {
@@ -119,8 +106,6 @@ class Client extends \Laravie\Codex\Client
 
     /**
      * Set X-Signature Key.
-     *
-     * @param  string|null  $signatureKey
      *
      * @return $this
      */
@@ -134,8 +119,6 @@ class Client extends \Laravie\Codex\Client
     /**
      * Get Collection resource.
      *
-     * @param  string|null  $version
-     *
      * @return \Billplz\Contracts\Collection
      */
     final public function collection(?string $version = null): Contracts\Collection
@@ -145,8 +128,6 @@ class Client extends \Laravie\Codex\Client
 
     /**
      * Get Open Collection resource.
-     *
-     * @param  string|null  $version
      *
      * @return \Billplz\Contracts\OpenCollection
      */
@@ -158,8 +139,6 @@ class Client extends \Laravie\Codex\Client
     /**
      * Get bill resource.
      *
-     * @param  string|null  $version
-     *
      * @return \Billplz\Contracts\Bill
      */
     final public function bill(?string $version = null): Contracts\Bill
@@ -169,8 +148,6 @@ class Client extends \Laravie\Codex\Client
 
     /**
      * Get transaction resource.
-     *
-     * @param  string|null  $version
      *
      * @return \Billplz\Contracts\Bill\Transaction
      */
@@ -226,8 +203,6 @@ class Client extends \Laravie\Codex\Client
     /**
      * Get bank resource.
      *
-     * @param  string|null  $version
-     *
      * @return \Billplz\Contracts\BankAccount
      */
     final public function bank(?string $version = null): Contracts\BankAccount
@@ -247,8 +222,6 @@ class Client extends \Laravie\Codex\Client
 
     /**
      * Get resource default namespace.
-     *
-     * @return string
      */
     final protected function getResourceNamespace(): string
     {

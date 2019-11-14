@@ -11,8 +11,6 @@ class PaymentMethod extends Request implements Contract
     /**
      * Get payment method index.
      *
-     * @param  string  $collectionId
-     *
      * @return \Billplz\Response
      */
     public function get(string $collectionId): Response
@@ -24,7 +22,6 @@ class PaymentMethod extends Request implements Contract
      * Update payment methods.
      *
      * @param  string  $id
-     * @param  array   $codes
      *
      * @return \Billplz\Response
      */

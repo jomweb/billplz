@@ -20,9 +20,6 @@ class Signature
 
     /**
      * Construct a new signature verification.
-     *
-     * @param string  $key
-     * @param array  $attributes
      */
     public function __construct(string $key, array $attributes)
     {
@@ -32,11 +29,6 @@ class Signature
 
     /**
      * Verify signature.
-     *
-     * @param  array  $data
-     * @param  string  $hash
-     *
-     * @return bool
      */
     final public function verify(array $data, string $hash): bool
     {

@@ -10,9 +10,6 @@ abstract class Transaction extends Request
     /**
      * Show an existing bill transactions.
      *
-     * @param  string  $id
-     * @param  array   $optional
-     *
      * @return \Billplz\Response
      *
      * @deprecated v2.0.1
@@ -25,9 +22,6 @@ abstract class Transaction extends Request
 
     /**
      * Show an existing bill transactions.
-     *
-     * @param  string  $id
-     * @param  array   $optional
      *
      * @return \Billplz\Response
      */

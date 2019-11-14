@@ -16,14 +16,8 @@ abstract class Bill extends Request implements Contract
     /**
      * Create a new bill.
      *
-     * @param  string  $collectionId
-     * @param  string|null  $email
-     * @param  string|null  $mobile
-     * @param  string  $name
      * @param  \Money\Money|\Duit\MYR|int  $amount
      * @param  array|string  $callbackUrl
-     * @param  string  $description
-     * @param  array  $optional
      *
      * @throws \InvalidArgumentException
      *
@@ -57,8 +51,6 @@ abstract class Bill extends Request implements Contract
     /**
      * Show an existing bill.
      *
-     * @param  string  $id
-     *
      * @return \Billplz\Response
      */
     public function get(string $id): Response
@@ -68,9 +60,6 @@ abstract class Bill extends Request implements Contract
 
     /**
      * Show an existing bill transactions.
-     *
-     * @param  string  $id
-     * @param  array   $optional
      *
      * @return \Billplz\Response
      */
@@ -83,8 +72,6 @@ abstract class Bill extends Request implements Contract
 
     /**
      * Destroy an existing bill.
-     *
-     * @param  string  $id
      *
      * @return \Billplz\Response
      */

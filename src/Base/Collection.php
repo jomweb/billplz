@@ -14,9 +14,6 @@ abstract class Collection extends Request implements Contract
     /**
      * Create a new collection.
      *
-     * @param  string  $title
-     * @param  array  $optional
-     *
      * @return \Billplz\Response
      */
     public function create(string $title, array $optional = []): Response
@@ -28,8 +25,6 @@ abstract class Collection extends Request implements Contract
 
     /**
      * Get collection.
-     *
-     * @param  string  $id
      *
      * @return \Billplz\Response
      */
@@ -51,8 +46,6 @@ abstract class Collection extends Request implements Contract
     /**
      * Activate a collection.
      *
-     * @param  string  $id
-     *
      * @return \Billplz\Response
      */
     public function activate(string $id): Response
@@ -62,8 +55,6 @@ abstract class Collection extends Request implements Contract
 
     /**
      * Deactivate a collection.
-     *
-     * @param  string  $id
      *
      * @return \Billplz\Response
      */

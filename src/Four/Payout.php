@@ -18,14 +18,7 @@ class Payout extends Request implements Contract
     /**
      * Create a new mass payment instruction (mpi).
      *
-     * @param  string  $collectionId
-     * @param  string  $bankCode
-     * @param  string  $bankAccountNumber
-     * @param  string  $identityNumber
-     * @param  string  $name
-     * @param  string  $description
      * @param  int  $total
-     * @param  array  $optional
      *
      * @return \Billplz\Response
      */
@@ -50,8 +43,6 @@ class Payout extends Request implements Contract
 
     /**
      * Get mass payment instruction (mpi).
-     *
-     * @param  string  $instructionId
      *
      * @return \Billplz\Response
      */

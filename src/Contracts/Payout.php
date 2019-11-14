@@ -9,16 +9,7 @@ interface Payout
     /**
      * Create a new mass payment instruction (mpi).
      *
-     * @param  string  $collectionId
-     * @param  string  $bankCode
-     * @param  string  $bankAccountNumber
-     * @param  string  $identityNumber
-     * @param  string  $name
-     * @param  string  $description
      * @param  int  $total
-     * @param  array  $optional
-     *
-     * @return \Laravie\Codex\Contracts\Response
      */
     public function create(
         string $collectionId,
@@ -33,10 +24,6 @@ interface Payout
 
     /**
      * Get mass payment instruction (mpi).
-     *
-     * @param  string  $instructionId
-     *
-     * @return \Laravie\Codex\Contracts\Response
      */
     public function get(string $instructionId): Response;
 }

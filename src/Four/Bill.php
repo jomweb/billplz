@@ -17,14 +17,8 @@ class Bill extends Request
     /**
      * Create a new bill.
      *
-     * @param  string  $collectionId
-     * @param  string|null  $email
-     * @param  string|null  $mobile
-     * @param  string  $name
      * @param  \Money\Money|\Duit\MYR|int  $amount
      * @param  array|string  $callbackUrl
-     * @param  string  $description
-     * @param  array  $optional
      *
      * @throws \InvalidArgumentException
      *
@@ -50,8 +44,6 @@ class Bill extends Request
     /**
      * Show an existing bill.
      *
-     * @param  string  $id
-     *
      * @return \Billplz\Response
      */
     public function get(string $id): Response
@@ -63,9 +55,6 @@ class Bill extends Request
 
     /**
      * Show an existing bill transactions.
-     *
-     * @param  string  $id
-     * @param  array   $optional
      *
      * @return \Billplz\Response
      */
@@ -79,8 +68,6 @@ class Bill extends Request
     /**
      * Destroy an existing bill.
      *
-     * @param  string  $id
-     *
      * @return \Billplz\Response
      */
     public function destroy(string $id): Response
@@ -92,10 +79,6 @@ class Bill extends Request
 
     /**
      * Bill payment using Visa/MasterCard card via generated token.
-     *
-     * @param  string  $id
-     * @param  string  $cardId
-     * @param  string  $cardToken
      *
      * @return \Billplz\Response
      */

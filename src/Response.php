@@ -27,11 +27,7 @@ class Response extends \Laravie\Codex\Response implements Filterable
     /**
      * Validate for unauthorized request.
      *
-     * @param  string|null  $message
-     *
      * @throws \Billplz\Exceptions\ExceedRequestLimits
-     *
-     * @return void
      */
     public function abortIfRequestExceedLimiter(?string $message = null): void
     {
@@ -42,8 +38,6 @@ class Response extends \Laravie\Codex\Response implements Filterable
 
     /**
      * Get rate limit (or return null for unlimited).
-     *
-     * @return int|null
      */
     public function rateLimit(): ?int
     {
@@ -56,8 +50,6 @@ class Response extends \Laravie\Codex\Response implements Filterable
 
     /**
      * Get remaining rate limit count (or return null for unlimited).
-     *
-     * @return int|null
      */
     public function remainingRateLimit(): ?int
     {
@@ -70,8 +62,6 @@ class Response extends \Laravie\Codex\Response implements Filterable
 
     /**
      * Get next reset for rate limit (in seconds).
-     *
-     * @return int
      */
     public function rateLimitNextReset(): int
     {

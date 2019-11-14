@@ -48,8 +48,6 @@ class TestCase extends PHPUnit
      * Create a fake HTTP request.
      *
      * @param  string  $method
-     * @param  array  $headers
-     * @param  array  $body
      *
      * @return array
      */
@@ -72,8 +70,6 @@ class TestCase extends PHPUnit
      * Create a fake HTTP request.
      *
      * @param  string  $method
-     * @param  array  $headers
-     * @param  array  $body
      *
      * @return array
      */
@@ -96,8 +92,6 @@ class TestCase extends PHPUnit
      * Create a fake client.
      *
      * @param  \Laravie\Codex\Testing\FakeRequest|null  $faker
-     *
-     * @return \Billplz\Client
      */
     protected function makeClient(Faker $faker = null): Client
     {
