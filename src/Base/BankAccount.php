@@ -11,8 +11,6 @@ abstract class BankAccount extends Request implements Contract
     /**
      * Get A Bank Account.
      *
-     * @param  string  $accountNumber
-     *
      * @return \Billplz\Response
      */
     public function get(string $accountNumber): Response
@@ -22,12 +20,6 @@ abstract class BankAccount extends Request implements Contract
 
     /**
      * Create A Bank Account.
-     *
-     * @param  string  $name
-     * @param  string  $identification
-     * @param  string  $accountNumber
-     * @param  string  $code
-     * @param  bool $organization
      *
      * @return \Billplz\Response
      */
@@ -47,8 +39,6 @@ abstract class BankAccount extends Request implements Contract
 
     /**
      * Check Bank Account Number.
-     *
-     * @param  string  $accountNumber
      *
      * @return \Billplz\Response
      */

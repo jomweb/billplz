@@ -17,9 +17,6 @@ class Collection extends Request
     /**
      * Create a new collection.
      *
-     * @param  string  $title
-     * @param  array  $optional
-     *
      * @return \Billplz\Response
      */
     public function create(string $title, array $optional = []): Response

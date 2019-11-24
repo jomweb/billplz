@@ -10,10 +10,6 @@ trait PaymentCompletion
 {
     /**
      * Parse redirect data for a bill.
-     *
-     * @param  array  $data
-     *
-     * @return array|null
      */
     public function redirect(array $data = []): ?array
     {
@@ -36,19 +32,11 @@ trait PaymentCompletion
             'billplzid', 'billplzpaid_at', 'billplzpaid',
         ]);
 
-        if ((bool) $validated) {
-            return $this->filterResponse($data['billplz']);
-        }
-
-        return null;
+        return $validated === true ? $this->filterResponse($data['billplz']) : null;
     }
 
     /**
      * Parse webhook data for a bill.
-     *
-     * @param  array  $data
-     *
-     * @return array|null
      */
     public function webhook(array $data = []): ?array
     {
@@ -57,23 +45,13 @@ trait PaymentCompletion
             'paid_amount', 'paid_at', 'paid', 'state', 'url',
         ]);
 
-        if ((bool) $validated) {
-            return $this->filterResponse($data);
-        }
-
-        return null;
+        return $validated === true ? $this->filterResponse($data) : null;
     }
 
     /**
      * Validate against x-signature.
      *
-     * @param  array  $bill
-     * @param  string|null  $signatureKey
-     * @param  array  $parameters
-     *
      * @throws \Billplz\Exceptions\FailedSignatureVerification
-     *
-     * @return bool
      */
     final protected function validateAgainstSignature(array $bill, ?string $signatureKey = null, array $parameters = []): bool
     {

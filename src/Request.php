@@ -16,8 +16,6 @@ abstract class Request extends \Laravie\Codex\Request implements Filterable
      * Get URI Endpoint.
      *
      * @param  array|string  $path
-     *
-     * @return \Laravie\Codex\Contracts\Endpoint
      */
     protected function getApiEndpoint($path = []): Endpoint
     {
@@ -50,10 +48,7 @@ abstract class Request extends \Laravie\Codex\Request implements Filterable
     /**
      * Parse callback URL from request.
      *
-     * @param  array  $body
      * @param  array|string  $url
-     *
-     * @return array
      */
     final protected function parseRedirectAndCallbackUrlFromRequest(array $body, $url): array
     {
