@@ -266,7 +266,7 @@ abstract class BillTestCase extends TestCase
                     ->redirect($payload);
 
         $this->assertSame('W_79pJDk', $bill['id']);
-        $this->assertSame('true', $bill['paid']);
+        $this->assertSame(true, $bill['paid']);
         $this->assertInstanceOf('DateTime', $bill['paid_at']);
         $this->assertEquals(new \DateTimeZone('+08:00'), $bill['paid_at']->getTimezone());
     }
@@ -289,7 +289,7 @@ abstract class BillTestCase extends TestCase
                     ->redirect($payload);
 
         $this->assertSame('W_79pJDk', $bill['id']);
-        $this->assertSame('true', $bill['paid']);
+        $this->assertSame(true, $bill['paid']);
         $this->assertInstanceOf('DateTime', $bill['paid_at']);
         $this->assertEquals(new \DateTimeZone('+08:00'), $bill['paid_at']->getTimezone());
     }
@@ -370,7 +370,7 @@ abstract class BillTestCase extends TestCase
                     ->webhook($payload);
 
         $this->assertSame('W_79pJDk', $bill['id']);
-        $this->assertSame('true', $bill['paid']);
+        $this->assertSame(true, $bill['paid']);
         $this->assertInstanceOf('DateTime', $bill['paid_at']);
         $this->assertEquals(new \DateTimeZone('+08:00'), $bill['paid_at']->getTimezone());
     }
@@ -400,7 +400,7 @@ abstract class BillTestCase extends TestCase
                     ->webhook($payload);
 
         $this->assertSame('W_79pJDk', $bill['id']);
-        $this->assertSame('true', $bill['paid']);
+        $this->assertSame(true, $bill['paid']);
         $this->assertInstanceOf('DateTime', $bill['paid_at']);
         $this->assertEquals(new \DateTimeZone('+08:00'), $bill['paid_at']->getTimezone());
     }
