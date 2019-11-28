@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 3.4.0
+
+Released: 2019-11-28
+
+### Changes
+
+* Manually cast `paid` from Payment Completion to `boolean`.
+
 ## 3.3.1
 
 Released: 2019-10-18
