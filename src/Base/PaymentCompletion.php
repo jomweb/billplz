@@ -32,6 +32,8 @@ trait PaymentCompletion
             'billplzid', 'billplzpaid_at', 'billplzpaid',
         ]);
 
+        $data['billplz']['paid'] = $data['billplz']['paid'] === 'true' ? true : false;
+
         return $validated === true ? $this->filterResponse($data['billplz']) : null;
     }
 
@@ -44,6 +46,8 @@ trait PaymentCompletion
             'amount', 'collection_id', 'due_at', 'email', 'id', 'mobile', 'name',
             'paid_amount', 'paid_at', 'paid', 'state', 'url',
         ]);
+
+        $data['paid'] = $data['paid'] === 'true' ? true : false;
 
         return $validated === true ? $this->filterResponse($data) : null;
     }
