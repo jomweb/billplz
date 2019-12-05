@@ -1,5 +1,5 @@
+dist: bionic
 language: php
-dist: xenial
 
 php:
   - 7.1
@@ -30,9 +30,9 @@ after_script:
 
 matrix:
   include:
-    - php: 7.4snapshot
+    - php: 7.4
       env: setup=basic
-    - php: 7.4snapshot
+    - php: 7.4
       env: setup=stable
     - php: 7.1
       env: setup=coveralls coverage=yes
