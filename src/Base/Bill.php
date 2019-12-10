@@ -2,12 +2,12 @@
 
 namespace Billplz\Base;
 
-use Billplz\Contracts\Bill as Contract;
-use Billplz\Contracts\PaymentCompletion as PaymentCompletionContract;
 use Billplz\Request;
 use InvalidArgumentException;
-use Laravie\Codex\Concerns\Request\Multipart;
 use Laravie\Codex\Contracts\Response;
+use Billplz\Contracts\Bill as Contract;
+use Laravie\Codex\Concerns\Request\Multipart;
+use Billplz\Contracts\PaymentCompletion as PaymentCompletionContract;
 
 abstract class Bill extends Request implements Contract
 {
