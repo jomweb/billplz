@@ -2,10 +2,11 @@
 
 namespace Billplz\Tests\Base;
 
-use Duit\MYR;
+use Billplz\PaymentCompletion;
 use Billplz\Tests\TestCase;
-use Laravie\Codex\Response;
+use Duit\MYR;
 use Laravie\Codex\Exceptions\HttpException;
+use Laravie\Codex\Response;
 
 abstract class BillTestCase extends TestCase
 {
@@ -44,7 +45,7 @@ abstract class BillTestCase extends TestCase
                             $payload['mobile'],
                             $payload['name'],
                             MYR::given($payload['amount']),
-                            $payload['callback_url'],
+                            new PaymentCompletion($payload['callback_url']),
                             $payload['description']
                         );
 
@@ -83,10 +84,9 @@ abstract class BillTestCase extends TestCase
                             $payload['mobile'],
                             $payload['name'],
                             MYR::given($payload['amount']),
-                            [
-                                'callback_url' => $payload['callback_url'],
-                                'redirect_url' => $payload['redirect_url'],
-                            ],
+                            new PaymentCompletion(
+                                $payload['callback_url'], $payload['redirect_url'],
+                            ),
                             $payload['description']
                         );
 
@@ -122,7 +122,7 @@ abstract class BillTestCase extends TestCase
                             $payload['mobile'],
                             $payload['name'],
                             MYR::given($payload['amount']),
-                            $payload['callback_url'],
+                            new PaymentCompletion($payload['callback_url']),
                             $payload['description']
                         );
     }

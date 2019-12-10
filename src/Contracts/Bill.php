@@ -11,7 +11,6 @@ interface Bill extends Request
      * Create a new bill.
      *
      * @param  \Money\Money|\Duit\MYR|int  $amount
-     * @param  array|string  $callbackUrl
      *
      * @throws \InvalidArgumentException
      */
@@ -21,7 +20,7 @@ interface Bill extends Request
         ?string $mobile,
         string $name,
         $amount,
-        $callbackUrl,
+        PaymentCompletion $paymentCompletion,
         string $description,
         array $optional = []
     ): Response;

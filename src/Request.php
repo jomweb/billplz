@@ -44,21 +44,4 @@ abstract class Request extends \Laravie\Codex\Request implements Filterable
     {
         return new Sanitizer();
     }
-
-    /**
-     * Parse callback URL from request.
-     *
-     * @param  array|string  $url
-     */
-    final protected function parseRedirectAndCallbackUrlFromRequest(array $body, $url): array
-    {
-        if (\is_string($url)) {
-            $body['callback_url'] = $url;
-        } elseif (\is_array($url)) {
-            $body['callback_url'] = $url['callback_url'] ?? null;
-            $body['redirect_url'] = $url['redirect_url'] ?? null;
-        }
-
-        return $body;
-    }
 }

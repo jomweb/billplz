@@ -2,11 +2,12 @@
 
 namespace Billplz\Base;
 
+use Billplz\Contracts\Bill as Contract;
+use Billplz\Contracts\PaymentCompletion as PaymentCompletionContract;
 use Billplz\Request;
 use InvalidArgumentException;
-use Laravie\Codex\Contracts\Response;
-use Billplz\Contracts\Bill as Contract;
 use Laravie\Codex\Concerns\Request\Multipart;
+use Laravie\Codex\Contracts\Response;
 
 abstract class Bill extends Request implements Contract
 {
@@ -17,7 +18,6 @@ abstract class Bill extends Request implements Contract
      * Create a new bill.
      *
      * @param  \Money\Money|\Duit\MYR|int  $amount
-     * @param  array|string  $callbackUrl
      *
      * @throws \InvalidArgumentException
      *
@@ -29,7 +29,7 @@ abstract class Bill extends Request implements Contract
         ?string $mobile,
         string $name,
         $amount,
-        $callbackUrl,
+        PaymentCompletionContract $paymentCompletion,
         string $description,
         array $optional = []
     ): Response {
@@ -43,7 +43,7 @@ abstract class Bill extends Request implements Contract
 
         $body['collection_id'] = $collectionId;
 
-        $body = $this->parseRedirectAndCallbackUrlFromRequest($body, $callbackUrl);
+        $body = \array_merge($body, $paymentCompletion->toArray());
 
         return $this->stream('POST', 'bills', [], $body);
     }
