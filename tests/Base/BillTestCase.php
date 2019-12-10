@@ -85,7 +85,7 @@ abstract class BillTestCase extends TestCase
                             $payload['name'],
                             MYR::given($payload['amount']),
                             new PaymentCompletion(
-                                $payload['callback_url'], $payload['redirect_url'],
+                                $payload['callback_url'], $payload['redirect_url']
                             ),
                             $payload['description']
                         );
