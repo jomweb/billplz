@@ -11,6 +11,7 @@ interface Bill extends Request
      * Create a new bill.
      *
      * @param  \Money\Money|\Duit\MYR|int  $amount
+     * @param  \Billplz\Contracts\PaymentCompletion|string $paymentCompletion
      *
      * @throws \InvalidArgumentException
      */
@@ -20,7 +21,7 @@ interface Bill extends Request
         ?string $mobile,
         string $name,
         $amount,
-        PaymentCompletion $paymentCompletion,
+        $paymentCompletion,
         string $description,
         array $optional = []
     ): Response;

@@ -7,6 +7,7 @@ use InvalidArgumentException;
 use Laravie\Codex\Contracts\Response;
 use Billplz\Contracts\Bill as Contract;
 use Laravie\Codex\Concerns\Request\Multipart;
+use Billplz\PaymentCompletion as PaymentCompletionUrl;
 use Billplz\Contracts\PaymentCompletion as PaymentCompletionContract;
 
 abstract class Bill extends Request implements Contract
@@ -18,6 +19,7 @@ abstract class Bill extends Request implements Contract
      * Create a new bill.
      *
      * @param  \Money\Money|\Duit\MYR|int  $amount
+     * @param  \Billplz\Contracts\PaymentCompletion|string $paymentCompletion
      *
      * @throws \InvalidArgumentException
      *
@@ -29,7 +31,7 @@ abstract class Bill extends Request implements Contract
         ?string $mobile,
         string $name,
         $amount,
-        PaymentCompletionContract $paymentCompletion,
+        $paymentCompletion,
         string $description,
         array $optional = []
     ): Response {
@@ -42,6 +44,10 @@ abstract class Bill extends Request implements Contract
         );
 
         $body['collection_id'] = $collectionId;
+
+        $paymentCompletion = $paymentCompletion instanceof PaymentCompletionContract
+            ? $paymentCompletion
+            : new PaymentCompletionUrl($paymentCompletion);
 
         $body = \array_merge($body, $paymentCompletion->toArray());
 
