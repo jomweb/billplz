@@ -13,7 +13,7 @@ $response = $billplz->bill()->create(
     null,
     'Mior Muhammad Zaki',
     300,
-    'https://localhost/webhook/billplz',
+    new Billplz\PaymentCompletion('https://localhost/webhook/billplz'),
     'My first bill'
 );
 
