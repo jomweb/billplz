@@ -701,7 +701,7 @@ $transaction = $billplz->transaction();
 You can get Transaction index by calling following code:
 
 ```php
-$response = $transaction->show('inbmmepb');
+$response = $transaction->get('inbmmepb');
 
 var_dump($response->toArray());
 ```
@@ -730,7 +730,7 @@ return [
 You also can provide optional parameters (page, status):
 
 ```php
-$response = $transaction->show('8X0Iyzaw', [
+$response = $transaction->get('8X0Iyzaw', [
     'page' => 1,
     'status' => 'completed'
 ]);
