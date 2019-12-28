@@ -10,6 +10,8 @@
 /.php_cs export-ignore
 /.travis.yml export-ignore
 /phpunit.xml export-ignore
-/LICENSE export-ignore
 /CHANGELOG-*.md export-ignore
+/CODE_OF_CONDUCT.md export-ignore
+/CONTRIBUTING.md export-ignore
+/LICENSE export-ignore
 /README.md export-ignore
