@@ -1,11 +1,8 @@
 ---
-name: Bug report
-about: Report a general library issue.
-title: ''
-labels: ''
-assignees: ''
-
+name: "Bug report"
+about: 'Report a general library issue.'
 ---
+
 
 - Library Version: #.#.#
 - API Version: v#
