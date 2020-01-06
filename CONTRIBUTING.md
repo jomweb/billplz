@@ -29,3 +29,11 @@ $ vendor/bin/phpunit
 If the test suite passes on your local machine you should be good to go.
 
 When you make a pull request, the tests will automatically be run again by [Travis CI](https://travis-ci.org/) on multiple php versions and hhvm.
+
+## Support Policy
+
+For general releases, bug fixes are provided for 6 months and security fixes are provided for 1 year after the next major version has been released.
+
+| Branch | Bug Fixes Until | Security Fixes Until
+|:-------|:----------------|:--------------------
+| `3.x`  | 6th July 2020   |: 6th January 2021
