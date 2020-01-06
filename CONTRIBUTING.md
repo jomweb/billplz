@@ -36,4 +36,4 @@ For general releases, bug fixes are provided for 6 months and security fixes are
 
 | Branch | Bug Fixes Until | Security Fixes Until
 |:-------|:----------------|:--------------------
-| `3.x`  | 6th July 2020   |: 6th January 2021
+| `3.x`  | 6th July 2020   | 6th January 2021
