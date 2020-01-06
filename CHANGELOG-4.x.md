@@ -4,7 +4,7 @@ This changelog references the relevant changes (bug and security fixes) done to 
 
 ## 4.0.0
 
-Unreleased
+Released: 2020-01-06
 
 ### Added
 
@@ -16,7 +16,7 @@ new Billplz\PaymentCompletion(string $callbackUrl, ?string $redirectUrl = null);
 
 ### Changes
 
-* Update minimum PHP version to 7.4+.
+* Update minimum PHP version to 7.2+.
 
 ### Removed
 
