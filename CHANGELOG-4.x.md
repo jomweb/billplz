@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 4.1.0
+
+Released: 2020-02-17
+
+### Added
+
+* Added `Billplz\Signature::create()` method.
+* Add `WEBHOOK_PARAMETERS` and `REDIRECT_PARAMETERS` to `Billplz\Signature`.
+
 ## 4.0.0
 
 Released: 2020-01-06
