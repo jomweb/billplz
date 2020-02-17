@@ -5,13 +5,15 @@ namespace Billplz;
 class Signature
 {
     /**
-     * Parameters constants.
+     * Redirect parameters constants.
      */
-
     public const REDIRECT_PARAMETERS = [
         'billplzid', 'billplzpaid_at', 'billplzpaid',
     ];
 
+    /**
+     * Webhook parameters constants.
+     */
     public const WEBHOOK_PARAMETERS = [
         'amount', 'collection_id', 'due_at', 'email', 'id', 'mobile', 'name',
         'paid_amount', 'paid_at', 'paid', 'state', 'url',
