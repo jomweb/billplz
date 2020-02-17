@@ -4,6 +4,15 @@ namespace Billplz;
 
 class Signature
 {
+    public const REDIRECT_PARAMETERS = [
+        'billplzid', 'billplzpaid_at', 'billplzpaid',
+    ];
+
+    public const WEBHOOK_PARAMETERS = [
+        'amount', 'collection_id', 'due_at', 'email', 'id', 'mobile', 'name',
+        'paid_amount', 'paid_at', 'paid', 'state', 'url',
+    ];
+
     /**
      * Signature key.
      *
