@@ -4,6 +4,10 @@ namespace Billplz;
 
 class Signature
 {
+    /**
+     * Parameters constants.
+     */
+
     public const REDIRECT_PARAMETERS = [
         'billplzid', 'billplzpaid_at', 'billplzpaid',
     ];
