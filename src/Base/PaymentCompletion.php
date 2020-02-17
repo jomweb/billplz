@@ -28,7 +28,7 @@ trait PaymentCompletion
             'x_signature' => $data['billplz']['x_signature'] ?? null,
         ];
 
-        $validated = $this->validateAgainstSignature($bill, $this->client->getSignatureKey(), Signature::REDIRECT_PARAMETERS);
+        $validated = $this->validateAgainstSignature($bill, Signature::redirect($this->client->getSignatureKey()));
 
         $data['billplz']['paid'] = $data['billplz']['paid'] === 'true' ? true : false;
 
@@ -40,7 +40,7 @@ trait PaymentCompletion
      */
     public function webhook(array $data = []): ?array
     {
-        $validated = $this->validateAgainstSignature($data, $this->client->getSignatureKey(), Signature::WEBHOOK_PARAMETERS);
+        $validated = $this->validateAgainstSignature($data, Signature::webhook($this->client->getSignatureKey()));
 
         $data['paid'] = $data['paid'] === 'true' ? true : false;
 
@@ -52,17 +52,15 @@ trait PaymentCompletion
      *
      * @throws \Billplz\Exceptions\FailedSignatureVerification
      */
-    final protected function validateAgainstSignature(array $bill, ?string $signatureKey = null, array $parameters = []): bool
+    final protected function validateAgainstSignature(array $bill, Signature $signature): bool
     {
-        if (\is_null($signatureKey)) {
+        if (! $signature->hasKey()) {
             return true;
         }
 
         if (! isset($bill['x_signature'])) {
             return false;
         }
-
-        $signature = new Signature($signatureKey, $parameters);
 
         if (! $signature->verify($bill, $bill['x_signature'])) {
             throw new FailedSignatureVerification();

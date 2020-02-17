@@ -36,10 +36,40 @@ class Signature
     /**
      * Construct a new signature verification.
      */
-    public function __construct(string $key, array $attributes)
+    public function __construct(?string $key, array $attributes)
     {
         $this->key = $key;
         $this->attributes = $attributes;
+    }
+
+    /**
+     * Construct a new signature verification for webhook.
+     *
+     * @return static
+     */
+    public static function redirect(?string $key)
+    {
+        return new static($key, self::REDIRECT_PARAMETERS);
+    }
+
+    /**
+     * Construct a new signature verification for webhook.
+     *
+     * @return static
+     */
+    public static function webhook(?string $key)
+    {
+        return new static($key, self::WEBHOOK_PARAMETERS);
+    }
+
+    /**
+     * Signature has key.
+     *
+     * @return bool
+     */
+    public function hasKey(): bool
+    {
+        return ! \is_null($this->key);
     }
 
     /**
