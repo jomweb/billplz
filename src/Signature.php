@@ -28,9 +28,9 @@ class Signature
     }
 
     /**
-     * Verify signature.
+     * Create signature.
      */
-    final public function verify(array $data, string $hash): bool
+    final public function create(array $data): string
     {
         $keys = [];
 
@@ -38,8 +38,14 @@ class Signature
             \array_push($keys, $attribute.($data[$attribute] ?? ''));
         }
 
-        $compared = \hash_hmac('sha256', \implode('|', $keys), $this->key);
+        return \hash_hmac('sha256', \implode('|', $keys), $this->key);
+    }
 
-        return \hash_equals($compared, $hash);
+    /**
+     * Verify signature.
+     */
+    final public function verify(array $data, string $hash): bool
+    {
+        return \hash_equals($this->create($data), $hash);
     }
 }
