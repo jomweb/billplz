@@ -5,6 +5,21 @@ namespace Billplz;
 class Signature
 {
     /**
+     * Redirect parameters constants.
+     */
+    public const REDIRECT_PARAMETERS = [
+        'billplzid', 'billplzpaid_at', 'billplzpaid',
+    ];
+
+    /**
+     * Webhook parameters constants.
+     */
+    public const WEBHOOK_PARAMETERS = [
+        'amount', 'collection_id', 'due_at', 'email', 'id', 'mobile', 'name',
+        'paid_amount', 'paid_at', 'paid', 'state', 'url',
+    ];
+
+    /**
      * Signature key.
      *
      * @var string
@@ -27,10 +42,11 @@ class Signature
         $this->attributes = $attributes;
     }
 
+
     /**
-     * Verify signature.
+     * Create signature.
      */
-    final public function verify(array $data, string $hash): bool
+    final public function create(array $data): string
     {
         $keys = [];
 
@@ -38,8 +54,14 @@ class Signature
             \array_push($keys, $attribute.($data[$attribute] ?? ''));
         }
 
-        $compared = \hash_hmac('sha256', \implode('|', $keys), $this->key);
+        return \hash_hmac('sha256', \implode('|', $keys), $this->key);
+    }
 
-        return \hash_equals($compared, $hash);
+    /**
+     * Verify signature.
+     */
+    final public function verify(array $data, string $hash): bool
+    {
+        return \hash_equals($this->create($data), $hash);
     }
 }

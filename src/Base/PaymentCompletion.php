@@ -28,9 +28,9 @@ trait PaymentCompletion
             'x_signature' => $data['billplz']['x_signature'] ?? null,
         ];
 
-        $validated = $this->validateAgainstSignature($bill, $this->client->getSignatureKey(), [
-            'billplzid', 'billplzpaid_at', 'billplzpaid',
-        ]);
+        $validated = $this->validateAgainstSignature(
+            $bill, $this->client->getSignatureKey(), Signature::REDIRECT_PARAMETERS
+        );
 
         $data['billplz']['paid'] = $data['billplz']['paid'] === 'true' ? true : false;
 
@@ -42,10 +42,9 @@ trait PaymentCompletion
      */
     public function webhook(array $data = []): ?array
     {
-        $validated = $this->validateAgainstSignature($data, $this->client->getSignatureKey(), [
-            'amount', 'collection_id', 'due_at', 'email', 'id', 'mobile', 'name',
-            'paid_amount', 'paid_at', 'paid', 'state', 'url',
-        ]);
+        $validated = $this->validateAgainstSignature(
+            $data, $this->client->getSignatureKey(), Signature::WEBHOOK_PARAMETERS
+        );
 
         $data['paid'] = $data['paid'] === 'true' ? true : false;
 
