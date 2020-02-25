@@ -42,7 +42,6 @@ class Signature
         $this->attributes = $attributes;
     }
 
-
     /**
      * Create signature.
      */
