@@ -13,10 +13,9 @@ jobs:
             fail-fast: false
             matrix:
                 php: [7.3, 7.2, 7.1]
-                dependency-flag: ['--prefer-lowest', '--prefer-stable', '--no-cache']
                 os: [ubuntu-latest, windows-latest]
 
-        name: PHP${{ matrix.php }} [${{ matrix.dependency-flag }}] on ${{ matrix.os }}
+        name: PHP${{ matrix.php }} on ${{ matrix.os }}
 
         steps:
             - name: Checkout code
@@ -37,6 +36,6 @@ jobs:
 
             - name: Install dependencies
               run: |
-                  composer update ${{ matrix.dependency-flag }} --prefer-dist --no-interaction --no-suggest
+                  composer update --prefer-dist --no-interaction --no-suggest
             - name: Execute tests
               run: vendor/bin/phpunit
