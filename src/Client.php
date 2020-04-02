@@ -73,7 +73,7 @@ class Client extends \Laravie\Codex\Client
      */
     final public function useSandbox(): self
     {
-        return $this->useCustomApiEndpoint('https://billplz-staging.herokuapp.com/api');
+        return $this->useCustomApiEndpoint('https://www.billplz-sandbox.com/api');
     }
 
     /**

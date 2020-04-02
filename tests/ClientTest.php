@@ -41,7 +41,7 @@ class ClientTest extends TestCase
 
         $client->useSandbox();
 
-        $this->assertSame('https://billplz-staging.herokuapp.com/api', $client->getApiEndpoint());
+        $this->assertSame('https://www.billplz-sandbox.com/api', $client->getApiEndpoint());
     }
 
     /** @test */
