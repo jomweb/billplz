@@ -47,7 +47,7 @@ abstract class Bill extends Request implements Contract
 
         $paymentCompletion = $paymentCompletion instanceof PaymentCompletionContract
             ? $paymentCompletion
-            : new PaymentCompletionUrl($paymentCompletion);
+            : new PaymentCompletionUrl($paymentCompletion, $optional['redirect_url']?? null);
 
         $body = \array_merge($body, $paymentCompletion->toArray());
 
