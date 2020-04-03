@@ -21,7 +21,7 @@
         }
     },
     "require": {
-        "php": ">=7.2",
+        "php": ">=7.3",
         "jomweb/ringgit": "^2.1",
         "laravie/codex": "^5.1",
         "laravie/codex-filter": "^1.0",
@@ -30,7 +30,7 @@
     "require-dev": {
         "mockery/mockery": "^1.3.1",
         "php-http/curl-client": "^2.0",
-        "phpunit/phpunit": "^8.4 || ^9.0"
+        "phpunit/phpunit": "^9.0"
     },
     "extra": {
         "branch-alias": {
