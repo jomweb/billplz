@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 4.2.0
+
+Released: 2020-04-03
+
+### Changes
+
+* Merge `$optional['redirect_url']` when constructing `Billplz\PaymentCompletion` for `Bill` resource.
+* Update sandbox API endpoint to `https://www.billplz-sandbox.com/api`.
+
 ## 4.1.0
 
 Released: 2020-02-17

@@ -45,22 +45,9 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
 
 ### Composer
 
-To install through composer, simply put the following in your `composer.json` file:
+To install through composer by using the following command:
 
-```json
-{
-    "require": {
-        "jomweb/billplz": "^3.2",
-        "php-http/guzzle6-adapter": "^2.0"
-    }
-}
-```
-
-#### Quick Installation
-
-Above installation can also be simplify by using the following command:
-
-    composer require "php-http/guzzle6-adapter" "jomweb/billplz=^3.2"
+    composer require php-http/guzzle6-adapter jomweb/billplz:^4.1
 
 #### HTTP Adapter
 
