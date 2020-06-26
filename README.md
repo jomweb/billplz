@@ -510,7 +510,8 @@ $response = $bill->create(
     'Michael API V3',
     \Duit\MYR::given(200),
     'http://example.com/webhook/',
-    'Maecenas eu placerat ante.'
+    'Maecenas eu placerat ante.',
+    [], // optional.
 );
 
 var_dump($response->toArray());
