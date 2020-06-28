@@ -551,8 +551,9 @@ $response = $bill->create(
     null,
     'Michael API V3',
     \Duit\MYR::given(200),
-    ['callback_url' => 'http://example.com/webhook/', 'redirect_url' => 'http://example.com/redirect/'],
-    'Maecenas eu placerat ante.'
+    'http://example.com/webook/',
+    'Maecenas eu placerat ante.',
+    ['redirect_url' => 'http://example.com/redirect/']
 );
 
 var_dump($response->toArray());
