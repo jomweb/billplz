@@ -47,11 +47,11 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
 
 To install through composer by using the following command:
 
-    composer require php-http/guzzle6-adapter jomweb/billplz:^4.1
+    composer require php-http/guzzle7-adapter jomweb/billplz:^4.1
 
 #### HTTP Adapter
 
-Instead of utilizing `php-http/guzzle6-adapter` you might want to use any other adapter that implements `php-http/client-implementation`. Check [Clients & Adapters](http://docs.php-http.org/en/latest/clients.html) for PHP-HTTP.
+Instead of utilizing `php-http/guzzle7-adapter` you might want to use any other adapter that implements `php-http/client-implementation`. Check [Clients & Adapters](http://docs.php-http.org/en/latest/clients.html) for PHP-HTTP.
 
 ### PHAR
 
