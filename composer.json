@@ -22,7 +22,7 @@
     },
     "require": {
         "php": "^7.2 || ^8.0",
-        "jomweb/ringgit": "^2.1",
+        "jomweb/ringgit": "^2.3.1",
         "laravie/codex": "^5.1",
         "laravie/codex-filter": "^1.0",
         "php-http/multipart-stream-builder": "^1.0"
