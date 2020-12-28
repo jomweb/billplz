@@ -21,7 +21,7 @@
         }
     },
     "require": {
-        "php": ">=7.2",
+        "php": "^7.2 || ^8.0",
         "jomweb/ringgit": "^2.1",
         "laravie/codex": "^5.1",
         "laravie/codex-filter": "^1.0",
