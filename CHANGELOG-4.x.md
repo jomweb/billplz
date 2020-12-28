@@ -2,7 +2,7 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
-## 4.4.0
+## 4.3.1
 
 Released: 2020-12-28
 
