@@ -28,7 +28,7 @@ class Card extends Request implements Contract
         string $cvv,
         string $expiry
     ): Response {
-        $body = \compact('name', 'email', 'cvv', 'expiry');
+        $body = compact('name', 'email', 'cvv', 'expiry');
         $body['phone'] = $phoneNumber;
         $body['card_number'] = $cardNumber;
 

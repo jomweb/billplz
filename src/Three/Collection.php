@@ -22,10 +22,10 @@ class Collection extends Request
     public function create(string $title, array $optional = []): Response
     {
         $files = [];
-        $body = \array_merge(\compact('title'), $optional);
+        $body = array_merge(compact('title'), $optional);
 
         if (isset($body['logo'])) {
-            $files['logo'] = \ltrim($body['logo'], '@');
+            $files['logo'] = ltrim($body['logo'], '@');
             unset($body['logo']);
         }
 

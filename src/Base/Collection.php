@@ -18,7 +18,7 @@ abstract class Collection extends Request implements Contract
      */
     public function create(string $title, array $optional = []): Response
     {
-        $body = \array_merge(\compact('title'), $optional);
+        $body = array_merge(compact('title'), $optional);
 
         return $this->stream('POST', 'collections', [], $body);
     }

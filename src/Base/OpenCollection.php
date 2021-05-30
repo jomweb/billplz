@@ -24,7 +24,7 @@ class OpenCollection extends Request implements Contract
         $amount,
         array $optional = []
     ): Response {
-        $body = \array_merge(\compact('title', 'description', 'amount'), $optional);
+        $body = array_merge(compact('title', 'description', 'amount'), $optional);
 
         return $this->stream('POST', 'open_collections', [], $body);
     }

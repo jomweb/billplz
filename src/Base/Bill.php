@@ -39,8 +39,8 @@ abstract class Bill extends Request implements Contract
             throw new InvalidArgumentException('Either $email or $mobile should be present');
         }
 
-        $body = \array_merge(
-            \compact('email', 'mobile', 'name', 'amount', 'description'), $optional
+        $body = array_merge(
+            compact('email', 'mobile', 'name', 'amount', 'description'), $optional
         );
 
         $body['collection_id'] = $collectionId;
@@ -49,7 +49,7 @@ abstract class Bill extends Request implements Contract
             ? $paymentCompletion
             : new PaymentCompletionUrl($paymentCompletion, $optional['redirect_url'] ?? null);
 
-        $body = \array_merge($body, $paymentCompletion->toArray());
+        $body = array_merge($body, $paymentCompletion->toArray());
 
         return $this->stream('POST', 'bills', [], $body);
     }
