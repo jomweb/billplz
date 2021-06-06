@@ -28,7 +28,7 @@ jobs:
           - false
         include:
           - os: "ubuntu-latest"
-            php: "8.0"
+            php: "8.1"
             dependencies: "highest"
             composer-options: "--ignore-platform-reqs"
             experimental: true
