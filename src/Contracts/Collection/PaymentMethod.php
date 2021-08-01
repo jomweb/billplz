@@ -13,8 +13,6 @@ interface PaymentMethod
 
     /**
      * Update payment methods.
-     *
-     * @param  string  $id
      */
     public function update(string $collectionId, array $codes = []): Response;
 }

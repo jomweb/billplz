@@ -22,8 +22,6 @@ abstract class Bill extends Request implements Contract
      * @param  \Billplz\Contracts\PaymentCompletion|string $paymentCompletion
      *
      * @throws \InvalidArgumentException
-     *
-     * @return \Billplz\Response
      */
     public function create(
         string $collectionId,
@@ -56,8 +54,6 @@ abstract class Bill extends Request implements Contract
 
     /**
      * Show an existing bill.
-     *
-     * @return \Billplz\Response
      */
     public function get(string $id): Response
     {
@@ -66,20 +62,19 @@ abstract class Bill extends Request implements Contract
 
     /**
      * Show an existing bill transactions.
-     *
-     * @return \Billplz\Response
      */
     public function transaction(string $id, array $optional = []): Response
     {
-        return $this->client->uses(
+        /** @var \Billplz\Contracts\Bill\Transaction $transaction */
+        $transaction = $this->client->uses(
             'Bill.Transaction', $this->getVersion()
-        )->get($id, $optional);
+        );
+
+        return $transaction->get($id, $optional);
     }
 
     /**
      * Destroy an existing bill.
-     *
-     * @return \Billplz\Response
      */
     public function destroy(string $id): Response
     {

@@ -21,15 +21,11 @@ interface Card extends Request
 
     /**
      * Activate the card.
-     *
-     * @return \Billplz\Response
      */
     public function activate(string $cardId, string $cardToken): Response;
 
     /**
      * Deactivate the card.
-     *
-     * @return \Billplz\Response
      */
     public function deactivate(string $cardId, string $cardToken): Response;
 }

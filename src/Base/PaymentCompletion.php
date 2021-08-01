@@ -6,6 +6,9 @@ use Billplz\Signature;
 use InvalidArgumentException;
 use Billplz\Exceptions\FailedSignatureVerification;
 
+/**
+ * @property \Billplz\Client $client
+ */
 trait PaymentCompletion
 {
     /**

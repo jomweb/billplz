@@ -9,8 +9,6 @@ abstract class Transaction extends Request
 {
     /**
      * Show an existing bill transactions.
-     *
-     * @return \Billplz\Response
      */
     public function get(string $id, array $optional = []): Response
     {

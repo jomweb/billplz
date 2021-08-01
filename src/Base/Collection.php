@@ -13,8 +13,6 @@ abstract class Collection extends Request implements Contract
 
     /**
      * Create a new collection.
-     *
-     * @return \Billplz\Response
      */
     public function create(string $title, array $optional = []): Response
     {
@@ -25,8 +23,6 @@ abstract class Collection extends Request implements Contract
 
     /**
      * Get collection.
-     *
-     * @return \Billplz\Response
      */
     public function get(string $id): Response
     {
@@ -35,8 +31,6 @@ abstract class Collection extends Request implements Contract
 
     /**
      * Get collection index.
-     *
-     * @return \Billplz\Response
      */
     public function all(array $optional = []): Response
     {
@@ -45,8 +39,6 @@ abstract class Collection extends Request implements Contract
 
     /**
      * Activate a collection.
-     *
-     * @return \Billplz\Response
      */
     public function activate(string $id): Response
     {
@@ -55,8 +47,6 @@ abstract class Collection extends Request implements Contract
 
     /**
      * Deactivate a collection.
-     *
-     * @return \Billplz\Response
      */
     public function deactivate(string $id): Response
     {

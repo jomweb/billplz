@@ -21,8 +21,6 @@ class Bill extends Request
      * @param  array|string  $callbackUrl
      *
      * @throws \InvalidArgumentException
-     *
-     * @return \Billplz\Response
      */
     public function create(
         string $collectionId,
@@ -43,8 +41,6 @@ class Bill extends Request
 
     /**
      * Show an existing bill.
-     *
-     * @return \Billplz\Response
      */
     public function get(string $id): Response
     {
@@ -55,8 +51,6 @@ class Bill extends Request
 
     /**
      * Show an existing bill transactions.
-     *
-     * @return \Billplz\Response
      */
     public function transaction(string $id, array $optional = []): Response
     {
@@ -67,8 +61,6 @@ class Bill extends Request
 
     /**
      * Destroy an existing bill.
-     *
-     * @return \Billplz\Response
      */
     public function destroy(string $id): Response
     {
@@ -79,8 +71,6 @@ class Bill extends Request
 
     /**
      * Bill payment using Visa/MasterCard card via generated token.
-     *
-     * @return \Billplz\Response
      */
     public function charge(string $id, string $cardId, string $cardToken): Response
     {

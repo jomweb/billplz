@@ -1,0 +1,52 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method Billplz\\\\Client\\:\\:bank\\(\\) should return Billplz\\\\Contracts\\\\BankAccount but returns Laravie\\\\Codex\\\\Contracts\\\\Request\\.$#"
+			count: 1
+			path: src/Client.php
+
+		-
+			message: "#^Method Billplz\\\\Client\\:\\:bill\\(\\) should return Billplz\\\\Contracts\\\\Bill but returns Laravie\\\\Codex\\\\Contracts\\\\Request\\.$#"
+			count: 1
+			path: src/Client.php
+
+		-
+			message: "#^Method Billplz\\\\Client\\:\\:card\\(\\) should return Billplz\\\\Contracts\\\\Card but returns Laravie\\\\Codex\\\\Contracts\\\\Request\\.$#"
+			count: 1
+			path: src/Client.php
+
+		-
+			message: "#^Method Billplz\\\\Client\\:\\:collection\\(\\) should return Billplz\\\\Contracts\\\\Collection but returns Laravie\\\\Codex\\\\Contracts\\\\Request\\.$#"
+			count: 1
+			path: src/Client.php
+
+		-
+			message: "#^Method Billplz\\\\Client\\:\\:openCollection\\(\\) should return Billplz\\\\Contracts\\\\OpenCollection but returns Laravie\\\\Codex\\\\Contracts\\\\Request\\.$#"
+			count: 1
+			path: src/Client.php
+
+		-
+			message: "#^Method Billplz\\\\Client\\:\\:payout\\(\\) should return Billplz\\\\Contracts\\\\Payout but returns Laravie\\\\Codex\\\\Contracts\\\\Request\\.$#"
+			count: 1
+			path: src/Client.php
+
+		-
+			message: "#^Method Billplz\\\\Client\\:\\:payoutCollection\\(\\) should return Billplz\\\\Contracts\\\\Collection\\\\Payout but returns Laravie\\\\Codex\\\\Contracts\\\\Request\\.$#"
+			count: 1
+			path: src/Client.php
+
+		-
+			message: "#^Method Billplz\\\\Client\\:\\:transaction\\(\\) should return Billplz\\\\Contracts\\\\Bill\\\\Transaction but returns Laravie\\\\Codex\\\\Contracts\\\\Request\\.$#"
+			count: 1
+			path: src/Client.php
+
+		-
+			message: "#^Method Billplz\\\\Four\\\\Collection\\:\\:payout\\(\\) should return Billplz\\\\Four\\\\Collection\\\\Payout but returns Laravie\\\\Codex\\\\Contracts\\\\Request\\.$#"
+			count: 1
+			path: src/Four/Collection.php
+
+		-
+			message: "#^Call to an undefined method Laravie\\\\Codex\\\\Contracts\\\\Endpoint\\:\\:withUserInfo\\(\\)\\.$#"
+			count: 1
+			path: src/Request.php
+

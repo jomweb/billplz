@@ -15,8 +15,6 @@ class OpenCollection extends Request implements Contract
      * Create a new open collection.
      *
      * @param  \Money\Money|\Duit\MYR|int  $amount
-     *
-     * @return \Billplz\Response
      */
     public function create(
         string $title,
@@ -31,8 +29,6 @@ class OpenCollection extends Request implements Contract
 
     /**
      * Get open collection.
-     *
-     * @return \Billplz\Response
      */
     public function get(string $collectionId): Response
     {
@@ -41,8 +37,6 @@ class OpenCollection extends Request implements Contract
 
     /**
      * Get open collection index.
-     *
-     * @return \Billplz\Response
      */
     public function all(array $optional = []): Response
     {

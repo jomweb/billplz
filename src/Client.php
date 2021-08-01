@@ -59,7 +59,7 @@ class Client extends \Laravie\Codex\Client
     /**
      * Make a client.
      *
-     * @return $this
+     * @return static
      */
     public static function make(string $apiKey, ?string $signatureKey = null)
     {

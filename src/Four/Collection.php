@@ -16,8 +16,6 @@ class Collection extends Request
 
     /**
      * Activate a collection.
-     *
-     * @return \Billplz\Response
      */
     public function activate(string $id): Response
     {
@@ -28,8 +26,6 @@ class Collection extends Request
 
     /**
      * Deactivate a collection.
-     *
-     * @return \Billplz\Response
      */
     public function deactivate(string $id): Response
     {

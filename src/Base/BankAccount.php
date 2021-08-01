@@ -10,8 +10,6 @@ abstract class BankAccount extends Request implements Contract
 {
     /**
      * Get A Bank Account.
-     *
-     * @return \Billplz\Response
      */
     public function get(string $accountNumber): Response
     {
@@ -20,8 +18,6 @@ abstract class BankAccount extends Request implements Contract
 
     /**
      * Create A Bank Account.
-     *
-     * @return \Billplz\Response
      */
     public function create(
         string $name,
@@ -39,8 +35,6 @@ abstract class BankAccount extends Request implements Contract
 
     /**
      * Check Bank Account Number.
-     *
-     * @return \Billplz\Response
      */
     public function checkAccount(string $accountNumber): Response
     {
@@ -49,8 +43,6 @@ abstract class BankAccount extends Request implements Contract
 
     /**
      * Get list of bank for Bank Direct Feature.
-     *
-     * @return \Billplz\Response
      */
     public function supportedForFpx(): Response
     {

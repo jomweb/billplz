@@ -2,16 +2,18 @@
 
 namespace Billplz\Exceptions;
 
+use Exception;
 use Laravie\Codex\Exceptions\HttpException;
 
+/**
+ * @property \Billplz\Response $response
+ */
 class ExceedRequestLimits extends HttpException
 {
     /**
      * Construct a new HTTP exception.
      *
      * @param \Billplz\Response  $response
-     * @param string  $message
-     * @param \Exception|null  $previous
      */
     public function __construct(
         $response,
@@ -20,7 +22,7 @@ class ExceedRequestLimits extends HttpException
         int $code = 0
     ) {
         parent::__construct(
-            $response, $message ?: 'Too many requests', $previous, 419
+            $response, $message ?: 'Too many requests', $previous, $code = 419
         );
 
         $this->setResponse($response);

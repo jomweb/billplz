@@ -19,8 +19,6 @@ class Payout extends Request implements Contract
      * Create a new mass payment instruction (mpi).
      *
      * @param  int  $total
-     *
-     * @return \Billplz\Response
      */
     public function create(
         string $collectionId,
@@ -43,8 +41,6 @@ class Payout extends Request implements Contract
 
     /**
      * Get mass payment instruction (mpi).
-     *
-     * @return \Billplz\Response
      */
     public function get(string $instructionId): Response
     {

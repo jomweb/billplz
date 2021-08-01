@@ -16,8 +16,6 @@ class PaymentGateway extends Request
 
     /**
      * Get payment gateways index.
-     *
-     * @return \Billplz\Response
      */
     public function all(): Response
     {

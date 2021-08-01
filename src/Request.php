@@ -8,6 +8,9 @@ use Laravie\Codex\Filter\WithSanitizer;
 use Psr\Http\Message\ResponseInterface;
 use Laravie\Codex\Contracts\Response as ResponseContract;
 
+/**
+ * @property \Billplz\Client $client
+ */
 abstract class Request extends \Laravie\Codex\Request implements Filterable
 {
     use WithSanitizer;
@@ -25,10 +28,6 @@ abstract class Request extends \Laravie\Codex\Request implements Filterable
 
     /**
      * Resolve the responder class.
-     *
-     * @param  \Psr\Http\Message\ResponseInterface  $response
-     *
-     * @return \Billplz\Response
      */
     protected function responseWith(ResponseInterface $message): ResponseContract
     {

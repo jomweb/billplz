@@ -17,8 +17,6 @@ class Card extends Request implements Contract
 
     /**
      * Create new card token.
-     *
-     * @return \Billplz\Response
      */
     public function create(
         string $name,
@@ -37,8 +35,6 @@ class Card extends Request implements Contract
 
     /**
      * Activate the card.
-     *
-     * @return \Billplz\Response
      */
     public function activate(string $cardId, string $cardToken): Response
     {
@@ -50,8 +46,6 @@ class Card extends Request implements Contract
 
     /**
      * Deactivate the card.
-     *
-     * @return \Billplz\Response
      */
     public function deactivate(string $cardId, string $cardToken): Response
     {
