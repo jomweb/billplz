@@ -15,6 +15,7 @@ class OpenCollection extends Request implements Contract
      * Create a new open collection.
      *
      * @param  \Money\Money|\Duit\MYR|int  $amount
+     * @param  array<string, mixed>  $optional
      */
     public function create(
         string $title,
@@ -37,6 +38,8 @@ class OpenCollection extends Request implements Contract
 
     /**
      * Get open collection index.
+     *
+     * @param  array<string, mixed>  $optional
      */
     public function all(array $optional = []): Response
     {

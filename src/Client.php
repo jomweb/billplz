@@ -38,7 +38,7 @@ class Client extends \Laravie\Codex\Client
     /**
      * List of supported API versions.
      *
-     * @var array
+     * @var array<string, string>
      */
     protected $supportedVersions = [
         'v3' => 'Three',

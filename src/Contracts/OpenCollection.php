@@ -11,6 +11,7 @@ interface OpenCollection extends Request
      * Create a new open collection.
      *
      * @param  \Money\Money|\Duit\MYR|int  $amount
+     * @param  array<string, mixed>  $optional
      */
     public function create(
         string $title,
@@ -26,6 +27,8 @@ interface OpenCollection extends Request
 
     /**
      * Get open collection index.
+     *
+     * @param  array<string, mixed>  $optional
      */
     public function all(array $optional = []): Response;
 }

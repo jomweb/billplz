@@ -19,6 +19,7 @@ class Bill extends Request
      *
      * @param  \Money\Money|\Duit\MYR|int  $amount
      * @param  array|string  $callbackUrl
+     * @param  array<string, mixed>  $optional
      *
      * @throws \InvalidArgumentException
      */
@@ -51,6 +52,8 @@ class Bill extends Request
 
     /**
      * Show an existing bill transactions.
+     *
+     * @param  array<string, mixed>  $optional
      */
     public function transaction(string $id, array $optional = []): Response
     {

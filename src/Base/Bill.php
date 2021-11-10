@@ -20,6 +20,7 @@ abstract class Bill extends Request implements Contract
      *
      * @param  \Money\Money|\Duit\MYR|int  $amount
      * @param  \Billplz\Contracts\PaymentCompletion|string $paymentCompletion
+     * @param  array<string, mixed>  $optional
      *
      * @throws \InvalidArgumentException
      */
@@ -62,6 +63,8 @@ abstract class Bill extends Request implements Contract
 
     /**
      * Show an existing bill transactions.
+     *
+     * @param  array<string, mixed>  $optional
      */
     public function transaction(string $id, array $optional = []): Response
     {

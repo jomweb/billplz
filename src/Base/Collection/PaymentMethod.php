@@ -18,6 +18,8 @@ class PaymentMethod extends Request implements Contract
 
     /**
      * Update payment methods.
+     *
+     * @param  array<int, string>  $codes
      */
     public function update(string $collectionId, array $codes = []): Response
     {

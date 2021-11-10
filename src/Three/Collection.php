@@ -16,6 +16,8 @@ class Collection extends Request
 
     /**
      * Create a new collection.
+     *
+     * @param  array<string, mixed>  $optional
      */
     public function create(string $title, array $optional = []): Response
     {
