@@ -6,10 +6,15 @@ use Billplz\Signature;
 use InvalidArgumentException;
 use Billplz\Exceptions\FailedSignatureVerification;
 
+/**
+ * @property \Billplz\Client $client
+ */
 trait PaymentCompletion
 {
     /**
      * Parse redirect data for a bill.
+     *
+     * @param  array<string, array<string, mixed>>  $data
      */
     public function redirect(array $data = []): ?array
     {
@@ -37,6 +42,8 @@ trait PaymentCompletion
 
     /**
      * Parse webhook data for a bill.
+     *
+     * @param  array<string, mixed>  $data
      */
     public function webhook(array $data = []): ?array
     {

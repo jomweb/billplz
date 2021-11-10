@@ -1,0 +1,17 @@
+includes:
+  - ./phpstan-baseline.neon
+
+parameters:
+
+  paths:
+    - src
+
+  # The level 8 is the highest level
+  level: 8
+
+  ignoreErrors:
+    - '#Unsafe usage of new static#'
+    - '#Call to an undefined method Laravie\\Codex\\Contracts\\Endpoint::withUserInfo\(\)#'
+
+  treatPhpDocTypesAsCertain: false
+  checkMissingIterableValueType: false

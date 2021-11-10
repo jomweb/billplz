@@ -38,7 +38,7 @@ class Client extends \Laravie\Codex\Client
     /**
      * List of supported API versions.
      *
-     * @var array
+     * @var array<string, string>
      */
     protected $supportedVersions = [
         'v3' => 'Three',
@@ -59,7 +59,7 @@ class Client extends \Laravie\Codex\Client
     /**
      * Make a client.
      *
-     * @return $this
+     * @return static
      */
     public static function make(string $apiKey, ?string $signatureKey = null)
     {

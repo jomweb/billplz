@@ -80,10 +80,10 @@ class Signature
         $keys = [];
 
         foreach ($this->attributes as $attribute) {
-            \array_push($keys, $attribute.($data[$attribute] ?? ''));
+            array_push($keys, $attribute.($data[$attribute] ?? ''));
         }
 
-        return \hash_hmac('sha256', \implode('|', $keys), $this->key);
+        return hash_hmac('sha256', implode('|', $keys), $this->key);
     }
 
     /**
@@ -91,6 +91,6 @@ class Signature
      */
     final public function verify(array $data, string $hash): bool
     {
-        return \hash_equals($this->create($data), $hash);
+        return hash_equals($this->create($data), $hash);
     }
 }

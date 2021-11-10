@@ -2,6 +2,22 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 4.3.1
+
+Released: 2020-12-28
+
+### Changes
+
+* Bump Codex dependencies.
+
+## 4.3.0
+
+Released: 2020-12-28
+
+### Changes
+
+* Update to support PHP 8.
+
 ## 4.2.0
 
 Released: 2020-04-03

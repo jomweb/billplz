@@ -10,7 +10,7 @@ abstract class Transaction extends Request
     /**
      * Show an existing bill transactions.
      *
-     * @return \Billplz\Response
+     * @param  array<string, mixed>  $optional
      */
     public function get(string $id, array $optional = []): Response
     {

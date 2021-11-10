@@ -14,19 +14,17 @@ abstract class Collection extends Request implements Contract
     /**
      * Create a new collection.
      *
-     * @return \Billplz\Response
+     * @param  array<string, mixed>  $optional
      */
     public function create(string $title, array $optional = []): Response
     {
-        $body = \array_merge(\compact('title'), $optional);
+        $body = array_merge(compact('title'), $optional);
 
         return $this->stream('POST', 'collections', [], $body);
     }
 
     /**
      * Get collection.
-     *
-     * @return \Billplz\Response
      */
     public function get(string $id): Response
     {
@@ -36,7 +34,7 @@ abstract class Collection extends Request implements Contract
     /**
      * Get collection index.
      *
-     * @return \Billplz\Response
+     * @param  array<string, mixed>  $optional
      */
     public function all(array $optional = []): Response
     {
@@ -45,8 +43,6 @@ abstract class Collection extends Request implements Contract
 
     /**
      * Activate a collection.
-     *
-     * @return \Billplz\Response
      */
     public function activate(string $id): Response
     {
@@ -55,8 +51,6 @@ abstract class Collection extends Request implements Contract
 
     /**
      * Deactivate a collection.
-     *
-     * @return \Billplz\Response
      */
     public function deactivate(string $id): Response
     {

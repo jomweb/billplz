@@ -10,8 +10,6 @@ class PaymentMethod extends Request implements Contract
 {
     /**
      * Get payment method index.
-     *
-     * @return \Billplz\Response
      */
     public function get(string $collectionId): Response
     {
@@ -21,16 +19,14 @@ class PaymentMethod extends Request implements Contract
     /**
      * Update payment methods.
      *
-     * @param  string  $id
-     *
-     * @return \Billplz\Response
+     * @param  array<int, string>  $codes
      */
     public function update(string $collectionId, array $codes = []): Response
     {
         $payments = [];
 
         foreach ($codes as $code) {
-            \array_push($payments, \compact('code'));
+            array_push($payments, compact('code'));
         }
 
         return $this->send('PUT', "collections/{$collectionId}/payment_methods", [], $payments);

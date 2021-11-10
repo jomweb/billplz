@@ -16,8 +16,6 @@ class Webhook extends Request
 
     /**
      * Get webhook rank for the account.
-     *
-     * @return \Billplz\Response
      */
     public function rank(): Response
     {

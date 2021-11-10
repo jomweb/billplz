@@ -1,7 +1,7 @@
 PHP framework agnostic library for working with BillPlz API v3 and beyond...
 ==============
 
-[![Build Status](https://travis-ci.org/jomweb/billplz.svg?branch=master)](https://travis-ci.org/jomweb/billplz)
+[![tests](https://github.com/jomweb/billplz/workflows/tests/badge.svg?branch=4.x)](https://github.com/jomweb/billplz/actions?query=workflow%3Atests+branch%3A4.x)
 [![Latest Stable Version](https://poser.pugx.org/jomweb/billplz/version)](https://packagist.org/packages/jomweb/billplz)
 [![Total Downloads](https://poser.pugx.org/jomweb/billplz/downloads)](https://packagist.org/packages/jomweb/billplz)
 [![Latest Unstable Version](https://poser.pugx.org/jomweb/billplz/v/unstable)](//packagist.org/packages/jomweb/billplz)
@@ -47,11 +47,11 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
 
 To install through composer by using the following command:
 
-    composer require php-http/guzzle6-adapter jomweb/billplz:^4.1
+    composer require php-http/guzzle7-adapter jomweb/billplz:^4.1
 
 #### HTTP Adapter
 
-Instead of utilizing `php-http/guzzle6-adapter` you might want to use any other adapter that implements `php-http/client-implementation`. Check [Clients & Adapters](http://docs.php-http.org/en/latest/clients.html) for PHP-HTTP.
+Instead of utilizing `php-http/guzzle7-adapter` you might want to use any other adapter that implements `php-http/client-implementation`. Check [Clients & Adapters](http://docs.php-http.org/en/latest/clients.html) for PHP-HTTP.
 
 ### PHAR
 

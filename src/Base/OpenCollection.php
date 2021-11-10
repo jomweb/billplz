@@ -15,8 +15,7 @@ class OpenCollection extends Request implements Contract
      * Create a new open collection.
      *
      * @param  \Money\Money|\Duit\MYR|int  $amount
-     *
-     * @return \Billplz\Response
+     * @param  array<string, mixed>  $optional
      */
     public function create(
         string $title,
@@ -24,15 +23,13 @@ class OpenCollection extends Request implements Contract
         $amount,
         array $optional = []
     ): Response {
-        $body = \array_merge(\compact('title', 'description', 'amount'), $optional);
+        $body = array_merge(compact('title', 'description', 'amount'), $optional);
 
         return $this->stream('POST', 'open_collections', [], $body);
     }
 
     /**
      * Get open collection.
-     *
-     * @return \Billplz\Response
      */
     public function get(string $collectionId): Response
     {
@@ -42,7 +39,7 @@ class OpenCollection extends Request implements Contract
     /**
      * Get open collection index.
      *
-     * @return \Billplz\Response
+     * @param  array<string, mixed>  $optional
      */
     public function all(array $optional = []): Response
     {

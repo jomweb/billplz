@@ -95,13 +95,13 @@ class TestCase extends PHPUnit
      */
     protected function makeClient(Faker $faker = null): Client
     {
-        if (is_null($faker)) {
+        if (\is_null($faker)) {
             $faker = Faker::create();
         }
 
         $client = new Client($faker->http(), static::API_KEY, static::X_SIGNATURE);
 
-        if (! is_null($this->apiVersion)) {
+        if (! \is_null($this->apiVersion)) {
             $client->useVersion($this->apiVersion);
         }
 

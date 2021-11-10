@@ -17,15 +17,15 @@ class Collection extends Request
     /**
      * Create a new collection.
      *
-     * @return \Billplz\Response
+     * @param  array<string, mixed>  $optional
      */
     public function create(string $title, array $optional = []): Response
     {
         $files = [];
-        $body = \array_merge(\compact('title'), $optional);
+        $body = array_merge(compact('title'), $optional);
 
         if (isset($body['logo'])) {
-            $files['logo'] = \ltrim($body['logo'], '@');
+            $files['logo'] = ltrim($body['logo'], '@');
             unset($body['logo']);
         }
 

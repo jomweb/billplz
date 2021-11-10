@@ -11,6 +11,7 @@ interface Payout extends Request
      * Create a new mass payment instruction (mpi).
      *
      * @param  int  $total
+     * @param  array<string, mixed>  $optional
      */
     public function create(
         string $collectionId,

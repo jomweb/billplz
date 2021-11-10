@@ -19,8 +19,6 @@ class Payout extends Request implements Contract
      * Create a new mass payment instruction (mpi).
      *
      * @param  int  $total
-     *
-     * @return \Billplz\Response
      */
     public function create(
         string $collectionId,
@@ -32,7 +30,7 @@ class Payout extends Request implements Contract
         $total,
         array $optional = []
     ): Response {
-        $body = \array_merge(\compact('name', 'description', 'total'), $optional);
+        $body = array_merge(compact('name', 'description', 'total'), $optional);
         $body['mass_payment_instruction_collection_id'] = $collectionId;
         $body['bank_code'] = $bankCode;
         $body['bank_account_number'] = $bankAccountNumber;
@@ -43,8 +41,6 @@ class Payout extends Request implements Contract
 
     /**
      * Get mass payment instruction (mpi).
-     *
-     * @return \Billplz\Response
      */
     public function get(string $instructionId): Response
     {

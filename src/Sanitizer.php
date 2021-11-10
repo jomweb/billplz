@@ -6,6 +6,8 @@ class Sanitizer extends \Laravie\Codex\Filter\Sanitizer
 {
     /**
      * Construct a new sanitizer.
+     *
+     * @param  array<string, class-string<\Laravie\Codex\Contracts\Cast>>  $casters
      */
     public function __construct(array $casters = [])
     {

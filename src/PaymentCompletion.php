@@ -45,6 +45,8 @@ class PaymentCompletion implements Contracts\PaymentCompletion
 
     /**
      * Convert to array.
+     *
+     * @return array<string, string|null>
      */
     public function toArray(): array
     {

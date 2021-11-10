@@ -20,10 +20,9 @@ abstract class Bill extends Request implements Contract
      *
      * @param  \Money\Money|\Duit\MYR|int  $amount
      * @param  \Billplz\Contracts\PaymentCompletion|string $paymentCompletion
+     * @param  array<string, mixed>  $optional
      *
      * @throws \InvalidArgumentException
-     *
-     * @return \Billplz\Response
      */
     public function create(
         string $collectionId,
@@ -39,25 +38,23 @@ abstract class Bill extends Request implements Contract
             throw new InvalidArgumentException('Either $email or $mobile should be present');
         }
 
-        $body = \array_merge(
-            \compact('email', 'mobile', 'name', 'amount', 'description'), $optional
+        $body = array_merge(
+            compact('email', 'mobile', 'name', 'amount', 'description'), $optional
         );
 
         $body['collection_id'] = $collectionId;
 
         $paymentCompletion = $paymentCompletion instanceof PaymentCompletionContract
             ? $paymentCompletion
-            : new PaymentCompletionUrl($paymentCompletion, $optional['redirect_url']?? null);
+            : new PaymentCompletionUrl($paymentCompletion, $optional['redirect_url'] ?? null);
 
-        $body = \array_merge($body, $paymentCompletion->toArray());
+        $body = array_merge($body, $paymentCompletion->toArray());
 
         return $this->stream('POST', 'bills', [], $body);
     }
 
     /**
      * Show an existing bill.
-     *
-     * @return \Billplz\Response
      */
     public function get(string $id): Response
     {
@@ -67,19 +64,20 @@ abstract class Bill extends Request implements Contract
     /**
      * Show an existing bill transactions.
      *
-     * @return \Billplz\Response
+     * @param  array<string, mixed>  $optional
      */
     public function transaction(string $id, array $optional = []): Response
     {
-        return $this->client->uses(
+        /** @var \Billplz\Contracts\Bill\Transaction $transaction */
+        $transaction = $this->client->uses(
             'Bill.Transaction', $this->getVersion()
-        )->get($id, $optional);
+        );
+
+        return $transaction->get($id, $optional);
     }
 
     /**
      * Destroy an existing bill.
-     *
-     * @return \Billplz\Response
      */
     public function destroy(string $id): Response
     {
