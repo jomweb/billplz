@@ -22,7 +22,7 @@ class Signature
     /**
      * Signature key.
      *
-     * @var string
+     * @var string|null
      */
     protected $key;
 
@@ -83,7 +83,7 @@ class Signature
             array_push($keys, $attribute.($data[$attribute] ?? ''));
         }
 
-        return hash_hmac('sha256', implode('|', $keys), $this->key);
+        return hash_hmac('sha256', implode('|', $keys), (string) $this->key);
     }
 
     /**
