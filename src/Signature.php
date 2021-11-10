@@ -64,8 +64,6 @@ class Signature
 
     /**
      * Signature has key.
-     *
-     * @return bool
      */
     public function hasKey(): bool
     {
