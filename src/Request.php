@@ -18,11 +18,15 @@ abstract class Request extends \Laravie\Codex\Request implements Filterable
     /**
      * Get URI Endpoint.
      *
-     * @param  array|string  $path
+     * @param  array<int, string>|string  $path
      */
     protected function getApiEndpoint($path = []): Endpoint
     {
-        return parent::getApiEndpoint([$this->getVersion(), $path])
+        $paths = is_array($path) ? $path : [$path];
+
+        array_unshift($paths, $this->getVersion());
+
+        return parent::getApiEndpoint($paths)
             ->withUserInfo($this->client->getApiKey());
     }
 
