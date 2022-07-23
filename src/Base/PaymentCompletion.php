@@ -30,11 +30,15 @@ trait PaymentCompletion
             'billplzid' => $data['billplz']['id'],
             'billplzpaid' => $data['billplz']['paid'],
             'billplzpaid_at' => $data['billplz']['paid_at'],
+            'billplztransaction_id' => $data['billplz']['transaction_id'] ?? null,
+            'billplztransaction_status' => $data['billplz']['transaction_status'] ?? null,
             'x_signature' => $data['billplz']['x_signature'] ?? null,
         ];
 
         $validated = $this->validateAgainstSignature(
-            $bill, $this->client->getSignatureKey(), Signature::REDIRECT_PARAMETERS
+            $bill,
+            $this->client->getSignatureKey(),
+            Signature::REDIRECT_PARAMETERS
         );
 
         $data['billplz']['paid'] = $data['billplz']['paid'] === 'true' ? true : false;
@@ -50,7 +54,9 @@ trait PaymentCompletion
     public function webhook(array $data = []): ?array
     {
         $validated = $this->validateAgainstSignature(
-            $data, $this->client->getSignatureKey(), Signature::WEBHOOK_PARAMETERS
+            $data,
+            $this->client->getSignatureKey(),
+            Signature::WEBHOOK_PARAMETERS
         );
 
         $data['paid'] = $data['paid'] === 'true' ? true : false;
