@@ -8,3 +8,4 @@
 # PHPUnit
 /coverage/*
 /.phpunit.result.cache
+.vscode/settings.json
