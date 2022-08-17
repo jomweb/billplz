@@ -282,7 +282,7 @@ abstract class BillTestCase extends TestCase
                 'paid_at' => '2018-03-12 12:46:36 +0800',
                 'transaction_id' => 'AC4GC031F42H',
                 'transaction_status' => 'completed',
-                'x_signature' => 'af43b15a12607f4965ae5bc03223c4bdcccc7d6f6e3535dda10451337eca78b7'
+                'x_signature' => 'af43b15a12607f4965ae5bc03223c4bdcccc7d6f6e3535dda10451337eca78b7',
             ],
         ];
 
@@ -332,7 +332,7 @@ abstract class BillTestCase extends TestCase
                 'paid_at' => '2018-03-12 12:46:36 +0800',
                 'transaction_id' => 'AC4GC031F42H',
                 'transaction_status' => 'completed',
-                'x_signature' => 'af43b15a12607f4965ae5bc03223c4bdcccc7d6f6e3535dda10451337eca78b7'
+                'x_signature' => 'af43b15a12607f4965ae5bc03223c4bdcccc7d6f6e3535dda10451337eca78b7',
             ],
         ];
 

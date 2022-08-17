@@ -8,7 +8,7 @@ class Signature
      * Redirect parameters constants.
      */
     public const REDIRECT_PARAMETERS = [
-        'billplzid', 'billplzpaid_at', 'billplzpaid', 'billplztransaction_id', 'billplztransaction_status'
+        'billplzid', 'billplzpaid_at', 'billplzpaid', 'billplztransaction_id', 'billplztransaction_status',
     ];
 
     /**
@@ -16,7 +16,7 @@ class Signature
      */
     public const WEBHOOK_PARAMETERS = [
         'amount', 'collection_id', 'due_at', 'email', 'id', 'mobile', 'name',
-        'paid_amount', 'paid_at', 'paid', 'state', 'transaction_id', 'transaction_status', 'url'
+        'paid_amount', 'paid_at', 'paid', 'state', 'transaction_id', 'transaction_status', 'url',
     ];
 
     /**
@@ -40,7 +40,7 @@ class Signature
      */
     protected $requiredParameters = [
         'billplzid', 'billplzpaid_at', 'billplzpaid', 'amount', 'collection_id', 'due_at', 'email', 'id', 'mobile', 'name',
-        'paid_amount', 'paid_at', 'paid', 'state', 'url'
+        'paid_amount', 'paid_at', 'paid', 'state', 'url',
     ];
 
     /**
@@ -61,7 +61,7 @@ class Signature
 
         foreach ($this->attributes as $attribute) {
             if (isset($data[$attribute]) || array_search($attribute, $this->requiredParameters)) {
-                array_push($keys, $attribute . ($data[$attribute] ?? ''));
+                array_push($keys, $attribute.($data[$attribute] ?? ''));
             }
         }
 
