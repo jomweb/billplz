@@ -2,10 +2,10 @@
 
 namespace Billplz\Base;
 
-use Billplz\Request;
-use Laravie\Codex\Contracts\Response;
 use Billplz\Contracts\Collection as Contract;
+use Billplz\Request;
 use Laravie\Codex\Concerns\Request\Multipart;
+use Laravie\Codex\Contracts\Response;
 
 abstract class Collection extends Request implements Contract
 {

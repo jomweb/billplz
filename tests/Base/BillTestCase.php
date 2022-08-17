@@ -2,11 +2,11 @@
 
 namespace Billplz\Tests\Base;
 
-use Duit\MYR;
-use Billplz\Tests\TestCase;
-use Laravie\Codex\Response;
 use Billplz\PaymentCompletion;
+use Billplz\Tests\TestCase;
+use Duit\MYR;
 use Laravie\Codex\Exceptions\HttpException;
+use Laravie\Codex\Response;
 
 abstract class BillTestCase extends TestCase
 {

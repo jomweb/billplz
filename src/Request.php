@@ -4,9 +4,9 @@ namespace Billplz;
 
 use Laravie\Codex\Contracts\Endpoint;
 use Laravie\Codex\Contracts\Filterable;
+use Laravie\Codex\Contracts\Response as ResponseContract;
 use Laravie\Codex\Filter\WithSanitizer;
 use Psr\Http\Message\ResponseInterface;
-use Laravie\Codex\Contracts\Response as ResponseContract;
 
 /**
  * @property \Billplz\Client $client

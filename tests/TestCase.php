@@ -2,15 +2,16 @@
 
 namespace Billplz\Tests;
 
-use Mockery as m;
 use Billplz\Client;
 use Laravie\Codex\Discovery;
 use Laravie\Codex\Testing\Faker;
+use Mockery as m;
 use PHPUnit\Framework\TestCase as PHPUnit;
 
 class TestCase extends PHPUnit
 {
     const API_KEY = '73eb57f0-7d4e-42b9-a544-aeac6e4b0f81';
+
     const X_SIGNATURE = 'billplz';
 
     /**
@@ -48,7 +49,6 @@ class TestCase extends PHPUnit
      * Create a fake HTTP request.
      *
      * @param  string  $method
-     *
      * @return array
      */
     protected function expectRequest($method = 'GET', $uri = '/', array $headers = [], array $body = [])
@@ -70,7 +70,6 @@ class TestCase extends PHPUnit
      * Create a fake HTTP request.
      *
      * @param  string  $method
-     *
      * @return array
      */
     protected function expectStreamRequest($method = 'GET', $uri = '/', array $headers = [], array $body = [], array $files = [])

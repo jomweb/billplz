@@ -2,9 +2,9 @@
 
 namespace Billplz\Base;
 
+use Billplz\Contracts\BankAccount as Contract;
 use Billplz\Request;
 use Laravie\Codex\Contracts\Response;
-use Billplz\Contracts\BankAccount as Contract;
 
 abstract class BankAccount extends Request implements Contract
 {

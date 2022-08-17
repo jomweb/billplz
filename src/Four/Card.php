@@ -2,9 +2,9 @@
 
 namespace Billplz\Four;
 
+use Billplz\Contracts\Card as Contract;
 use Billplz\Request;
 use Laravie\Codex\Contracts\Response;
-use Billplz\Contracts\Card as Contract;
 
 class Card extends Request implements Contract
 {

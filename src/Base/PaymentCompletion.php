@@ -2,9 +2,9 @@
 
 namespace Billplz\Base;
 
+use Billplz\Exceptions\FailedSignatureVerification;
 use Billplz\Signature;
 use InvalidArgumentException;
-use Billplz\Exceptions\FailedSignatureVerification;
 
 /**
  * @property \Billplz\Client $client
