@@ -2,8 +2,8 @@
 
 namespace Billplz\Four;
 
-use Laravie\Codex\Contracts\Response;
 use Billplz\Base\Collection as Request;
+use Laravie\Codex\Contracts\Response;
 
 class Collection extends Request
 {

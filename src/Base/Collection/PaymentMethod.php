@@ -2,9 +2,9 @@
 
 namespace Billplz\Base\Collection;
 
+use Billplz\Contracts\Collection\PaymentMethod as Contract;
 use Billplz\Request;
 use Laravie\Codex\Contracts\Response;
-use Billplz\Contracts\Collection\PaymentMethod as Contract;
 
 class PaymentMethod extends Request implements Contract
 {

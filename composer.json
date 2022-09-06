@@ -23,15 +23,15 @@
     "require": {
         "php": "^8.0",
         "jomweb/ringgit": "^2.3.1",
-        "laravie/codex": "^5.3.2",
-        "laravie/codex-filter": "^1.2.1",
+        "laravie/codex": "^5.3.3",
+        "laravie/codex-filter": "^1.2.2",
         "php-http/multipart-stream-builder": "^1.0"
     },
     "require-dev": {
         "mockery/mockery": "^1.4.4",
-        "php-http/guzzle7-adapter": "^0.1",
+        "php-http/guzzle7-adapter": "^1.0",
         "phpstan/phpstan": "^1.0",
-        "phpunit/phpunit": "^9.5.10 || ^10.0"
+        "phpunit/phpunit": "^9.5.10"
     },
     "extra": {
         "branch-alias": {

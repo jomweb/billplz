@@ -3,6 +3,7 @@
      backupStaticAttributes="false"
      bootstrap="vendor/autoload.php"
      colors="true"
+     convertDeprecationsToExceptions="false"
      convertErrorsToExceptions="true"
      convertNoticesToExceptions="true"
      convertWarningsToExceptions="true"

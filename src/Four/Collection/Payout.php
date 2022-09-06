@@ -2,9 +2,9 @@
 
 namespace Billplz\Four\Collection;
 
+use Billplz\Contracts\Collection\Payout as Contract;
 use Billplz\Request;
 use Laravie\Codex\Contracts\Response;
-use Billplz\Contracts\Collection\Payout as Contract;
 
 class Payout extends Request implements Contract
 {

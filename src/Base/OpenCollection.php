@@ -2,10 +2,10 @@
 
 namespace Billplz\Base;
 
-use Billplz\Request;
-use Laravie\Codex\Contracts\Response;
-use Laravie\Codex\Concerns\Request\Multipart;
 use Billplz\Contracts\OpenCollection as Contract;
+use Billplz\Request;
+use Laravie\Codex\Concerns\Request\Multipart;
+use Laravie\Codex\Contracts\Response;
 
 class OpenCollection extends Request implements Contract
 {

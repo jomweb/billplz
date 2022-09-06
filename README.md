@@ -644,6 +644,17 @@ return [
 ];
 ```
 
+If you enabled "Extra Payment Completion information" on your Billplz API Setting, You will receive the following output
+
+```php
+return [
+    'id' => 'W_79pJDk',
+    'paid' => true,
+    'paid_at' => new \DateTime('2015-03-09 16:23:59 +0800'),
+    'transaction_id' => 'AC4GC031F42H',
+    'transaction_status' => 'completed',
+];
+```
 #### Callback
 
 You can setup a webhook to receive POST request from Billplz. In order to accept the response, all you to do is write the following.
@@ -670,6 +681,31 @@ return [
     ],
     'url' => 'https://billplz.dev/bills/W_79pJDk',
     'paid_at' => new \DateTime('2015-03-09 16:23:59 +0800'),
+];
+```
+
+If you enabled "Extra Payment Completion information" on your Billplz API Setting, You will receive the following output
+
+```php
+return [
+    'id' => 'W_79pJDk',
+    'collection_id' => 'inbmmepb',
+    'paid' => true,
+    'state' => 'paid',
+    'amount' => \Duit\MYR::given(200),
+    'paid_amount' => \Duit\MYR::given(0),
+    'due_at' => new \DateTime('2020-12-31'),
+    'email' => 'api@billplz.com',
+    'mobile' => '+60112223333',
+    'name' => 'MICHAEL API',
+    'metadata' => [
+        'id' => 9999,
+        'description' => 'This is to test bill creation',
+    ],
+    'url' => 'https://billplz.dev/bills/W_79pJDk',
+    'paid_at' => new \DateTime('2015-03-09 16:23:59 +0800'),
+    'transaction_id' => 'AC4GC031F42H',
+    'transaction_status' => 'completed',
 ];
 ```
 

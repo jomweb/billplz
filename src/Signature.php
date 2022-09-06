@@ -8,7 +8,7 @@ class Signature
      * Redirect parameters constants.
      */
     public const REDIRECT_PARAMETERS = [
-        'billplzid', 'billplzpaid_at', 'billplzpaid',
+        'billplzid', 'billplzpaid_at', 'billplzpaid', 'billplztransaction_id', 'billplztransaction_status',
     ];
 
     /**
@@ -16,7 +16,7 @@ class Signature
      */
     public const WEBHOOK_PARAMETERS = [
         'amount', 'collection_id', 'due_at', 'email', 'id', 'mobile', 'name',
-        'paid_amount', 'paid_at', 'paid', 'state', 'url',
+        'paid_amount', 'paid_at', 'paid', 'state', 'transaction_id', 'transaction_status', 'url',
     ];
 
     /**
@@ -32,6 +32,16 @@ class Signature
      * @var array
      */
     protected $attributes = [];
+
+    /**
+     * List of required parameters returned by webhook and redirect url.
+     *
+     * @var array
+     */
+    protected $requiredParameters = [
+        'billplzid', 'billplzpaid_at', 'billplzpaid', 'amount', 'collection_id', 'due_at', 'email', 'id', 'mobile', 'name',
+        'paid_amount', 'paid_at', 'paid', 'state', 'url',
+    ];
 
     /**
      * Construct a new signature verification.
@@ -78,7 +88,9 @@ class Signature
         $keys = [];
 
         foreach ($this->attributes as $attribute) {
-            array_push($keys, $attribute.($data[$attribute] ?? ''));
+            if (isset($data[$attribute]) || array_search($attribute, $this->requiredParameters)) {
+                array_push($keys, $attribute.($data[$attribute] ?? ''));
+            }
         }
 
         return hash_hmac('sha256', implode('|', $keys), (string) $this->key);

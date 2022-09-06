@@ -2,6 +2,18 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 4.4.0
+
+Released: 2022-02-08
+
+### Changes
+
+* Improves generic type hint.
+
+### Fixes
+
+* Fixes `Laravie\Codex\Request::getApiEndpoint()` usage.
+
 ## 4.3.1
 
 Released: 2020-12-28

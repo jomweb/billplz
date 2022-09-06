@@ -2,13 +2,13 @@
 
 namespace Billplz\Base;
 
+use Billplz\Contracts\Bill as Contract;
+use Billplz\Contracts\PaymentCompletion as PaymentCompletionContract;
+use Billplz\PaymentCompletion as PaymentCompletionUrl;
 use Billplz\Request;
 use InvalidArgumentException;
-use Laravie\Codex\Contracts\Response;
-use Billplz\Contracts\Bill as Contract;
 use Laravie\Codex\Concerns\Request\Multipart;
-use Billplz\PaymentCompletion as PaymentCompletionUrl;
-use Billplz\Contracts\PaymentCompletion as PaymentCompletionContract;
+use Laravie\Codex\Contracts\Response;
 
 abstract class Bill extends Request implements Contract
 {
@@ -19,7 +19,7 @@ abstract class Bill extends Request implements Contract
      * Create a new bill.
      *
      * @param  \Money\Money|\Duit\MYR|int  $amount
-     * @param  \Billplz\Contracts\PaymentCompletion|string $paymentCompletion
+     * @param  \Billplz\Contracts\PaymentCompletion|string  $paymentCompletion
      * @param  array<string, mixed>  $optional
      *
      * @throws \InvalidArgumentException

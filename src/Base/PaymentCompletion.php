@@ -2,9 +2,9 @@
 
 namespace Billplz\Base;
 
+use Billplz\Exceptions\FailedSignatureVerification;
 use Billplz\Signature;
 use InvalidArgumentException;
-use Billplz\Exceptions\FailedSignatureVerification;
 
 /**
  * @property \Billplz\Client $client
@@ -30,6 +30,8 @@ trait PaymentCompletion
             'billplzid' => $data['billplz']['id'],
             'billplzpaid' => $data['billplz']['paid'],
             'billplzpaid_at' => $data['billplz']['paid_at'],
+            'billplztransaction_id' => $data['billplz']['transaction_id'] ?? null,
+            'billplztransaction_status' => $data['billplz']['transaction_status'] ?? null,
             'x_signature' => $data['billplz']['x_signature'] ?? null,
         ];
 
