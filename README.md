@@ -1,12 +1,12 @@
 PHP framework agnostic library for working with BillPlz API v3 and beyond...
 ==============
 
-[![tests](https://github.com/jomweb/billplz/workflows/tests/badge.svg?branch=4.x)](https://github.com/jomweb/billplz/actions?query=workflow%3Atests+branch%3A4.x)
+[![tests](https://github.com/jomweb/billplz/workflows/tests/badge.svg?branch=5.x)](https://github.com/jomweb/billplz/actions?query=workflow%3Atests+branch%3A5.x)
 [![Latest Stable Version](https://poser.pugx.org/jomweb/billplz/version)](https://packagist.org/packages/jomweb/billplz)
 [![Total Downloads](https://poser.pugx.org/jomweb/billplz/downloads)](https://packagist.org/packages/jomweb/billplz)
 [![Latest Unstable Version](https://poser.pugx.org/jomweb/billplz/v/unstable)](//packagist.org/packages/jomweb/billplz)
 [![License](https://poser.pugx.org/jomweb/billplz/license)](https://packagist.org/packages/jomweb/billplz)
-[![Coverage Status](https://coveralls.io/repos/github/jomweb/billplz/badge.svg?branch=master)](https://coveralls.io/github/jomweb/billplz?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/jomweb/billplz/badge.svg?branch=5.x)](https://coveralls.io/github/jomweb/billplz?branch=5.x)
 
 * [Installation](#installation)
 * [Getting Started](#getting-started)
