@@ -8,16 +8,6 @@ use Laravie\Codex\Discovery;
 class Client extends \Laravie\Codex\Client
 {
     /**
-     * Billplz API Key.
-     */
-    protected ?string $apiKey;
-
-    /**
-     * Billplz X-Signature Key.
-     */
-    protected ?string $signatureKey;
-
-    /**
      * Billplz API endpoint.
      *
      * @var string
@@ -44,12 +34,12 @@ class Client extends \Laravie\Codex\Client
     /**
      * Construct a new Billplz Client.
      */
-    public function __construct(HttpClient $http, string $apiKey, ?string $signatureKey = null)
-    {
+    public function __construct(
+        HttpClient $http,
+        protected string $apiKey,
+        protected ?string $signatureKey = null
+    ) {
         $this->http = $http;
-
-        $this->setApiKey($apiKey);
-        $this->setSignatureKey($signatureKey);
     }
 
     /**
