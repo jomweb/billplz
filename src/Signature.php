@@ -20,25 +20,11 @@ class Signature
     ];
 
     /**
-     * Signature key.
-     *
-     * @var string|null
-     */
-    protected $key;
-
-    /**
-     * List of attributes.
-     *
-     * @var array
-     */
-    protected $attributes = [];
-
-    /**
      * List of required parameters returned by webhook and redirect url.
      *
-     * @var array
+     * @var array<int, string>
      */
-    protected $requiredParameters = [
+    protected array $requiredParameters = [
         'billplzid', 'billplzpaid_at', 'billplzpaid', 'amount', 'collection_id', 'due_at', 'email', 'id', 'mobile', 'name',
         'paid_amount', 'paid_at', 'paid', 'state', 'url',
     ];
@@ -46,11 +32,10 @@ class Signature
     /**
      * Construct a new signature verification.
      */
-    public function __construct(?string $key, array $attributes)
-    {
-        $this->key = $key;
-        $this->attributes = $attributes;
-    }
+    public function __construct(
+        protected ?string $key,
+        protected array $attributes
+    ) { }
 
     /**
      * Construct a new signature verification for webhook.

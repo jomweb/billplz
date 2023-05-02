@@ -5,27 +5,12 @@ namespace Billplz;
 class PaymentCompletion implements Contracts\PaymentCompletion
 {
     /**
-     * Webhook URL.
-     *
-     * @var string
-     */
-    protected $webhookUrl;
-
-    /**
-     * Redirect URL.
-     *
-     * @var string|null
-     */
-    protected $redirectUrl;
-
-    /**
      * Construct Payment Completion.
      */
-    public function __construct(string $callbackUrl, ?string $redirectUrl = null)
-    {
-        $this->webhookUrl = $callbackUrl;
-        $this->redirectUrl = $redirectUrl;
-    }
+    public function __construct(
+        protected string $webhookUrl,
+        protected ?string $redirectUrl = null
+    ) { }
 
     /**
      * Get Webhook URL.
