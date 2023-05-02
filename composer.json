@@ -21,25 +21,25 @@
         }
     },
     "require": {
-        "php": "^8.0",
+        "php": ">=8.0.0 <8.3.0",
         "jomweb/ringgit": "^2.3.1",
         "laravie/codex": "^5.3.3",
         "laravie/codex-filter": "^1.2.2",
         "php-http/multipart-stream-builder": "^1.0"
     },
     "require-dev": {
+        "laravel/pint": "^1.1",
         "mockery/mockery": "^1.4.4",
         "php-http/guzzle7-adapter": "^1.0",
-        "phpstan/phpstan": "^1.0",
-        "phpunit/phpunit": "^9.5.10"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "5.0-dev"
-        }
+        "phpstan/phpstan": "^1.10.5",
+        "phpunit/phpunit": "^9.6"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     },
+    "prefer-stable": true,
     "minimum-stability": "dev"
 }

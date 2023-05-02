@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `jomweb/billplz`.
 
+## 4.5.0
+
+Released: 2022-12-14
+
+### Changes
+
+* Added support for payments with Extra Payment Completion Info.
+
 ## 4.4.0
 
 Released: 2022-02-08
