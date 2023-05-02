@@ -35,7 +35,7 @@ class PaymentMethodTestCase extends TestCase
         ];
 
         $faker = $this->expectRequest('PUT', 'collections/0idsxnh5/payment_methods', [], $payload)
-                        ->shouldResponseWithJson(200, $expected);
+            ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)->uses('Collection.PaymentMethod')->update('0idsxnh5', ['fpx', 'paypal']);
 

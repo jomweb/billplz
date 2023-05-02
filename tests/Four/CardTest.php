@@ -47,18 +47,18 @@ class CardTest extends TestCase
         $expected = '{"id":"8727fc3a-c04c-4c2b-9b67-947b5cfc2fb6","card_number":"xxxx1118","expiry":"0521","provider":"mastercard","token":"77d62ad5a3ae56aafc8e3529b89d0268afa205303f6017afbd9826afb8394740","active":true}';
 
         $faker = $this->expectRequest('POST', 'cards', [], $payload)
-                        ->shouldResponseWith(200, $expected);
+            ->shouldResponseWith(200, $expected);
 
         $response = $this->makeClient($faker)
-                        ->uses('Card')
-                        ->create(
-                            $payload['name'],
-                            $payload['email'],
-                            $payload['phone'],
-                            $payload['card_number'],
-                            $payload['cvv'],
-                            $payload['expiry']
-                        );
+            ->uses('Card')
+            ->create(
+                $payload['name'],
+                $payload['email'],
+                $payload['phone'],
+                $payload['card_number'],
+                $payload['cvv'],
+                $payload['expiry']
+            );
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
@@ -86,11 +86,11 @@ class CardTest extends TestCase
         $expected = '{"id":"8727fc3a-c04c-4c2b-9b67-947b5cfc2fb6","card_number":"xxxx1118","expiry":"0521","provider":"mastercard","token":"77d62ad5a3ae56aafc8e3529b89d0268afa205303f6017afbd9826afb8394740","active":true}';
 
         $faker = $this->expectRequest('PUT', "cards/{$cardId}", [], $payload)
-                        ->shouldResponseWith(200, $expected);
+            ->shouldResponseWith(200, $expected);
 
         $response = $this->makeClient($faker)
-                        ->uses('Card')
-                        ->activate($cardId, $payload['token']);
+            ->uses('Card')
+            ->activate($cardId, $payload['token']);
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
@@ -118,11 +118,11 @@ class CardTest extends TestCase
         $expected = '{"id":"8727fc3a-c04c-4c2b-9b67-947b5cfc2fb6","card_number":"xxxx1118","expiry":"0521","provider":"mastercard","token":"77d62ad5a3ae56aafc8e3529b89d0268afa205303f6017afbd9826afb8394740","active":false}';
 
         $faker = $this->expectRequest('PUT', "cards/{$cardId}", [], $payload)
-                        ->shouldResponseWith(200, $expected);
+            ->shouldResponseWith(200, $expected);
 
         $response = $this->makeClient($faker)
-                        ->uses('Card')
-                        ->deactivate($cardId, $payload['token']);
+            ->uses('Card')
+            ->deactivate($cardId, $payload['token']);
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());

@@ -62,8 +62,8 @@ class TestCase extends PHPUnit
         );
 
         return Faker::create()
-                    ->expectEndpointIs($endpoint)
-                    ->call($method, $headers, http_build_query($body, '', '&'));
+            ->expectEndpointIs($endpoint)
+            ->call($method, $headers, http_build_query($body, '', '&'));
     }
 
     /**
@@ -83,8 +83,8 @@ class TestCase extends PHPUnit
         );
 
         return Faker::create()
-                    ->expectEndpointIs($endpoint)
-                    ->stream($method, $headers);
+            ->expectEndpointIs($endpoint)
+            ->stream($method, $headers);
     }
 
     /**

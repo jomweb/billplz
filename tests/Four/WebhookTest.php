@@ -29,7 +29,7 @@ class WebhookTest extends TestCase
         $expected = '{"rank":1.2}';
 
         $faker = $this->expectRequest('GET', 'webhook_rank')
-                    ->shouldResponseWithJson(200, $expected);
+            ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)->uses('Webhook')->rank();
 

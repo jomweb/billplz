@@ -92,11 +92,11 @@ class BillTest extends BillTestCase
         $expected = '{"amount":10000,"status":"success","reference_id":"15681981586116610","hash_value":"1b66606732d846192b0b6aa4b754b3c8addd59072fce4bdd066b5d631c31d5e8","message":"Payment was successful"}';
 
         $faker = $this->expectRequest('POST', 'bills/awyzmy0m/charge', [], $payload)
-                        ->shouldResponseWith(200, $expected);
+            ->shouldResponseWith(200, $expected);
 
         $response = $this->makeClient($faker)
-                        ->uses('Bill')
-                        ->charge('awyzmy0m', $payload['card_id'], $payload['token']);
+            ->uses('Bill')
+            ->charge('awyzmy0m', $payload['card_id'], $payload['token']);
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());

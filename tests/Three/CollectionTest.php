@@ -37,11 +37,11 @@ class CollectionTest extends CollectionTestCase
         $expected = '{"id":"inbmmepb","title":"My First V4 API Collection","logo":{"thumb_url":null,"avatar_url":null},"split_header":false,"split_payments":[]}';
 
         $faker = $this->expectStreamRequest('POST', 'collections', [], $payload)
-                        ->shouldResponseWithJson(200, $expected);
+            ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)
-                        ->uses('Collection', 'v3')
-                        ->create($payload['title'], $optional);
+            ->uses('Collection', 'v3')
+            ->create($payload['title'], $optional);
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());

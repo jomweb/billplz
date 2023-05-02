@@ -26,11 +26,11 @@ abstract class CollectionTestCase extends TestCase
         $expected = '{"id":"inbmmepb","title":"My First V4 API Collection","logo":{"thumb_url":null,"avatar_url":null},"split_header":false,"split_payments":[]}';
 
         $faker = $this->expectStreamRequest('POST', 'collections', [], $payload)
-                        ->shouldResponseWithJson(200, $expected);
+            ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)
-                        ->uses('Collection')
-                        ->create($payload['title']);
+            ->uses('Collection')
+            ->create($payload['title']);
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
@@ -46,11 +46,11 @@ abstract class CollectionTestCase extends TestCase
         $expected = '{"collections":[{"id":"inbmmepb","title":"My First API Collection","logo":{"thumb_url":null,"avatar_url":null},"split_payment":{"email":null,"fixed_cut":null,"variable_cut":null,"split_header":false},"status":"active"}],"page":1}';
 
         $faker = $this->expectRequest('GET', 'collections')
-                        ->shouldResponseWithJson(200, $expected);
+            ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)
-                        ->uses('Collection')
-                        ->all();
+            ->uses('Collection')
+            ->all();
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
@@ -66,11 +66,11 @@ abstract class CollectionTestCase extends TestCase
         $expected = '{"id":"inbmmepb","title":"My First API Collection","logo":{"thumb_url":null,"avatar_url":null},"split_payment":{"email":null,"fixed_cut":null,"variable_cut":null,"split_header":false},"status":"active"}';
 
         $faker = $this->expectRequest('GET', 'collections/inbmmepb')
-                        ->shouldResponseWithJson(200, $expected);
+            ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)
-                        ->uses('Collection')
-                        ->get('inbmmepb');
+            ->uses('Collection')
+            ->get('inbmmepb');
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
@@ -86,11 +86,11 @@ abstract class CollectionTestCase extends TestCase
         $expected = '{}';
 
         $faker = $this->expectRequest('POST', 'collections/inbmmepb/activate')
-                        ->shouldResponseWithJson(200, $expected);
+            ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)
-                        ->uses('Collection')
-                        ->activate('inbmmepb');
+            ->uses('Collection')
+            ->activate('inbmmepb');
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
@@ -106,11 +106,11 @@ abstract class CollectionTestCase extends TestCase
         $expected = '{}';
 
         $faker = $this->expectRequest('POST', 'collections/inbmmepb/deactivate')
-                        ->shouldResponseWithJson(200, $expected);
+            ->shouldResponseWithJson(200, $expected);
 
         $response = $this->makeClient($faker)
-                        ->uses('Collection')
-                        ->deactivate('inbmmepb');
+            ->uses('Collection')
+            ->deactivate('inbmmepb');
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(200, $response->getStatusCode());
