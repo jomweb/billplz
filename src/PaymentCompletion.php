@@ -11,6 +11,7 @@ class PaymentCompletion implements Contracts\PaymentCompletion
         protected string $webhookUrl,
         protected ?string $redirectUrl = null
     ) {
+        //
     }
 
     /**

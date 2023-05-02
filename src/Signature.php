@@ -36,6 +36,7 @@ class Signature
         protected ?string $key,
         protected array $attributes
     ) {
+        //
     }
 
     /**
