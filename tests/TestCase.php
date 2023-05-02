@@ -63,7 +63,7 @@ class TestCase extends PHPUnit
 
         return Faker::create()
                     ->expectEndpointIs($endpoint)
-                    ->call($method, $headers, http_build_query($body, null, '&'));
+                    ->call($method, $headers, http_build_query($body, '', '&'));
     }
 
     /**
