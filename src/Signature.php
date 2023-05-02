@@ -35,7 +35,8 @@ class Signature
     public function __construct(
         protected ?string $key,
         protected array $attributes
-    ) { }
+    ) {
+    }
 
     /**
      * Construct a new signature verification for webhook.

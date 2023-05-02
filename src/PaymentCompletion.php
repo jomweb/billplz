@@ -10,7 +10,8 @@ class PaymentCompletion implements Contracts\PaymentCompletion
     public function __construct(
         protected string $webhookUrl,
         protected ?string $redirectUrl = null
-    ) { }
+    ) {
+    }
 
     /**
      * Get Webhook URL.

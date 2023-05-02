@@ -9,15 +9,11 @@ class Client extends \Laravie\Codex\Client
 {
     /**
      * Billplz API Key.
-     *
-     * @var string|null
      */
     protected ?string $apiKey;
 
     /**
      * Billplz X-Signature Key.
-     *
-     * @var string|null
      */
     protected ?string $signatureKey;
 
