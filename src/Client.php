@@ -29,6 +29,7 @@ class Client extends \Laravie\Codex\Client
     protected $supportedVersions = [
         'v3' => 'Three',
         'v4' => 'Four',
+        'v5' => 'Five',
     ];
 
     /**
@@ -160,6 +161,26 @@ class Client extends \Laravie\Codex\Client
     final public function payout(): Contracts\Payout
     {
         return $this->uses('Payout', 'v4');
+    }
+
+        /**
+     * Get payout instruction resource.
+     *
+     * @return \Billplz\Contracts\PaymentOrder
+     */
+    final public function paymentOrder(): Contracts\PaymentOrder
+    {
+        return $this->uses('PaymentOrder', 'v5');
+    }
+
+    /**
+     * Get payout instruction collection resource.
+     *
+     * @return \Billplz\Contracts\PaymentOrderCollection
+     */
+    final public function paymentOrderCollection(): Contracts\PaymentOrderCollection
+    {
+        return $this->uses('PaymentOrderCollection', 'v5');
     }
 
     /**
