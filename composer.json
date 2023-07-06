@@ -22,18 +22,15 @@
     },
     "require": {
         "php": ">=8.0.0 <8.3.0",
-        "guzzlehttp/psr7": "^2.5",
         "jomweb/ringgit": "^3.0",
         "laravie/codex": "^6.0",
         "laravie/codex-filter": "^2.0",
-        "php-http/guzzle7-adapter": "^1.0",
-        "php-http/message": "^1.16",
-        "php-http/message-factory": "^1.1",
         "php-http/multipart-stream-builder": "^1.0"
     },
     "require-dev": {
         "laravel/pint": "^1.1",
         "mockery/mockery": "^1.4.4",
+        "php-http/guzzle7-adapter": "^1.0",
         "phpstan/phpstan": "^1.10.5",
         "phpunit/phpunit": "^9.6"
     },
