@@ -12,7 +12,7 @@ class WebhookTest extends TestCase
      *
      * @var string
      */
-    protected $apiVersion = 'v4';
+    protected $proxyApiVersion = 'v4';
 
     /** @test */
     public function it_resolve_the_correct_version()
@@ -20,7 +20,7 @@ class WebhookTest extends TestCase
         $payment = $this->makeClient()->uses('Webhook', 'v5');
 
         $this->assertInstanceOf('Billplz\Four\Webhook', $payment);
-        $this->assertSame('v4', $payment->getVersion());
+        $this->assertSame($this->proxyApiVersion ?? $this->apiVersion, $payment->getVersion());
     }
 
     /** @test */

@@ -1,6 +1,6 @@
 <?php
 
-namespace Billplz\Tests\Four;
+namespace Billplz\Tests\Five;
 
 use Billplz\Tests\TestCase;
 use Laravie\Codex\Contracts\Response;
@@ -12,12 +12,12 @@ class PayoutTest extends TestCase
      *
      * @var string
      */
-    protected $apiVersion = 'v4';
+    protected $proxyApiVersion = 'v4';
 
     /** @test */
     public function it_resolve_the_correct_version()
     {
-        $payment = $this->makeClient()->uses('Payout', 'v4');
+        $payment = $this->makeClient()->uses('Payout', 'v5');
 
         $this->assertInstanceOf('Billplz\Four\Payout', $payment);
         $this->assertSame($this->proxyApiVersion ?? $this->apiVersion, $payment->getVersion());

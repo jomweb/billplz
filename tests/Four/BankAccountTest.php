@@ -20,6 +20,6 @@ class BankAccountTest extends BankAccountTestCase
 
         $this->assertInstanceOf('Billplz\Four\BankAccount', $bank);
         $this->assertInstanceOf('Billplz\Three\BankAccount', $bank);
-        $this->assertSame('v3', $bank->getVersion());
+        $this->assertSame($this->proxyApiVersion ?? $this->apiVersion, $bank->getVersion());
     }
 }
