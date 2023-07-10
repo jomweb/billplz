@@ -74,8 +74,8 @@ class PaymentOrder extends Request implements Contract
     /**
      * Get a Payment Order Limit
      */
-    public function limit(
-    ): Response {
+    public function limit(): Response
+    {
         $epoch = time();
 
         $body['epoch'] = $epoch;

@@ -10,7 +10,6 @@ interface PaymentOrderCollection extends Request
     /**
      * Create a Payment Order Collection
      *
-     * @param  \Money\Money|\Duit\MYR|int  $amount
      * @param  array<string, mixed>  $optional
      */
     public function create(
