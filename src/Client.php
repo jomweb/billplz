@@ -163,7 +163,7 @@ class Client extends \Laravie\Codex\Client
         return $this->uses('Payout', 'v4');
     }
 
-        /**
+    /**
      * Get payout instruction resource.
      *
      * @return \Billplz\Contracts\PaymentOrder

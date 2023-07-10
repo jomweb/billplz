@@ -1,4 +1,5 @@
 <?php
+
 require 'vendor/autoload.php';
 
 $api = '';
@@ -8,7 +9,7 @@ $paymentOrderCollectionId = '';
 $billplz = Billplz\Client::make($api, $signatureKey)->useSandbox();
 
 $response = $billplz->paymentOrderCollection()->create(
-    "test",
+    'test',
     [
         'callback_url' => 'http://example.com/webhook',
     ],

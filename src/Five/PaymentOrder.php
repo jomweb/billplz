@@ -45,7 +45,7 @@ class PaymentOrder extends Request implements Contract
             $paymentOrderCollectionId,
             $bankAccountNumber,
             $total,
-            $epoch
+            $epoch,
         ]);
 
         $body = array_merge($body, $optional);
@@ -65,7 +65,7 @@ class PaymentOrder extends Request implements Contract
         $body['epoch'] = $epoch;
         $body['checksum'] = Checksum::create($this->client->getSignatureKey(), [
             $paymentOrderId,
-            $epoch
+            $epoch,
         ]);
 
         return $this->send('GET', "payment_orders/{$paymentOrderId}", [], $body);
@@ -80,9 +80,9 @@ class PaymentOrder extends Request implements Contract
 
         $body['epoch'] = $epoch;
         $body['checksum'] = Checksum::create($this->client->getSignatureKey(), [
-            $epoch
+            $epoch,
         ]);
 
-        return $this->send('GET', "payment_order_limit", [], $body);
+        return $this->send('GET', 'payment_order_limit', [], $body);
     }
 }
