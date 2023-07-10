@@ -36,6 +36,13 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
     - [Banking](#banking)
         + [Registration Check by Bank Account](#registration-check-by-bank-account)
         + [Get FPX Banks List](#get-fpx-banks-list)
+    - [Payment Order Collection](#payment-order-collection)
+        + [Create a Payment Order Collection](#create-a-payment-order-collection)
+        + [Get existing Payment Order Collection](#get-a-payment-order-collection)
+    - [Payment Order](#payment-order)
+        + [Create a Payment Order](#create-payment-order)
+        + [Get existing Payment Order](#get-a-payment-order)
+        + [Get Payment Order Limit](#get-a-payment-order-limit)
 * [Handling Response](#handling-response)
     - [Getting the Response](#getting-the-response)
     - [Checking the Response HTTP Status](#checking-the-response-http-status)
@@ -886,6 +893,84 @@ return [
 ```
 
 > **Note**: You will hit 401, Invalid access error if you have not enabled Bank Direct by Billplz. Contact Billplz for information.
+
+<a name="payment-order-collection"></a>
+
+## Payment Order Collection
+Create an instance of Payment Order Collection:
+
+```php
+$paymentOrderCollection = $billplz->paymentOrderCollection();
+```
+
+<a name="create-a-payment-order-collection"></a>
+
+### Create Payment Order Collection
+```php
+$response = $paymentOrderCollection->create(
+    'My First API Payment Order Collection'
+);
+
+var_dump($response->toArray());
+```
+
+<a name="get-a-payment-order-collection"></a>
+
+### Get Payment Order Collection
+```php
+$response = $paymentOrderCollection->get(
+    '8f4e331f-ac71-435e-a870-72fe520b4563'
+);
+
+var_dump($response->toArray());
+```
+<a name="payment-order"></a>
+
+## Payment Order
+Create an instance of Payment Order:
+
+```php
+$paymentOrder = $billplz->paymentOrder();
+```
+
+<a name="create-a-payment-order"></a>
+
+### Create Payment Order
+```php
+$response = $paymentOrder->create(
+    '8f4e331f-ac71-435e-a870-72fe520b4563',
+    'MBBEMYKL',
+    '543478924652',
+    '820808062202',
+    'Michael Yap',
+    'Maecenas eu placerat ante.',
+    2000
+);
+
+var_dump($response->toArray());
+```
+
+> **Note**: You will hit 422, You do not have enough payments error if you are trying to make a payment with total that are exceeding your Payment Order Limit.
+
+<a name="get-a-payment-order"></a>
+
+### Get Payment Order
+```php
+$response = $paymentOrder->get(
+    'cc92738f-dfda-4969-91dc-22a44afc7e26'
+);
+
+var_dump($response->toArray());
+```
+
+<a name="get-a-payment-order-limit"></a>
+
+### Get Payment Order Limit
+```php
+$response = $paymentOrder->limit();
+
+var_dump($response->toArray());
+```
 
 ## Handling Response
 
