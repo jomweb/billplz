@@ -26,6 +26,16 @@ parameters:
 			path: src/Client.php
 
 		-
+			message: "#^Method Billplz\\\\Client\\:\\:paymentOrder\\(\\) should return Billplz\\\\Contracts\\\\PaymentOrder but returns Laravie\\\\Codex\\\\Contracts\\\\Request\\.$#"
+			count: 1
+			path: src/Client.php
+
+		-
+			message: "#^Method Billplz\\\\Client\\:\\:paymentOrderCollection\\(\\) should return Billplz\\\\Contracts\\\\PaymentOrderCollection but returns Laravie\\\\Codex\\\\Contracts\\\\Request\\.$#"
+			count: 1
+			path: src/Client.php
+
+		-
 			message: "#^Method Billplz\\\\Client\\:\\:payout\\(\\) should return Billplz\\\\Contracts\\\\Payout but returns Laravie\\\\Codex\\\\Contracts\\\\Request\\.$#"
 			count: 1
 			path: src/Client.php
@@ -39,6 +49,16 @@ parameters:
 			message: "#^Method Billplz\\\\Client\\:\\:transaction\\(\\) should return Billplz\\\\Contracts\\\\Bill\\\\Transaction but returns Laravie\\\\Codex\\\\Contracts\\\\Request\\.$#"
 			count: 1
 			path: src/Client.php
+
+		-
+			message: "#^Parameter \\#1 \\$key of static method Billplz\\\\Checksum\\:\\:create\\(\\) expects string, string\\|null given\\.$#"
+			count: 3
+			path: src/Five/PaymentOrder.php
+
+		-
+			message: "#^Parameter \\#1 \\$key of static method Billplz\\\\Checksum\\:\\:create\\(\\) expects string, string\\|null given\\.$#"
+			count: 2
+			path: src/Five/PaymentOrderCollection.php
 
 		-
 			message: "#^Method Billplz\\\\Four\\\\Collection\\:\\:payout\\(\\) should return Billplz\\\\Four\\\\Collection\\\\Payout but returns Laravie\\\\Codex\\\\Contracts\\\\Request\\.$#"
