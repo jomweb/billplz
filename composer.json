@@ -23,7 +23,7 @@
     "require": {
         "php": ">=8.0.0 <8.3.0",
         "jomweb/ringgit": "^3.0",
-        "laravie/codex": "^6.0",
+        "laravie/codex": "6.x-dev",
         "laravie/codex-filter": "^2.0",
         "php-http/multipart-stream-builder": "^1.0"
     },
