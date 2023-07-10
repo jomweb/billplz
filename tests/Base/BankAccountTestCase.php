@@ -13,7 +13,7 @@ abstract class BankAccountTestCase extends TestCase
         $bank = $this->makeClient()->bank();
 
         $this->assertInstanceOf('Billplz\Base\BankAccount', $bank);
-        $this->assertSame($this->apiVersion, $bank->getVersion());
+        $this->assertSame($this->proxyApiVersion ?? $this->apiVersion, $bank->getVersion());
     }
 
     /** @test */

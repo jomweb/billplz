@@ -20,7 +20,7 @@ class WebhookTest extends TestCase
         $payment = $this->makeClient()->uses('Webhook', 'v4');
 
         $this->assertInstanceOf('Billplz\Four\Webhook', $payment);
-        $this->assertSame('v4', $payment->getVersion());
+        $this->assertSame($this->proxyApiVersion ?? $this->apiVersion, $payment->getVersion());
     }
 
     /** @test */

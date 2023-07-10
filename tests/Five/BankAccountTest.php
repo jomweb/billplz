@@ -11,7 +11,7 @@ class BankAccountTest extends BankAccountTestCase
      *
      * @var string
      */
-    protected $apiVersion = 'v3';
+    protected $proxyApiVersion = 'v3';
 
     /** @test */
     public function it_can_called_via_helper()
