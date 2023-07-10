@@ -2,10 +2,10 @@
 
 namespace Billplz\Five;
 
-use Billplz\Request;
 use Billplz\Checksum;
-use Laravie\Codex\Contracts\Response;
 use Billplz\Contracts\PaymentOrderCollection as Contract;
+use Billplz\Request;
+use Laravie\Codex\Contracts\Response;
 
 class PaymentOrderCollection extends Request implements Contract
 {
@@ -30,7 +30,7 @@ class PaymentOrderCollection extends Request implements Contract
 
         $checksum_data = [
             $title,
-            $epoch
+            $epoch,
         ];
 
         if (array_key_exists('callback_url', $optional)) {
@@ -59,7 +59,7 @@ class PaymentOrderCollection extends Request implements Contract
         $body['epoch'] = $epoch;
         $body['checksum'] = Checksum::create($this->client->getSignatureKey(), [
             $paymentOrderCollectionId,
-            $epoch
+            $epoch,
         ]);
 
         return $this->send('GET', "payment_order_collections/{$paymentOrderCollectionId}", [], $body);
