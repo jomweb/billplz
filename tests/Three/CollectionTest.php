@@ -1,53 +1,42 @@
 <?php
 
-namespace Billplz\Tests\Three;
-
 use Billplz\Response;
-use Billplz\Tests\Base\CollectionTestCase;
 
-class CollectionTest extends CollectionTestCase
-{
-    /**
-     * API Version.
-     *
-     * @var string
-     */
-    protected $apiVersion = 'v3';
+beforeEach(function (): void {
+    $this->apiVersion = 'v3';
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_called_via_helper()
-    {
-        $collection = $this->makeClient()->collection('v3');
+billplz_register_collection_tests();
 
-        $this->assertInstanceOf('Billplz\Three\Collection', $collection);
-        $this->assertSame('v3', $collection->getVersion());
-    }
+it('can called via helper', function (): void {
+    $collection = $this->makeClient()->collection('v3');
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_create_collection_with_logo()
-    {
-        $payload = [
-            'title' => 'My First API Collection',
-        ];
+    expect($collection)->toBeInstanceOf('Billplz\Three\Collection');
+    expect($collection->getVersion())->toBe('v3');
+});
 
-        $optional = [
-            'logo' => realpath(__DIR__.'/../files/logo.png'),
-        ];
+it('can create collection with logo', function (): void {
+    $payload = [
+        'title' => 'My First API Collection',
+    ];
 
-        $expected = '{"id":"inbmmepb","title":"My First V4 API Collection","logo":{"thumb_url":null,"avatar_url":null},"split_header":false,"split_payments":[]}';
+    $optional = [
+        'logo' => realpath(__DIR__.'/../files/logo.png'),
+    ];
 
-        $faker = $this->expectStreamRequest('POST', 'collections', [], $payload)
-            ->shouldResponseWithJson(200, $expected);
+    $expected = '{"id":"inbmmepb","title":"My First V4 API Collection","logo":{"thumb_url":null,"avatar_url":null},"split_header":false,"split_payments":[]}';
 
-        $response = $this->makeClient($faker)
-            ->uses('Collection', 'v3')
-            ->create($payload['title'], $optional);
+    $faker = $this->expectStreamRequest('POST', 'collections', [], $payload)
+        ->shouldResponseWithJson(200, $expected);
 
-        $this->assertInstanceOf(Response::class, $response);
-        $this->assertSame(200, $response->getStatusCode());
-        $this->assertSame($expected, $response->getBody());
-        $this->assertNull($response->rateLimit());
-        $this->assertNull($response->remainingRateLimit());
-        $this->assertSame(0, $response->rateLimitNextReset());
-    }
-}
+    $response = $this->makeClient($faker)
+        ->uses('Collection', 'v3')
+        ->create($payload['title'], $optional);
+
+    expect($response)->toBeInstanceOf(Response::class);
+    expect($response->getStatusCode())->toBe(200);
+    expect($response->getBody())->toBe($expected);
+    expect($response->rateLimit())->toBeNull();
+    expect($response->remainingRateLimit())->toBeNull();
+    expect($response->rateLimitNextReset())->toBe(0);
+});

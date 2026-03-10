@@ -1,133 +1,117 @@
 <?php
 
-namespace Billplz\Tests\Five;
-
 use Billplz\Checksum;
 use Billplz\Tests\TestCase;
 use Laravie\Codex\Contracts\Response;
 
-class PaymentOrderTest extends TestCase
-{
-    /**
-     * API Version.
-     *
-     * @var string
-     */
-    protected $apiVersion = 'v5';
+beforeEach(function (): void {
+    $this->apiVersion = 'v5';
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_resolve_the_correct_version()
-    {
-        $paymentOrder = $this->makeClient()->paymentOrder();
+it('resolves the correct version', function (): void {
+    $paymentOrder = $this->makeClient()->paymentOrder();
 
-        $this->assertInstanceOf('Billplz\Five\PaymentOrder', $paymentOrder);
-        $this->assertInstanceOf('Billplz\Contracts\PaymentOrder', $paymentOrder);
-        $this->assertSame($this->proxyApiVersion ?? $this->apiVersion, $paymentOrder->getVersion());
-    }
+    expect($paymentOrder)->toBeInstanceOf('Billplz\Five\PaymentOrder');
+    expect($paymentOrder)->toBeInstanceOf('Billplz\Contracts\PaymentOrder');
+    expect($paymentOrder->getVersion())->toBe($this->proxyApiVersion ?? $this->apiVersion);
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_create_payment_order()
-    {
-        $paymentOrderCollectionId = '8f4e331f-ac71-435e-a870-72fe520b4563';
-        $bankAccountNumber = '543478924652';
-        $total = 2000;
-        $epoch = time();
-        $expected = '{"id":"cc92738f-dfda-4969-91dc-22a44afc7e26","payment_order_collection_id":"8f4e331f-ac71-435e-a870-72fe520b4563","bank_code":"MBBEMYKL","bank_account_number":"543478924652","name":"Michael Yap","description":"Maecenas eu placerat ante.","total":"2000","status":"pending"}';
+it('can create payment order', function (): void {
+    $paymentOrderCollectionId = '8f4e331f-ac71-435e-a870-72fe520b4563';
+    $bankAccountNumber = '543478924652';
+    $total = 2000;
+    $epoch = time();
+    $expected = '{"id":"cc92738f-dfda-4969-91dc-22a44afc7e26","payment_order_collection_id":"8f4e331f-ac71-435e-a870-72fe520b4563","bank_code":"MBBEMYKL","bank_account_number":"543478924652","name":"Michael Yap","description":"Maecenas eu placerat ante.","total":"2000","status":"pending"}';
 
-        $payload = [
-            'payment_order_collection_id' => $paymentOrderCollectionId,
-            'bank_code' => 'MBBEMYKL',
-            'bank_account_number' => $bankAccountNumber,
-            'name' => 'Michael Yap',
-            'description' => 'Maecenas eu placerat ante.',
-            'total' => $total,
-            'epoch' => $epoch,
-            'checksum' => Checksum::create(static::X_SIGNATURE, [
-                $paymentOrderCollectionId,
-                $bankAccountNumber,
-                $total,
-                $epoch,
-            ]),
-        ];
-
-        $faker = $this->expectRequest('POST', 'payment_orders', [], $payload)
-            ->shouldResponseWithJson(200, $expected);
-
-        $response = $this->makeClient($faker)->paymentOrder()->create(
+    $payload = [
+        'payment_order_collection_id' => $paymentOrderCollectionId,
+        'bank_code' => 'MBBEMYKL',
+        'bank_account_number' => $bankAccountNumber,
+        'name' => 'Michael Yap',
+        'description' => 'Maecenas eu placerat ante.',
+        'total' => $total,
+        'epoch' => $epoch,
+        'checksum' => Checksum::create(TestCase::X_SIGNATURE, [
             $paymentOrderCollectionId,
-            'MBBEMYKL',
             $bankAccountNumber,
-            'Michael Yap',
-            'Maecenas eu placerat ante.',
-            $total
-        );
+            $total,
+            $epoch,
+        ]),
+    ];
 
-        $this->assertInstanceOf(Response::class, $response);
-        $this->assertSame(200, $response->getStatusCode());
-        $this->assertSame($expected, $response->getBody());
-        $this->assertNull($response->rateLimit());
-        $this->assertNull($response->remainingRateLimit());
-        $this->assertSame(0, $response->rateLimitNextReset());
-    }
+    $faker = $this->expectRequest('POST', 'payment_orders', [], $payload)
+        ->shouldResponseWithJson(200, $expected);
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_get_payment_order()
-    {
-        $paymentOrderId = 'cc92738f-dfda-4969-91dc-22a44afc7e26';
-        $epoch = time();
-        $expected = '{"id":"cc92738f-dfda-4969-91dc-22a44afc7e26","payment_order_collection_id":"8f4e331f-ac71-435e-a870-72fe520b4563","bank_code":"MBBEMYKL","bank_account_number":"543478924652","name":"Michael Yap","description":"Maecenas eu placerat ante.","total":"2000","status":"pending"}';
+    $response = $this->makeClient($faker)->paymentOrder()->create(
+        $paymentOrderCollectionId,
+        'MBBEMYKL',
+        $bankAccountNumber,
+        'Michael Yap',
+        'Maecenas eu placerat ante.',
+        $total
+    );
 
-        $payload = [
-            'payment_order_id' => $paymentOrderId,
-            'epoch' => $epoch,
-            'checksum' => Checksum::create(static::X_SIGNATURE, [
-                $paymentOrderId,
-                $epoch,
-            ]),
-        ];
+    expect($response)->toBeInstanceOf(Response::class);
+    expect($response->getStatusCode())->toBe(200);
+    expect($response->getBody())->toBe($expected);
+    expect($response->rateLimit())->toBeNull();
+    expect($response->remainingRateLimit())->toBeNull();
+    expect($response->rateLimitNextReset())->toBe(0);
+});
 
-        $faker = $this->expectRequest(
-            'GET',
-            sprintf('payment_orders/%s?%s', $paymentOrderId, http_build_query($payload, '', '&'))
-        )
-            ->shouldResponseWithJson(200, $expected);
+it('can get payment order', function (): void {
+    $paymentOrderId = 'cc92738f-dfda-4969-91dc-22a44afc7e26';
+    $epoch = time();
+    $expected = '{"id":"cc92738f-dfda-4969-91dc-22a44afc7e26","payment_order_collection_id":"8f4e331f-ac71-435e-a870-72fe520b4563","bank_code":"MBBEMYKL","bank_account_number":"543478924652","name":"Michael Yap","description":"Maecenas eu placerat ante.","total":"2000","status":"pending"}';
 
-        $response = $this->makeClient($faker)->paymentOrder()->get($paymentOrderId);
+    $payload = [
+        'payment_order_id' => $paymentOrderId,
+        'epoch' => $epoch,
+        'checksum' => Checksum::create(TestCase::X_SIGNATURE, [
+            $paymentOrderId,
+            $epoch,
+        ]),
+    ];
 
-        $this->assertInstanceOf(Response::class, $response);
-        $this->assertSame(200, $response->getStatusCode());
-        $this->assertSame($expected, $response->getBody());
-        $this->assertNull($response->rateLimit());
-        $this->assertNull($response->remainingRateLimit());
-        $this->assertSame(0, $response->rateLimitNextReset());
-    }
+    $faker = $this->expectRequest(
+        'GET',
+        sprintf('payment_orders/%s?%s', $paymentOrderId, http_build_query($payload, '', '&'))
+    )
+        ->shouldResponseWithJson(200, $expected);
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_get_payment_order_limit()
-    {
-        $epoch = time();
-        $expected = '{"available_limit":"15000","currency":"MYR"}';
+    $response = $this->makeClient($faker)->paymentOrder()->get($paymentOrderId);
 
-        $payload = [
-            'epoch' => $epoch,
-            'checksum' => Checksum::create(static::X_SIGNATURE, [
-                $epoch,
-            ]),
-        ];
+    expect($response)->toBeInstanceOf(Response::class);
+    expect($response->getStatusCode())->toBe(200);
+    expect($response->getBody())->toBe($expected);
+    expect($response->rateLimit())->toBeNull();
+    expect($response->remainingRateLimit())->toBeNull();
+    expect($response->rateLimitNextReset())->toBe(0);
+});
 
-        $faker = $this->expectRequest(
-            'GET',
-            sprintf('payment_order_limit?%s', http_build_query($payload, '', '&'))
-        )
-            ->shouldResponseWithJson(200, $expected);
+it('can get payment order limit', function (): void {
+    $epoch = time();
+    $expected = '{"available_limit":"15000","currency":"MYR"}';
 
-        $response = $this->makeClient($faker)->paymentOrder()->limit();
+    $payload = [
+        'epoch' => $epoch,
+        'checksum' => Checksum::create(TestCase::X_SIGNATURE, [
+            $epoch,
+        ]),
+    ];
 
-        $this->assertInstanceOf(Response::class, $response);
-        $this->assertSame(200, $response->getStatusCode());
-        $this->assertSame($expected, $response->getBody());
-        $this->assertNull($response->rateLimit());
-        $this->assertNull($response->remainingRateLimit());
-        $this->assertSame(0, $response->rateLimitNextReset());
-    }
-}
+    $faker = $this->expectRequest(
+        'GET',
+        sprintf('payment_order_limit?%s', http_build_query($payload, '', '&'))
+    )
+        ->shouldResponseWithJson(200, $expected);
+
+    $response = $this->makeClient($faker)->paymentOrder()->limit();
+
+    expect($response)->toBeInstanceOf(Response::class);
+    expect($response->getStatusCode())->toBe(200);
+    expect($response->getBody())->toBe($expected);
+    expect($response->rateLimit())->toBeNull();
+    expect($response->remainingRateLimit())->toBeNull();
+    expect($response->rateLimitNextReset())->toBe(0);
+});

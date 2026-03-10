@@ -1,24 +1,14 @@
 <?php
 
-namespace Billplz\Tests\Three\Collection;
+beforeEach(function (): void {
+    $this->apiVersion = 'v3';
+});
 
-use Billplz\Tests\Base\Collection\PaymentMethodTestCase;
+billplz_register_collection_payment_method_tests();
 
-class PaymentMethodTest extends PaymentMethodTestCase
-{
-    /**
-     * API Version.
-     *
-     * @var string
-     */
-    protected $apiVersion = 'v3';
+it('resolve the correct version', function (): void {
+    $payment = $this->makeClient()->uses('Collection.PaymentMethod', 'v3');
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_resolve_the_correct_version()
-    {
-        $payment = $this->makeClient()->uses('Collection.PaymentMethod', 'v3');
-
-        $this->assertInstanceOf('Billplz\Three\Collection\PaymentMethod', $payment);
-        $this->assertSame('v3', $payment->getVersion());
-    }
-}
+    expect($payment)->toBeInstanceOf('Billplz\Three\Collection\PaymentMethod');
+    expect($payment->getVersion())->toBe('v3');
+});

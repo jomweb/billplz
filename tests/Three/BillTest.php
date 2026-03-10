@@ -1,24 +1,14 @@
 <?php
 
-namespace Billplz\Tests\Three;
+beforeEach(function (): void {
+    $this->apiVersion = 'v3';
+});
 
-use Billplz\Tests\Base\BillTestCase;
+billplz_register_bill_tests();
 
-class BillTest extends BillTestCase
-{
-    /**
-     * API Version.
-     *
-     * @var string
-     */
-    protected $apiVersion = 'v3';
+it('can called via helper', function (): void {
+    $bill = $this->makeClient()->bill('v3');
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_called_via_helper()
-    {
-        $bill = $this->makeClient()->bill('v3');
-
-        $this->assertInstanceOf('Billplz\Three\Bill', $bill);
-        $this->assertSame('v3', $bill->getVersion());
-    }
-}
+    expect($bill)->toBeInstanceOf('Billplz\Three\Bill');
+    expect($bill->getVersion())->toBe('v3');
+});

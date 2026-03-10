@@ -1,115 +1,70 @@
 <?php
 
-namespace Billplz\Tests\Four;
-
-use Billplz\Tests\Base\BillTestCase;
 use Laravie\Codex\Contracts\Response;
 use Money\Money;
 
-class BillTest extends BillTestCase
-{
-    /**
-     * API Version.
-     *
-     * @var string
-     */
-    protected $apiVersion = 'v4';
+beforeEach(function (): void {
+    $this->apiVersion = 'v4';
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_called_via_helper()
-    {
-        $bill = $this->makeClient()->bill('v4');
-
-        $this->assertInstanceOf('Billplz\Four\Bill', $bill);
-        $this->assertInstanceOf('Billplz\Base\Bill', $bill);
-        $this->assertSame('v4', $bill->getVersion());
-    }
-
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_be_created()
-    {
+billplz_register_bill_tests([
+    'can be created' => function (): void {
         $this->proxyApiVersion = 'v3';
-
-        parent::it_can_be_created();
-    }
-
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_be_created_with_url_as_array()
-    {
+    },
+    'can be created with url as array' => function (): void {
         $this->proxyApiVersion = 'v3';
-
-        parent::it_can_be_created_with_url_as_array();
-    }
-
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_show_existing_bill()
-    {
+    },
+    'can show existing bill' => function (): void {
         $this->proxyApiVersion = 'v3';
-
-        parent::it_can_show_existing_bill();
-    }
-
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_show_existing_bill_with_unlimited_request_limiter()
-    {
+    },
+    'can show existing bill with unlimited request limiter' => function (): void {
         $this->proxyApiVersion = 'v3';
-
-        parent::it_can_show_existing_bill_with_unlimited_request_limiter();
-    }
-
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_cant_show_existing_bill_when_exceed_request_limiter()
-    {
+    },
+    'cant show existing bill when exceed request limiter' => function (): void {
         $this->proxyApiVersion = 'v3';
-
-        parent::it_cant_show_existing_bill_when_exceed_request_limiter();
-    }
-
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_delete_existing_bill()
-    {
+    },
+    'can delete existing bill' => function (): void {
         $this->proxyApiVersion = 'v3';
-
-        parent::it_can_delete_existing_bill();
-    }
-
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_check_bill_transaction()
-    {
+    },
+    'can check bill transaction' => function (): void {
         $this->proxyApiVersion = 'v3';
+    },
+]);
 
-        parent::it_can_check_bill_transaction();
-    }
+it('can called via helper', function (): void {
+    $bill = $this->makeClient()->bill('v4');
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_charge_credit_card_via_token()
-    {
-        $payload = [
-            'card_id' => '8727fc3a-c04c-4c2b-9b67-947b5cfc2fb6',
-            'token' => '77d62ad5a3ae56aafc8e3529b89d0268afa205303f6017afbd9826afb8394740',
-        ];
+    expect($bill)->toBeInstanceOf('Billplz\Four\Bill');
+    expect($bill)->toBeInstanceOf('Billplz\Base\Bill');
+    expect($bill->getVersion())->toBe('v4');
+});
 
-        $expected = '{"amount":10000,"status":"success","reference_id":"15681981586116610","hash_value":"1b66606732d846192b0b6aa4b754b3c8addd59072fce4bdd066b5d631c31d5e8","message":"Payment was successful"}';
+it('can charge credit card via token', function (): void {
+    $payload = [
+        'card_id' => '8727fc3a-c04c-4c2b-9b67-947b5cfc2fb6',
+        'token' => '77d62ad5a3ae56aafc8e3529b89d0268afa205303f6017afbd9826afb8394740',
+    ];
 
-        $faker = $this->expectRequest('POST', 'bills/awyzmy0m/charge', [], $payload)
-            ->shouldResponseWith(200, $expected);
+    $expected = '{"amount":10000,"status":"success","reference_id":"15681981586116610","hash_value":"1b66606732d846192b0b6aa4b754b3c8addd59072fce4bdd066b5d631c31d5e8","message":"Payment was successful"}';
 
-        $response = $this->makeClient($faker)
-            ->uses('Bill')
-            ->charge('awyzmy0m', $payload['card_id'], $payload['token']);
+    $faker = $this->expectRequest('POST', 'bills/awyzmy0m/charge', [], $payload)
+        ->shouldResponseWith(200, $expected);
 
-        $this->assertInstanceOf(Response::class, $response);
-        $this->assertSame(200, $response->getStatusCode());
-        $this->assertSame($expected, $response->getBody());
+    $response = $this->makeClient($faker)
+        ->uses('Bill')
+        ->charge('awyzmy0m', $payload['card_id'], $payload['token']);
 
-        $bill = $response->toArray();
+    expect($response)->toBeInstanceOf(Response::class);
+    expect($response->getStatusCode())->toBe(200);
+    expect($response->getBody())->toBe($expected);
 
-        $this->assertInstanceOf(Money::class, $bill['amount']);
-        $this->assertSame('10000', $bill['amount']->getAmount());
-        $this->assertSame('MYR', $bill['amount']->getCurrency()->getCode());
-        $this->assertSame('success', $bill['status']);
-        $this->assertSame('15681981586116610', $bill['reference_id']);
-        $this->assertSame('1b66606732d846192b0b6aa4b754b3c8addd59072fce4bdd066b5d631c31d5e8', $bill['hash_value']);
-        $this->assertSame('Payment was successful', $bill['message']);
-    }
-}
+    $bill = $response->toArray();
+
+    expect($bill['amount'])->toBeInstanceOf(Money::class);
+    expect($bill['amount']->getAmount())->toBe('10000');
+    expect($bill['amount']->getCurrency()->getCode())->toBe('MYR');
+    expect($bill['status'])->toBe('success');
+    expect($bill['reference_id'])->toBe('15681981586116610');
+    expect($bill['hash_value'])->toBe('1b66606732d846192b0b6aa4b754b3c8addd59072fce4bdd066b5d631c31d5e8');
+    expect($bill['message'])->toBe('Payment was successful');
+});

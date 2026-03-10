@@ -1,41 +1,27 @@
 <?php
 
-namespace Billplz\Tests\Casts;
-
 use Billplz\Casts\DateTime;
-use PHPUnit\Framework\TestCase;
 
-class DateTimeTest extends TestCase
-{
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_cast_datetime_to_string()
-    {
-        $cast = new DateTime();
+it('can cast datetime to string', function (): void {
+    $cast = new DateTime();
 
-        $this->assertSame('2018-01-01', $cast->from(new \DateTime('2018-01-01 11:00:01')));
-    }
+    expect($cast->from(new \DateTime('2018-01-01 11:00:01')))->toBe('2018-01-01');
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_wouldnt_cast_datetime_if_not_validated()
-    {
-        $cast = new DateTime();
+it('wouldnt cast datetime if not validated', function (): void {
+    $cast = new DateTime();
 
-        $this->assertSame('foo', $cast->from('foo'));
-    }
+    expect($cast->from('foo'))->toBe('foo');
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_cast_string_to_datetime()
-    {
-        $cast = new DateTime();
+it('can cast string to datetime', function (): void {
+    $cast = new DateTime();
 
-        $this->assertInstanceOf('DateTimeInterface', $cast->to('2018-01-01'));
-    }
+    expect($cast->to('2018-01-01'))->toBeInstanceOf('DateTimeInterface');
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_cast_none_string_to_datetime()
-    {
-        $cast = new DateTime();
+it('can cast none string to datetime', function (): void {
+    $cast = new DateTime();
 
-        $this->assertNull($cast->to(null));
-    }
-}
+    expect($cast->to(null))->toBeNull();
+});

@@ -1,43 +1,30 @@
 <?php
 
-namespace Billplz\Tests\Four;
-
-use Billplz\Tests\TestCase;
 use Laravie\Codex\Contracts\Response;
 
-class PaymentGatewayTest extends TestCase
-{
-    /**
-     * API Version.
-     *
-     * @var string
-     */
-    protected $apiVersion = 'v4';
+beforeEach(function (): void {
+    $this->apiVersion = 'v4';
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_resolve_the_correct_version()
-    {
-        $payment = $this->makeClient()->uses('PaymentGateway', 'v4');
+it('resolves the correct version', function (): void {
+    $payment = $this->makeClient()->uses('PaymentGateway', 'v4');
 
-        $this->assertInstanceOf('Billplz\Four\PaymentGateway', $payment);
-        $this->assertSame('v4', $payment->getVersion());
-    }
+    expect($payment)->toBeInstanceOf('Billplz\Four\PaymentGateway');
+    expect($payment->getVersion())->toBe('v4');
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_get_payment_gateway_index()
-    {
-        $expected = '{"payment_gateways":[{"code":"MBU0227","active":true,"category":"fpx"},{"code":"OCBC0229","active":false,"category":"fpx"},{"code":"BP-FKR01","active":true,"category":"billplz"},{"code":"BP-PPL01","active":true,"category":"paypal"},{"code":"BP-2C2P1","active":false,"category":"2c2p"},{"code":"BP-OCBC1","active":true,"category":"ocbc"}]}';
+it('can get payment gateway index', function (): void {
+    $expected = '{"payment_gateways":[{"code":"MBU0227","active":true,"category":"fpx"},{"code":"OCBC0229","active":false,"category":"fpx"},{"code":"BP-FKR01","active":true,"category":"billplz"},{"code":"BP-PPL01","active":true,"category":"paypal"},{"code":"BP-2C2P1","active":false,"category":"2c2p"},{"code":"BP-OCBC1","active":true,"category":"ocbc"}]}';
 
-        $faker = $this->expectRequest('GET', 'payment_gateways')
-            ->shouldResponseWithJson(200, $expected);
+    $faker = $this->expectRequest('GET', 'payment_gateways')
+        ->shouldResponseWithJson(200, $expected);
 
-        $response = $this->makeClient($faker)->uses('PaymentGateway')->all();
+    $response = $this->makeClient($faker)->uses('PaymentGateway')->all();
 
-        $this->assertInstanceOf(Response::class, $response);
-        $this->assertSame(200, $response->getStatusCode());
-        $this->assertSame($expected, $response->getBody());
-        $this->assertNull($response->rateLimit());
-        $this->assertNull($response->remainingRateLimit());
-        $this->assertSame(0, $response->rateLimitNextReset());
-    }
-}
+    expect($response)->toBeInstanceOf(Response::class);
+    expect($response->getStatusCode())->toBe(200);
+    expect($response->getBody())->toBe($expected);
+    expect($response->rateLimit())->toBeNull();
+    expect($response->remainingRateLimit())->toBeNull();
+    expect($response->rateLimitNextReset())->toBe(0);
+});

@@ -1,73 +1,58 @@
 <?php
 
-namespace Billplz\Tests\Four;
-
-use Billplz\Tests\TestCase;
 use Laravie\Codex\Contracts\Response;
 
-class PayoutTest extends TestCase
-{
-    /**
-     * API Version.
-     *
-     * @var string
-     */
-    protected $apiVersion = 'v4';
+beforeEach(function (): void {
+    $this->apiVersion = 'v4';
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_resolve_the_correct_version()
-    {
-        $payment = $this->makeClient()->uses('Payout', 'v4');
+it('resolves the correct version', function (): void {
+    $payment = $this->makeClient()->uses('Payout', 'v4');
 
-        $this->assertInstanceOf('Billplz\Four\Payout', $payment);
-        $this->assertSame($this->proxyApiVersion ?? $this->apiVersion, $payment->getVersion());
-    }
+    expect($payment)->toBeInstanceOf('Billplz\Four\Payout');
+    expect($payment->getVersion())->toBe($this->proxyApiVersion ?? $this->apiVersion);
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_get_mass_payment()
-    {
-        $expected = '{"id":"afae4bqf","mass_payment_instruction_collection_id":"4po8no8h","bank_code":"MBBEMYKL","bank_account_number":"820808062202123","identity_number":820808062202,"name":"Michael Yap","description":"Maecenas eu placerat ante.","email":"hello@billplz.com","status":"processing","notification":false,"recipient_notification":true,"total":"2000"}';
+it('can get mass payment', function (): void {
+    $expected = '{"id":"afae4bqf","mass_payment_instruction_collection_id":"4po8no8h","bank_code":"MBBEMYKL","bank_account_number":"820808062202123","identity_number":820808062202,"name":"Michael Yap","description":"Maecenas eu placerat ante.","email":"hello@billplz.com","status":"processing","notification":false,"recipient_notification":true,"total":"2000"}';
 
-        $faker = $this->expectRequest('GET', 'mass_payment_instructions/afae4bqf')
-            ->shouldResponseWithJson(200, $expected);
+    $faker = $this->expectRequest('GET', 'mass_payment_instructions/afae4bqf')
+        ->shouldResponseWithJson(200, $expected);
 
-        $response = $this->makeClient($faker)->uses('Payout')->get('afae4bqf');
+    $response = $this->makeClient($faker)->uses('Payout')->get('afae4bqf');
 
-        $this->assertInstanceOf(Response::class, $response);
-        $this->assertSame(200, $response->getStatusCode());
-        $this->assertSame($expected, $response->getBody());
-        $this->assertNull($response->rateLimit());
-        $this->assertNull($response->remainingRateLimit());
-        $this->assertSame(0, $response->rateLimitNextReset());
-    }
+    expect($response)->toBeInstanceOf(Response::class);
+    expect($response->getStatusCode())->toBe(200);
+    expect($response->getBody())->toBe($expected);
+    expect($response->rateLimit())->toBeNull();
+    expect($response->remainingRateLimit())->toBeNull();
+    expect($response->rateLimitNextReset())->toBe(0);
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_create_mass_payment()
-    {
-        $expected = '{"id":"afae4bqf","mass_payment_instruction_collection_id":"4po8no8h","bank_code":"MBBEMYKL","bank_account_number":"820808062202123","identity_number":820808062202,"name":"Michael Yap","description":"Maecenas eu placerat ante.","email":"hello@billplz.com","status":"processing","notification":false,"recipient_notification":true,"total":"2000"}';
+it('can create mass payment', function (): void {
+    $expected = '{"id":"afae4bqf","mass_payment_instruction_collection_id":"4po8no8h","bank_code":"MBBEMYKL","bank_account_number":"820808062202123","identity_number":820808062202,"name":"Michael Yap","description":"Maecenas eu placerat ante.","email":"hello@billplz.com","status":"processing","notification":false,"recipient_notification":true,"total":"2000"}';
 
-        $payload = [
-            'name' => 'Michael Yap',
-            'description' => 'Maecenas eu placerat ante.',
-            'total' => 2000,
-            'mass_payment_instruction_collection_id' => '4po8no8h',
-            'bank_code' => 'MBBEMYKL',
-            'bank_account_number' => '820808062202123',
-            'identity_number' => '820808062202',
-        ];
+    $payload = [
+        'name' => 'Michael Yap',
+        'description' => 'Maecenas eu placerat ante.',
+        'total' => 2000,
+        'mass_payment_instruction_collection_id' => '4po8no8h',
+        'bank_code' => 'MBBEMYKL',
+        'bank_account_number' => '820808062202123',
+        'identity_number' => '820808062202',
+    ];
 
-        $faker = $this->expectRequest('POST', 'mass_payment_instructions', [], $payload)
-            ->shouldResponseWithJson(200, $expected);
+    $faker = $this->expectRequest('POST', 'mass_payment_instructions', [], $payload)
+        ->shouldResponseWithJson(200, $expected);
 
-        $response = $this->makeClient($faker)->uses('Payout')->create(
-            '4po8no8h', 'MBBEMYKL', '820808062202123', '820808062202', 'Michael Yap', 'Maecenas eu placerat ante.', 2000
-        );
+    $response = $this->makeClient($faker)->uses('Payout')->create(
+        '4po8no8h', 'MBBEMYKL', '820808062202123', '820808062202', 'Michael Yap', 'Maecenas eu placerat ante.', 2000
+    );
 
-        $this->assertInstanceOf(Response::class, $response);
-        $this->assertSame(200, $response->getStatusCode());
-        $this->assertSame($expected, $response->getBody());
-        $this->assertNull($response->rateLimit());
-        $this->assertNull($response->remainingRateLimit());
-        $this->assertSame(0, $response->rateLimitNextReset());
-    }
-}
+    expect($response)->toBeInstanceOf(Response::class);
+    expect($response->getStatusCode())->toBe(200);
+    expect($response->getBody())->toBe($expected);
+    expect($response->rateLimit())->toBeNull();
+    expect($response->remainingRateLimit())->toBeNull();
+    expect($response->rateLimitNextReset())->toBe(0);
+});

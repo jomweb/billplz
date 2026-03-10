@@ -1,24 +1,14 @@
 <?php
 
-namespace Billplz\Tests\Three\Bill;
+beforeEach(function (): void {
+    $this->apiVersion = 'v3';
+});
 
-use Billplz\Tests\Base\Bill\TransactionTestCase;
+billplz_register_bill_transaction_tests();
 
-class TransactionTest extends TransactionTestCase
-{
-    /**
-     * API Version.
-     *
-     * @var string
-     */
-    protected $apiVersion = 'v3';
+it('can called via helper', function (): void {
+    $transaction = $this->makeClient()->transaction('v3');
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_called_via_helper()
-    {
-        $transaction = $this->makeClient()->transaction('v3');
-
-        $this->assertInstanceOf('Billplz\Three\Bill\Transaction', $transaction);
-        $this->assertSame('v3', $transaction->getVersion());
-    }
-}
+    expect($transaction)->toBeInstanceOf('Billplz\Three\Bill\Transaction');
+    expect($transaction->getVersion())->toBe('v3');
+});

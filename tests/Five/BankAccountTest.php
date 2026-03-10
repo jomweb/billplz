@@ -1,26 +1,16 @@
 <?php
 
-namespace Billplz\Tests\Five;
+beforeEach(function (): void {
+    $this->proxyApiVersion = 'v3';
+});
 
-use Billplz\Tests\Base\BankAccountTestCase;
+billplz_register_bank_account_tests();
 
-class BankAccountTest extends BankAccountTestCase
-{
-    /**
-     * API Version.
-     *
-     * @var string
-     */
-    protected $proxyApiVersion = 'v3';
+it('can called via helper', function (): void {
+    $bank = $this->makeClient()->bank('v5');
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_called_via_helper()
-    {
-        $bank = $this->makeClient()->bank('v5');
-
-        $this->assertInstanceOf('Billplz\Five\BankAccount', $bank);
-        $this->assertInstanceOf('Billplz\Four\BankAccount', $bank);
-        $this->assertInstanceOf('Billplz\Three\BankAccount', $bank);
-        $this->assertSame('v3', $bank->getVersion());
-    }
-}
+    expect($bank)->toBeInstanceOf('Billplz\Five\BankAccount');
+    expect($bank)->toBeInstanceOf('Billplz\Four\BankAccount');
+    expect($bank)->toBeInstanceOf('Billplz\Three\BankAccount');
+    expect($bank->getVersion())->toBe('v3');
+});

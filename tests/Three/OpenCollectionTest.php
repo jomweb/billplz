@@ -1,24 +1,14 @@
 <?php
 
-namespace Billplz\Tests\Three;
+beforeEach(function (): void {
+    $this->apiVersion = 'v3';
+});
 
-use Billplz\Tests\Base\OpenCollectionTestCase;
+billplz_register_open_collection_tests();
 
-class OpenCollectionTest extends OpenCollectionTestCase
-{
-    /**
-     * API Version.
-     *
-     * @var string
-     */
-    protected $apiVersion = 'v3';
+it('can called via helper', function (): void {
+    $collection = $this->makeClient()->openCollection('v3');
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_called_via_helper()
-    {
-        $collection = $this->makeClient()->openCollection('v3');
-
-        $this->assertInstanceOf('Billplz\Three\OpenCollection', $collection);
-        $this->assertSame('v3', $collection->getVersion());
-    }
-}
+    expect($collection)->toBeInstanceOf('Billplz\Three\OpenCollection');
+    expect($collection->getVersion())->toBe('v3');
+});

@@ -1,140 +1,121 @@
 <?php
 
-namespace Billplz\Tests\Four;
-
-use Billplz\Tests\TestCase;
 use Laravie\Codex\Contracts\Response;
 
-class CardTest extends TestCase
-{
-    /**
-     * API Version.
-     *
-     * @var string
-     */
-    protected $apiVersion = 'v4';
+beforeEach(function (): void {
+    $this->apiVersion = 'v4';
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_resolve_the_correct_version()
-    {
-        $card = $this->makeClient()->uses('Card', 'v4');
+it('resolves the correct version', function (): void {
+    $card = $this->makeClient()->uses('Card', 'v4');
 
-        $this->assertInstanceOf('Billplz\Four\Card', $card);
-        $this->assertSame('v4', $card->getVersion());
-    }
+    expect($card)->toBeInstanceOf('Billplz\Four\Card');
+    expect($card->getVersion())->toBe('v4');
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_has_proper_signature()
-    {
-        $card = $this->makeClient()->card();
+it('has proper signature', function (): void {
+    $card = $this->makeClient()->card();
 
-        $this->assertInstanceOf('Billplz\Four\Card', $card);
-        $this->assertSame($this->apiVersion, $card->getVersion());
-    }
+    expect($card)->toBeInstanceOf('Billplz\Four\Card');
+    expect($card->getVersion())->toBe($this->apiVersion);
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_create_a_valid_credit_card()
-    {
-        $payload = [
-            'name' => 'Michael',
-            'email' => 'api@billplz.com',
-            'cvv' => '100',
-            'expiry' => '0521',
-            'phone' => '60122345678',
-            'card_number' => '5111111111111118',
-        ];
+it('can create a valid credit card', function (): void {
+    $payload = [
+        'name' => 'Michael',
+        'email' => 'api@billplz.com',
+        'cvv' => '100',
+        'expiry' => '0521',
+        'phone' => '60122345678',
+        'card_number' => '5111111111111118',
+    ];
 
-        $expected = '{"id":"8727fc3a-c04c-4c2b-9b67-947b5cfc2fb6","card_number":"xxxx1118","expiry":"0521","provider":"mastercard","token":"77d62ad5a3ae56aafc8e3529b89d0268afa205303f6017afbd9826afb8394740","active":true}';
+    $expected = '{"id":"8727fc3a-c04c-4c2b-9b67-947b5cfc2fb6","card_number":"xxxx1118","expiry":"0521","provider":"mastercard","token":"77d62ad5a3ae56aafc8e3529b89d0268afa205303f6017afbd9826afb8394740","active":true}';
 
-        $faker = $this->expectRequest('POST', 'cards', [], $payload)
-            ->shouldResponseWith(200, $expected);
+    $faker = $this->expectRequest('POST', 'cards', [], $payload)
+        ->shouldResponseWith(200, $expected);
 
-        $response = $this->makeClient($faker)
-            ->uses('Card')
-            ->create(
-                $payload['name'],
-                $payload['email'],
-                $payload['phone'],
-                $payload['card_number'],
-                $payload['cvv'],
-                $payload['expiry']
-            );
+    $response = $this->makeClient($faker)
+        ->uses('Card')
+        ->create(
+            $payload['name'],
+            $payload['email'],
+            $payload['phone'],
+            $payload['card_number'],
+            $payload['cvv'],
+            $payload['expiry']
+        );
 
-        $this->assertInstanceOf(Response::class, $response);
-        $this->assertSame(200, $response->getStatusCode());
-        $this->assertSame($expected, $response->getBody());
+    expect($response)->toBeInstanceOf(Response::class);
+    expect($response->getStatusCode())->toBe(200);
+    expect($response->getBody())->toBe($expected);
 
-        $card = $response->toArray();
+    $card = $response->toArray();
 
-        $this->assertSame('8727fc3a-c04c-4c2b-9b67-947b5cfc2fb6', $card['id']);
-        $this->assertSame('xxxx1118', $card['card_number']);
-        $this->assertSame('0521', $card['expiry']);
-        $this->assertSame('mastercard', $card['provider']);
-        $this->assertSame('77d62ad5a3ae56aafc8e3529b89d0268afa205303f6017afbd9826afb8394740', $card['token']);
-        $this->assertTrue($card['active']);
-    }
+    expect($card['id'])->toBe('8727fc3a-c04c-4c2b-9b67-947b5cfc2fb6');
+    expect($card['card_number'])->toBe('xxxx1118');
+    expect($card['expiry'])->toBe('0521');
+    expect($card['provider'])->toBe('mastercard');
+    expect($card['token'])->toBe('77d62ad5a3ae56aafc8e3529b89d0268afa205303f6017afbd9826afb8394740');
+    expect($card['active'])->toBeTrue();
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_activate_a_credit_card()
-    {
-        $cardId = '8727fc3a-c04c-4c2b-9b67-947b5cfc2fb6';
-        $payload = [
-            'token' => '77d62ad5a3ae56aafc8e3529b89d0268afa205303f6017afbd9826afb8394740',
-            'active' => true,
-        ];
+it('can activate a credit card', function (): void {
+    $cardId = '8727fc3a-c04c-4c2b-9b67-947b5cfc2fb6';
+    $payload = [
+        'token' => '77d62ad5a3ae56aafc8e3529b89d0268afa205303f6017afbd9826afb8394740',
+        'active' => true,
+    ];
 
-        $expected = '{"id":"8727fc3a-c04c-4c2b-9b67-947b5cfc2fb6","card_number":"xxxx1118","expiry":"0521","provider":"mastercard","token":"77d62ad5a3ae56aafc8e3529b89d0268afa205303f6017afbd9826afb8394740","active":true}';
+    $expected = '{"id":"8727fc3a-c04c-4c2b-9b67-947b5cfc2fb6","card_number":"xxxx1118","expiry":"0521","provider":"mastercard","token":"77d62ad5a3ae56aafc8e3529b89d0268afa205303f6017afbd9826afb8394740","active":true}';
 
-        $faker = $this->expectRequest('PUT', "cards/{$cardId}", [], $payload)
-            ->shouldResponseWith(200, $expected);
+    $faker = $this->expectRequest('PUT', "cards/{$cardId}", [], $payload)
+        ->shouldResponseWith(200, $expected);
 
-        $response = $this->makeClient($faker)
-            ->uses('Card')
-            ->activate($cardId, $payload['token']);
+    $response = $this->makeClient($faker)
+        ->uses('Card')
+        ->activate($cardId, $payload['token']);
 
-        $this->assertInstanceOf(Response::class, $response);
-        $this->assertSame(200, $response->getStatusCode());
-        $this->assertSame($expected, $response->getBody());
+    expect($response)->toBeInstanceOf(Response::class);
+    expect($response->getStatusCode())->toBe(200);
+    expect($response->getBody())->toBe($expected);
 
-        $card = $response->toArray();
+    $card = $response->toArray();
 
-        $this->assertSame('8727fc3a-c04c-4c2b-9b67-947b5cfc2fb6', $card['id']);
-        $this->assertSame('xxxx1118', $card['card_number']);
-        $this->assertSame('0521', $card['expiry']);
-        $this->assertSame('mastercard', $card['provider']);
-        $this->assertSame('77d62ad5a3ae56aafc8e3529b89d0268afa205303f6017afbd9826afb8394740', $card['token']);
-        $this->assertTrue($card['active']);
-    }
+    expect($card['id'])->toBe('8727fc3a-c04c-4c2b-9b67-947b5cfc2fb6');
+    expect($card['card_number'])->toBe('xxxx1118');
+    expect($card['expiry'])->toBe('0521');
+    expect($card['provider'])->toBe('mastercard');
+    expect($card['token'])->toBe('77d62ad5a3ae56aafc8e3529b89d0268afa205303f6017afbd9826afb8394740');
+    expect($card['active'])->toBeTrue();
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_deactivate_a_credit_card()
-    {
-        $cardId = '8727fc3a-c04c-4c2b-9b67-947b5cfc2fb6';
-        $payload = [
-            'token' => '77d62ad5a3ae56aafc8e3529b89d0268afa205303f6017afbd9826afb8394740',
-            'active' => false,
-        ];
+it('can deactivate a credit card', function (): void {
+    $cardId = '8727fc3a-c04c-4c2b-9b67-947b5cfc2fb6';
+    $payload = [
+        'token' => '77d62ad5a3ae56aafc8e3529b89d0268afa205303f6017afbd9826afb8394740',
+        'active' => false,
+    ];
 
-        $expected = '{"id":"8727fc3a-c04c-4c2b-9b67-947b5cfc2fb6","card_number":"xxxx1118","expiry":"0521","provider":"mastercard","token":"77d62ad5a3ae56aafc8e3529b89d0268afa205303f6017afbd9826afb8394740","active":false}';
+    $expected = '{"id":"8727fc3a-c04c-4c2b-9b67-947b5cfc2fb6","card_number":"xxxx1118","expiry":"0521","provider":"mastercard","token":"77d62ad5a3ae56aafc8e3529b89d0268afa205303f6017afbd9826afb8394740","active":false}';
 
-        $faker = $this->expectRequest('PUT', "cards/{$cardId}", [], $payload)
-            ->shouldResponseWith(200, $expected);
+    $faker = $this->expectRequest('PUT', "cards/{$cardId}", [], $payload)
+        ->shouldResponseWith(200, $expected);
 
-        $response = $this->makeClient($faker)
-            ->uses('Card')
-            ->deactivate($cardId, $payload['token']);
+    $response = $this->makeClient($faker)
+        ->uses('Card')
+        ->deactivate($cardId, $payload['token']);
 
-        $this->assertInstanceOf(Response::class, $response);
-        $this->assertSame(200, $response->getStatusCode());
-        $this->assertSame($expected, $response->getBody());
+    expect($response)->toBeInstanceOf(Response::class);
+    expect($response->getStatusCode())->toBe(200);
+    expect($response->getBody())->toBe($expected);
 
-        $card = $response->toArray();
+    $card = $response->toArray();
 
-        $this->assertSame('8727fc3a-c04c-4c2b-9b67-947b5cfc2fb6', $card['id']);
-        $this->assertSame('xxxx1118', $card['card_number']);
-        $this->assertSame('0521', $card['expiry']);
-        $this->assertSame('mastercard', $card['provider']);
-        $this->assertSame('77d62ad5a3ae56aafc8e3529b89d0268afa205303f6017afbd9826afb8394740', $card['token']);
-        $this->assertFalse($card['active']);
-    }
-}
+    expect($card['id'])->toBe('8727fc3a-c04c-4c2b-9b67-947b5cfc2fb6');
+    expect($card['card_number'])->toBe('xxxx1118');
+    expect($card['expiry'])->toBe('0521');
+    expect($card['provider'])->toBe('mastercard');
+    expect($card['token'])->toBe('77d62ad5a3ae56aafc8e3529b89d0268afa205303f6017afbd9826afb8394740');
+    expect($card['active'])->toBeFalse();
+});

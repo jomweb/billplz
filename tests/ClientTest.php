@@ -1,145 +1,117 @@
 <?php
 
-namespace Billplz\Tests;
-
 use Billplz\Client;
+use Billplz\Tests\TestCase;
 use Laravie\Codex\Discovery;
 use Laravie\Codex\Testing\Faker;
 
-class ClientTest extends TestCase
-{
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_be_initiated_directly()
-    {
-        $faker = Faker::create();
+it('can be initiated directly', function (): void {
+    $faker = Faker::create();
 
-        $client = new Client($faker->http(), static::API_KEY, static::X_SIGNATURE);
+    $client = new Client($faker->http(), TestCase::API_KEY, TestCase::X_SIGNATURE);
 
-        $this->assertSame(static::API_KEY, $client->getApiKey());
-        $this->assertSame(static::X_SIGNATURE, $client->getSignatureKey());
-        $this->assertSame('https://www.billplz.com/api', $client->getApiEndpoint());
-    }
+    expect($client->getApiKey())->toBe(TestCase::API_KEY);
+    expect($client->getSignatureKey())->toBe(TestCase::X_SIGNATURE);
+    expect($client->getApiEndpoint())->toBe('https://www.billplz.com/api');
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_be_initiated_via_make()
-    {
-        $faker = Faker::create();
+it('can be initiated via make', function (): void {
+    $faker = Faker::create();
 
-        Discovery::override($faker->http());
+    Discovery::override($faker->http());
 
-        $client = Client::make(static::API_KEY, static::X_SIGNATURE);
+    $client = Client::make(TestCase::API_KEY, TestCase::X_SIGNATURE);
 
-        $this->assertSame(static::API_KEY, $client->getApiKey());
-        $this->assertSame(static::X_SIGNATURE, $client->getSignatureKey());
-        $this->assertSame('https://www.billplz.com/api', $client->getApiEndpoint());
-    }
+    expect($client->getApiKey())->toBe(TestCase::API_KEY);
+    expect($client->getSignatureKey())->toBe(TestCase::X_SIGNATURE);
+    expect($client->getApiEndpoint())->toBe('https://www.billplz.com/api');
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_use_sandbox_endpoint()
-    {
-        $client = $this->makeClient();
+it('can use sandbox endpoint', function (): void {
+    $client = $this->makeClient();
 
-        $client->useSandbox();
+    $client->useSandbox();
 
-        $this->assertSame('https://www.billplz-sandbox.com/api', $client->getApiEndpoint());
-    }
+    expect($client->getApiEndpoint())->toBe('https://www.billplz-sandbox.com/api');
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_retrieve_collection_instance()
-    {
-        $client = $this->makeClient();
+it('can retrieve collection instance', function (): void {
+    $client = $this->makeClient();
 
-        $collection = $client->collection('v3');
+    $collection = $client->collection('v3');
 
-        $this->assertInstanceOf('Billplz\Base\Collection', $collection);
-        $this->assertInstanceOf('Billplz\Three\Collection', $collection);
-    }
+    expect($collection)->toBeInstanceOf('Billplz\Base\Collection');
+    expect($collection)->toBeInstanceOf('Billplz\Three\Collection');
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_retrieve_open_collection_instance()
-    {
-        $client = $this->makeClient();
+it('can retrieve open collection instance', function (): void {
+    $client = $this->makeClient();
 
-        $collection = $client->openCollection('v3');
+    $collection = $client->openCollection('v3');
 
-        $this->assertInstanceOf('Billplz\Base\OpenCollection', $collection);
-        $this->assertInstanceOf('Billplz\Three\OpenCollection', $collection);
-    }
+    expect($collection)->toBeInstanceOf('Billplz\Base\OpenCollection');
+    expect($collection)->toBeInstanceOf('Billplz\Three\OpenCollection');
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_retrieve_bill_instance()
-    {
-        $client = $this->makeClient();
+it('can retrieve bill instance', function (): void {
+    $client = $this->makeClient();
 
-        $bill = $client->bill('v3');
+    $bill = $client->bill('v3');
 
-        $this->assertInstanceOf('Billplz\Base\Bill', $bill);
-        $this->assertInstanceOf('Billplz\Three\Bill', $bill);
-    }
+    expect($bill)->toBeInstanceOf('Billplz\Base\Bill');
+    expect($bill)->toBeInstanceOf('Billplz\Three\Bill');
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_retrieve_transaction_instance()
-    {
-        $client = $this->makeClient();
+it('can retrieve transaction instance', function (): void {
+    $client = $this->makeClient();
 
-        $transaction = $client->transaction('v3');
+    $transaction = $client->transaction('v3');
 
-        $this->assertInstanceOf('Billplz\Base\Bill\Transaction', $transaction);
-        $this->assertInstanceOf('Billplz\Three\Bill\Transaction', $transaction);
-    }
+    expect($transaction)->toBeInstanceOf('Billplz\Base\Bill\Transaction');
+    expect($transaction)->toBeInstanceOf('Billplz\Three\Bill\Transaction');
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_retrieve_payout_collection_instance()
-    {
-        $client = $this->makeClient();
+it('can retrieve payout collection instance', function (): void {
+    $client = $this->makeClient();
 
-        $payoutCollection = $client->payoutCollection('v4');
+    $payoutCollection = $client->payoutCollection('v4');
 
-        $this->assertInstanceOf('Billplz\Four\Collection\Payout', $payoutCollection);
-        $this->assertInstanceOf('Billplz\Contracts\Collection\Payout', $payoutCollection);
-    }
+    expect($payoutCollection)->toBeInstanceOf('Billplz\Four\Collection\Payout');
+    expect($payoutCollection)->toBeInstanceOf('Billplz\Contracts\Collection\Payout');
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_retrieve_payout_instance()
-    {
-        $client = $this->makeClient();
+it('can retrieve payout instance', function (): void {
+    $client = $this->makeClient();
 
-        $payout = $client->payout('v4');
+    $payout = $client->payout('v4');
 
-        $this->assertInstanceOf('Billplz\Four\Payout', $payout);
-        $this->assertInstanceOf('Billplz\Contracts\Payout', $payout);
-    }
+    expect($payout)->toBeInstanceOf('Billplz\Four\Payout');
+    expect($payout)->toBeInstanceOf('Billplz\Contracts\Payout');
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_retrieve_payment_order_instance()
-    {
-        $client = $this->makeClient();
+it('can retrieve payment order instance', function (): void {
+    $client = $this->makeClient();
 
-        $paymentOrder = $client->paymentOrder();
+    $paymentOrder = $client->paymentOrder();
 
-        $this->assertInstanceOf('Billplz\Five\PaymentOrder', $paymentOrder);
-        $this->assertInstanceOf('Billplz\Contracts\PaymentOrder', $paymentOrder);
-    }
+    expect($paymentOrder)->toBeInstanceOf('Billplz\Five\PaymentOrder');
+    expect($paymentOrder)->toBeInstanceOf('Billplz\Contracts\PaymentOrder');
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_retrieve_payment_order_collection_instance()
-    {
-        $client = $this->makeClient();
+it('can retrieve payment order collection instance', function (): void {
+    $client = $this->makeClient();
 
-        $paymentOrderCollection = $client->paymentOrderCollection();
+    $paymentOrderCollection = $client->paymentOrderCollection();
 
-        $this->assertInstanceOf('Billplz\Five\PaymentOrderCollection', $paymentOrderCollection);
-        $this->assertInstanceOf('Billplz\Contracts\PaymentOrderCollection', $paymentOrderCollection);
-    }
+    expect($paymentOrderCollection)->toBeInstanceOf('Billplz\Five\PaymentOrderCollection');
+    expect($paymentOrderCollection)->toBeInstanceOf('Billplz\Contracts\PaymentOrderCollection');
+});
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_retrieve_bank_instance()
-    {
-        $client = $this->makeClient();
+it('can retrieve bank instance', function (): void {
+    $client = $this->makeClient();
 
-        $bank = $client->bank('v3');
+    $bank = $client->bank('v3');
 
-        $this->assertInstanceOf('Billplz\Base\BankAccount', $bank);
-        $this->assertInstanceOf('Billplz\Three\BankAccount', $bank);
-    }
-}
+    expect($bank)->toBeInstanceOf('Billplz\Base\BankAccount');
+    expect($bank)->toBeInstanceOf('Billplz\Three\BankAccount');
+});

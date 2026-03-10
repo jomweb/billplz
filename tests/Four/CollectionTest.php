@@ -1,49 +1,28 @@
 <?php
 
-namespace Billplz\Tests\Four;
+beforeEach(function (): void {
+    $this->apiVersion = 'v4';
+});
 
-use Billplz\Tests\Base\CollectionTestCase;
-
-class CollectionTest extends CollectionTestCase
-{
-    /**
-     * API Version.
-     *
-     * @var string
-     */
-    protected $apiVersion = 'v4';
-
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_activate_collection()
-    {
+billplz_register_collection_tests([
+    'can activate collection' => function (): void {
         $this->proxyApiVersion = 'v3';
-
-        parent::it_can_activate_collection();
-    }
-
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_deactivate_collection()
-    {
+    },
+    'can deactivate collection' => function (): void {
         $this->proxyApiVersion = 'v3';
+    },
+]);
 
-        parent::it_can_deactivate_collection();
-    }
+it('can called via helper', function (): void {
+    $collection = $this->makeClient()->collection('v4');
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_called_via_helper()
-    {
-        $collection = $this->makeClient()->collection('v4');
+    expect($collection)->toBeInstanceOf('Billplz\Four\Collection');
+    expect($collection->getVersion())->toBe('v4');
+});
 
-        $this->assertInstanceOf('Billplz\Four\Collection', $collection);
-        $this->assertSame('v4', $collection->getVersion());
-    }
+it('can retrieve payout instance', function (): void {
+    $massPayment = $this->makeClient()->collection('v4')->payout();
 
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_retrieve_payout_instance()
-    {
-        $massPayment = $this->makeClient()->collection('v4')->payout();
-
-        $this->assertInstanceOf('Billplz\Four\Collection\Payout', $massPayment);
-        $this->assertSame('v4', $massPayment->getVersion());
-    }
-}
+    expect($massPayment)->toBeInstanceOf('Billplz\Four\Collection\Payout');
+    expect($massPayment->getVersion())->toBe('v4');
+});
