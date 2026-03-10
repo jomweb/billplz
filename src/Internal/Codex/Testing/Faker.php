@@ -3,7 +3,6 @@
 namespace Laravie\Codex\Testing;
 
 use GuzzleHttp\Psr7\HttpFactory;
-use GuzzleHttp\Psr7\Uri;
 use GuzzleHttp\Psr7\Utils;
 use Http\Client\Common\HttpMethodsClient;
 use Http\Client\HttpClient;
@@ -84,7 +83,7 @@ class Faker
     {
         $this->client = m::mock(HttpClient::class);
         $this->message = m::mock(ResponseInterface::class);
-        $factory = new HttpFactory();
+        $factory = new HttpFactory;
 
         $this->http = new HttpMethodsClient(
             $this->client, $factory, $factory
@@ -98,7 +97,7 @@ class Faker
      */
     public static function create()
     {
-        return new static();
+        return new static;
     }
 
     /**

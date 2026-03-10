@@ -43,6 +43,6 @@ abstract class Request extends \Laravie\Codex\Request implements Filterable
      */
     protected function sanitizeWith(): Sanitizer
     {
-        return new Sanitizer();
+        return new Sanitizer;
     }
 }

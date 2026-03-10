@@ -72,7 +72,7 @@ trait PaymentCompletion
         }
 
         if (! $signature->verify($bill, $bill['x_signature'])) {
-            throw new FailedSignatureVerification();
+            throw new FailedSignatureVerification;
         }
 
         return true;

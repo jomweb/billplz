@@ -20,15 +20,29 @@ First, install the dependencies:
 $ composer install
 ```
 
-Then run phpunit:
+Then install the repo-managed git hooks:
 
 ```bash
-$ vendor/bin/phpunit
+$ composer hooks:install
+```
+
+The hooks run:
+
+* `pre-commit`: `composer lint`
+* `pre-push`: `composer analyse` and `composer test`
+
+You can also run the checks manually:
+
+```bash
+$ composer lint
+$ composer analyse
+$ composer test
+$ composer qa
 ```
 
 If the test suite passes on your local machine you should be good to go.
 
-When you make a pull request, the tests will automatically be run again by [Travis CI](https://travis-ci.org/) on multiple php versions and hhvm.
+When you make a pull request, the checks will automatically run again on GitHub Actions.
 
 ## Support Policy
 

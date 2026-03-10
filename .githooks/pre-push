@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+set -eu
+
+repo_root="$(git rev-parse --show-toplevel)"
+cd "$repo_root"
+
+printf '%s\n' 'Running pre-push checks: PHPStan and Pest'
+composer run analyse
+composer run test:parallel

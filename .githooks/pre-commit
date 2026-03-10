@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+set -eu
+
+repo_root="$(git rev-parse --show-toplevel)"
+cd "$repo_root"
+
+printf '%s\n' 'Running pre-commit checks: Pint'
+composer run lint

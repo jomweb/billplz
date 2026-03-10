@@ -56,7 +56,7 @@ trait Multipart
             return [$headers, $body];
         }
 
-        $builder = new Builder(new HttpFactory());
+        $builder = new Builder(new HttpFactory);
 
         $this->addFilesToMultipartBuilder($builder, $files);
 

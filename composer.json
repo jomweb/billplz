@@ -56,6 +56,18 @@
             "dev-6.x": "6.x-dev"
         }
     },
+    "scripts": {
+        "lint": "vendor/bin/pint --test",
+        "analyse": "vendor/bin/phpstan analyse --configuration=phpstan.neon.dist",
+        "test": "vendor/bin/pest",
+        "test:parallel": "vendor/bin/pest --parallel",
+        "qa": [
+            "@lint",
+            "@analyse",
+            "@test:parallel"
+        ],
+        "hooks:install": "git config core.hooksPath .githooks"
+    },
     "prefer-stable": true,
     "minimum-stability": "stable"
 }

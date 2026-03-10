@@ -29,7 +29,7 @@ class Discovery
      */
     public static function make(): HttpMethodsClient
     {
-        $factory = new HttpFactory();
+        $factory = new HttpFactory;
 
         return new HttpMethodsClient(
             HttpClientDiscovery::find(),

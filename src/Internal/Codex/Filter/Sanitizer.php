@@ -107,7 +107,7 @@ class Sanitizer implements SanitizerContract
         $cast = $this->getNestedValue($this->casts, (array) $group);
 
         if (is_subclass_of($cast, CastContract::class)) {
-            return \is_string($cast) ? new $cast() : $cast;
+            return \is_string($cast) ? new $cast : $cast;
         }
 
         return null;

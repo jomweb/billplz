@@ -92,7 +92,7 @@ if (class_exists(Version::class) && version_compare(Version::series(), '9.0', '>
          */
         public function toString(): string
         {
-            return 'has the subset '.(new Exporter())->export($this->subset);
+            return 'has the subset '.(new Exporter)->export($this->subset);
         }
 
         /**
@@ -172,7 +172,6 @@ if (class_exists(Version::class) && version_compare(Version::series(), '9.0', '>
          * failure.
          *
          * @param  mixed  $other
-         * @return bool|null
          *
          * @throws \PHPUnit\Framework\ExpectationFailedException
          * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
@@ -218,7 +217,7 @@ if (class_exists(Version::class) && version_compare(Version::series(), '9.0', '>
          */
         public function toString(): string
         {
-            return 'has the subset '.(new Exporter())->export($this->subset);
+            return 'has the subset '.(new Exporter)->export($this->subset);
         }
 
         /**
