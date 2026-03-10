@@ -14,4 +14,3 @@ parameters:
     - '#Call to an undefined method Laravie\\Codex\\Contracts\\Endpoint::withUserInfo\(\)#'
 
   treatPhpDocTypesAsCertain: false
-  checkMissingIterableValueType: false

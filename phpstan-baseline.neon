@@ -1,67 +1,781 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Method Billplz\\\\Client\\:\\:bank\\(\\) should return Billplz\\\\Contracts\\\\BankAccount but returns Laravie\\\\Codex\\\\Contracts\\\\Request\\.$#"
+			message: '#^Method Billplz\\Base\\Bill\:\:addBodyToMultipartBuilder\(\) has parameter \$body with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Base/Bill.php
+
+		-
+			message: '#^Method Billplz\\Base\\Bill\:\:prepareMultipartRequestPayloads\(\) has parameter \$body with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Base/Bill.php
+
+		-
+			message: '#^Method Billplz\\Base\\Bill\:\:prepareMultipartRequestPayloads\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Base/Bill.php
+
+		-
+			message: '#^Method Billplz\\Base\\Bill\:\:redirect\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Base/Bill.php
+
+		-
+			message: '#^Method Billplz\\Base\\Bill\:\:stream\(\) has parameter \$body with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Base/Bill.php
+
+		-
+			message: '#^Method Billplz\\Base\\Bill\:\:validateAgainstSignature\(\) has parameter \$bill with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Base/Bill.php
+
+		-
+			message: '#^Method Billplz\\Base\\Bill\:\:webhook\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Base/Bill.php
+
+		-
+			message: '#^Parameter \#2 \$body of method Billplz\\Base\\Bill\:\:prepareMultipartRequestPayloads\(\) expects array, array\|Laravie\\Codex\\Payload\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Base/Bill.php
+
+		-
+			message: '#^Parameter \#2 \$resource of method Http\\Message\\MultipartStream\\MultipartStreamBuilder\:\:addResource\(\) expects Psr\\Http\\Message\\StreamInterface\|resource\|string, resource\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Base/Bill.php
+
+		-
+			message: '#^Method Billplz\\Base\\Collection\:\:addBodyToMultipartBuilder\(\) has parameter \$body with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Base/Collection.php
+
+		-
+			message: '#^Method Billplz\\Base\\Collection\:\:prepareMultipartRequestPayloads\(\) has parameter \$body with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Base/Collection.php
+
+		-
+			message: '#^Method Billplz\\Base\\Collection\:\:prepareMultipartRequestPayloads\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Base/Collection.php
+
+		-
+			message: '#^Method Billplz\\Base\\Collection\:\:stream\(\) has parameter \$body with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Base/Collection.php
+
+		-
+			message: '#^Parameter \#2 \$body of method Billplz\\Base\\Collection\:\:prepareMultipartRequestPayloads\(\) expects array, array\|Laravie\\Codex\\Payload\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Base/Collection.php
+
+		-
+			message: '#^Parameter \#2 \$resource of method Http\\Message\\MultipartStream\\MultipartStreamBuilder\:\:addResource\(\) expects Psr\\Http\\Message\\StreamInterface\|resource\|string, resource\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Base/Collection.php
+
+		-
+			message: '#^Method Billplz\\Base\\OpenCollection\:\:addBodyToMultipartBuilder\(\) has parameter \$body with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Base/OpenCollection.php
+
+		-
+			message: '#^Method Billplz\\Base\\OpenCollection\:\:prepareMultipartRequestPayloads\(\) has parameter \$body with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Base/OpenCollection.php
+
+		-
+			message: '#^Method Billplz\\Base\\OpenCollection\:\:prepareMultipartRequestPayloads\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Base/OpenCollection.php
+
+		-
+			message: '#^Method Billplz\\Base\\OpenCollection\:\:stream\(\) has parameter \$body with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Base/OpenCollection.php
+
+		-
+			message: '#^Parameter \#2 \$body of method Billplz\\Base\\OpenCollection\:\:prepareMultipartRequestPayloads\(\) expects array, array\|Laravie\\Codex\\Payload\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Base/OpenCollection.php
+
+		-
+			message: '#^Parameter \#2 \$resource of method Http\\Message\\MultipartStream\\MultipartStreamBuilder\:\:addResource\(\) expects Psr\\Http\\Message\\StreamInterface\|resource\|string, resource\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Base/OpenCollection.php
+
+		-
+			message: '#^Method Billplz\\Checksum\:\:create\(\) has parameter \$attributes with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Checksum.php
+
+		-
+			message: '#^Method Billplz\\Client\:\:bank\(\) should return Billplz\\Contracts\\BankAccount but returns Laravie\\Codex\\Contracts\\Request\.$#'
+			identifier: return.type
 			count: 1
 			path: src/Client.php
 
 		-
-			message: "#^Method Billplz\\\\Client\\:\\:bill\\(\\) should return Billplz\\\\Contracts\\\\Bill but returns Laravie\\\\Codex\\\\Contracts\\\\Request\\.$#"
+			message: '#^Method Billplz\\Client\:\:bill\(\) should return Billplz\\Contracts\\Bill but returns Laravie\\Codex\\Contracts\\Request\.$#'
+			identifier: return.type
 			count: 1
 			path: src/Client.php
 
 		-
-			message: "#^Method Billplz\\\\Client\\:\\:card\\(\\) should return Billplz\\\\Contracts\\\\Card but returns Laravie\\\\Codex\\\\Contracts\\\\Request\\.$#"
+			message: '#^Method Billplz\\Client\:\:card\(\) should return Billplz\\Contracts\\Card but returns Laravie\\Codex\\Contracts\\Request\.$#'
+			identifier: return.type
 			count: 1
 			path: src/Client.php
 
 		-
-			message: "#^Method Billplz\\\\Client\\:\\:collection\\(\\) should return Billplz\\\\Contracts\\\\Collection but returns Laravie\\\\Codex\\\\Contracts\\\\Request\\.$#"
+			message: '#^Method Billplz\\Client\:\:collection\(\) should return Billplz\\Contracts\\Collection but returns Laravie\\Codex\\Contracts\\Request\.$#'
+			identifier: return.type
 			count: 1
 			path: src/Client.php
 
 		-
-			message: "#^Method Billplz\\\\Client\\:\\:openCollection\\(\\) should return Billplz\\\\Contracts\\\\OpenCollection but returns Laravie\\\\Codex\\\\Contracts\\\\Request\\.$#"
+			message: '#^Method Billplz\\Client\:\:openCollection\(\) should return Billplz\\Contracts\\OpenCollection but returns Laravie\\Codex\\Contracts\\Request\.$#'
+			identifier: return.type
 			count: 1
 			path: src/Client.php
 
 		-
-			message: "#^Method Billplz\\\\Client\\:\\:paymentOrder\\(\\) should return Billplz\\\\Contracts\\\\PaymentOrder but returns Laravie\\\\Codex\\\\Contracts\\\\Request\\.$#"
+			message: '#^Method Billplz\\Client\:\:paymentOrder\(\) should return Billplz\\Contracts\\PaymentOrder but returns Laravie\\Codex\\Contracts\\Request\.$#'
+			identifier: return.type
 			count: 1
 			path: src/Client.php
 
 		-
-			message: "#^Method Billplz\\\\Client\\:\\:paymentOrderCollection\\(\\) should return Billplz\\\\Contracts\\\\PaymentOrderCollection but returns Laravie\\\\Codex\\\\Contracts\\\\Request\\.$#"
+			message: '#^Method Billplz\\Client\:\:paymentOrderCollection\(\) should return Billplz\\Contracts\\PaymentOrderCollection but returns Laravie\\Codex\\Contracts\\Request\.$#'
+			identifier: return.type
 			count: 1
 			path: src/Client.php
 
 		-
-			message: "#^Method Billplz\\\\Client\\:\\:payout\\(\\) should return Billplz\\\\Contracts\\\\Payout but returns Laravie\\\\Codex\\\\Contracts\\\\Request\\.$#"
+			message: '#^Method Billplz\\Client\:\:payout\(\) should return Billplz\\Contracts\\Payout but returns Laravie\\Codex\\Contracts\\Request\.$#'
+			identifier: return.type
 			count: 1
 			path: src/Client.php
 
 		-
-			message: "#^Method Billplz\\\\Client\\:\\:payoutCollection\\(\\) should return Billplz\\\\Contracts\\\\Collection\\\\Payout but returns Laravie\\\\Codex\\\\Contracts\\\\Request\\.$#"
+			message: '#^Method Billplz\\Client\:\:payoutCollection\(\) should return Billplz\\Contracts\\Collection\\Payout but returns Laravie\\Codex\\Contracts\\Request\.$#'
+			identifier: return.type
 			count: 1
 			path: src/Client.php
 
 		-
-			message: "#^Method Billplz\\\\Client\\:\\:transaction\\(\\) should return Billplz\\\\Contracts\\\\Bill\\\\Transaction but returns Laravie\\\\Codex\\\\Contracts\\\\Request\\.$#"
+			message: '#^Method Billplz\\Client\:\:transaction\(\) should return Billplz\\Contracts\\Bill\\Transaction but returns Laravie\\Codex\\Contracts\\Request\.$#'
+			identifier: return.type
 			count: 1
 			path: src/Client.php
 
 		-
-			message: "#^Parameter \\#1 \\$key of static method Billplz\\\\Checksum\\:\\:create\\(\\) expects string, string\\|null given\\.$#"
+			message: '#^Method Billplz\\Contracts\\PaymentCompletion\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Contracts/PaymentCompletion.php
+
+		-
+			message: '#^Parameter \#1 \$key of static method Billplz\\Checksum\:\:create\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
 			count: 3
 			path: src/Five/PaymentOrder.php
 
 		-
-			message: "#^Parameter \\#1 \\$key of static method Billplz\\\\Checksum\\:\\:create\\(\\) expects string, string\\|null given\\.$#"
+			message: '#^Parameter \#1 \$key of static method Billplz\\Checksum\:\:create\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
 			count: 2
 			path: src/Five/PaymentOrderCollection.php
 
 		-
-			message: "#^Method Billplz\\\\Four\\\\Collection\\:\\:payout\\(\\) should return Billplz\\\\Four\\\\Collection\\\\Payout but returns Laravie\\\\Codex\\\\Contracts\\\\Request\\.$#"
+			message: '#^Method Billplz\\Four\\Bill\:\:create\(\) has parameter \$callbackUrl with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Four/Bill.php
+
+		-
+			message: '#^Method Billplz\\Four\\Collection\:\:payout\(\) should return Billplz\\Four\\Collection\\Payout but returns Laravie\\Codex\\Contracts\\Request\.$#'
+			identifier: return.type
 			count: 1
 			path: src/Four/Collection.php
 
+		-
+			message: '#^Method Laravie\\Codex\\Client\:\:prepareRequestPayloads\(\) has parameter \$body with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Client.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Client\:\:prepareRequestPayloads\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Client.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Client\:\:queries\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Client.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Client\:\:requestWith\(\) has parameter \$body with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Client.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Client\:\:send\(\) has parameter \$body with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Client.php
+
+		-
+			message: '#^Parameter \#1 \$key of method Laravie\\Codex\\Contracts\\Endpoint\:\:addQuery\(\) expects array\<string, string\>\|string, array\|Laravie\\Codex\\Common\\Payload\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Internal/Codex/Client.php
+
+		-
+			message: '#^Parameter \#4 \$body of method Http\\Client\\Common\\HttpMethodsClient\:\:send\(\) expects Psr\\Http\\Message\\StreamInterface\|string\|null, array\|Laravie\\Codex\\Common\\Payload\|Psr\\Http\\Message\\StreamInterface\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Internal/Codex/Client.php
+
+		-
+			message: '#^Property Laravie\\Codex\\Client\:\:\$httpRequestQueries type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Client.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Common\\Endpoint\:\:__call\(\) has parameter \$parameters with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Common/Endpoint.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Common\\Endpoint\:\:getQuery\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Common/Endpoint.php
+
+		-
+			message: '#^Property Laravie\\Codex\\Common\\Endpoint\:\:\$query type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Common/Endpoint.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Common\\Payload\:\:__construct\(\) has parameter \$content with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Common/Payload.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Common\\Payload\:\:get\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Common/Payload.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Common\\Payload\:\:toJson\(\) should return string but returns string\|false\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Internal/Codex/Common/Payload.php
+
+		-
+			message: '#^Property Laravie\\Codex\\Common\\Payload\:\:\$content type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Common/Payload.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Common\\Response\:\:__call\(\) has parameter \$parameters with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Common/Response.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Common\\Response\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Common/Response.php
+
+		-
+			message: '#^Trait Laravie\\Codex\\Concerns\\Passport is used zero times and is not analysed\.$#'
+			identifier: trait.unused
+			count: 1
+			path: src/Internal/Codex/Concerns/Passport.php
+
+		-
+			message: '#^Trait Laravie\\Codex\\Concerns\\Request\\Json is used zero times and is not analysed\.$#'
+			identifier: trait.unused
+			count: 1
+			path: src/Internal/Codex/Concerns/Request/Json.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Contracts\\Client\:\:send\(\) has parameter \$body with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Contracts/Client.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Contracts\\Client\:\:send\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Contracts/Client.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Contracts\\Client\:\:stream\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Contracts/Client.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Contracts\\Endpoint\:\:getPath\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Contracts/Endpoint.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Contracts\\Endpoint\:\:getQuery\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Contracts/Endpoint.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Contracts\\Response\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Contracts/Response.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Contracts\\Sanitizer\:\:add\(\) has parameter \$group with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Contracts/Sanitizer.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Contracts\\Sanitizer\:\:from\(\) has parameter \$group with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Contracts/Sanitizer.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Contracts\\Sanitizer\:\:from\(\) has parameter \$inputs with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Contracts/Sanitizer.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Contracts\\Sanitizer\:\:from\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Contracts/Sanitizer.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Contracts\\Sanitizer\:\:to\(\) has parameter \$group with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Contracts/Sanitizer.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Contracts\\Sanitizer\:\:to\(\) has parameter \$inputs with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Contracts/Sanitizer.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Contracts\\Sanitizer\:\:to\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Contracts/Sanitizer.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Filter\\Sanitizer\:\:add\(\) has parameter \$group with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Filter/Sanitizer.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Filter\\Sanitizer\:\:from\(\) has parameter \$group with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Filter/Sanitizer.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Filter\\Sanitizer\:\:from\(\) has parameter \$inputs with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Filter/Sanitizer.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Filter\\Sanitizer\:\:from\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Filter/Sanitizer.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Filter\\Sanitizer\:\:resolveCaster\(\) has parameter \$group with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Filter/Sanitizer.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Filter\\Sanitizer\:\:sanitizeFrom\(\) has parameter \$group with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Filter/Sanitizer.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Filter\\Sanitizer\:\:sanitizeTo\(\) has parameter \$group with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Filter/Sanitizer.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Filter\\Sanitizer\:\:to\(\) has parameter \$group with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Filter/Sanitizer.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Filter\\Sanitizer\:\:to\(\) has parameter \$inputs with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Filter/Sanitizer.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Filter\\Sanitizer\:\:to\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Filter/Sanitizer.php
+
+		-
+			message: '#^Property Laravie\\Codex\\Filter\\Sanitizer\:\:\$casts type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Filter/Sanitizer.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Request\:\:getApiBody\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Request.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Request\:\:mergeApiBody\(\) has parameter \$body with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Request.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Request\:\:mergeApiBody\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Request.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Request\:\:send\(\) has parameter \$body with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Request.php
+
+		-
+			message: '#^PHPDoc tag @var for variable \$body has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Request.php
+
+		-
+			message: '#^Trait Laravie\\Codex\\Support\\HttpClient is used zero times and is not analysed\.$#'
+			identifier: trait.unused
+			count: 1
+			path: src/Internal/Codex/Support/HttpClient.php
+
+		-
+			message: '#^Call to an undefined method Laravie\\Codex\\Testing\\ArraySubset\:\:exporter\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: src/Internal/Codex/Testing/ArraySubset.php
+
+		-
+			message: '#^Instanceof between Traversable\<mixed, mixed\> and Traversable will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 2
+			path: src/Internal/Codex/Testing/ArraySubset.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Testing\\ArraySubset\:\:__construct\(\) has parameter \$subset with no value type specified in iterable type iterable\.$#'
+			identifier: missingType.iterableValue
+			count: 2
+			path: src/Internal/Codex/Testing/ArraySubset.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Testing\\ArraySubset\:\:toArray\(\) has parameter \$other with no value type specified in iterable type iterable\.$#'
+			identifier: missingType.iterableValue
+			count: 2
+			path: src/Internal/Codex/Testing/ArraySubset.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Testing\\ArraySubset\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 2
+			path: src/Internal/Codex/Testing/ArraySubset.php
+
+		-
+			message: '#^PHPDoc tag @throws with type PHPUnit\\Framework\\ExpectationFailedException\|SebastianBergmann\\RecursionContext\\InvalidArgumentException is not subtype of Throwable$#'
+			identifier: throws.notThrowable
+			count: 2
+			path: src/Internal/Codex/Testing/ArraySubset.php
+
+		-
+			message: '#^PHPDoc tag @throws with type SebastianBergmann\\RecursionContext\\InvalidArgumentException is not subtype of Throwable$#'
+			identifier: throws.notThrowable
+			count: 4
+			path: src/Internal/Codex/Testing/ArraySubset.php
+
+		-
+			message: '#^Property Laravie\\Codex\\Testing\\ArraySubset\:\:\$subset type has no value type specified in iterable type iterable\.$#'
+			identifier: missingType.iterableValue
+			count: 2
+			path: src/Internal/Codex/Testing/ArraySubset.php
+
+		-
+			message: '#^Unreachable statement \- code above always terminates\.$#'
+			identifier: deadCode.unreachable
+			count: 2
+			path: src/Internal/Codex/Testing/ArraySubset.php
+
+		-
+			message: '#^Call to an undefined static method PHPUnit\\Framework\\Assert\:\:assertArraySubset\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: src/Internal/Codex/Testing/Assert.php
+
+		-
+			message: '#^Call to an undefined static method PHPUnit\\Framework\\InvalidArgumentException\:\:create\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 2
+			path: src/Internal/Codex/Testing/Assert.php
+
+		-
+			message: '#^Call to static method factory\(\) on an unknown class PHPUnit\\Util\\InvalidArgumentHelper\.$#'
+			identifier: class.notFound
+			count: 2
+			path: src/Internal/Codex/Testing/Assert.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Testing\\Assert\:\:assertArraySubset\(\) has parameter \$array with generic interface ArrayAccess but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 2
+			path: src/Internal/Codex/Testing/Assert.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Testing\\Assert\:\:assertArraySubset\(\) has parameter \$array with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 2
+			path: src/Internal/Codex/Testing/Assert.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Testing\\Assert\:\:assertArraySubset\(\) has parameter \$subset with generic interface ArrayAccess but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 2
+			path: src/Internal/Codex/Testing/Assert.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Testing\\Assert\:\:assertArraySubset\(\) has parameter \$subset with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 2
+			path: src/Internal/Codex/Testing/Assert.php
+
+		-
+			message: '#^Parameter \#1 \$subset of class Laravie\\Codex\\Testing\\ArraySubset constructor expects iterable, array\|ArrayAccess given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Internal/Codex/Testing/Assert.php
+
+		-
+			message: '#^Call to method shouldReceive\(\) on an unknown class Mockery\\MockeryInterface\.$#'
+			identifier: class.notFound
+			count: 7
+			path: src/Internal/Codex/Testing/Faker.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Testing\\Faker\:\:call\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Testing/Faker.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Testing\\Faker\:\:expectResponseHeaders\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Testing/Faker.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Testing\\Faker\:\:message\(\) has invalid return type Mockery\\MockeryInterface\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Internal/Codex/Testing/Faker.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Testing\\Faker\:\:send\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Testing/Faker.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Testing\\Faker\:\:sendJson\(\) has parameter \$body with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Testing/Faker.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Testing\\Faker\:\:sendJson\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Testing/Faker.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Testing\\Faker\:\:shouldResponseWith\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Testing/Faker.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Testing\\Faker\:\:shouldResponseWithJson\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Testing/Faker.php
+
+		-
+			message: '#^Method Laravie\\Codex\\Testing\\Faker\:\:stream\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Testing/Faker.php
+
+		-
+			message: '#^Parameter \#1 \$httpClient of class Http\\Client\\Common\\HttpMethodsClient constructor expects Psr\\Http\\Client\\ClientInterface, Mockery\\MockInterface given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Internal/Codex/Testing/Faker.php
+
+		-
+			message: '#^Parameter \#2 \$requestFactory of class Http\\Client\\Common\\HttpMethodsClient constructor expects Http\\Message\\RequestFactory\|Psr\\Http\\Message\\RequestFactoryInterface, Mockery\\MockInterface given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Internal/Codex/Testing/Faker.php
+
+		-
+			message: '#^Property Laravie\\Codex\\Testing\\Faker\:\:\$client \(Mockery\\MockeryInterface\) does not accept Mockery\\MockInterface\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Internal/Codex/Testing/Faker.php
+
+		-
+			message: '#^Property Laravie\\Codex\\Testing\\Faker\:\:\$client has unknown class Mockery\\MockeryInterface as its type\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Internal/Codex/Testing/Faker.php
+
+		-
+			message: '#^Property Laravie\\Codex\\Testing\\Faker\:\:\$expectedRequestHeaders type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Testing/Faker.php
+
+		-
+			message: '#^Property Laravie\\Codex\\Testing\\Faker\:\:\$expectedResponseHeaders type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Internal/Codex/Testing/Faker.php
+
+		-
+			message: '#^Property Laravie\\Codex\\Testing\\Faker\:\:\$message \(Mockery\\MockeryInterface\) does not accept Mockery\\MockInterface\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Internal/Codex/Testing/Faker.php
+
+		-
+			message: '#^Property Laravie\\Codex\\Testing\\Faker\:\:\$message has unknown class Mockery\\MockeryInterface as its type\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Internal/Codex/Testing/Faker.php
+
+		-
+			message: '#^Property Laravie\\Codex\\Testing\\Faker\:\:\$request \(Mockery\\MockeryInterface\) does not accept Mockery\\MockInterface\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: src/Internal/Codex/Testing/Faker.php
+
+		-
+			message: '#^Property Laravie\\Codex\\Testing\\Faker\:\:\$request has unknown class Mockery\\MockeryInterface as its type\.$#'
+			identifier: class.notFound
+			count: 1
+			path: src/Internal/Codex/Testing/Faker.php
+
+		-
+			message: '#^Cannot call method from\(\) on Laravie\\Codex\\Contracts\\Sanitizer\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Cannot call method to\(\) on Laravie\\Codex\\Contracts\\Sanitizer\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Request.php
+
+		-
+			message: '#^Cannot call method from\(\) on Laravie\\Codex\\Contracts\\Sanitizer\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Response.php
+
+		-
+			message: '#^Cannot call method to\(\) on Laravie\\Codex\\Contracts\\Sanitizer\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/Response.php
+
+		-
+			message: '#^Method Billplz\\Signature\:\:__construct\(\) has parameter \$attributes with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Signature.php
+
+		-
+			message: '#^Method Billplz\\Signature\:\:create\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Signature.php
+
+		-
+			message: '#^Method Billplz\\Signature\:\:verify\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Signature.php
