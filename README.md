@@ -2,16 +2,17 @@
 > This branch contains breaking money-type changes intended for Billplz 6.0.
 > Response money values now hydrate to `\Money\Money`, and the hard dependency on `jomweb/ringgit` has been removed.
 > Codex and Codex Filter internals are now bundled in-package, so external `laravie/codex*` dependencies are no longer required.
+> Billplz 6 now targets PHP 8.3+ and the package test suite runs on Pest v4.
 
 PHP framework agnostic library for working with BillPlz API v3 and beyond...
 ==============
 
-[![tests](https://github.com/jomweb/billplz/workflows/tests/badge.svg?branch=5.x)](https://github.com/jomweb/billplz/actions?query=workflow%3Atests+branch%3A5.x)
+[![tests](https://github.com/jomweb/billplz/workflows/tests/badge.svg?branch=6.x)](https://github.com/jomweb/billplz/actions?query=workflow%3Atests+branch%3A6.x)
 [![Latest Stable Version](https://poser.pugx.org/jomweb/billplz/version)](https://packagist.org/packages/jomweb/billplz)
 [![Total Downloads](https://poser.pugx.org/jomweb/billplz/downloads)](https://packagist.org/packages/jomweb/billplz)
 [![Latest Unstable Version](https://poser.pugx.org/jomweb/billplz/v/unstable)](//packagist.org/packages/jomweb/billplz)
 [![License](https://poser.pugx.org/jomweb/billplz/license)](https://packagist.org/packages/jomweb/billplz)
-[![Coverage Status](https://coveralls.io/repos/github/jomweb/billplz/badge.svg?branch=5.x)](https://coveralls.io/github/jomweb/billplz?branch=5.x)
+[![Coverage Status](https://coveralls.io/repos/github/jomweb/billplz/badge.svg?branch=6.x)](https://coveralls.io/github/jomweb/billplz?branch=6.x)
 
 * [Installation](#installation)
 * [Getting Started](#getting-started)
@@ -74,6 +75,7 @@ Billplz 6.0 removes the hard dependency on `jomweb/ringgit`.
 - If your application still needs `\Duit\MYR`, convert from the returned Money object using the minor-unit amount, for example `\Duit\MYR::given((int) $money->getAmount())`.
 - Integer minor units are still accepted for request amounts when that is more convenient.
 - Codex request/response/filter internals are bundled directly with Billplz, replacing the old `laravie/codex` and `laravie/codex-filter` package dependency chain.
+- The minimum supported PHP version is now `8.3`.
 
 ### PHAR
 
@@ -94,7 +96,7 @@ $client = Billplz\Client::make('your-api-key', 'your-x-signature-key');
 <a name="creating-billplz-client"></a>
 ### Creating Client
 
-You can start by creating a Billplz client by using the following code (which uses `php-http/guzzle6-adapter` and `php-http/discovery` to automatically pick available adapter installed via composer):
+You can start by creating a Billplz client by using the following code (which uses `php-http/guzzle7-adapter` and `php-http/discovery` to automatically pick an available adapter installed via Composer):
 
 ```php
 <?php
@@ -137,7 +139,7 @@ $billplz->useSandbox();
 <a name="using-different-api-version"></a>
 ### API Version
 
-By default `jomweb/billplz` would use `v4` API version for any request, however you can customize this in future when new API version is available.
+By default `jomweb/billplz` would use `v4` API version for the legacy collection, bill, transaction, banking, and payout APIs. Payment Order APIs are exposed through the dedicated `paymentOrder()` and `paymentOrderCollection()` helpers, which target `v5`.
 
 ```php
 $billplz->useVersion('v3');
@@ -956,7 +958,6 @@ $response = $paymentOrder->create(
     '8f4e331f-ac71-435e-a870-72fe520b4563',
     'MBBEMYKL',
     '543478924652',
-    '820808062202',
     'Michael Yap',
     'Maecenas eu placerat ante.',
     2000

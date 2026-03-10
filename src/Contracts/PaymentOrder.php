@@ -17,7 +17,6 @@ interface PaymentOrder extends Request
         string $paymentOrderCollectionId,
         string $bankCode,
         string $bankAccountNumber,
-        string $identityNumber,
         string $name,
         string $description,
         $total,

@@ -7,7 +7,7 @@ use Laravie\Codex\Response;
 
 abstract class OpenCollectionTestCase extends TestCase
 {
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_has_proper_signature()
     {
         $collection = $this->makeClient()->openCollection();
@@ -16,7 +16,7 @@ abstract class OpenCollectionTestCase extends TestCase
         $this->assertSame($this->apiVersion, $collection->getVersion());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_create_collection()
     {
         $payload = [
@@ -42,7 +42,7 @@ abstract class OpenCollectionTestCase extends TestCase
         $this->assertSame(0, $response->rateLimitNextReset());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_list_collections()
     {
         $expected = '{"collections":[{"id":"0pp87t_6","title":"My First API Collection","description":"Maecenas eu placerat ante. Fusce ut neque justo, et aliquet enim. In hac habitasse platea dictumst.","reference_1_label":null,"reference_2_label":null,"email_link":null,"amount":299,"fixed_amount":true,"tax":null,"fixed_quantity":true,"payment_button":"pay","photo":["retina_url":null,"avatar_url":null],"split_payment":["email":null,"fixed_cut":null,"variable_cut":null],"url":"https://www.billplz.com/0pp87t_6"}],"page":1}';
@@ -62,7 +62,7 @@ abstract class OpenCollectionTestCase extends TestCase
         $this->assertSame(0, $response->rateLimitNextReset());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_show_collection()
     {
         $expected = '{"id":"0pp87t_6","title":"My First API Collection","description":"Maecenas eu placerat ante. Fusce ut neque justo, et aliquet enim. In hac habitasse platea dictumst.","reference_1_label":null,"reference_2_label":null,"email_link":null,"amount":299,"fixed_amount":true,"tax":null,"fixed_quantity":true,"payment_button":"pay","photo":["retina_url":null,"avatar_url":null],"split_payment":["email":null,"fixed_cut":null,"variable_cut":null],"url":"https://www.billplz.com/0pp87t_6"}';

@@ -7,7 +7,7 @@ use Laravie\Codex\Response;
 
 abstract class BankAccountTestCase extends TestCase
 {
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_has_proper_signature()
     {
         $bank = $this->makeClient()->bank();
@@ -16,7 +16,7 @@ abstract class BankAccountTestCase extends TestCase
         $this->assertSame($this->proxyApiVersion ?? $this->apiVersion, $bank->getVersion());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_get_a_bank_account()
     {
         $bank_account_number = 1234567890;
@@ -37,7 +37,7 @@ abstract class BankAccountTestCase extends TestCase
         $this->assertSame(0, $response->rateLimitNextReset());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_create_bank_account()
     {
         $expected = '{"name":"Insan Jaya","id_no":"91234567890","acc_no":"999988887777","code":"MBBEMYKL","organization":true,"authorization_date":"2017-07-03","status":"pending","processed_at":null,"rejected_desc":null}';
@@ -71,7 +71,7 @@ abstract class BankAccountTestCase extends TestCase
         $this->assertSame(0, $response->rateLimitNextReset());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_check_account_registration()
     {
         $expected = '{"verified":true}';
@@ -91,7 +91,7 @@ abstract class BankAccountTestCase extends TestCase
         $this->assertSame(0, $response->rateLimitNextReset());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_return_supported_fpx()
     {
         $expected = '{"bank":[{"name":"PBB0233","active":true},{"name":"MBB0227","active":true},{"name":"MBB0228","active":true}]}';

@@ -12,7 +12,6 @@ $response = $billplz->paymentOrder()->create(
     $paymentOrderCollectionId,
     'MBBEMYKL',
     '123456789012',
-    '123456789012',
     'Ameer Shah',
     'Payment Order',
     1000,

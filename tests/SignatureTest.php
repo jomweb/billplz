@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase as PHPUnit;
 
 class SignatureTest extends PHPUnit
 {
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_verify_valid_hash()
     {
         $given = [
@@ -33,7 +33,7 @@ class SignatureTest extends PHPUnit
         $this->assertTrue($stub->verify($given, '01bdc1167f8b4dd1f591d8af7ada00061d39ca2b63e66c6588474a918a04796c'));
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_verify_valid_hash_with_extra_payment_completion_information()
     {
         $given = [
@@ -61,7 +61,7 @@ class SignatureTest extends PHPUnit
         $this->assertTrue($stub->verify($given, 'c0041545dca8ceb082b29f544559465a0757b4208fe1ca74351128bc74402cf5'));
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_cant_verify_invalid_hash()
     {
         $given = [
@@ -87,7 +87,7 @@ class SignatureTest extends PHPUnit
         $this->assertFalse($stub->verify($given, '01bdc1167f8b4dd1f591d8af7ada00061d39ca2b63e66c6588474a918a04796c'));
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_cant_verify_invalid_hash_with_extra_payment_completion_information()
     {
         $given = [

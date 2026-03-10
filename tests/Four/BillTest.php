@@ -15,7 +15,7 @@ class BillTest extends BillTestCase
      */
     protected $apiVersion = 'v4';
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_called_via_helper()
     {
         $bill = $this->makeClient()->bill('v4');
@@ -25,7 +25,7 @@ class BillTest extends BillTestCase
         $this->assertSame('v4', $bill->getVersion());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_be_created()
     {
         $this->proxyApiVersion = 'v3';
@@ -33,7 +33,7 @@ class BillTest extends BillTestCase
         parent::it_can_be_created();
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_be_created_with_url_as_array()
     {
         $this->proxyApiVersion = 'v3';
@@ -41,7 +41,7 @@ class BillTest extends BillTestCase
         parent::it_can_be_created_with_url_as_array();
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_show_existing_bill()
     {
         $this->proxyApiVersion = 'v3';
@@ -49,7 +49,7 @@ class BillTest extends BillTestCase
         parent::it_can_show_existing_bill();
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_show_existing_bill_with_unlimited_request_limiter()
     {
         $this->proxyApiVersion = 'v3';
@@ -57,7 +57,7 @@ class BillTest extends BillTestCase
         parent::it_can_show_existing_bill_with_unlimited_request_limiter();
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_cant_show_existing_bill_when_exceed_request_limiter()
     {
         $this->proxyApiVersion = 'v3';
@@ -65,7 +65,7 @@ class BillTest extends BillTestCase
         parent::it_cant_show_existing_bill_when_exceed_request_limiter();
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_delete_existing_bill()
     {
         $this->proxyApiVersion = 'v3';
@@ -73,7 +73,7 @@ class BillTest extends BillTestCase
         parent::it_can_delete_existing_bill();
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_check_bill_transaction()
     {
         $this->proxyApiVersion = 'v3';
@@ -81,7 +81,7 @@ class BillTest extends BillTestCase
         parent::it_can_check_bill_transaction();
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_charge_credit_card_via_token()
     {
         $payload = [

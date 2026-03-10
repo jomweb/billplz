@@ -25,7 +25,6 @@ class PaymentOrder extends Request implements Contract
         string $paymentOrderCollectionId,
         string $bankCode,
         string $bankAccountNumber,
-        string $identityNumber,
         string $name,
         string $description,
         $total,
@@ -36,7 +35,6 @@ class PaymentOrder extends Request implements Contract
         $body['payment_order_collection_id'] = $paymentOrderCollectionId;
         $body['bank_code'] = $bankCode;
         $body['bank_account_number'] = $bankAccountNumber;
-        $body['identity_number'] = $identityNumber;
         $body['name'] = $name;
         $body['description'] = $description;
         $body['total'] = $total;

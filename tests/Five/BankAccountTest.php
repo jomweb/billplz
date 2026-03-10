@@ -13,7 +13,7 @@ class BankAccountTest extends BankAccountTestCase
      */
     protected $proxyApiVersion = 'v3';
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_called_via_helper()
     {
         $bank = $this->makeClient()->bank('v5');

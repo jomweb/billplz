@@ -14,7 +14,7 @@ class PayoutTest extends TestCase
      */
     protected $proxyApiVersion = 'v4';
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_resolve_the_correct_version()
     {
         $payment = $this->makeClient()->uses('Payout', 'v5');
@@ -23,7 +23,7 @@ class PayoutTest extends TestCase
         $this->assertSame($this->proxyApiVersion ?? $this->apiVersion, $payment->getVersion());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_get_mass_payment()
     {
         $expected = '{"id":"afae4bqf","mass_payment_instruction_collection_id":"4po8no8h","bank_code":"MBBEMYKL","bank_account_number":"820808062202123","identity_number":820808062202,"name":"Michael Yap","description":"Maecenas eu placerat ante.","email":"hello@billplz.com","status":"processing","notification":false,"recipient_notification":true,"total":"2000"}';
@@ -41,7 +41,7 @@ class PayoutTest extends TestCase
         $this->assertSame(0, $response->rateLimitNextReset());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_create_mass_payment()
     {
         $expected = '{"id":"afae4bqf","mass_payment_instruction_collection_id":"4po8no8h","bank_code":"MBBEMYKL","bank_account_number":"820808062202123","identity_number":820808062202,"name":"Michael Yap","description":"Maecenas eu placerat ante.","email":"hello@billplz.com","status":"processing","notification":false,"recipient_notification":true,"total":"2000"}';

@@ -14,7 +14,7 @@ class PaymentGatewayTest extends TestCase
      */
     protected $apiVersion = 'v4';
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_resolve_the_correct_version()
     {
         $payment = $this->makeClient()->uses('PaymentGateway', 'v4');
@@ -23,7 +23,7 @@ class PaymentGatewayTest extends TestCase
         $this->assertSame('v4', $payment->getVersion());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_get_payment_gateway_index()
     {
         $expected = '{"payment_gateways":[{"code":"MBU0227","active":true,"category":"fpx"},{"code":"OCBC0229","active":false,"category":"fpx"},{"code":"BP-FKR01","active":true,"category":"billplz"},{"code":"BP-PPL01","active":true,"category":"paypal"},{"code":"BP-2C2P1","active":false,"category":"2c2p"},{"code":"BP-OCBC1","active":true,"category":"ocbc"}]}';

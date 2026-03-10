@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class PaymentCompletionTest extends TestCase
 {
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_generate_without_redirect_url()
     {
         $payment = new PaymentCompletion('http://example.com/webhook/');
@@ -20,7 +20,7 @@ class PaymentCompletionTest extends TestCase
         ], $payment->toArray());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_generate_with_redirect_url()
     {
         $payment = new PaymentCompletion('http://example.com/webhook/', 'http://example.com/redirect/');

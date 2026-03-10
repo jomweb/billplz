@@ -14,7 +14,7 @@ class WebhookTest extends TestCase
      */
     protected $proxyApiVersion = 'v4';
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_resolve_the_correct_version()
     {
         $payment = $this->makeClient()->uses('Webhook', 'v5');
@@ -23,7 +23,7 @@ class WebhookTest extends TestCase
         $this->assertSame($this->proxyApiVersion ?? $this->apiVersion, $payment->getVersion());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_get_webhook_rank()
     {
         $expected = '{"rank":1.2}';

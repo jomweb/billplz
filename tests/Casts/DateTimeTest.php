@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class DateTimeTest extends TestCase
 {
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_cast_datetime_to_string()
     {
         $cast = new DateTime();
@@ -15,7 +15,7 @@ class DateTimeTest extends TestCase
         $this->assertSame('2018-01-01', $cast->from(new \DateTime('2018-01-01 11:00:01')));
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_wouldnt_cast_datetime_if_not_validated()
     {
         $cast = new DateTime();
@@ -23,7 +23,7 @@ class DateTimeTest extends TestCase
         $this->assertSame('foo', $cast->from('foo'));
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_cast_string_to_datetime()
     {
         $cast = new DateTime();
@@ -31,7 +31,7 @@ class DateTimeTest extends TestCase
         $this->assertInstanceOf('DateTimeInterface', $cast->to('2018-01-01'));
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_cast_none_string_to_datetime()
     {
         $cast = new DateTime();

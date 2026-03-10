@@ -14,7 +14,7 @@ class PayoutTest extends TestCase
      */
     protected $apiVersion = 'v4';
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_resolve_the_correct_version()
     {
         $payment = $this->makeClient()->uses('Collection.Payout', 'v4');
@@ -23,7 +23,7 @@ class PayoutTest extends TestCase
         $this->assertSame('v4', $payment->getVersion());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_get_mass_payment_for_collection()
     {
         $expected = '{"id":"4po8no8h","title":"My First API MPI Collection","mass_payment_instructions_count":"0","paid_amount":"0","status":"active"}';
@@ -41,7 +41,7 @@ class PayoutTest extends TestCase
         $this->assertSame(0, $response->rateLimitNextReset());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_create_mass_payment_for_collection()
     {
         $expected = '{"id":"4po8no8h","title":"My First API MPI Collection","mass_payment_instructions_count":"0","paid_amount":"0","status":"active"}';

@@ -7,7 +7,7 @@ use Laravie\Codex\Response;
 
 class PaymentMethodTestCase extends TestCase
 {
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_get_payment_methods()
     {
         $expected = '{"payment_methods":[{"code": "paypal","name": "PAYPAL","active": true},{"code": "fpx","name": "Online Banking","active": false}]}';
@@ -25,7 +25,7 @@ class PaymentMethodTestCase extends TestCase
         $this->assertSame(0, $response->rateLimitNextReset());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_set_payment_methods()
     {
         $expected = '{"payment_methods":[{"code": "paypal","name": "PAYPAL","active": true},{"code": "fpx","name": "Online Banking","active": true}]}';

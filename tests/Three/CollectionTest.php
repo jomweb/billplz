@@ -14,7 +14,7 @@ class CollectionTest extends CollectionTestCase
      */
     protected $apiVersion = 'v3';
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_called_via_helper()
     {
         $collection = $this->makeClient()->collection('v3');
@@ -23,7 +23,7 @@ class CollectionTest extends CollectionTestCase
         $this->assertSame('v3', $collection->getVersion());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_create_collection_with_logo()
     {
         $payload = [

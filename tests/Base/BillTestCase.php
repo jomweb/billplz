@@ -10,7 +10,7 @@ use Money\Money;
 
 abstract class BillTestCase extends TestCase
 {
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_has_proper_signature()
     {
         $bill = $this->makeClient()->bill();
@@ -19,7 +19,7 @@ abstract class BillTestCase extends TestCase
         $this->assertSame($this->apiVersion, $bill->getVersion());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_be_created()
     {
         $payload = [
@@ -57,7 +57,7 @@ abstract class BillTestCase extends TestCase
         $this->assertSame(0, $response->rateLimitNextReset());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_be_created_with_url_as_array()
     {
         $payload = [
@@ -99,7 +99,7 @@ abstract class BillTestCase extends TestCase
         $this->assertSame(0, $response->rateLimitNextReset());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_cant_be_created_given_empty_email_and_mobile()
     {
         $this->expectException('InvalidArgumentException');
@@ -128,7 +128,7 @@ abstract class BillTestCase extends TestCase
             );
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_show_existing_bill()
     {
         $expected = '{"id":"8X0Iyzaw","collection_id":"inbmmepb","paid":false,"state":"due","amount":200,"paid_amount":0,"due_at":"2020-12-31","email":"api@billplz.com","mobile":"+60112223333","name":"MICHAEL API V3","url":"https:\/\/www.billplz.com\/bills\/8X0Iyzaw","reference_1_label":"First Name","reference_1":"Jordan","reference_2_label":"Last Name","reference_2":"Michael","redirect_url":"http:\/\/example.com\/redirect\/","callback_url":"http:\/\/example.com\/webhook\/","description":"Maecenas eu placerat ante."}';
@@ -159,7 +159,7 @@ abstract class BillTestCase extends TestCase
         $this->assertSame(899, $response->rateLimitNextReset());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_show_existing_bill_with_unlimited_request_limiter()
     {
         $expected = '{"id":"8X0Iyzaw","collection_id":"inbmmepb","paid":false,"state":"due","amount":200,"paid_amount":0,"due_at":"2020-12-31","email":"api@billplz.com","mobile":"+60112223333","name":"MICHAEL API V3","url":"https:\/\/www.billplz.com\/bills\/8X0Iyzaw","reference_1_label":"First Name","reference_1":"Jordan","reference_2_label":"Last Name","reference_2":"Michael","redirect_url":"http:\/\/example.com\/redirect\/","callback_url":"http:\/\/example.com\/webhook\/","description":"Maecenas eu placerat ante."}';
@@ -186,7 +186,7 @@ abstract class BillTestCase extends TestCase
         $this->assertSame(0, $response->rateLimitNextReset());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_cant_show_existing_bill_when_exceed_request_limiter()
     {
         $this->expectException('Billplz\Exceptions\ExceedRequestLimits');
@@ -210,7 +210,7 @@ abstract class BillTestCase extends TestCase
         }
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_delete_existing_bill()
     {
         $expected = '[]';
@@ -231,7 +231,7 @@ abstract class BillTestCase extends TestCase
         $this->assertSame(0, $response->rateLimitNextReset());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_check_bill_transaction()
     {
         $expected = '{"bill_id":"inbmmepb","transactions":[{"id":"60793D4707CD","status":"completed","completed_at":"2017-02-23T12:49:23.612+08:00","payment_channel":"FPX"},{"id":"28F3D3194138","status":"failed","completed_at":,"payment_channel":"FPX"}],"page":1}';
@@ -251,7 +251,7 @@ abstract class BillTestCase extends TestCase
         $this->assertSame(0, $response->rateLimitNextReset());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_parse_redirect_data_with_signature()
     {
         $payload = [
@@ -274,7 +274,7 @@ abstract class BillTestCase extends TestCase
         $this->assertEquals(new \DateTimeZone('+08:00'), $bill['paid_at']->getTimezone());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_parse_redirect_data_with_signature_and_extra_payment_completion_information()
     {
         $payload = [
@@ -301,7 +301,7 @@ abstract class BillTestCase extends TestCase
         $this->assertEquals(new \DateTimeZone('+08:00'), $bill['paid_at']->getTimezone());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_parse_redirect_data_if_signature_key_is_not_configured()
     {
         $payload = [
@@ -324,7 +324,7 @@ abstract class BillTestCase extends TestCase
         $this->assertEquals(new \DateTimeZone('+08:00'), $bill['paid_at']->getTimezone());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_parse_redirect_data_with_extra_payment_completion_information_if_signature_key_is_not_configured()
     {
         $payload = [
@@ -351,7 +351,7 @@ abstract class BillTestCase extends TestCase
         $this->assertEquals(new \DateTimeZone('+08:00'), $bill['paid_at']->getTimezone());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_cant_parse_redirect_data_without_given_signature()
     {
         $payload = [
@@ -370,7 +370,7 @@ abstract class BillTestCase extends TestCase
         $this->assertNull($bill);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_detect_invalid_redirect_data_with_signature()
     {
         $this->expectException('Billplz\Exceptions\FailedSignatureVerification');
@@ -390,7 +390,7 @@ abstract class BillTestCase extends TestCase
             ->redirect($payload);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_detect_missing_redirect_data()
     {
         $this->expectException('InvalidArgumentException');
@@ -402,7 +402,7 @@ abstract class BillTestCase extends TestCase
             ->redirect([]);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_parse_webhook_data_with_signature()
     {
         $payload = [
@@ -432,7 +432,7 @@ abstract class BillTestCase extends TestCase
         $this->assertEquals(new \DateTimeZone('+08:00'), $bill['paid_at']->getTimezone());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_parse_webhook_data_with_signature_and_extra_payment_completion_information()
     {
         $payload = [
@@ -466,7 +466,7 @@ abstract class BillTestCase extends TestCase
         $this->assertEquals(new \DateTimeZone('+08:00'), $bill['paid_at']->getTimezone());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_parse_webhook_data_if_signature_key_is_not_configured()
     {
         $payload = [
@@ -496,7 +496,7 @@ abstract class BillTestCase extends TestCase
         $this->assertEquals(new \DateTimeZone('+08:00'), $bill['paid_at']->getTimezone());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_parse_webhook_data_with_extra_payment_completion_information_if_signature_key_is_not_configured()
     {
         $payload = [
@@ -530,7 +530,7 @@ abstract class BillTestCase extends TestCase
         $this->assertEquals(new \DateTimeZone('+08:00'), $bill['paid_at']->getTimezone());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_cant_parse_webhook_data_without_given_signature()
     {
         $payload = [
@@ -556,7 +556,7 @@ abstract class BillTestCase extends TestCase
         $this->assertNull($bill);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_detect_invalid_webhook_data_with_signature()
     {
         $this->expectException('Billplz\Exceptions\FailedSignatureVerification');

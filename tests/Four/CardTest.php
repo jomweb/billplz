@@ -14,7 +14,7 @@ class CardTest extends TestCase
      */
     protected $apiVersion = 'v4';
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_resolve_the_correct_version()
     {
         $card = $this->makeClient()->uses('Card', 'v4');
@@ -23,7 +23,7 @@ class CardTest extends TestCase
         $this->assertSame('v4', $card->getVersion());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_has_proper_signature()
     {
         $card = $this->makeClient()->card();
@@ -32,7 +32,7 @@ class CardTest extends TestCase
         $this->assertSame($this->apiVersion, $card->getVersion());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_create_a_valid_credit_card()
     {
         $payload = [
@@ -74,7 +74,7 @@ class CardTest extends TestCase
         $this->assertTrue($card['active']);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_activate_a_credit_card()
     {
         $cardId = '8727fc3a-c04c-4c2b-9b67-947b5cfc2fb6';
@@ -106,7 +106,7 @@ class CardTest extends TestCase
         $this->assertTrue($card['active']);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_deactivate_a_credit_card()
     {
         $cardId = '8727fc3a-c04c-4c2b-9b67-947b5cfc2fb6';

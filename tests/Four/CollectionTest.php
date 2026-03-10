@@ -13,7 +13,7 @@ class CollectionTest extends CollectionTestCase
      */
     protected $apiVersion = 'v4';
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_activate_collection()
     {
         $this->proxyApiVersion = 'v3';
@@ -21,7 +21,7 @@ class CollectionTest extends CollectionTestCase
         parent::it_can_activate_collection();
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_deactivate_collection()
     {
         $this->proxyApiVersion = 'v3';
@@ -29,7 +29,7 @@ class CollectionTest extends CollectionTestCase
         parent::it_can_deactivate_collection();
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_called_via_helper()
     {
         $collection = $this->makeClient()->collection('v4');
@@ -38,7 +38,7 @@ class CollectionTest extends CollectionTestCase
         $this->assertSame('v4', $collection->getVersion());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_retrieve_payout_instance()
     {
         $massPayment = $this->makeClient()->collection('v4')->payout();

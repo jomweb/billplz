@@ -8,7 +8,7 @@ use Laravie\Codex\Testing\Faker;
 
 class ClientTest extends TestCase
 {
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_be_initiated_directly()
     {
         $faker = Faker::create();
@@ -20,7 +20,7 @@ class ClientTest extends TestCase
         $this->assertSame('https://www.billplz.com/api', $client->getApiEndpoint());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_be_initiated_via_make()
     {
         $faker = Faker::create();
@@ -34,7 +34,7 @@ class ClientTest extends TestCase
         $this->assertSame('https://www.billplz.com/api', $client->getApiEndpoint());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_use_sandbox_endpoint()
     {
         $client = $this->makeClient();
@@ -44,7 +44,7 @@ class ClientTest extends TestCase
         $this->assertSame('https://www.billplz-sandbox.com/api', $client->getApiEndpoint());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_retrieve_collection_instance()
     {
         $client = $this->makeClient();
@@ -55,7 +55,7 @@ class ClientTest extends TestCase
         $this->assertInstanceOf('Billplz\Three\Collection', $collection);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_retrieve_open_collection_instance()
     {
         $client = $this->makeClient();
@@ -66,7 +66,7 @@ class ClientTest extends TestCase
         $this->assertInstanceOf('Billplz\Three\OpenCollection', $collection);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_retrieve_bill_instance()
     {
         $client = $this->makeClient();
@@ -77,7 +77,7 @@ class ClientTest extends TestCase
         $this->assertInstanceOf('Billplz\Three\Bill', $bill);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_retrieve_transaction_instance()
     {
         $client = $this->makeClient();
@@ -88,7 +88,7 @@ class ClientTest extends TestCase
         $this->assertInstanceOf('Billplz\Three\Bill\Transaction', $transaction);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_retrieve_payout_collection_instance()
     {
         $client = $this->makeClient();
@@ -99,7 +99,7 @@ class ClientTest extends TestCase
         $this->assertInstanceOf('Billplz\Contracts\Collection\Payout', $payoutCollection);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_retrieve_payout_instance()
     {
         $client = $this->makeClient();
@@ -110,7 +110,29 @@ class ClientTest extends TestCase
         $this->assertInstanceOf('Billplz\Contracts\Payout', $payout);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
+    public function it_can_retrieve_payment_order_instance()
+    {
+        $client = $this->makeClient();
+
+        $paymentOrder = $client->paymentOrder();
+
+        $this->assertInstanceOf('Billplz\Five\PaymentOrder', $paymentOrder);
+        $this->assertInstanceOf('Billplz\Contracts\PaymentOrder', $paymentOrder);
+    }
+
+    #[\PHPUnit\Framework\Attributes\Test]
+    public function it_can_retrieve_payment_order_collection_instance()
+    {
+        $client = $this->makeClient();
+
+        $paymentOrderCollection = $client->paymentOrderCollection();
+
+        $this->assertInstanceOf('Billplz\Five\PaymentOrderCollection', $paymentOrderCollection);
+        $this->assertInstanceOf('Billplz\Contracts\PaymentOrderCollection', $paymentOrderCollection);
+    }
+
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_retrieve_bank_instance()
     {
         $client = $this->makeClient();

@@ -7,7 +7,7 @@ use Laravie\Codex\Response;
 
 abstract class CollectionTestCase extends TestCase
 {
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_has_proper_signature()
     {
         $collection = $this->makeClient()->collection();
@@ -16,7 +16,7 @@ abstract class CollectionTestCase extends TestCase
         $this->assertSame($this->apiVersion, $collection->getVersion());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_create_collection()
     {
         $payload = [
@@ -40,7 +40,7 @@ abstract class CollectionTestCase extends TestCase
         $this->assertSame(0, $response->rateLimitNextReset());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_list_collections()
     {
         $expected = '{"collections":[{"id":"inbmmepb","title":"My First API Collection","logo":{"thumb_url":null,"avatar_url":null},"split_payment":{"email":null,"fixed_cut":null,"variable_cut":null,"split_header":false},"status":"active"}],"page":1}';
@@ -60,7 +60,7 @@ abstract class CollectionTestCase extends TestCase
         $this->assertSame(0, $response->rateLimitNextReset());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_show_collection()
     {
         $expected = '{"id":"inbmmepb","title":"My First API Collection","logo":{"thumb_url":null,"avatar_url":null},"split_payment":{"email":null,"fixed_cut":null,"variable_cut":null,"split_header":false},"status":"active"}';
@@ -80,7 +80,7 @@ abstract class CollectionTestCase extends TestCase
         $this->assertSame(0, $response->rateLimitNextReset());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_activate_collection()
     {
         $expected = '{}';
@@ -100,7 +100,7 @@ abstract class CollectionTestCase extends TestCase
         $this->assertSame(0, $response->rateLimitNextReset());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_deactivate_collection()
     {
         $expected = '{}';
