@@ -6,9 +6,10 @@ use ArrayObject;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Runner\Version;
 use SebastianBergmann\Comparator\ComparisonFailure;
+use SebastianBergmann\Exporter\Exporter;
 use Traversable;
 
-if (class_exists(Version::class) && (int) Version::series()[0] >= 9) {
+if (class_exists(Version::class) && version_compare(Version::series(), '9.0', '>=')) {
     /**
      * @internal this class is not meant to be used or overwritten outside the framework itself
      */
@@ -91,7 +92,7 @@ if (class_exists(Version::class) && (int) Version::series()[0] >= 9) {
          */
         public function toString(): string
         {
-            return 'has the subset '.$this->exporter()->export($this->subset);
+            return 'has the subset '.(new Exporter())->export($this->subset);
         }
 
         /**
@@ -133,7 +134,7 @@ if (class_exists(Version::class) && (int) Version::series()[0] >= 9) {
             return (array) $other;
         }
     }
-} elseif (class_exists(Version::class) && (int) Version::series()[0] >= 8) {
+} elseif (class_exists(Version::class) && version_compare(Version::series(), '8.0', '>=')) {
     /**
      * @internal this class is not meant to be used or overwritten outside the framework itself
      */
@@ -217,7 +218,7 @@ if (class_exists(Version::class) && (int) Version::series()[0] >= 9) {
          */
         public function toString(): string
         {
-            return 'has the subset '.$this->exporter()->export($this->subset);
+            return 'has the subset '.(new Exporter())->export($this->subset);
         }
 
         /**
