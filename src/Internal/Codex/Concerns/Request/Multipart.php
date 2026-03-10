@@ -2,7 +2,7 @@
 
 namespace Laravie\Codex\Concerns\Request;
 
-use Http\Discovery\StreamFactoryDiscovery;
+use GuzzleHttp\Psr7\HttpFactory;
 use Http\Message\MultipartStream\MultipartStreamBuilder as Builder;
 use Laravie\Codex\Contracts\Endpoint;
 use Laravie\Codex\Contracts\Filterable;
@@ -56,7 +56,7 @@ trait Multipart
             return [$headers, $body];
         }
 
-        $builder = new Builder(StreamFactoryDiscovery::find());
+        $builder = new Builder(new HttpFactory());
 
         $this->addFilesToMultipartBuilder($builder, $files);
 
@@ -87,7 +87,7 @@ trait Multipart
                 continue;
             }
 
-            $builder->addResource($name, $value, ['Content-Type' => 'text/plain']);
+            $builder->addResource($name, (string) $value, ['Content-Type' => 'text/plain']);
         }
     }
 

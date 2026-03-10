@@ -2,9 +2,9 @@
 
 namespace Laravie\Codex\Common;
 
+use GuzzleHttp\Psr7\HttpFactory;
 use Http\Client\Common\HttpMethodsClient;
 use Http\Discovery\HttpClientDiscovery;
-use Http\Discovery\MessageFactoryDiscovery;
 
 class Discovery
 {
@@ -29,9 +29,12 @@ class Discovery
      */
     public static function make(): HttpMethodsClient
     {
+        $factory = new HttpFactory();
+
         return new HttpMethodsClient(
             HttpClientDiscovery::find(),
-            MessageFactoryDiscovery::find()
+            $factory,
+            $factory
         );
     }
 

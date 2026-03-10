@@ -29,7 +29,6 @@
         "php-http/client-implementation": "^1.0",
         "php-http/discovery": "^1.20",
         "php-http/message": "^1.16",
-        "php-http/message-factory": "^1.1",
         "php-http/multipart-stream-builder": "^1.0"
     },
     "require-dev": {

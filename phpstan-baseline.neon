@@ -615,7 +615,7 @@ parameters:
 		-
 			message: '#^Call to method shouldReceive\(\) on an unknown class Mockery\\MockeryInterface\.$#'
 			identifier: class.notFound
-			count: 7
+			count: 6
 			path: src/Internal/Codex/Testing/Faker.php
 
 		-
@@ -679,12 +679,6 @@ parameters:
 			path: src/Internal/Codex/Testing/Faker.php
 
 		-
-			message: '#^Parameter \#2 \$requestFactory of class Http\\Client\\Common\\HttpMethodsClient constructor expects Http\\Message\\RequestFactory\|Psr\\Http\\Message\\RequestFactoryInterface, Mockery\\MockInterface given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Internal/Codex/Testing/Faker.php
-
-		-
 			message: '#^Property Laravie\\Codex\\Testing\\Faker\:\:\$client \(Mockery\\MockeryInterface\) does not accept Mockery\\MockInterface\.$#'
 			identifier: assign.propertyType
 			count: 1
@@ -716,18 +710,6 @@ parameters:
 
 		-
 			message: '#^Property Laravie\\Codex\\Testing\\Faker\:\:\$message has unknown class Mockery\\MockeryInterface as its type\.$#'
-			identifier: class.notFound
-			count: 1
-			path: src/Internal/Codex/Testing/Faker.php
-
-		-
-			message: '#^Property Laravie\\Codex\\Testing\\Faker\:\:\$request \(Mockery\\MockeryInterface\) does not accept Mockery\\MockInterface\.$#'
-			identifier: assign.propertyType
-			count: 1
-			path: src/Internal/Codex/Testing/Faker.php
-
-		-
-			message: '#^Property Laravie\\Codex\\Testing\\Faker\:\:\$request has unknown class Mockery\\MockeryInterface as its type\.$#'
 			identifier: class.notFound
 			count: 1
 			path: src/Internal/Codex/Testing/Faker.php

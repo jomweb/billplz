@@ -2,11 +2,11 @@
 
 namespace Laravie\Codex\Testing;
 
+use GuzzleHttp\Psr7\HttpFactory;
 use GuzzleHttp\Psr7\Uri;
 use GuzzleHttp\Psr7\Utils;
 use Http\Client\Common\HttpMethodsClient;
 use Http\Client\HttpClient;
-use Http\Message\RequestFactory;
 use Mockery as m;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -27,13 +27,6 @@ class Faker
      * @var \Mockery\MockeryInterface
      */
     protected $client;
-
-    /**
-     * Mock for "Http\Message\RequestFactory".
-     *
-     * @var \Mockery\MockeryInterface
-     */
-    protected $request;
 
     /**
      * Mock for "Psr\Http\Message\ResponseInterface".
@@ -90,11 +83,11 @@ class Faker
     public function __construct()
     {
         $this->client = m::mock(HttpClient::class);
-        $this->request = m::mock(RequestFactory::class);
         $this->message = m::mock(ResponseInterface::class);
+        $factory = new HttpFactory();
 
         $this->http = new HttpMethodsClient(
-            $this->client, $this->request
+            $this->client, $factory, $factory
         );
     }
 
@@ -133,21 +126,34 @@ class Faker
             $body = m::any();
         }
 
-        $request = m::mock(RequestInterface::class);
+        $this->client->shouldReceive('sendRequest')
+            ->with(m::on(function (RequestInterface $request) use ($method, $headers, $body): bool {
+                Assert::assertSame($method, $request->getMethod());
+                Assert::assertSame($this->expectedRequestEndpoint, (string) $request->getUri());
 
-        $this->request->shouldReceive('createRequest')
-            ->with($method, m::type(Uri::class), $headers, $body)
-            ->andReturnUsing(function ($m, $u, $h, $b) use ($request) {
-                Assert::assertSame((string) $u, $this->expectedRequestEndpoint);
+                $expectedHeaders = ! empty($this->expectedRequestHeaders) ? $this->expectedRequestHeaders : $headers;
 
-                if (! empty($this->expectedRequestHeaders)) {
-                    Assert::assertArraySubset($this->expectedRequestHeaders, $h);
+                if (\is_array($expectedHeaders) && ! empty($expectedHeaders)) {
+                    foreach ($expectedHeaders as $headerKey => $headerValue) {
+                        Assert::assertTrue($request->hasHeader($headerKey));
+                        Assert::assertSame(
+                            \is_array($headerValue) ? $headerValue : ["{$headerValue}"],
+                            $request->getHeader($headerKey)
+                        );
+                    }
                 }
 
-                return $request;
-            });
+                if (! $body instanceof \Mockery\Matcher\MatcherAbstract && ! $body instanceof StreamInterface) {
+                    Assert::assertSame((string) $body, (string) $request->getBody());
+                }
 
-        $this->client->shouldReceive('sendRequest')->with($request)->andReturn($this->message());
+                if ($body instanceof StreamInterface) {
+                    Assert::assertSame((string) $body, (string) $request->getBody());
+                }
+
+                return true;
+            }))
+            ->andReturn($this->message());
 
         return $this;
     }
