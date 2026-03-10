@@ -2,7 +2,7 @@
     "name": "jomweb/billplz",
     "description": "PHP Agnostic library for working with BillPlz API",
     "type": "library",
-    "keyword": ["Billplz", "Payment Gateway"],
+    "keywords": ["Billplz", "Payment Gateway"],
     "license": "MIT",
     "authors": [
         {
@@ -12,7 +12,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "Billplz\\": "src/"
+            "Billplz\\": "src/",
+            "Laravie\\Codex\\": "src/Internal/Codex/"
         }
     },
     "autoload-dev": {
@@ -22,22 +23,31 @@
     },
     "require": {
         "php": "^8.0",
-        "laravie/codex": "^6.1",
-        "laravie/codex-filter": "^2.0",
+        "guzzlehttp/psr7": "^2.8",
         "moneyphp/money": "^4.0",
+        "php-http/client-common": "^2.7",
+        "php-http/client-implementation": "^1.0",
+        "php-http/discovery": "^1.20",
+        "php-http/message": "^1.16",
+        "php-http/message-factory": "^1.1",
         "php-http/multipart-stream-builder": "^1.0"
     },
     "require-dev": {
-        "laravel/pint": "^1.1",
-        "mockery/mockery": "^1.4.4",
-        "php-http/guzzle7-adapter": "^1.0",
-        "phpstan/phpstan": "^1.10.5",
+        "laravel/pint": "^1.27",
+        "mockery/mockery": "^1.6",
+        "php-http/guzzle7-adapter": "^1.1",
+        "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "^9.6"
     },
     "config": {
         "sort-packages": true,
         "allow-plugins": {
             "php-http/discovery": true
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-php84-compat": "6.x-dev"
         }
     },
     "prefer-stable": true,

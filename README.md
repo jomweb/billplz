@@ -1,6 +1,7 @@
 > Notice
 > This branch contains breaking money-type changes intended for Billplz 6.0.
 > Response money values now hydrate to `\Money\Money`, and the hard dependency on `jomweb/ringgit` has been removed.
+> Codex and Codex Filter internals are now bundled in-package, so external `laravie/codex*` dependencies are no longer required.
 
 PHP framework agnostic library for working with BillPlz API v3 and beyond...
 ==============
@@ -72,6 +73,7 @@ Billplz 6.0 removes the hard dependency on `jomweb/ringgit`.
 - Examples and integrations should use `\Money\Money::MYR(...)` for request payloads.
 - If your application still needs `\Duit\MYR`, convert from the returned Money object using the minor-unit amount, for example `\Duit\MYR::given((int) $money->getAmount())`.
 - Integer minor units are still accepted for request amounts when that is more convenient.
+- Codex request/response/filter internals are bundled directly with Billplz, replacing the old `laravie/codex` and `laravie/codex-filter` package dependency chain.
 
 ### PHAR
 
