@@ -43,7 +43,7 @@ jobs:
         run: composer show -D
 
       - name: Execute Code Style Analysis
-        run: vendor/bin/pint --test
+        run: composer run lint
 
       - name: Execute Static Code Analysis
-        run: vendor/bin/phpstan analyse --configuration=phpstan.neon.dist
+        run: composer run analyse
