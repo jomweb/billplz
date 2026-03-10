@@ -1,8 +1,7 @@
-> Notice
-> This branch contains breaking money-type changes intended for Billplz 6.0.
-> Response money values now hydrate to `\Money\Money`, and the hard dependency on `jomweb/ringgit` has been removed.
-> Codex and Codex Filter internals are now bundled in-package, so external `laravie/codex*` dependencies are no longer required.
-> Billplz 6 now targets PHP 8.3+ and the package test suite runs on Pest v4.
+> Billplz 6 targets PHP 8.3+.
+> Amounts now use `\Money\Money`.
+> Codex internals are bundled in-package.
+> Tests, static analysis, and style checks run on GitHub Actions.
 
 PHP framework agnostic library for working with BillPlz API v3 and beyond...
 ==============
@@ -15,6 +14,7 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
 [![Coverage Status](https://coveralls.io/repos/github/jomweb/billplz/badge.svg?branch=6.x)](https://coveralls.io/github/jomweb/billplz?branch=6.x)
 
 * [Installation](#installation)
+* [Upgrade to 6.0](#upgrade-to-60)
 * [Getting Started](#getting-started)
     - [Creating Client](#creating-client)
     - [Using Sandbox](#using-sandbox)
@@ -58,7 +58,13 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
 
 ### Composer
 
-To install through composer by using the following command:
+Requirements:
+
+* PHP `8.3+`
+* A PSR-18 / PHP-HTTP client implementation
+* A PSR-17 implementation, or `php-http/discovery`
+
+Install with Composer:
 
     composer require php-http/guzzle7-adapter jomweb/billplz:^6.0
 
@@ -66,22 +72,27 @@ To install through composer by using the following command:
 
 Instead of utilizing `php-http/guzzle7-adapter` you might want to use any other adapter that implements `php-http/client-implementation`. Check [Clients & Adapters](http://docs.php-http.org/en/latest/clients.html) for PHP-HTTP.
 
-### Breaking Changes
+## Upgrade to 6.0
 
-Billplz 6.0 removes the hard dependency on `jomweb/ringgit`.
+Key changes:
 
-- Response money values now hydrate to `\Money\Money` instead of `\Duit\MYR`.
-- Examples and integrations should use `\Money\Money::MYR(...)` for request payloads.
-- If your application still needs `\Duit\MYR`, convert from the returned Money object using the minor-unit amount, for example `\Duit\MYR::given((int) $money->getAmount())`.
-- Integer minor units are still accepted for request amounts when that is more convenient.
-- Codex request/response/filter internals are bundled directly with Billplz, replacing the old `laravie/codex` and `laravie/codex-filter` package dependency chain.
-- The minimum supported PHP version is now `8.3`.
+* Response money values now hydrate to `\Money\Money` instead of `\Duit\MYR`.
+* Request examples should use `\Money\Money::MYR(...)` or integer minor units.
+* The hard dependency on `jomweb/ringgit` has been removed.
+* Codex request, response, and filter internals are bundled in-package.
+* The minimum supported PHP version is `8.3`.
+
+Migration notes:
+
+* If you still need `\Duit\MYR`, convert from the returned Money object with the minor-unit amount.
+* Payment Order APIs remain available through `paymentOrder()` and `paymentOrderCollection()`.
+* Run `composer test`, `composer analyse`, and `composer lint` before upgrading your integration.
 
 ### PHAR
 
-If Composer isn't available on your application, you can opt for use Billplz PHAR which can be downloaded from the most recent [GitHub Release](https://github.com/jomweb/billplz/releases). This build uses `guzzlehttp/guzzle` under the hood for all request to Billplz API.
+If Composer is not available, you can use the Billplz PHAR from the latest [GitHub Release](https://github.com/jomweb/billplz/releases). This build uses `guzzlehttp/guzzle` under the hood.
 
-You should received `billplz.phar` file which you can include to your project.
+You should receive a `billplz.phar` file which you can include in your project.
 
 ```php
 <?php
