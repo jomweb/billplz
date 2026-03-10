@@ -36,6 +36,7 @@
         "laravel/pint": "^1.27",
         "mockery/mockery": "^1.6",
         "pestphp/pest": "^4.0",
+        "pestphp/pest-plugin-drift": "^4.0",
         "php-http/guzzle7-adapter": "^1.1",
         "phpstan/phpstan": "^2.1",
         "symfony/console": "^7.4",
