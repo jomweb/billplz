@@ -1,3 +1,7 @@
+> Notice
+> This branch contains breaking money-type changes intended for Billplz 6.0.
+> Response money values now hydrate to `\Money\Money`, and the hard dependency on `jomweb/ringgit` has been removed.
+
 PHP framework agnostic library for working with BillPlz API v3 and beyond...
 ==============
 
@@ -54,7 +58,7 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
 
 To install through composer by using the following command:
 
-    composer require php-http/guzzle7-adapter jomweb/billplz:^5.2
+    composer require php-http/guzzle7-adapter jomweb/billplz:^6.0
 
 #### HTTP Adapter
 
@@ -62,7 +66,7 @@ Instead of utilizing `php-http/guzzle7-adapter` you might want to use any other 
 
 ### Breaking Changes
 
-Recent releases removed the hard dependency on `jomweb/ringgit`.
+Billplz 6.0 removes the hard dependency on `jomweb/ringgit`.
 
 - Response money values now hydrate to `\Money\Money` instead of `\Duit\MYR`.
 - Examples and integrations should use `\Money\Money::MYR(...)` for request payloads.
