@@ -17,7 +17,7 @@ class Bill extends Request
     /**
      * Create a new bill.
      *
-     * @param  \Money\Money|\Duit\MYR|int  $amount
+     * @param  \Money\Money|int  $amount
      * @param  array|string  $callbackUrl
      * @param  array<string, mixed>  $optional
      *

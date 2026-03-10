@@ -10,7 +10,7 @@ interface OpenCollection extends Request
     /**
      * Create a new open collection.
      *
-     * @param  \Money\Money|\Duit\MYR|int  $amount
+     * @param  \Money\Money|int  $amount
      * @param  array<string, mixed>  $optional
      */
     public function create(

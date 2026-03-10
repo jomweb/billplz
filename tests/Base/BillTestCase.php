@@ -4,9 +4,9 @@ namespace Billplz\Tests\Base;
 
 use Billplz\PaymentCompletion;
 use Billplz\Tests\TestCase;
-use Duit\MYR;
 use Laravie\Codex\Exceptions\HttpException;
 use Laravie\Codex\Response;
+use Money\Money;
 
 abstract class BillTestCase extends TestCase
 {
@@ -44,7 +44,7 @@ abstract class BillTestCase extends TestCase
                 $payload['email'],
                 $payload['mobile'],
                 $payload['name'],
-                MYR::given($payload['amount']),
+                Money::MYR($payload['amount']),
                 new PaymentCompletion($payload['callback_url']),
                 $payload['description']
             );
@@ -83,7 +83,7 @@ abstract class BillTestCase extends TestCase
                 $payload['email'],
                 $payload['mobile'],
                 $payload['name'],
-                MYR::given($payload['amount']),
+                Money::MYR($payload['amount']),
                 new PaymentCompletion(
                     $payload['callback_url'],
                     $payload['redirect_url']
@@ -122,7 +122,7 @@ abstract class BillTestCase extends TestCase
                 $payload['email'],
                 $payload['mobile'],
                 $payload['name'],
-                MYR::given($payload['amount']),
+                Money::MYR($payload['amount']),
                 new PaymentCompletion($payload['callback_url']),
                 $payload['description']
             );
@@ -150,8 +150,9 @@ abstract class BillTestCase extends TestCase
 
         $bill = $response->toArray();
 
-        $this->assertInstanceOf(MYR::class, $bill['amount']);
-        $this->assertSame('2.00', $bill['amount']->amount());
+        $this->assertInstanceOf(Money::class, $bill['amount']);
+        $this->assertSame('200', $bill['amount']->getAmount());
+        $this->assertSame('MYR', $bill['amount']->getCurrency()->getCode());
         $this->assertSame('inbmmepb', $bill['collection_id']);
         $this->assertSame(300, $response->rateLimit());
         $this->assertSame(299, $response->remainingRateLimit());
@@ -176,8 +177,9 @@ abstract class BillTestCase extends TestCase
 
         $bill = $response->toArray();
 
-        $this->assertInstanceOf(MYR::class, $bill['amount']);
-        $this->assertSame('2.00', $bill['amount']->amount());
+        $this->assertInstanceOf(Money::class, $bill['amount']);
+        $this->assertSame('200', $bill['amount']->getAmount());
+        $this->assertSame('MYR', $bill['amount']->getCurrency()->getCode());
         $this->assertSame('inbmmepb', $bill['collection_id']);
         $this->assertNull($response->rateLimit());
         $this->assertNull($response->remainingRateLimit());

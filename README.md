@@ -54,11 +54,20 @@ PHP framework agnostic library for working with BillPlz API v3 and beyond...
 
 To install through composer by using the following command:
 
-    composer require php-http/guzzle7-adapter jomweb/billplz:^4.1
+    composer require php-http/guzzle7-adapter jomweb/billplz:^5.2
 
 #### HTTP Adapter
 
 Instead of utilizing `php-http/guzzle7-adapter` you might want to use any other adapter that implements `php-http/client-implementation`. Check [Clients & Adapters](http://docs.php-http.org/en/latest/clients.html) for PHP-HTTP.
+
+### Breaking Changes
+
+Recent releases removed the hard dependency on `jomweb/ringgit`.
+
+- Response money values now hydrate to `\Money\Money` instead of `\Duit\MYR`.
+- Examples and integrations should use `\Money\Money::MYR(...)` for request payloads.
+- If your application still needs `\Duit\MYR`, convert from the returned Money object using the minor-unit amount, for example `\Duit\MYR::given((int) $money->getAmount())`.
+- Integer minor units are still accepted for request amounts when that is more convenient.
 
 ### PHAR
 
@@ -174,7 +183,7 @@ $response = $collection->create('My First API Collection', [
     'logo' => '@/Users/Billplz/Documents/uploadPhoto.png',
     'split_payment' => [
         'email' => 'verified@account.com',
-        'fixed_cut' => \Duit\MYR::given(100),
+        'fixed_cut' => \Money\Money::MYR(100),
     ],
 ]);
 
@@ -191,7 +200,7 @@ return [
     ],
     "split_payment" => [
         "email" => "verified@account.com",
-        "fixed_cut" => \Duit\MYR::given(100),
+        "fixed_cut" => \Money\Money::MYR(100),
         "variable_cut" => null,
     ],
 ];
@@ -347,7 +356,7 @@ $collection = $billplz->openCollection();
 $response = $collection->create(
     'My First API Collection',
     'Maecenas eu placerat ante. Fusce ut neque justo, et aliquet enim. In hac habitasse platea dictumst.',
-    \Duit\MYR::given(299)
+    \Money\Money::MYR(299)
 );
 
 var_dump($response->toArray());
@@ -361,7 +370,7 @@ return [
     "reference_1_label" => null,
     "reference_2_label" => null,
     "email_link" => null,
-    "amount" => \Duit\MYR::given(299),
+    "amount" => \Money\Money::MYR(299),
     "fixed_amount" => true,
     "tax" => null,
     "fixed_quantity" => true,
@@ -398,7 +407,7 @@ return [
         "reference_1_label" => null,
         "reference_2_label" => null,
         "email_link" => null,
-        "amount" => \Duit\MYR::given(299),
+        "amount" => \Money\Money::MYR(299),
         "fixed_amount" => true,
         "tax" => null,
         "fixed_quantity" => true,
@@ -438,7 +447,7 @@ return [
         "reference_1_label" => null,
         "reference_2_label" => null,
         "email_link" => null,
-        "amount" => \Duit\MYR::given(299),
+        "amount" => \Money\Money::MYR(299),
         "fixed_amount" => true,
         "tax" => null,
         "fixed_quantity" => true,
@@ -476,7 +485,7 @@ return [
     "reference_1_label" => null,
     "reference_2_label" => null,
     "email_link" => null,
-    "amount" => \Duit\MYR::given(299),
+    "amount" => \Money\Money::MYR(299),
     "fixed_amount" => true,
     "tax" => null,
     "fixed_quantity" => true,
@@ -515,7 +524,7 @@ $response = $bill->create(
     'api@billplz.com',
     null,
     'Michael API V3',
-    \Duit\MYR::given(200),
+    \Money\Money::MYR(200),
     'http://example.com/webhook/',
     'Maecenas eu placerat ante.',
     [], // optional.
@@ -530,8 +539,8 @@ return [
     "collection_id" => "inbmmepb",
     "paid" => false,
     "state" => "overdue",
-    "amount" => \Duit\MYR::given(200),
-    "paid_amount" => \Duit\MYR::given(0),
+    "amount" => \Money\Money::MYR(200),
+    "paid_amount" => \Money\Money::MYR(0),
     "due_at" => new \DateTime('Y-m-d', "2015-3-9"),
     "email" => "api@billplz.com",
     "mobile" => null,
@@ -557,7 +566,7 @@ $response = $bill->create(
     'api@billplz.com',
     null,
     'Michael API V3',
-    \Duit\MYR::given(200),
+    \Money\Money::MYR(200),
     'http://example.com/webook/',
     'Maecenas eu placerat ante.',
     ['redirect_url' => 'http://example.com/redirect/']
@@ -572,8 +581,8 @@ return [
     "collection_id" => "inbmmepb",
     "paid" => false,
     "state" => "overdue",
-    "amount" => \Duit\MYR::given(200),
-    "paid_amount" => \Duit\MYR::given(0),
+    "amount" => \Money\Money::MYR(200),
+    "paid_amount" => \Money\Money::MYR(0),
     "due_at" => new \DateTime('Y-m-d', "2015-3-9"),
     "email" => "api@billplz.com",
     "mobile" => null,
@@ -604,8 +613,8 @@ return [
     "collection_id" => "inbmmepb",
     "paid" => false,
     "state" => "due",
-    "amount" => \Duit\MYR::given(200),
-    "paid_amount" => \Duit\MYR::given(0),
+    "amount" => \Money\Money::MYR(200),
+    "paid_amount" => \Money\Money::MYR(0),
     "due_at" => new \DateTime("2020-12-31"),
     "email" => "api@billplz.com",
     "mobile" => "+60112223333",
@@ -676,8 +685,8 @@ return [
     'collection_id' => 'inbmmepb',
     'paid' => true,
     'state' => 'paid',
-    'amount' => \Duit\MYR::given(200),
-    'paid_amount' => \Duit\MYR::given(0),
+    'amount' => \Money\Money::MYR(200),
+    'paid_amount' => \Money\Money::MYR(0),
     'due_at' => new \DateTime('2020-12-31'),
     'email' => 'api@billplz.com',
     'mobile' => '+60112223333',
@@ -699,8 +708,8 @@ return [
     'collection_id' => 'inbmmepb',
     'paid' => true,
     'state' => 'paid',
-    'amount' => \Duit\MYR::given(200),
-    'paid_amount' => \Duit\MYR::given(0),
+    'amount' => \Money\Money::MYR(200),
+    'paid_amount' => \Money\Money::MYR(0),
     'due_at' => new \DateTime('2020-12-31'),
     'email' => 'api@billplz.com',
     'mobile' => '+60112223333',

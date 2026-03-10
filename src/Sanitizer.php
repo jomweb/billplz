@@ -11,7 +11,7 @@ class Sanitizer extends \Laravie\Codex\Filter\Sanitizer
      */
     public function __construct(array $casters = [])
     {
-        $money = $casters['money'] ?? Casts\Ringgit::class;
+        $money = $casters['money'] ?? Casts\Money::class;
         $datetime = $casters['datetime'] ?? Casts\DateTime::class;
 
         $this->casts = [

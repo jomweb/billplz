@@ -10,7 +10,7 @@ interface Bill extends Request
     /**
      * Create a new bill.
      *
-     * @param  \Money\Money|\Duit\MYR|int  $amount
+     * @param  \Money\Money|int  $amount
      * @param  \Billplz\Contracts\PaymentCompletion|string  $paymentCompletion
      * @param  array<string, mixed>  $optional
      *

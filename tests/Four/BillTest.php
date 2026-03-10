@@ -3,8 +3,8 @@
 namespace Billplz\Tests\Four;
 
 use Billplz\Tests\Base\BillTestCase;
-use Duit\MYR;
 use Laravie\Codex\Contracts\Response;
+use Money\Money;
 
 class BillTest extends BillTestCase
 {
@@ -104,8 +104,9 @@ class BillTest extends BillTestCase
 
         $bill = $response->toArray();
 
-        $this->assertInstanceOf(MYR::class, $bill['amount']);
-        $this->assertSame('100.00', $bill['amount']->amount());
+        $this->assertInstanceOf(Money::class, $bill['amount']);
+        $this->assertSame('10000', $bill['amount']->getAmount());
+        $this->assertSame('MYR', $bill['amount']->getCurrency()->getCode());
         $this->assertSame('success', $bill['status']);
         $this->assertSame('15681981586116610', $bill['reference_id']);
         $this->assertSame('1b66606732d846192b0b6aa4b754b3c8addd59072fce4bdd066b5d631c31d5e8', $bill['hash_value']);

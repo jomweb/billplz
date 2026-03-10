@@ -13,13 +13,13 @@ class Money extends Cast
      */
     protected function isValid($value): bool
     {
-        return $value instanceof \Money\Money || $value instanceof \Duit\MYR;
+        return $value instanceof \Money\Money;
     }
 
     /**
      * Cast value from object.
      *
-     * @param  \Money\Money|\Duit\MYR  $value
+     * @param  \Money\Money  $value
      */
     protected function fromCast($value): string
     {
