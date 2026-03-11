@@ -5,6 +5,7 @@ namespace Billplz\Tests;
 use Billplz\Client;
 use Laravie\Codex\Discovery;
 use Laravie\Codex\Testing\Faker;
+use Laravie\Codex\Testing\FakeRequest;
 use Mockery as m;
 use PHPUnit\Framework\TestCase as PHPUnit;
 
@@ -90,7 +91,7 @@ class TestCase extends PHPUnit
     /**
      * Create a fake client.
      *
-     * @param  \Laravie\Codex\Testing\FakeRequest|null  $faker
+     * @param  FakeRequest|null  $faker
      */
     protected function makeClient(?Faker $faker = null): Client
     {

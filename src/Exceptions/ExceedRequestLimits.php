@@ -2,11 +2,12 @@
 
 namespace Billplz\Exceptions;
 
+use Billplz\Response;
 use Exception;
 use Laravie\Codex\Exceptions\HttpException;
 
 /**
- * @property \Billplz\Response $response
+ * @property Response $response
  */
 class ExceedRequestLimits extends HttpException
 {
@@ -14,7 +15,7 @@ class ExceedRequestLimits extends HttpException
      * Construct a new HTTP exception.
      */
     public function __construct(
-        \Billplz\Response $response,
+        Response $response,
         ?string $message = null,
         ?Exception $previous = null,
         int $code = 0

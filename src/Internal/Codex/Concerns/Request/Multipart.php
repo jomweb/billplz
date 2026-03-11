@@ -7,6 +7,7 @@ use Http\Message\MultipartStream\MultipartStreamBuilder as Builder;
 use Laravie\Codex\Contracts\Endpoint;
 use Laravie\Codex\Contracts\Filterable;
 use Laravie\Codex\Contracts\Response;
+use Laravie\Codex\Payload;
 use Psr\Http\Message\StreamInterface;
 
 trait Multipart
@@ -14,9 +15,9 @@ trait Multipart
     /**
      * Stream (multipart) the HTTP request.
      *
-     * @param  \Laravie\Codex\Contracts\Endpoint|string  $path
+     * @param  Endpoint|string  $path
      * @param  array<string, mixed>  $headers
-     * @param  \Psr\Http\Message\StreamInterface|\Laravie\Codex\Payload|array|null  $body
+     * @param  StreamInterface|Payload|array|null  $body
      * @param  array<string, string>  $files
      */
     public function stream(string $method, $path, array $headers = [], $body = [], array $files = []): Response

@@ -3,6 +3,7 @@
 namespace Laravie\Codex;
 
 use InvalidArgumentException;
+use Laravie\Codex\Contracts\Request;
 
 abstract class Client implements Contracts\Client
 {
@@ -52,7 +53,7 @@ abstract class Client implements Contracts\Client
      *
      * @return $this
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function useVersion(string $version): self
     {
@@ -86,9 +87,9 @@ abstract class Client implements Contracts\Client
      *
      *
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
-    public function uses(string $service, ?string $version = null): Contracts\Request
+    public function uses(string $service, ?string $version = null): Request
     {
         if (\is_null($version) || ! \array_key_exists($version, $this->supportedVersions)) {
             $version = $this->defaultVersion;
@@ -96,7 +97,7 @@ abstract class Client implements Contracts\Client
 
         $name = str_replace('.', '\\', $service);
 
-        /** @var class-string<\Laravie\Codex\Contracts\Request> $class */
+        /** @var class-string<Request> $class */
         $class = sprintf('%s\%s\%s', $this->getResourceNamespace(), $this->supportedVersions[$version], $name);
 
         if (! class_exists($class)) {
@@ -109,7 +110,7 @@ abstract class Client implements Contracts\Client
     /**
      * Handle uses using via.
      */
-    public function via(Contracts\Request $request): Contracts\Request
+    public function via(Request $request): Request
     {
         $request->setClient($this);
 

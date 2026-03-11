@@ -2,6 +2,7 @@
 
 namespace Laravie\Codex\Common;
 
+use Http\Client\Common\HttpMethodsClient;
 use InvalidArgumentException;
 use Laravie\Codex\Contracts\Endpoint as EndpointContract;
 use Psr\Http\Message\ResponseInterface;
@@ -13,7 +14,7 @@ trait HttpClient
     /**
      * Http Client instance.
      *
-     * @var \Http\Client\Common\HttpMethodsClient
+     * @var HttpMethodsClient
      */
     protected $http;
 
@@ -28,7 +29,7 @@ trait HttpClient
      * Send the HTTP request.
      *
      * @param  array<string, mixed>  $headers
-     * @param  \Psr\Http\Message\StreamInterface|\Laravie\Codex\Common\Payload|array|null  $body
+     * @param  StreamInterface|Payload|array|null  $body
      */
     public function send(string $method, EndpointContract $uri, array $headers = [], $body = []): ResponseInterface
     {
@@ -77,7 +78,7 @@ trait HttpClient
      * Stream (multipart) the HTTP request.
      *
      * @param  array<string, mixed>  $headers
-     * @param  \Psr\Http\Message\StreamInterface|\Laravie\Codex\Common\Payload|array|null  $body
+     * @param  StreamInterface|Payload|array|null  $body
      */
     protected function requestWith(string $method, UriInterface $uri, array $headers, $body): ResponseInterface
     {
@@ -96,7 +97,7 @@ trait HttpClient
      * Prepare request payloads.
      *
      * @param  array<string, mixed>  $headers
-     * @param  \Psr\Http\Message\StreamInterface|\Laravie\Codex\Common\Payload|array|null  $body
+     * @param  StreamInterface|Payload|array|null  $body
      */
     protected function prepareRequestPayloads(array $headers = [], $body = []): array
     {

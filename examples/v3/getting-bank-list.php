@@ -1,10 +1,12 @@
 <?php
 
+use Billplz\Client;
+
 require 'vendor/autoload.php';
 
 $api = 'xxx';
 
-$billplz = Billplz\Client::make($api)->useSandbox();
+$billplz = Client::make($api)->useSandbox();
 
 $bank = $billplz->bank();
 $response = $bank->supportedForFpx();

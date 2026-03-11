@@ -4,6 +4,7 @@ namespace Billplz\Contracts;
 
 use Laravie\Codex\Contracts\Request;
 use Laravie\Codex\Contracts\Response;
+use Money\Money;
 
 interface Bill extends Request
 {
@@ -19,7 +20,7 @@ interface Bill extends Request
         ?string $email,
         ?string $mobile,
         string $name,
-        \Money\Money|int $amount,
+        Money|int $amount,
         PaymentCompletion|string $paymentCompletion,
         string $description,
         array $optional = []

@@ -9,7 +9,7 @@ trait WithSanitizer
     /**
      * The filterable implementation.
      *
-     * @var \Laravie\Codex\Contracts\Sanitizer|null
+     * @var Sanitizer|null
      */
     protected $filterable;
 

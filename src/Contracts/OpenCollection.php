@@ -4,6 +4,7 @@ namespace Billplz\Contracts;
 
 use Laravie\Codex\Contracts\Request;
 use Laravie\Codex\Contracts\Response;
+use Money\Money;
 
 interface OpenCollection extends Request
 {
@@ -15,7 +16,7 @@ interface OpenCollection extends Request
     public function create(
         string $title,
         string $description,
-        \Money\Money|int $amount,
+        Money|int $amount,
         array $optional = []
     ): Response;
 

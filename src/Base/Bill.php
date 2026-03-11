@@ -3,12 +3,14 @@
 namespace Billplz\Base;
 
 use Billplz\Contracts\Bill as Contract;
+use Billplz\Contracts\Bill\Transaction;
 use Billplz\Contracts\PaymentCompletion as PaymentCompletionContract;
 use Billplz\PaymentCompletion as PaymentCompletionUrl;
 use Billplz\Request;
 use InvalidArgumentException;
 use Laravie\Codex\Concerns\Request\Multipart;
 use Laravie\Codex\Contracts\Response;
+use Money\Money;
 
 abstract class Bill extends Request implements Contract
 {
@@ -20,14 +22,14 @@ abstract class Bill extends Request implements Contract
      *
      * @param  array<string, mixed>  $optional
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function create(
         string $collectionId,
         ?string $email,
         ?string $mobile,
         string $name,
-        \Money\Money|int $amount,
+        Money|int $amount,
         PaymentCompletionContract|string $paymentCompletion,
         string $description,
         array $optional = []
@@ -66,7 +68,7 @@ abstract class Bill extends Request implements Contract
      */
     public function transaction(string $id, array $optional = []): Response
     {
-        /** @var \Billplz\Contracts\Bill\Transaction $transaction */
+        /** @var Transaction $transaction */
         $transaction = $this->client->uses(
             'Bill.Transaction', $this->getVersion()
         );

@@ -2,16 +2,19 @@
 
 namespace Laravie\Codex\Concerns\Request;
 
+use Laravie\Codex\Common\Payload;
+use Laravie\Codex\Contracts\Endpoint;
 use Laravie\Codex\Contracts\Response;
+use Psr\Http\Message\StreamInterface;
 
 trait Json
 {
     /**
      * Send API request.
      *
-     * @param  \Laravie\Codex\Contracts\Endpoint|string  $path
+     * @param  Endpoint|string  $path
      * @param  array<string, mixed>  $headers
-     * @param  \Laravie\Codex\Common\Payload|array|null  $body
+     * @param  Payload|array|null  $body
      */
     protected function sendJson(string $method, $path, array $headers = [], $body = []): Response
     {
@@ -23,9 +26,9 @@ trait Json
     /**
      * Send API request.
      *
-     * @param  \Laravie\Codex\Contracts\Endpoint|string  $path
+     * @param  Endpoint|string  $path
      * @param  array<string, mixed>  $headers
-     * @param  \Psr\Http\Message\StreamInterface|\Laravie\Codex\Common\Payload|array|null  $body
+     * @param  StreamInterface|Payload|array|null  $body
      */
     abstract protected function send(string $method, $path, array $headers = [], $body = []): Response;
 }

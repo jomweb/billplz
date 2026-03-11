@@ -238,7 +238,7 @@ function billplz_register_bill_tests(array $hooks = []): void
             expect($bill['id'])->toBe('W_79pJDk');
             expect($bill['paid'])->toBeTrue();
             expect($bill['paid_at'])->toBeInstanceOf('DateTime');
-            expect($bill['paid_at']->getTimezone())->toEqual(new \DateTimeZone('+08:00'));
+            expect($bill['paid_at']->getTimezone())->toEqual(new DateTimeZone('+08:00'));
         },
         'can parse redirect data with signature and extra payment completion information' => function (): void {
             $payload = [
@@ -262,7 +262,7 @@ function billplz_register_bill_tests(array $hooks = []): void
             expect($bill['paid_at'])->toBeInstanceOf('DateTime');
             expect($bill['transaction_id'])->toBe('AC4GC031F42H');
             expect($bill['transaction_status'])->toBe('completed');
-            expect($bill['paid_at']->getTimezone())->toEqual(new \DateTimeZone('+08:00'));
+            expect($bill['paid_at']->getTimezone())->toEqual(new DateTimeZone('+08:00'));
         },
         'can parse redirect data if signature key is not configured' => function (): void {
             $payload = [
@@ -282,7 +282,7 @@ function billplz_register_bill_tests(array $hooks = []): void
             expect($bill['id'])->toBe('W_79pJDk');
             expect($bill['paid'])->toBeTrue();
             expect($bill['paid_at'])->toBeInstanceOf('DateTime');
-            expect($bill['paid_at']->getTimezone())->toEqual(new \DateTimeZone('+08:00'));
+            expect($bill['paid_at']->getTimezone())->toEqual(new DateTimeZone('+08:00'));
         },
         'can parse redirect data with extra payment completion information if signature key is not configured' => function (): void {
             $payload = [
@@ -306,7 +306,7 @@ function billplz_register_bill_tests(array $hooks = []): void
             expect($bill['paid_at'])->toBeInstanceOf('DateTime');
             expect($bill['transaction_id'])->toBe('AC4GC031F42H');
             expect($bill['transaction_status'])->toBe('completed');
-            expect($bill['paid_at']->getTimezone())->toEqual(new \DateTimeZone('+08:00'));
+            expect($bill['paid_at']->getTimezone())->toEqual(new DateTimeZone('+08:00'));
         },
         'cant parse redirect data without given signature' => function (): void {
             $payload = [
@@ -375,7 +375,7 @@ function billplz_register_bill_tests(array $hooks = []): void
             expect($bill['id'])->toBe('W_79pJDk');
             expect($bill['paid'])->toBeTrue();
             expect($bill['paid_at'])->toBeInstanceOf('DateTime');
-            expect($bill['paid_at']->getTimezone())->toEqual(new \DateTimeZone('+08:00'));
+            expect($bill['paid_at']->getTimezone())->toEqual(new DateTimeZone('+08:00'));
         },
         'can parse webhook data with signature and extra payment completion information' => function (): void {
             $payload = [
@@ -406,7 +406,7 @@ function billplz_register_bill_tests(array $hooks = []): void
             expect($bill['paid_at'])->toBeInstanceOf('DateTime');
             expect($bill['transaction_id'])->toBe('AC4GC031F42H');
             expect($bill['transaction_status'])->toBe('completed');
-            expect($bill['paid_at']->getTimezone())->toEqual(new \DateTimeZone('+08:00'));
+            expect($bill['paid_at']->getTimezone())->toEqual(new DateTimeZone('+08:00'));
         },
         'can parse webhook data if signature key is not configured' => function (): void {
             $payload = [
@@ -433,7 +433,7 @@ function billplz_register_bill_tests(array $hooks = []): void
             expect($bill['id'])->toBe('W_79pJDk');
             expect($bill['paid'])->toBeTrue();
             expect($bill['paid_at'])->toBeInstanceOf('DateTime');
-            expect($bill['paid_at']->getTimezone())->toEqual(new \DateTimeZone('+08:00'));
+            expect($bill['paid_at']->getTimezone())->toEqual(new DateTimeZone('+08:00'));
         },
         'can parse webhook data with extra payment completion information if signature key is not configured' => function (): void {
             $payload = [
@@ -464,7 +464,7 @@ function billplz_register_bill_tests(array $hooks = []): void
             expect($bill['paid_at'])->toBeInstanceOf('DateTime');
             expect($bill['transaction_id'])->toBe('AC4GC031F42H');
             expect($bill['transaction_status'])->toBe('completed');
-            expect($bill['paid_at']->getTimezone())->toEqual(new \DateTimeZone('+08:00'));
+            expect($bill['paid_at']->getTimezone())->toEqual(new DateTimeZone('+08:00'));
         },
         'cant parse webhook data without given signature' => function (): void {
             $payload = [

@@ -6,6 +6,7 @@ use Billplz\Contracts\OpenCollection as Contract;
 use Billplz\Request;
 use Laravie\Codex\Concerns\Request\Multipart;
 use Laravie\Codex\Contracts\Response;
+use Money\Money;
 
 class OpenCollection extends Request implements Contract
 {
@@ -19,7 +20,7 @@ class OpenCollection extends Request implements Contract
     public function create(
         string $title,
         string $description,
-        \Money\Money|int $amount,
+        Money|int $amount,
         array $optional = []
     ): Response {
         $body = array_merge(compact('title', 'description', 'amount'), $optional);

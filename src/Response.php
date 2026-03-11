@@ -2,6 +2,7 @@
 
 namespace Billplz;
 
+use Billplz\Exceptions\ExceedRequestLimits;
 use Laravie\Codex\Contracts\Filterable;
 use Laravie\Codex\Filter\WithSanitizer;
 
@@ -27,12 +28,12 @@ class Response extends \Laravie\Codex\Response implements Filterable
     /**
      * Validate for unauthorized request.
      *
-     * @throws \Billplz\Exceptions\ExceedRequestLimits
+     * @throws ExceedRequestLimits
      */
     public function abortIfRequestExceedLimiter(?string $message = null): void
     {
         if (\in_array($this->getStatusCode(), [429])) {
-            throw new Exceptions\ExceedRequestLimits($this, $message);
+            throw new ExceedRequestLimits($this, $message);
         }
     }
 

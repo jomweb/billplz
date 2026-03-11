@@ -2,12 +2,13 @@
 
 namespace Billplz\Base;
 
+use Billplz\Client;
 use Billplz\Exceptions\FailedSignatureVerification;
 use Billplz\Signature;
 use InvalidArgumentException;
 
 /**
- * @property \Billplz\Client $client
+ * @property Client $client
  */
 trait PaymentCompletion
 {
@@ -59,7 +60,7 @@ trait PaymentCompletion
     /**
      * Validate against x-signature.
      *
-     * @throws \Billplz\Exceptions\FailedSignatureVerification
+     * @throws FailedSignatureVerification
      */
     final protected function validateAgainstSignature(array $bill, Signature $signature): bool
     {

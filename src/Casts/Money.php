@@ -12,13 +12,13 @@ class Money extends Cast
      */
     protected function isValid(mixed $value): bool
     {
-        return $value instanceof \Money\Money;
+        return $value instanceof MoneyValue;
     }
 
     /**
      * Cast value from object.
      *
-     * @param  \Money\Money  $value
+     * @param  MoneyValue  $value
      */
     protected function fromCast(mixed $value): string
     {

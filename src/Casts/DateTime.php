@@ -12,13 +12,13 @@ class DateTime extends Cast
      */
     protected function isValid(mixed $value): bool
     {
-        return $value instanceof \DateTimeInterface;
+        return $value instanceof DateTimeInterface;
     }
 
     /**
      * Cast value from object.
      *
-     * @param  \DateTimeInterface  $value
+     * @param  DateTimeInterface  $value
      */
     protected function fromCast(mixed $value): string
     {

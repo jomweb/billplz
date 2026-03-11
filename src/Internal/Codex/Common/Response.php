@@ -10,7 +10,7 @@ use Laravie\Codex\Exceptions\UnauthorizedException;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * @mixin \Psr\Http\Message\ResponseInterface
+ * @mixin ResponseInterface
  */
 class Response implements \Laravie\Codex\Contracts\Response
 {
@@ -139,7 +139,7 @@ class Response implements \Laravie\Codex\Contracts\Response
      * Validate for unauthorized request.
      *
      *
-     * @throws \Laravie\Codex\Exceptions\UnauthorizedException
+     * @throws UnauthorizedException
      */
     public function abortIfRequestUnauthorized(): void
     {
@@ -152,7 +152,7 @@ class Response implements \Laravie\Codex\Contracts\Response
      * Validate for unauthorized request.
      *
      *
-     * @throws \Laravie\Codex\Exceptions\HttpException
+     * @throws HttpException
      */
     public function abortIfRequestHasFailed(?string $message = null): void
     {

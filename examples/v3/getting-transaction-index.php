@@ -1,11 +1,13 @@
 <?php
 
+use Billplz\Client;
+
 require 'vendor/autoload.php';
 
 $api = 'xxx';
 $bill = 'v3bfqg';
 
-$billplz = Billplz\Client::make($api)->useSandbox();
+$billplz = Client::make($api)->useSandbox();
 
 $response = $billplz->bill()->transaction($bill);
 

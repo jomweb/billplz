@@ -5,6 +5,7 @@ namespace Billplz\Four;
 use Billplz\Base\Bill as Request;
 use Billplz\Contracts\PaymentCompletion as PaymentCompletionContract;
 use Laravie\Codex\Contracts\Response;
+use Money\Money;
 
 class Bill extends Request
 {
@@ -25,7 +26,7 @@ class Bill extends Request
         ?string $email,
         ?string $mobile,
         string $name,
-        \Money\Money|int $amount,
+        Money|int $amount,
         PaymentCompletionContract|string $callbackUrl,
         string $description,
         array $optional = []

@@ -9,7 +9,7 @@ use Laravie\Codex\Filter\WithSanitizer;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * @property \Billplz\Client $client
+ * @property Client $client
  */
 abstract class Request extends \Laravie\Codex\Request implements Filterable
 {

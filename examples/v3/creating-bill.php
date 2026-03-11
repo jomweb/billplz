@@ -1,11 +1,14 @@
 <?php
 
+use Billplz\Client;
+use Billplz\PaymentCompletion;
+
 require 'vendor/autoload.php';
 
 $api = 'xxx';
 $collection = '2e97chf9';
 
-$billplz = Billplz\Client::make($api)->useSandbox();
+$billplz = Client::make($api)->useSandbox();
 
 $response = $billplz->bill()->create(
     $collection,
@@ -13,7 +16,7 @@ $response = $billplz->bill()->create(
     null,
     'Mior Muhammad Zaki',
     300,
-    new Billplz\PaymentCompletion('https://localhost/webhook/billplz'),
+    new PaymentCompletion('https://localhost/webhook/billplz'),
     'My first bill'
 );
 

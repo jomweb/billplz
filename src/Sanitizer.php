@@ -2,12 +2,14 @@
 
 namespace Billplz;
 
+use Laravie\Codex\Contracts\Cast;
+
 class Sanitizer extends \Laravie\Codex\Filter\Sanitizer
 {
     /**
      * Construct a new sanitizer.
      *
-     * @param  array<string, class-string<\Laravie\Codex\Contracts\Cast>>  $casters
+     * @param  array<string, class-string<Cast>>  $casters
      */
     public function __construct(array $casters = [])
     {

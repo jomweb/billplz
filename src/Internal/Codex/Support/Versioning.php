@@ -17,7 +17,7 @@ trait Versioning
     /**
      * Proxy route to response via other version.
      *
-     * @param  (callable(): \Laravie\Codex\Contracts\Response)  $callback
+     * @param  (callable(): Response)  $callback
      */
     protected function proxyRequestViaVersion(string $swapVersion, callable $callback): Response
     {
@@ -26,7 +26,7 @@ trait Versioning
         try {
             $this->version = $swapVersion;
 
-            /** @var \Laravie\Codex\Contracts\Response $response */
+            /** @var Response $response */
             $response = \call_user_func($callback);
         } finally {
             $this->version = $version;

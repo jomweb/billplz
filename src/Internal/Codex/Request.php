@@ -2,10 +2,12 @@
 
 namespace Laravie\Codex;
 
+use Laravie\Codex\Common\Payload;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 
 /**
- * @property \Laravie\Codex\Client $client
+ * @property Client $client
  */
 abstract class Request extends Common\Request
 {
@@ -36,7 +38,7 @@ abstract class Request extends Common\Request
      * Send API request.
      *
      * @param  array<string, mixed>  $headers
-     * @param  \Psr\Http\Message\StreamInterface|\Laravie\Codex\Common\Payload|array|null  $body
+     * @param  StreamInterface|Payload|array|null  $body
      */
     protected function send(
         string $method,
@@ -45,7 +47,7 @@ abstract class Request extends Common\Request
         mixed $body = []
     ): Contracts\Response {
         if ($this instanceof Contracts\Filterable) {
-            /** @var \Psr\Http\Message\StreamInterface|\Laravie\Codex\Common\Payload|array|null $body */
+            /** @var StreamInterface|Payload|array|null $body */
             $body = $this->filterRequest($body);
         }
 

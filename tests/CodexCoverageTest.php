@@ -1,5 +1,7 @@
 <?php
 
+use Billplz\Request;
+use Billplz\Response;
 use Http\Client\Common\HttpMethodsClient;
 use Laravie\Codex\Common\Discovery as CommonDiscovery;
 use Laravie\Codex\Concerns\Passport;
@@ -7,6 +9,7 @@ use Laravie\Codex\Concerns\Request\Json;
 use Laravie\Codex\Contracts\Response as ResponseContract;
 use Laravie\Codex\Testing\Assert as CodexAssert;
 use Laravie\Codex\Testing\Faker;
+use Money\Money;
 
 final class TestDiscovery extends CommonDiscovery
 {
@@ -108,7 +111,7 @@ it('caches refreshed and overridden discovery clients', function (): void {
 
 it('asserts array subsets for arrays and array access values', function (): void {
     CodexAssert::assertArraySubset(['foo' => 'bar'], ['foo' => 'bar', 'baz' => 'qux']);
-    CodexAssert::assertArraySubset(['foo' => 'bar'], new \ArrayObject(['foo' => 'bar', 'baz' => 'qux']));
+    CodexAssert::assertArraySubset(['foo' => 'bar'], new ArrayObject(['foo' => 'bar', 'baz' => 'qux']));
 
     expect(true)->toBeTrue();
 });
@@ -117,14 +120,14 @@ it('rejects invalid values when asserting array subsets', function (): void {
     try {
         CodexAssert::assertArraySubset('invalid', []);
         $this->fail('Expected invalid subset assertion to throw.');
-    } catch (\InvalidArgumentException $e) {
+    } catch (InvalidArgumentException $e) {
         expect($e->getMessage())->toContain('array or ArrayAccess');
     }
 
     try {
         CodexAssert::assertArraySubset([], 'invalid');
         $this->fail('Expected invalid array assertion to throw.');
-    } catch (\InvalidArgumentException $e) {
+    } catch (InvalidArgumentException $e) {
         expect($e->getMessage())->toContain('array or ArrayAccess');
     }
 });
@@ -139,7 +142,7 @@ it('filters request bodies and preserves endpoint queries', function (): void {
         ['amount' => 200, 'description' => 'Example']
     )->shouldResponseWithJson(200, '{}');
 
-    $request = new class extends \Billplz\Request
+    $request = new class extends Request
     {
         public function __construct()
         {
@@ -148,7 +151,7 @@ it('filters request bodies and preserves endpoint queries', function (): void {
             $this->version = 'v5';
         }
 
-        public function createPayment(array $payload): \Laravie\Codex\Contracts\Response
+        public function createPayment(array $payload): ResponseContract
         {
             return $this->send(
                 'POST',
@@ -165,12 +168,12 @@ it('filters request bodies and preserves endpoint queries', function (): void {
 
         protected function getApiBody(): array
         {
-            return ['amount' => \Money\Money::MYR(200)];
+            return ['amount' => Money::MYR(200)];
         }
     };
 
     $request->setClient($this->makeClient($faker));
 
     expect($request->hasFilterable())->toBeTrue();
-    expect($request->createPayment(['description' => 'Example']))->toBeInstanceOf(\Billplz\Response::class);
+    expect($request->createPayment(['description' => 'Example']))->toBeInstanceOf(Response::class);
 });

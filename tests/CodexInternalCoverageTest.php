@@ -1,7 +1,9 @@
 <?php
 
+use Billplz\Client;
 use GuzzleHttp\Psr7\HttpFactory;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Uri;
 use GuzzleHttp\Psr7\Utils;
 use Http\Client\Common\HttpMethodsClient;
 use Http\Client\HttpClient as PsrHttpClient;
@@ -11,7 +13,9 @@ use Laravie\Codex\Common\Payload;
 use Laravie\Codex\Common\Response as CodexResponse;
 use Laravie\Codex\Concerns\Request\Multipart;
 use Laravie\Codex\Contracts\Client as CodexClientContract;
+use Laravie\Codex\Contracts\Response;
 use Laravie\Codex\Exceptions\HttpException;
+use Laravie\Codex\Exceptions\NotFoundException;
 use Laravie\Codex\Exceptions\UnauthorizedException;
 use Laravie\Codex\Filter\Cast as CodexCast;
 use Laravie\Codex\Filter\Sanitizer;
@@ -19,7 +23,9 @@ use Laravie\Codex\Testing\ArraySubset;
 use Laravie\Codex\Testing\Assert as CodexAssert;
 use Laravie\Codex\Testing\Faker;
 use Mockery as m;
+use Mockery\MockInterface;
 use Money\Money;
+use PHPUnit\Framework\ExpectationFailedException;
 use Psr\Http\Message\ResponseInterface;
 
 it('covers discovery helper flow', function (): void {
@@ -64,7 +70,7 @@ it('covers endpoint composition, queries and method forwarding', function (): vo
     expect(function () use ($endpoint): void {
         $endpoint->missingMethod();
     })
-        ->toThrow(\BadMethodCallException::class);
+        ->toThrow(BadMethodCallException::class);
 });
 
 it('covers payload and response payload branches', function (): void {
@@ -85,18 +91,18 @@ it('covers request helper plumbing and response factory', function (): void {
     $message->shouldReceive('getStatusCode')->andReturn(200, 200);
     $message->shouldReceive('getReasonPhrase')->andReturn('OK');
 
-    $client = m::mock(\Laravie\Codex\Contracts\Client::class);
+    $client = m::mock(CodexClientContract::class);
     $client->shouldReceive('getApiEndpoint')->andReturn('https://example.com');
     $client->shouldReceive('send')->twice()->andReturn($message);
 
-    $request = new class extends \Laravie\Codex\Request
+    $request = new class extends Laravie\Codex\Request
     {
-        protected function responseWith(ResponseInterface $message): \Laravie\Codex\Contracts\Response
+        protected function responseWith(ResponseInterface $message): Response
         {
             return new CodexResponse($message);
         }
 
-        public function callSend(string $method, $path, array $headers = [], $body = []): \Laravie\Codex\Contracts\Response
+        public function callSend(string $method, $path, array $headers = [], $body = []): Response
         {
             return $this->send($method, $path, $headers, $body);
         }
@@ -143,7 +149,7 @@ it('covers send() GET query body conversion branches', function (): void {
 
     $httpFactory = new HttpFactory;
     $httpMethodsClient = new HttpMethodsClient($httpClient, $httpFactory, $httpFactory);
-    $client = new \Billplz\Client($httpMethodsClient, static::API_KEY, static::X_SIGNATURE);
+    $client = new Client($httpMethodsClient, static::API_KEY, static::X_SIGNATURE);
 
     $client->send('GET', new Endpoint('https://example.com', ['status']), ['Accept' => 'json'], new Payload(['status' => 'pending']));
     $client->send('GET', new Endpoint('https://example.com', ['status']), ['Accept' => 'json'], 'status=processing');
@@ -158,7 +164,7 @@ it('covers send() GET query body conversion branches', function (): void {
         new Endpoint('https://example.com', ['status']),
         ['Accept' => 'json'],
         true
-    ))->toThrow(\InvalidArgumentException::class);
+    ))->toThrow(InvalidArgumentException::class);
 });
 
 it('covers codex response success, failures and magic helpers', function (): void {
@@ -209,7 +215,7 @@ it('covers codex response success, failures and magic helpers', function (): voi
     expect($filteredResponse->message)->toBe($jsonResponse);
     expect($filteredResponse->missing)->toBeNull();
 
-    expect(fn () => $response->nope())->toThrow(\BadMethodCallException::class);
+    expect(fn () => $response->nope())->toThrow(BadMethodCallException::class);
 });
 
 it('covers response exception branches', function (): void {
@@ -228,7 +234,7 @@ it('covers response exception branches', function (): void {
     expect($httpException->getResponse())->toBe($successResponse);
 
     expect(fn () => $httpException->setResponse('invalid'))
-        ->toThrow(\InvalidArgumentException::class);
+        ->toThrow(InvalidArgumentException::class);
 });
 
 it('covers codex sanitizer recursion and casting', function (): void {
@@ -282,13 +288,13 @@ it('covers array subset and assertion helpers', function (): void {
     $subset = new ArraySubset(['name' => 'billplz'], true);
 
     expect($subset->evaluate(['name' => 'billplz', 'version' => 1], '', true))->toBeTrue();
-    expect($subset->evaluate(new \ArrayObject(['name' => 'billplz']), '', true))->toBeTrue();
-    expect($subset->evaluate(new \ArrayIterator(['name' => 'other']), '', true))->toBeFalse();
+    expect($subset->evaluate(new ArrayObject(['name' => 'billplz']), '', true))->toBeTrue();
+    expect($subset->evaluate(new ArrayIterator(['name' => 'other']), '', true))->toBeFalse();
 
     CodexAssert::assertArraySubset(['name' => 'billplz'], ['name' => 'billplz']);
-    CodexAssert::assertArraySubset(['name' => 'billplz'], new \ArrayObject(['name' => 'billplz']), true);
+    CodexAssert::assertArraySubset(['name' => 'billplz'], new ArrayObject(['name' => 'billplz']), true);
     expect(fn () => CodexAssert::assertArraySubset(['name' => 'billplz'], ['name' => 'other']))
-        ->toThrow(\PHPUnit\Framework\ExpectationFailedException::class);
+        ->toThrow(ExpectationFailedException::class);
 });
 
 it('covers faker response helper assertions and request helpers', function (): void {
@@ -314,7 +320,7 @@ it('covers faker response helper assertions and request helpers', function (): v
     $streamFaker->expectEndpointIs('https://example.com/stream');
     $streamFaker->stream('PUT', ['X-Stream' => '1']);
     $streamFaker->http()->sendRequest(new Request('PUT', 'https://example.com/stream', ['X-Stream' => '1'], $stream));
-    expect($streamFaker->message())->toBeInstanceOf(\Mockery\MockInterface::class);
+    expect($streamFaker->message())->toBeInstanceOf(MockInterface::class);
 });
 
 it('covers client class helpers and error paths', function (): void {
@@ -331,10 +337,10 @@ it('covers client class helpers and error paths', function (): void {
 
     expect($client->useVersion('v3')->getApiVersion())->toBe('v3');
     expect(fn () => $client->useVersion('v9'))
-        ->toThrow(\InvalidArgumentException::class);
+        ->toThrow(InvalidArgumentException::class);
 
     expect(fn () => $client->uses('InvalidService'))
-        ->toThrow(\InvalidArgumentException::class);
+        ->toThrow(InvalidArgumentException::class);
 });
 
 it('covers multipart payload helper behavior', function (): void {
@@ -343,20 +349,20 @@ it('covers multipart payload helper behavior', function (): void {
     $response->shouldReceive('getStatusCode')->andReturn(200);
     $response->shouldReceive('getReasonPhrase')->andReturn('OK');
 
-    $client = m::mock(\Laravie\Codex\Contracts\Client::class);
+    $client = m::mock(CodexClientContract::class);
     $client->shouldReceive('getApiEndpoint')->andReturn('https://example.com');
     $client->shouldReceive('stream')->andReturn($response);
 
-    $request = new class extends \Laravie\Codex\Request
+    $request = new class extends Laravie\Codex\Request
     {
         use Multipart;
 
-        protected function responseWith(ResponseInterface $message): \Laravie\Codex\Contracts\Response
+        protected function responseWith(ResponseInterface $message): Response
         {
             return new CodexResponse($message);
         }
 
-        public function callStream(string $method, $path, array $headers = [], $body = [], array $files = []): \Laravie\Codex\Contracts\Response
+        public function callStream(string $method, $path, array $headers = [], $body = [], array $files = []): Response
         {
             return $this->stream($method, $path, $headers, $body, $files);
         }
@@ -416,7 +422,7 @@ it('covers base bill string payment completion', function (): void {
 });
 
 it('covers low-coverage compatibility branches', function (): void {
-    $uri = new \GuzzleHttp\Psr7\Uri('https://example.com');
+    $uri = new Uri('https://example.com');
     $endpoint = new Endpoint($uri);
     $endpoint->withPath('/api');
 
@@ -446,10 +452,10 @@ it('covers low-coverage compatibility branches', function (): void {
 
     $subset = new ArraySubset(['id' => 1]);
     expect($subset->evaluate(['id' => 1], '', true))->toBeTrue();
-    expect($subset->evaluate(new \ArrayObject(['id' => 1, 'name' => 'bill']), '', true))->toBeTrue();
-    expect($subset->evaluate(new \ArrayIterator(['id' => 1]), '', true))->toBeTrue();
+    expect($subset->evaluate(new ArrayObject(['id' => 1, 'name' => 'bill']), '', true))->toBeTrue();
+    expect($subset->evaluate(new ArrayIterator(['id' => 1]), '', true))->toBeTrue();
     expect(fn () => $subset->evaluate(['id' => 2]))
-        ->toThrow(\PHPUnit\Framework\ExpectationFailedException::class);
+        ->toThrow(ExpectationFailedException::class);
 
     $headerFaker = Faker::create();
     $headerFaker->expectResponseHeaders([
@@ -474,9 +480,9 @@ it('covers low-coverage compatibility branches', function (): void {
     $client = m::mock(CodexClientContract::class);
     $client->shouldReceive('getApiEndpoint')->andReturn('https://api.example.com');
 
-    $request = new class extends \Laravie\Codex\Request
+    $request = new class extends Laravie\Codex\Request
     {
-        protected function responseWith(ResponseInterface $message): \Laravie\Codex\Contracts\Response
+        protected function responseWith(ResponseInterface $message): Response
         {
             return new CodexResponse($message);
         }
@@ -490,9 +496,9 @@ it('covers low-coverage compatibility branches', function (): void {
 
     expect($request->callGetApiBody())->toBe([]);
 
-    $requestResponse = new class extends \Laravie\Codex\Request
+    $requestResponse = new class extends Laravie\Codex\Request
     {
-        public function callSend(string $method, $path, array $headers = [], $body = []): \Laravie\Codex\Contracts\Response
+        public function callSend(string $method, $path, array $headers = [], $body = []): Response
         {
             return $this->send($method, $path, $headers, $body);
         }
@@ -508,7 +514,7 @@ it('covers low-coverage compatibility branches', function (): void {
     $responseClient->shouldReceive('send')->andReturn($responseMessage);
     $requestResponse->setClient($responseClient);
 
-    expect($requestResponse->callSend('GET', 'status'))->toBeInstanceOf(\Laravie\Codex\Contracts\Response::class);
+    expect($requestResponse->callSend('GET', 'status'))->toBeInstanceOf(Response::class);
 
     $bodyStream = Utils::streamFor('payload-body');
     $streamedCallFaker = Faker::create();
@@ -561,7 +567,7 @@ it('covers low-coverage compatibility branches', function (): void {
         ->toThrow(UnauthorizedException::class);
 
     expect(fn () => (new CodexResponse($notFoundBody))->abortIfRequestNotFound())
-        ->toThrow(\Laravie\Codex\Exceptions\NotFoundException::class);
+        ->toThrow(NotFoundException::class);
 
     expect(fn () => (new CodexResponse($httpFailureBody))->abortIfRequestHasFailed())
         ->toThrow(HttpException::class);

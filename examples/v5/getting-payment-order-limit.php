@@ -1,11 +1,13 @@
 <?php
 
+use Billplz\Client;
+
 require 'vendor/autoload.php';
 
 $api = '';
 $signatureKey = '';
 
-$billplz = Billplz\Client::make($api, $signatureKey)->useSandbox();
+$billplz = Client::make($api, $signatureKey)->useSandbox();
 
 $response = $billplz->paymentOrder()->limit();
 

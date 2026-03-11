@@ -7,7 +7,7 @@ use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\UriInterface;
 
 /**
- * @mixin \Psr\Http\Message\UriInterface
+ * @mixin UriInterface
  */
 class Endpoint implements \Laravie\Codex\Contracts\Endpoint
 {

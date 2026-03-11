@@ -8,6 +8,8 @@ use Http\Client\Common\HttpMethodsClient;
 use Http\Client\HttpClient;
 use Mockery as m;
 use Mockery\Expectation;
+use Mockery\Matcher\MatcherAbstract;
+use Mockery\Matcher\Type;
 use Mockery\MockInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -99,8 +101,8 @@ class Faker
     /**
      * Make expected HTTP request.
      *
-     * @param  \Mockery\Matcher\Type|array  $headers
-     * @param  \Mockery\Matcher\Type|mixed  $body
+     * @param  Type|array  $headers
+     * @param  Type|mixed  $body
      * @return $this
      */
     public function call(string $method, mixed $headers = [], mixed $body = ''): self
@@ -129,7 +131,7 @@ class Faker
                     }
                 }
 
-                if (! $body instanceof \Mockery\Matcher\MatcherAbstract && ! $body instanceof StreamInterface) {
+                if (! $body instanceof MatcherAbstract && ! $body instanceof StreamInterface) {
                     Assert::assertSame((string) $body, (string) $request->getBody());
                 }
 
@@ -147,8 +149,8 @@ class Faker
     /**
      * Make expected HTTP request.
      *
-     * @param  \Mockery\Matcher\Type|array  $headers
-     * @param  \Mockery\Matcher\Type|mixed  $body
+     * @param  Type|array  $headers
+     * @param  Type|mixed  $body
      * @return $this
      */
     public function send(string $method, mixed $headers = [], mixed $body = ''): self
@@ -159,8 +161,8 @@ class Faker
     /**
      * Make expected HTTP JSON request.
      *
-     * @param  \Mockery\Matcher\Type|array  $headers
-     * @param  \Mockery\Matcher\Type|array|string  $body
+     * @param  Type|array  $headers
+     * @param  Type|array|string  $body
      * @return $this
      */
     public function sendJson(string $method, mixed $headers = [], mixed $body = ''): self
@@ -180,7 +182,7 @@ class Faker
     /**
      * Make expected HTTP JSON request.
      *
-     * @param  \Mockery\Matcher\Type|array  $headers
+     * @param  Type|array  $headers
      * @return $this
      */
     public function stream(string $method, mixed $headers = []): self
