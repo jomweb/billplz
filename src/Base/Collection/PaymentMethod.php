@@ -23,12 +23,14 @@ class PaymentMethod extends Request implements Contract
      */
     public function update(string $collectionId, array $codes = []): Response
     {
-        $payments = [];
+        $payments['payment_methods'] = [];
 
         foreach ($codes as $code) {
-            array_push($payments, compact('code'));
+            array_push($payments['payment_methods'], compact('code'));
         }
 
-        return $this->send('PUT', "collections/{$collectionId}/payment_methods", [], $payments);
+        return $this->send('PUT', "collections/{$collectionId}/payment_methods", [
+            'Content-Type' => 'application/json',
+        ], $payments);
     }
 }
