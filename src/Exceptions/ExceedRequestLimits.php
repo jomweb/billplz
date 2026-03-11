@@ -12,11 +12,9 @@ class ExceedRequestLimits extends HttpException
 {
     /**
      * Construct a new HTTP exception.
-     *
-     * @param  \Billplz\Response  $response
      */
     public function __construct(
-        $response,
+        \Billplz\Response $response,
         ?string $message = null,
         ?Exception $previous = null,
         int $code = 0

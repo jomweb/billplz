@@ -10,10 +10,8 @@ class Discovery
 {
     /**
      * Cache discovered HTTP Client.
-     *
-     * @var \Http\Client\Common\HttpMethodsClient|null
      */
-    protected static $discoveredClient;
+    protected static ?HttpMethodsClient $discoveredClient;
 
     /**
      * Make HTTP client through Discovery.

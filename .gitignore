@@ -9,4 +9,6 @@
 /coverage/*
 /.phpunit.cache
 /.phpunit.result.cache
+/build/*
+/build
 .vscode/settings.json

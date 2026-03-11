@@ -11,10 +11,8 @@ abstract class Request implements \Laravie\Codex\Contracts\Request
 {
     /**
      * The Codex client.
-     *
-     * @var \Laravie\Codex\Contracts\Client
      */
-    protected $client;
+    protected ClientContract $client;
 
     /**
      * Create Endpoint instance.
@@ -22,7 +20,7 @@ abstract class Request implements \Laravie\Codex\Contracts\Request
      * @param  array<int, string>|string  $path
      * @param  array<string, string>  $query
      */
-    public static function to(string $uri, $path = [], array $query = []): EndpointContract
+    public static function to(string $uri, array|string $path = [], array $query = []): EndpointContract
     {
         return new Endpoint($uri, $path, $query);
     }

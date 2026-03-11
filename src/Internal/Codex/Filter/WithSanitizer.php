@@ -41,9 +41,8 @@ trait WithSanitizer
      * Filter request content.
      *
      * @param  array|mixed  $content
-     * @return mixed
      */
-    final public function filterRequest($content)
+    final public function filterRequest(mixed $content): mixed
     {
         return $this->hasFilterable() && \is_array($content)
             ? $this->filterable->from($content)
@@ -54,9 +53,8 @@ trait WithSanitizer
      * Filter response content.
      *
      * @param  array|mixed  $content
-     * @return mixed
      */
-    final public function filterResponse($content)
+    final public function filterResponse(mixed $content): mixed
     {
         return $this->hasFilterable() && \is_array($content)
             ? $this->filterable->to($content)

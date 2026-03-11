@@ -12,7 +12,7 @@ interface Client
      *
      * @param  \Psr\Http\Message\StreamInterface|\Laravie\Codex\Common\Payload|array|null  $body
      */
-    public function send(string $method, Endpoint $uri, array $headers = [], $body = []): ResponseInterface;
+    public function send(string $method, Endpoint $uri, array $headers = [], mixed $body = []): ResponseInterface;
 
     /**
      * Stream (multipart) the HTTP request.

@@ -12,7 +12,7 @@ interface Response
      *
      * @return $this
      */
-    public function validate();
+    public function validate(): self;
 
     /**
      * Convert response body to array.
@@ -21,17 +21,13 @@ interface Response
 
     /**
      * Get body.
-     *
-     * @return mixed
      */
-    public function getBody();
+    public function getBody(): mixed;
 
     /**
      * Get content from body, by default we assume it returning JSON.
-     *
-     * @return mixed
      */
-    public function getContent();
+    public function getContent(): mixed;
 
     /**
      * Get status code.

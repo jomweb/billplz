@@ -23,15 +23,13 @@ interface Filterable
      * Filter request content.
      *
      * @param  array|mixed  $content
-     * @return mixed
      */
-    public function filterRequest($content);
+    public function filterRequest(mixed $content): mixed;
 
     /**
      * Filter response content.
      *
      * @param  array|mixed  $content
-     * @return mixed
      */
-    public function filterResponse($content);
+    public function filterResponse(mixed $content): mixed;
 }

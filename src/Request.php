@@ -20,7 +20,7 @@ abstract class Request extends \Laravie\Codex\Request implements Filterable
      *
      * @param  array<int, string>|string  $path
      */
-    protected function getApiEndpoint($path = []): Endpoint
+    protected function getApiEndpoint(array|string $path = []): Endpoint
     {
         $paths = is_array($path) ? $path : [$path];
 

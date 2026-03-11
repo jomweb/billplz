@@ -11,15 +11,11 @@ class PaymentOrder extends Request implements Contract
 {
     /**
      * Version namespace.
-     *
-     * @var string
      */
-    protected $version = 'v5';
+    protected string $version = 'v5';
 
     /**
      * Create a Payment Order
-     *
-     * @param  int  $total
      */
     public function create(
         string $paymentOrderCollectionId,
@@ -27,7 +23,7 @@ class PaymentOrder extends Request implements Contract
         string $bankAccountNumber,
         string $name,
         string $description,
-        $total,
+        int $total,
         array $optional = []
     ): Response {
         $epoch = time();
@@ -39,12 +35,15 @@ class PaymentOrder extends Request implements Contract
         $body['description'] = $description;
         $body['total'] = $total;
         $body['epoch'] = $epoch;
-        $body['checksum'] = Checksum::create($this->client->getSignatureKey(), [
-            $paymentOrderCollectionId,
-            $bankAccountNumber,
-            $total,
-            $epoch,
-        ]);
+        $body['checksum'] = Checksum::create(
+            $this->client->getSignatureKey() ?? '',
+            [
+                $paymentOrderCollectionId,
+                $bankAccountNumber,
+                $total,
+                $epoch,
+            ]
+        );
 
         $body = array_merge($body, $optional);
 
@@ -61,7 +60,7 @@ class PaymentOrder extends Request implements Contract
 
         $body['payment_order_id'] = $paymentOrderId;
         $body['epoch'] = $epoch;
-        $body['checksum'] = Checksum::create($this->client->getSignatureKey(), [
+        $body['checksum'] = Checksum::create($this->client->getSignatureKey() ?? '', [
             $paymentOrderId,
             $epoch,
         ]);
@@ -77,7 +76,7 @@ class PaymentOrder extends Request implements Contract
         $epoch = time();
 
         $body['epoch'] = $epoch;
-        $body['checksum'] = Checksum::create($this->client->getSignatureKey(), [
+        $body['checksum'] = Checksum::create($this->client->getSignatureKey() ?? '', [
             $epoch,
         ]);
 

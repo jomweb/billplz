@@ -9,10 +9,8 @@ class Collection extends Request
 {
     /**
      * Version namespace.
-     *
-     * @var string
      */
-    protected $version = 'v4';
+    protected string $version = 'v4';
 
     /**
      * Activate a collection.

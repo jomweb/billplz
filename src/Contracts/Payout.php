@@ -10,7 +10,6 @@ interface Payout extends Request
     /**
      * Create a new mass payment instruction (mpi).
      *
-     * @param  int  $total
      * @param  array<string, mixed>  $optional
      */
     public function create(
@@ -20,7 +19,7 @@ interface Payout extends Request
         string $identityNumber,
         string $name,
         string $description,
-        $total,
+        int $total,
         array $optional = []
     ): Response;
 

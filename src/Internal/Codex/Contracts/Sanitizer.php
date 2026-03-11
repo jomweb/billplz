@@ -7,10 +7,9 @@ interface Sanitizer
     /**
      * Add sanitization rules.
      *
-     * @param  string|array  $group
      * @return $this
      */
-    public function add($group, Cast $cast);
+    public function add(string|array $group, Cast $cast): self;
 
     /**
      * Sanitize request.

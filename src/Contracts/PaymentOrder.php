@@ -10,7 +10,6 @@ interface PaymentOrder extends Request
     /**
      * Create a Payment Order
      *
-     * @param  int  $total
      * @param  array<string, mixed>  $optional
      */
     public function create(
@@ -19,7 +18,7 @@ interface PaymentOrder extends Request
         string $bankAccountNumber,
         string $name,
         string $description,
-        $total,
+        int $total,
         array $optional = []
     ): Response;
 

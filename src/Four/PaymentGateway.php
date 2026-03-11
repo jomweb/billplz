@@ -9,10 +9,8 @@ class PaymentGateway extends Request
 {
     /**
      * Version namespace.
-     *
-     * @var string
      */
-    protected $version = 'v4';
+    protected string $version = 'v4';
 
     /**
      * Get payment gateways index.

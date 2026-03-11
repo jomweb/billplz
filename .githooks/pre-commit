@@ -5,7 +5,13 @@ set -eu
 repo_root="$(git rev-parse --show-toplevel)"
 cd "$repo_root"
 
-printf '%s\n' 'Running pre-commit checks: Pint and Pest coverage'
+printf '%s\n' 'Running pre-commit checks: Pint, PHPStan, Pest coverage and Pest type coverage'
 composer run lint
-mkdir -p build/logs
-composer run test:coverage
+composer run analyse
+if php -r "exit(extension_loaded('xdebug') ? 0 : 1);"; then
+  mkdir -p build/logs
+    composer run test:coverage
+else
+  printf '%s\n' 'Skipping coverage checks: Xdebug not loaded in this CLI environment.'
+fi
+composer run test:type-coverage

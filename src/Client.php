@@ -9,24 +9,20 @@ class Client extends \Laravie\Codex\Client
 {
     /**
      * Billplz API endpoint.
-     *
-     * @var string
      */
-    protected $apiEndpoint = 'https://www.billplz.com/api';
+    protected string $apiEndpoint = 'https://www.billplz.com/api';
 
     /**
      * Default API version.
-     *
-     * @var string
      */
-    protected $defaultVersion = 'v4';
+    protected string $defaultVersion = 'v4';
 
     /**
      * List of supported API versions.
      *
      * @var array<string, string>
      */
-    protected $supportedVersions = [
+    protected array $supportedVersions = [
         'v3' => 'Three',
         'v4' => 'Four',
         'v5' => 'Five',
@@ -48,7 +44,7 @@ class Client extends \Laravie\Codex\Client
      *
      * @return static
      */
-    public static function make(string $apiKey, ?string $signatureKey = null)
+    public static function make(string $apiKey, ?string $signatureKey = null): self
     {
         return new static(Discovery::client(), $apiKey, $signatureKey);
     }

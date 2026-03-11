@@ -11,10 +11,8 @@ class PaymentOrderCollection extends Request implements Contract
 {
     /**
      * Version namespace.
-     *
-     * @var string
      */
-    protected $version = 'v5';
+    protected string $version = 'v5';
 
     /**
      * Create a Payment Order Collection
@@ -41,7 +39,7 @@ class PaymentOrderCollection extends Request implements Contract
             ];
         }
 
-        $body['checksum'] = Checksum::create($this->client->getSignatureKey(), $checksum_data);
+        $body['checksum'] = Checksum::create($this->client->getSignatureKey() ?? '', $checksum_data);
         $body = array_merge($body, $optional);
 
         return $this->send('POST', 'payment_order_collections', [], $body);
@@ -57,7 +55,7 @@ class PaymentOrderCollection extends Request implements Contract
 
         $body['payment_order_collection_id'] = $paymentOrderCollectionId;
         $body['epoch'] = $epoch;
-        $body['checksum'] = Checksum::create($this->client->getSignatureKey(), [
+        $body['checksum'] = Checksum::create($this->client->getSignatureKey() ?? '', [
             $paymentOrderCollectionId,
             $epoch,
         ]);

@@ -10,9 +10,8 @@ abstract class Cast implements CastContract
      * Cast value from object.
      *
      * @param  object  $value
-     * @return mixed
      */
-    public function from($value)
+    public function from(mixed $value): mixed
     {
         return $this->isValid($value)
             ? $this->fromCast($value)
@@ -21,11 +20,8 @@ abstract class Cast implements CastContract
 
     /**
      * Cast value to object.
-     *
-     * @param  mixed  $value
-     * @return object|null
      */
-    public function to($value)
+    public function to(mixed $value): ?object
     {
         return ! \is_null($value)
             ? $this->toCast($value)
@@ -34,24 +30,18 @@ abstract class Cast implements CastContract
 
     /**
      * Is value a valid object.
-     *
-     * @param  mixed  $value
      */
-    abstract protected function isValid($value): bool;
+    abstract protected function isValid(mixed $value): bool;
 
     /**
      * Cast value from object.
      *
      * @param  object  $value
-     * @return mixed
      */
-    abstract protected function fromCast($value);
+    abstract protected function fromCast(mixed $value): mixed;
 
     /**
      * Cast value to object.
-     *
-     * @param  mixed  $value
-     * @return object
      */
-    abstract protected function toCast($value);
+    abstract protected function toCast(mixed $value): object;
 }

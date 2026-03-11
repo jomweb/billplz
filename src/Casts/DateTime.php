@@ -9,10 +9,8 @@ class DateTime extends Cast
 {
     /**
      * Is value a valid object.
-     *
-     * @param  mixed  $value
      */
-    protected function isValid($value): bool
+    protected function isValid(mixed $value): bool
     {
         return $value instanceof \DateTimeInterface;
     }
@@ -22,17 +20,15 @@ class DateTime extends Cast
      *
      * @param  \DateTimeInterface  $value
      */
-    protected function fromCast($value): string
+    protected function fromCast(mixed $value): string
     {
-        return $value->format('Y-m-d');
+        return $value instanceof DateTimeInterface ? $value->format('Y-m-d') : '';
     }
 
     /**
      * Cast value to object.
-     *
-     * @param  mixed  $value
      */
-    protected function toCast($value): DateTimeInterface
+    protected function toCast(mixed $value): DateTimeInterface
     {
         return new \DateTime($value);
     }

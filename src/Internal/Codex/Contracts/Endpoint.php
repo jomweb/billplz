@@ -12,7 +12,7 @@ interface Endpoint
      * @param  string|array<string, string>  $key
      * @return $this
      */
-    public function addQuery($key, ?string $value = null);
+    public function addQuery(string|array $key, ?string $value = null): self;
 
     /**
      * Get URI.

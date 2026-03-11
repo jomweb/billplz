@@ -44,7 +44,7 @@ class Signature
      *
      * @return static
      */
-    public static function redirect(?string $key)
+    public static function redirect(?string $key): self
     {
         return new static($key, self::REDIRECT_PARAMETERS);
     }
@@ -54,7 +54,7 @@ class Signature
      *
      * @return static
      */
-    public static function webhook(?string $key)
+    public static function webhook(?string $key): self
     {
         return new static($key, self::WEBHOOK_PARAMETERS);
     }

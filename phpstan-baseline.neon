@@ -199,24 +199,6 @@ parameters:
 			path: src/Contracts/PaymentCompletion.php
 
 		-
-			message: '#^Parameter \#1 \$key of static method Billplz\\Checksum\:\:create\(\) expects string, string\|null given\.$#'
-			identifier: argument.type
-			count: 3
-			path: src/Five/PaymentOrder.php
-
-		-
-			message: '#^Parameter \#1 \$key of static method Billplz\\Checksum\:\:create\(\) expects string, string\|null given\.$#'
-			identifier: argument.type
-			count: 2
-			path: src/Five/PaymentOrderCollection.php
-
-		-
-			message: '#^Method Billplz\\Four\\Bill\:\:create\(\) has parameter \$callbackUrl with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Four/Bill.php
-
-		-
 			message: '#^Method Billplz\\Four\\Collection\:\:payout\(\) should return Billplz\\Four\\Collection\\Payout but returns Laravie\\Codex\\Contracts\\Request\.$#'
 			identifier: return.type
 			count: 1
@@ -517,12 +499,6 @@ parameters:
 			path: src/Internal/Codex/Support/HttpClient.php
 
 		-
-			message: '#^Call to method shouldReceive\(\) on an unknown class Mockery\\MockeryInterface\.$#'
-			identifier: class.notFound
-			count: 6
-			path: src/Internal/Codex/Testing/Faker.php
-
-		-
 			message: '#^Method Laravie\\Codex\\Testing\\Faker\:\:call\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -531,12 +507,6 @@ parameters:
 		-
 			message: '#^Method Laravie\\Codex\\Testing\\Faker\:\:expectResponseHeaders\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: src/Internal/Codex/Testing/Faker.php
-
-		-
-			message: '#^Method Laravie\\Codex\\Testing\\Faker\:\:message\(\) has invalid return type Mockery\\MockeryInterface\.$#'
-			identifier: class.notFound
 			count: 1
 			path: src/Internal/Codex/Testing/Faker.php
 
@@ -583,18 +553,6 @@ parameters:
 			path: src/Internal/Codex/Testing/Faker.php
 
 		-
-			message: '#^Property Laravie\\Codex\\Testing\\Faker\:\:\$client \(Mockery\\MockeryInterface\) does not accept Mockery\\MockInterface\.$#'
-			identifier: assign.propertyType
-			count: 1
-			path: src/Internal/Codex/Testing/Faker.php
-
-		-
-			message: '#^Property Laravie\\Codex\\Testing\\Faker\:\:\$client has unknown class Mockery\\MockeryInterface as its type\.$#'
-			identifier: class.notFound
-			count: 1
-			path: src/Internal/Codex/Testing/Faker.php
-
-		-
 			message: '#^Property Laravie\\Codex\\Testing\\Faker\:\:\$expectedRequestHeaders type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -603,18 +561,6 @@ parameters:
 		-
 			message: '#^Property Laravie\\Codex\\Testing\\Faker\:\:\$expectedResponseHeaders type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: src/Internal/Codex/Testing/Faker.php
-
-		-
-			message: '#^Property Laravie\\Codex\\Testing\\Faker\:\:\$message \(Mockery\\MockeryInterface\) does not accept Mockery\\MockInterface\.$#'
-			identifier: assign.propertyType
-			count: 1
-			path: src/Internal/Codex/Testing/Faker.php
-
-		-
-			message: '#^Property Laravie\\Codex\\Testing\\Faker\:\:\$message has unknown class Mockery\\MockeryInterface as its type\.$#'
-			identifier: class.notFound
 			count: 1
 			path: src/Internal/Codex/Testing/Faker.php
 

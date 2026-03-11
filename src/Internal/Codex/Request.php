@@ -14,17 +14,13 @@ abstract class Request extends Common\Request
 
     /**
      * Version namespace.
-     *
-     * @var string
      */
-    protected $version;
+    protected string $version;
 
     /**
      * Automatically validate response.
-     *
-     * @var bool
      */
-    protected $validateResponseAutomatically = true;
+    protected bool $validateResponseAutomatically = true;
 
     /**
      * Construct a new Request.
@@ -39,12 +35,15 @@ abstract class Request extends Common\Request
     /**
      * Send API request.
      *
-     * @param  \Laravie\Codex\Contracts\Endpoint|string  $path
      * @param  array<string, mixed>  $headers
      * @param  \Psr\Http\Message\StreamInterface|\Laravie\Codex\Common\Payload|array|null  $body
      */
-    protected function send(string $method, $path, array $headers = [], $body = []): Contracts\Response
-    {
+    protected function send(
+        string $method,
+        Contracts\Endpoint|string $path,
+        array $headers = [],
+        mixed $body = []
+    ): Contracts\Response {
         if ($this instanceof Contracts\Filterable) {
             /** @var \Psr\Http\Message\StreamInterface|\Laravie\Codex\Common\Payload|array|null $body */
             $body = $this->filterRequest($body);
@@ -111,7 +110,7 @@ abstract class Request extends Common\Request
      *
      * @param  array<int, string>|string  $path
      */
-    protected function getApiEndpoint($path = []): Contracts\Endpoint
+    protected function getApiEndpoint(array|string $path = []): Contracts\Endpoint
     {
         return new Endpoint($this->client->getApiEndpoint() ?? '', $path);
     }

@@ -7,6 +7,8 @@ use GuzzleHttp\Psr7\Utils;
 use Http\Client\Common\HttpMethodsClient;
 use Http\Client\HttpClient;
 use Mockery as m;
+use Mockery\Expectation;
+use Mockery\MockInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
@@ -15,66 +17,48 @@ class Faker
 {
     /**
      * HTTP methods client.
-     *
-     * @var \Http\Client\Common\HttpMethodsClient
      */
-    protected $http;
+    protected HttpMethodsClient $http;
 
     /**
      * Mock for "Http\Client\HttpClient".
-     *
-     * @var \Mockery\MockeryInterface
      */
-    protected $client;
+    protected MockInterface $client;
 
     /**
      * Mock for "Psr\Http\Message\ResponseInterface".
-     *
-     * @var \Mockery\MockeryInterface
      */
-    protected $message;
+    protected MockInterface $message;
 
     /**
      * Expected URL endpoint.
-     *
-     * @var string
      */
-    protected $expectedRequestEndpoint;
+    protected ?string $expectedRequestEndpoint;
 
     /**
      * Expected HTTP Request headers.
-     *
-     * @var array
      */
-    protected $expectedRequestHeaders = [];
+    protected array $expectedRequestHeaders = [];
 
     /**
      * Expected HTTP Response status code.
-     *
-     * @var int|null
      */
-    protected $expectedResponseStatusCode;
+    protected ?int $expectedResponseStatusCode;
 
     /**
      * Expected HTTP Response reason phrase.
-     *
-     * @var string|null
      */
-    protected $expectedResponseReasonPhrase;
+    protected ?string $expectedResponseReasonPhrase;
 
     /**
      * Expected HTTP Response body.
-     *
-     * @var string|null
      */
-    protected $expectedResponseBody;
+    protected ?string $expectedResponseBody;
 
     /**
      * Expected HTTP Response headers.
-     *
-     * @var array
      */
-    protected $expectedResponseHeaders = [];
+    protected array $expectedResponseHeaders = [];
 
     /**
      * Construct a fake request.
@@ -95,7 +79,7 @@ class Faker
      *
      * @return static
      */
-    public static function create()
+    public static function create(): self
     {
         return new static;
     }
@@ -105,7 +89,7 @@ class Faker
      *
      * @return $this
      */
-    public function expectEndpointIs(string $endpoint)
+    public function expectEndpointIs(string $endpoint): self
     {
         $this->expectedRequestEndpoint = $endpoint;
 
@@ -119,13 +103,16 @@ class Faker
      * @param  \Mockery\Matcher\Type|mixed  $body
      * @return $this
      */
-    public function call(string $method, $headers = [], $body = '')
+    public function call(string $method, mixed $headers = [], mixed $body = ''): self
     {
         if ($method === 'GET') {
             $body = m::any();
         }
 
-        $this->client->shouldReceive('sendRequest')
+        /** @var Expectation $expectation */
+        $expectation = $this->client->shouldReceive('sendRequest');
+
+        $expectation
             ->with(m::on(function (RequestInterface $request) use ($method, $headers, $body): bool {
                 Assert::assertSame($method, $request->getMethod());
                 Assert::assertSame($this->expectedRequestEndpoint, (string) $request->getUri());
@@ -164,7 +151,7 @@ class Faker
      * @param  \Mockery\Matcher\Type|mixed  $body
      * @return $this
      */
-    public function send(string $method, $headers = [], $body = '')
+    public function send(string $method, mixed $headers = [], mixed $body = ''): self
     {
         return $this->call($method, $headers, $body);
     }
@@ -176,7 +163,7 @@ class Faker
      * @param  \Mockery\Matcher\Type|array|string  $body
      * @return $this
      */
-    public function sendJson(string $method, $headers = [], $body = '')
+    public function sendJson(string $method, mixed $headers = [], mixed $body = ''): self
     {
         if (\is_array($headers)) {
             $headers['Content-Type'] = 'application/json';
@@ -196,7 +183,7 @@ class Faker
      * @param  \Mockery\Matcher\Type|array  $headers
      * @return $this
      */
-    public function stream(string $method, $headers = [])
+    public function stream(string $method, mixed $headers = []): self
     {
         if (\is_array($headers)) {
             $this->expectedRequestHeaders = $headers;
@@ -210,13 +197,18 @@ class Faker
      *
      * @return $this
      */
-    public function shouldResponseWith(int $code = 200, string $body = '', array $headers = [])
+    public function shouldResponseWith(int $code = 200, string $body = '', array $headers = []): self
     {
         $this->expectedResponseStatusCode = $code;
         $this->expectedResponseBody = $body;
 
-        $this->message->shouldReceive('getStatusCode')->andReturn($code)
-            ->shouldReceive('getBody')->andReturn(Utils::streamFor($body));
+        /** @var Expectation $expectStatusCode */
+        $expectStatusCode = $this->message->shouldReceive('getStatusCode');
+        $expectStatusCode->andReturn($code);
+
+        /** @var Expectation $expectBody */
+        $expectBody = $this->message->shouldReceive('getBody');
+        $expectBody->andReturn(Utils::streamFor($body));
 
         $this->expectResponseHeaders($headers);
 
@@ -228,7 +220,7 @@ class Faker
      *
      * @return $this
      */
-    public function shouldResponseWithJson(int $code = 200, string $body = '', array $headers = [])
+    public function shouldResponseWithJson(int $code = 200, string $body = '', array $headers = []): self
     {
         $headers['Content-Type'] = 'application/json';
 
@@ -240,7 +232,7 @@ class Faker
      *
      * @return $this
      */
-    public function expectResponseHeaders(array $headers)
+    public function expectResponseHeaders(array $headers): self
     {
         foreach ($headers as $headerKey => $headerValue) {
             if (! \is_string($headerKey)) {
@@ -256,20 +248,29 @@ class Faker
             }
         }
 
-        $this->message->shouldReceive('hasHeader')
-            ->andReturnUsing(function ($key) {
+        /** @var Expectation $expectHasHeader */
+        $expectHasHeader = $this->message->shouldReceive('hasHeader');
+
+        $expectHasHeader
+            ->andReturnUsing(function (string $key): bool {
                 return \array_key_exists($key, $this->expectedResponseHeaders);
             });
 
-        $this->message->shouldReceive('getHeader')
-            ->andReturnUsing(function ($key) {
+        /** @var Expectation $expectGetHeader */
+        $expectGetHeader = $this->message->shouldReceive('getHeader');
+
+        $expectGetHeader
+            ->andReturnUsing(function (string $key): array {
                 return \array_key_exists($key, $this->expectedResponseHeaders)
                     ? $this->expectedResponseHeaders[$key]
                     : [];
             });
 
-        $this->message->shouldReceive('getHeaderLine')
-            ->andReturnUsing(function ($key) {
+        /** @var Expectation $expectGetHeaderLine */
+        $expectGetHeaderLine = $this->message->shouldReceive('getHeaderLine');
+
+        $expectGetHeaderLine
+            ->andReturnUsing(function (string $key): string {
                 return \array_key_exists($key, $this->expectedResponseHeaders)
                     ? implode(', ', $this->expectedResponseHeaders[$key])
                     : '';
@@ -283,11 +284,13 @@ class Faker
      *
      * @return $this
      */
-    public function expectReasonPhraseIs(string $reason)
+    public function expectReasonPhraseIs(string $reason): self
     {
         $this->expectedResponseReasonPhrase = $reason;
 
-        $this->message->shouldReceive('getReasonPhrase')->andReturn($reason);
+        /** @var Expectation $expectReasonPhrase */
+        $expectReasonPhrase = $this->message->shouldReceive('getReasonPhrase');
+        $expectReasonPhrase->andReturn($reason);
 
         return $this;
     }
@@ -297,7 +300,7 @@ class Faker
      *
      * @return $this
      */
-    public function expectContentTypeIs(string $contentType)
+    public function expectContentTypeIs(string $contentType): self
     {
         return $this->expectResponseHeaders([
             'Content-Type' => $contentType,
@@ -306,20 +309,16 @@ class Faker
 
     /**
      * Get HTTP mock.
-     *
-     * @return \Http\Client\Common\HttpMethodsClient
      */
-    public function http()
+    public function http(): HttpMethodsClient
     {
         return $this->http;
     }
 
     /**
      * Get message mock.
-     *
-     * @return \Mockery\MockeryInterface
      */
-    public function message()
+    public function message(): MockInterface
     {
         return $this->message;
     }

@@ -10,10 +10,8 @@ class Payout extends Request implements Contract
 {
     /**
      * Version namespace.
-     *
-     * @var string
      */
-    protected $version = 'v4';
+    protected string $version = 'v4';
 
     /**
      * Create a new mass payment instruction (mpi) collection.

@@ -36,6 +36,7 @@
         "mockery/mockery": "^1.6",
         "pestphp/pest": "^4.0",
         "pestphp/pest-plugin-drift": "^4.0",
+        "pestphp/pest-plugin-type-coverage": "^4.0",
         "php-http/guzzle7-adapter": "^1.1",
         "phpstan/phpstan": "^2.1",
         "symfony/console": "^7.4",
@@ -58,13 +59,17 @@
     },
     "scripts": {
         "lint": "vendor/bin/pint --test",
-        "analyse": "vendor/bin/phpstan analyse --configuration=phpstan.neon.dist",
+        "analyse": "php -d xdebug.mode=off vendor/bin/phpstan analyse --configuration=phpstan.neon.dist",
+        "analyse:xdebug": "vendor/bin/phpstan analyse --configuration=phpstan.neon.dist --xdebug",
         "test": "vendor/bin/pest",
         "test:parallel": "vendor/bin/pest --parallel",
-        "test:coverage": "XDEBUG_MODE=coverage vendor/bin/pest --coverage-clover build/logs/clover.xml --min=100",
+        "test:coverage": "XDEBUG_MODE=coverage ./vendor/bin/pest --coverage --min=100",
+        "test:type-coverage": "vendor/bin/pest --type-coverage",
         "qa": [
             "@lint",
             "@analyse",
+            "@test:type-coverage",
+            "@test:coverage",   
             "@test:parallel"
         ],
         "hooks:install": "git config core.hooksPath .githooks"

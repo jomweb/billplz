@@ -200,14 +200,14 @@ it('covers codex sanitizer recursion and casting', function (): void {
             return is_numeric($value);
         }
 
-        protected function fromCast($value)
+        protected function fromCast($value): mixed
         {
             return (int) $value;
         }
 
-        protected function toCast($value)
+        protected function toCast($value): object
         {
-            return (string) $value;
+            return (object) ['value' => (string) $value];
         }
     };
 
@@ -233,8 +233,9 @@ it('covers codex sanitizer recursion and casting', function (): void {
 
     expect($filteredFrom['user']['age'])->toBe(12);
     expect($filteredFrom['user']['address'])->toBe(['zip' => 123, 'line' => 'abc']);
-    expect($filteredTo['user']['age'])->toBe('12');
-    expect($filteredTo['user']['address'])->toBe(['zip' => '123', 'line' => 'abc']);
+    expect($filteredTo['user']['age'])->toBeObject();
+    expect((string) $filteredTo['user']['age']->value)->toBe('12');
+    expect((string) $filteredTo['user']['address']['zip']->value)->toBe('123');
     expect($filteredTo['missing'] ?? null)->toBeNull();
 });
 

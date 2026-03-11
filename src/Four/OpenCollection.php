@@ -8,8 +8,6 @@ class OpenCollection extends Request
 {
     /**
      * Version namespace.
-     *
-     * @var string
      */
-    protected $version = 'v4';
+    protected string $version = 'v4';
 }

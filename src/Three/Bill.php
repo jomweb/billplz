@@ -8,8 +8,6 @@ class Bill extends Request
 {
     /**
      * Version namespace.
-     *
-     * @var string
      */
-    protected $version = 'v3';
+    protected string $version = 'v3';
 }

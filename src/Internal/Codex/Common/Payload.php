@@ -11,14 +11,14 @@ class Payload
      *
      * @var object|array|null
      */
-    protected $content = null;
+    protected mixed $content = null;
 
     /**
      * Construct a new payload.
      *
      * @param  object|array|null  $content
      */
-    public function __construct($content = null)
+    public function __construct(mixed $content = null)
     {
         $this->content = $content;
     }
@@ -26,10 +26,9 @@ class Payload
     /**
      * Construct a new payload using static.
      *
-     * @param  mixed  $content
      * @return static|self
      */
-    public static function make($content = null)
+    public static function make(mixed $content = null): self
     {
         if ($content instanceof self) {
             return $content;
@@ -40,10 +39,8 @@ class Payload
 
     /**
      * Get payload content.
-     *
-     * @return mixed
      */
-    public function get(array $headers = [])
+    public function get(array $headers = []): mixed
     {
         if ($this->content instanceof StreamInterface) {
             return $this->content;
@@ -60,10 +57,8 @@ class Payload
 
     /**
      * Convert the content to JSON.
-     *
-     * @param  int  $options
      */
-    public function toJson($options = 0): string
+    public function toJson(int $options = 0): string
     {
         return json_encode($this->content, $options);
     }

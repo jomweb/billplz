@@ -14,7 +14,7 @@ class Response extends \Laravie\Codex\Response implements Filterable
      *
      * @return $this
      */
-    public function validate()
+    public function validate(): self
     {
         $this->abortIfRequestNotFound();
         $this->abortIfRequestUnauthorized();

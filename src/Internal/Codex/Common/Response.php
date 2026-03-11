@@ -8,7 +8,6 @@ use Laravie\Codex\Exceptions\HttpException;
 use Laravie\Codex\Exceptions\NotFoundException;
 use Laravie\Codex\Exceptions\UnauthorizedException;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamInterface;
 
 /**
  * @mixin \Psr\Http\Message\ResponseInterface
@@ -17,10 +16,8 @@ class Response implements \Laravie\Codex\Contracts\Response
 {
     /**
      * The original response.
-     *
-     * @var \Psr\Http\Message\ResponseInterface
      */
-    protected $message;
+    protected ResponseInterface $message;
 
     /**
      * Construct a new response.
@@ -35,7 +32,7 @@ class Response implements \Laravie\Codex\Contracts\Response
      *
      * @return $this
      */
-    public function validate()
+    public function validate(): self
     {
         $this->abortIfRequestUnauthorized();
 
@@ -84,25 +81,16 @@ class Response implements \Laravie\Codex\Contracts\Response
 
     /**
      * Get body.
-     *
-     * @return string
      */
-    public function getBody()
+    public function getBody(): string
     {
-        /** @var string|\Psr\Http\Message\StreamInterface $content */
-        $content = $this->message->getBody();
-
-        return $content instanceof StreamInterface
-            ? (string) $content
-            : $content;
+        return (string) $this->message->getBody();
     }
 
     /**
      * Get content from body, by default we assume it returning JSON.
-     *
-     * @return mixed
      */
-    public function getContent()
+    public function getContent(): mixed
     {
         return \json_decode($this->getBody(), true, 512, JSON_THROW_ON_ERROR);
     }
@@ -187,10 +175,8 @@ class Response implements \Laravie\Codex\Contracts\Response
 
     /**
      * Call method under \Psr\Http\Message\ResponseInterface.
-     *
-     * @return mixed
      */
-    public function __call(string $method, array $parameters)
+    public function __call(string $method, array $parameters): mixed
     {
         if (! method_exists($this->message, $method)) {
             throw new BadMethodCallException("Method [{$method}] doesn't exists.");
@@ -201,10 +187,8 @@ class Response implements \Laravie\Codex\Contracts\Response
 
     /**
      * Get hidden property.
-     *
-     * @return mixed
      */
-    public function __get(string $key)
+    public function __get(string $key): mixed
     {
         if (! property_exists($this, $key)) {
             return null;

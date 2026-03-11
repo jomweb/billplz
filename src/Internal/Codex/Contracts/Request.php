@@ -22,5 +22,5 @@ interface Request
      *
      * @return $this
      */
-    public function setClient(Client $client);
+    public function setClient(Client $client): self;
 }

@@ -3,22 +3,19 @@
 namespace Billplz\Four;
 
 use Billplz\Base\Bill as Request;
+use Billplz\Contracts\PaymentCompletion as PaymentCompletionContract;
 use Laravie\Codex\Contracts\Response;
 
 class Bill extends Request
 {
     /**
      * Version namespace.
-     *
-     * @var string
      */
-    protected $version = 'v4';
+    protected string $version = 'v4';
 
     /**
      * Create a new bill.
      *
-     * @param  \Money\Money|int  $amount
-     * @param  array|string  $callbackUrl
      * @param  array<string, mixed>  $optional
      *
      * @throws \InvalidArgumentException
@@ -28,8 +25,8 @@ class Bill extends Request
         ?string $email,
         ?string $mobile,
         string $name,
-        $amount,
-        $callbackUrl,
+        \Money\Money|int $amount,
+        PaymentCompletionContract|string $callbackUrl,
         string $description,
         array $optional = []
     ): Response {

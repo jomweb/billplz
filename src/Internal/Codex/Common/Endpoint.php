@@ -13,28 +13,23 @@ class Endpoint implements \Laravie\Codex\Contracts\Endpoint
 {
     /**
      * Base URL.
-     *
-     * @var \Psr\Http\Message\UriInterface
      */
-    protected $uri;
+    protected UriInterface $uri;
 
     /**
      * Request query strings.
-     *
-     * @var array
      */
-    protected $query = [];
+    protected array $query = [];
 
     /**
      * Construct API Endpoint.
      *
-     * @param  \Psr\Http\Message\UriInterface|string  $uri
      * @param  array<int, string>|string  $paths
      * @param  array<string, string|null>  $query
      */
-    public function __construct($uri, $paths = [], array $query = [])
+    public function __construct(UriInterface|string|null $uri, array|string $paths = [], array $query = [])
     {
-        $paths = \is_null($paths) || $paths === '/' ? [] : $paths;
+        $paths = $paths === '/' ? [] : $paths;
 
         $this->uri = $uri instanceof UriInterface
             ? $uri
@@ -96,7 +91,7 @@ class Endpoint implements \Laravie\Codex\Contracts\Endpoint
      * @param  string|array<string, string|null>  $key
      * @return $this
      */
-    public function addQuery($key, ?string $value = null)
+    public function addQuery(array|string $key, ?string $value = null): self
     {
         if (\is_array($key)) {
             foreach ($key as $name => $content) {
@@ -151,10 +146,8 @@ class Endpoint implements \Laravie\Codex\Contracts\Endpoint
 
     /**
      * Call method under \Psr\Http\Message\UriInterface.
-     *
-     * @return mixed
      */
-    public function __call(string $method, array $parameters)
+    public function __call(string $method, array $parameters): mixed
     {
         if (! method_exists($this->uri, $method)) {
             throw new BadMethodCallException("Method [{$method}] doesn't exists.");
@@ -173,10 +166,8 @@ class Endpoint implements \Laravie\Codex\Contracts\Endpoint
 
     /**
      * Return the string representation as a URI reference.
-     *
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return (string) $this->get();
     }

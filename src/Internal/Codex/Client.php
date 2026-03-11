@@ -10,24 +10,20 @@ abstract class Client implements Contracts\Client
 
     /**
      * The API endpoint.
-     *
-     * @var string
      */
-    protected $apiEndpoint;
+    protected string $apiEndpoint;
 
     /**
      * Default API version.
-     *
-     * @var string
      */
-    protected $defaultVersion = 'v1';
+    protected string $defaultVersion = 'v1';
 
     /**
      * List of supported API versions.
      *
      * @var array<string, string>
      */
-    protected $supportedVersions = [];
+    protected array $supportedVersions = [];
 
     /**
      * Dump HTTP requests for the client.
@@ -43,7 +39,7 @@ abstract class Client implements Contracts\Client
      *
      * @return $this
      */
-    public function useCustomApiEndpoint(string $endpoint)
+    public function useCustomApiEndpoint(string $endpoint): self
     {
         $this->apiEndpoint = $endpoint;
 
@@ -58,7 +54,7 @@ abstract class Client implements Contracts\Client
      *
      * @throws \InvalidArgumentException
      */
-    public function useVersion(string $version)
+    public function useVersion(string $version): self
     {
         if (! \array_key_exists($version, $this->supportedVersions)) {
             throw new InvalidArgumentException("API version [{$version}] is not supported.");

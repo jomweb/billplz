@@ -16,12 +16,9 @@ final class ArraySubset extends Constraint
     /**
      * @var iterable<mixed, mixed>|ArrayAccess<mixed, mixed>
      */
-    private $subset;
+    private iterable|ArrayAccess $subset;
 
-    /**
-     * @var bool
-     */
-    private $strict;
+    private bool $strict;
 
     /**
      * Create a new array subset constraint instance.

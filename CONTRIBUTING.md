@@ -28,8 +28,8 @@ $ composer hooks:install
 
 The hooks run:
 
-* `pre-commit`: `composer lint`
-* `pre-push`: `composer analyse` and `composer test`
+* `pre-commit`: `composer lint`, `composer analyse`, `composer test:coverage`, and `composer test:type-coverage`
+* `pre-push`: `composer analyse`, `composer test:parallel`, and `composer test:type-coverage`
 
 You can also run the checks manually:
 
@@ -37,7 +37,12 @@ You can also run the checks manually:
 $ composer lint
 $ composer analyse
 $ composer test
+$ composer analyse:xdebug
+$ composer test:coverage
+$ composer test:type-coverage
 $ composer qa
+
+Coverage commands require Xdebug with coverage mode enabled in your PHP CLI runtime.
 ```
 
 If the test suite passes on your local machine you should be good to go.

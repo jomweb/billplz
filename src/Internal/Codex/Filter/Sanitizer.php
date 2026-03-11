@@ -9,18 +9,15 @@ class Sanitizer implements SanitizerContract
 {
     /**
      * Sanitization rules.
-     *
-     * @var array
      */
-    protected $casts = [];
+    protected array $casts = [];
 
     /**
      * Add sanitization rules.
      *
-     * @param  string|array  $group
      * @return $this
      */
-    public function add($group, CastContract $cast)
+    public function add(string|array $group, CastContract $cast): self
     {
         $this->casts = $this->setNestedValue($this->casts, (array) $group, $cast);
 
@@ -57,11 +54,8 @@ class Sanitizer implements SanitizerContract
 
     /**
      * Sanitize request from.
-     *
-     * @param  mixed  $value
-     * @return mixed
      */
-    protected function sanitizeFrom($value, string $name, array $group = [])
+    protected function sanitizeFrom(mixed $value, string $name, array $group = []): mixed
     {
         array_push($group, $name);
 
@@ -78,11 +72,8 @@ class Sanitizer implements SanitizerContract
 
     /**
      * Sanitize response to.
-     *
-     * @param  mixed  $value
-     * @return mixed
      */
-    protected function sanitizeTo($value, string $name, array $group = [])
+    protected function sanitizeTo(mixed $value, string $name, array $group = []): mixed
     {
         array_push($group, $name);
 
@@ -99,10 +90,8 @@ class Sanitizer implements SanitizerContract
 
     /**
      * Get caster.
-     *
-     * @param  string|array  $group
      */
-    protected function resolveCaster($group): ?CastContract
+    protected function resolveCaster(string|array $group): ?CastContract
     {
         $cast = $this->getNestedValue($this->casts, (array) $group);
 
@@ -118,10 +107,9 @@ class Sanitizer implements SanitizerContract
      *
      * @param  array<string, mixed>  $data
      * @param  array<int, string>  $keys
-     * @param  mixed  $value
      * @return array<string, mixed>
      */
-    protected function setNestedValue(array $data, array $keys, $value): array
+    protected function setNestedValue(array $data, array $keys, mixed $value): array
     {
         if ($keys === []) {
             return $data;
@@ -150,9 +138,8 @@ class Sanitizer implements SanitizerContract
      *
      * @param  array<string, mixed>  $data
      * @param  array<int, string>  $keys
-     * @return mixed
      */
-    protected function getNestedValue(array $data, array $keys)
+    protected function getNestedValue(array $data, array $keys): mixed
     {
         foreach ($keys as $key) {
             if (! \is_array($data) || ! \array_key_exists($key, $data)) {

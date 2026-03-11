@@ -9,8 +9,6 @@ class Transaction extends Request implements Contract
 {
     /**
      * Version namespace.
-     *
-     * @var string
      */
-    protected $version = 'v3';
+    protected string $version = 'v3';
 }

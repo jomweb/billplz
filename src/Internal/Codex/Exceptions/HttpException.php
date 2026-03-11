@@ -13,18 +13,14 @@ class HttpException extends RuntimeException implements HttpClientException
 {
     /**
      * Response headers.
-     *
-     * @var \Psr\Http\Message\ResponseInterface|\Laravie\Codex\Contracts\Response
      */
-    protected $response;
+    protected ResponseInterface|Response $response;
 
     /**
      * Construct a new HTTP exception.
-     *
-     * @param  \Psr\Http\Message\ResponseInterface|\Laravie\Codex\Contracts\Response  $response
      */
     public function __construct(
-        $response,
+        ResponseInterface|Response $response,
         ?string $message = null,
         ?Exception $previous = null,
         int $code = 0
@@ -48,10 +44,8 @@ class HttpException extends RuntimeException implements HttpClientException
 
     /**
      * Get response object.
-     *
-     * @return \Psr\Http\Message\ResponseInterface|\Laravie\Codex\Contracts\Response
      */
-    public function getResponse()
+    public function getResponse(): ResponseInterface|Response
     {
         return $this->response;
     }
@@ -64,14 +58,16 @@ class HttpException extends RuntimeException implements HttpClientException
      *
      * @throws \InvalidArgumentException
      */
-    final public function setResponse($response): self
+    public function setResponse(mixed $response): self
     {
-        if ($response instanceof Response || $response instanceof ResponseInterface) {
-            $this->response = $response;
-
-            return $this;
+        if (! $response instanceof ResponseInterface && ! $response instanceof Response) {
+            throw new InvalidArgumentException(
+                'The response must be an instance of Psr\Http\Message\ResponseInterface or Laravie\\Codex\\Contracts\\Response'
+            );
         }
 
-        throw new InvalidArgumentException('$response is not an acceptable response object!');
+        $this->response = $response;
+
+        return $this;
     }
 }

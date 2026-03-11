@@ -5,6 +5,7 @@ set -eu
 repo_root="$(git rev-parse --show-toplevel)"
 cd "$repo_root"
 
-printf '%s\n' 'Running pre-push checks: PHPStan and Pest'
+printf '%s\n' 'Running pre-push checks: PHPStan, Pest parallel, and Pest type coverage'
 composer run analyse
 composer run test:parallel
+composer run test:type-coverage
