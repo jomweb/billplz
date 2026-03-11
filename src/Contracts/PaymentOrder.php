@@ -19,7 +19,8 @@ interface PaymentOrder extends Request
         string $name,
         string $description,
         int $total,
-        array $optional = []
+        array $optional = [],
+        ?int $epoch = null
     ): Response;
 
     /**
@@ -27,10 +28,11 @@ interface PaymentOrder extends Request
      */
     public function get(
         string $paymentOrderId,
+        ?int $epoch = null
     ): Response;
 
     /**
      * Get a Payment Order Limit
      */
-    public function limit(): Response;
+    public function limit(?int $epoch = null): Response;
 }

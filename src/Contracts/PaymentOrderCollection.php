@@ -14,11 +14,15 @@ interface PaymentOrderCollection extends Request
      */
     public function create(
         string $title,
-        array $optional = []
+        array $optional = [],
+        ?int $epoch = null
     ): Response;
 
     /**
      * Get a Payment Order Collection
      */
-    public function get(string $paymentOrderCollectionId): Response;
+    public function get(
+        string $paymentOrderCollectionId,
+        ?int $epoch = null
+    ): Response;
 }

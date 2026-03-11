@@ -18,7 +18,7 @@ it('resolves the correct version', function (): void {
 
 it('can create payment order collection', function (): void {
     $title = 'My First API Payment Order Collection';
-    $epoch = time();
+    $epoch = 1700000000;
     $expected = '{"id":"8f4e331f-ac71-435e-a870-72fe520b4563","title":"My First API Payment Order Collection","callback_url":"https:\/\/example.com\/payment-orders\/callback"}';
 
     $payload = [
@@ -37,7 +37,7 @@ it('can create payment order collection', function (): void {
 
     $response = $this->makeClient($faker)->paymentOrderCollection()->create($title, [
         'callback_url' => 'https://example.com/payment-orders/callback',
-    ]);
+    ], $epoch);
 
     expect($response)->toBeInstanceOf(Response::class);
     expect($response->getStatusCode())->toBe(200);
@@ -49,7 +49,7 @@ it('can create payment order collection', function (): void {
 
 it('can get payment order collection', function (): void {
     $paymentOrderCollectionId = '8f4e331f-ac71-435e-a870-72fe520b4563';
-    $epoch = time();
+    $epoch = 1700000000;
     $expected = '{"id":"8f4e331f-ac71-435e-a870-72fe520b4563","title":"My First API Payment Order Collection","callback_url":"https:\/\/example.com\/payment-orders\/callback"}';
 
     $payload = [
@@ -71,7 +71,7 @@ it('can get payment order collection', function (): void {
     )
         ->shouldResponseWithJson(200, $expected);
 
-    $response = $this->makeClient($faker)->paymentOrderCollection()->get($paymentOrderCollectionId);
+    $response = $this->makeClient($faker)->paymentOrderCollection()->get($paymentOrderCollectionId, $epoch);
 
     expect($response)->toBeInstanceOf(Response::class);
     expect($response->getStatusCode())->toBe(200);

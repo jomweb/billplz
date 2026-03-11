@@ -19,9 +19,10 @@ class PaymentOrderCollection extends Request implements Contract
      */
     public function create(
         string $title,
-        array $optional = []
+        array $optional = [],
+        ?int $epoch = null
     ): Response {
-        $epoch = time();
+        $epoch = $epoch ?? time();
 
         $body['title'] = $title;
         $body['epoch'] = $epoch;
@@ -50,8 +51,9 @@ class PaymentOrderCollection extends Request implements Contract
      */
     public function get(
         string $paymentOrderCollectionId,
+        ?int $epoch = null
     ): Response {
-        $epoch = time();
+        $epoch = $epoch ?? time();
 
         $body['payment_order_collection_id'] = $paymentOrderCollectionId;
         $body['epoch'] = $epoch;

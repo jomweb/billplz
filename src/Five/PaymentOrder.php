@@ -24,9 +24,10 @@ class PaymentOrder extends Request implements Contract
         string $name,
         string $description,
         int $total,
-        array $optional = []
+        array $optional = [],
+        ?int $epoch = null
     ): Response {
-        $epoch = time();
+        $epoch = $epoch ?? time();
 
         $body['payment_order_collection_id'] = $paymentOrderCollectionId;
         $body['bank_code'] = $bankCode;
@@ -55,8 +56,9 @@ class PaymentOrder extends Request implements Contract
      */
     public function get(
         string $paymentOrderId,
+        ?int $epoch = null
     ): Response {
-        $epoch = time();
+        $epoch = $epoch ?? time();
 
         $body['payment_order_id'] = $paymentOrderId;
         $body['epoch'] = $epoch;
@@ -71,9 +73,9 @@ class PaymentOrder extends Request implements Contract
     /**
      * Get a Payment Order Limit
      */
-    public function limit(): Response
+    public function limit(?int $epoch = null): Response
     {
-        $epoch = time();
+        $epoch = $epoch ?? time();
 
         $body['epoch'] = $epoch;
         $body['checksum'] = Checksum::create($this->client->getSignatureKey() ?? '', [

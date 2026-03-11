@@ -1,8 +1,10 @@
 <?php
 
+use GuzzleHttp\Psr7\HttpFactory;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Utils;
 use Http\Client\Common\HttpMethodsClient;
+use Http\Client\HttpClient as PsrHttpClient;
 use Laravie\Codex\Common\Discovery as CommonDiscovery;
 use Laravie\Codex\Common\Endpoint;
 use Laravie\Codex\Common\Payload;
@@ -120,6 +122,43 @@ it('covers request helper plumbing and response factory', function (): void {
 
     expect($request->callMergeApiHeaders(['Accept' => 'json']))->toMatchArray(['Accept' => 'json']);
     expect($request->callMergeApiBody(['foo' => 'bar']))->toMatchArray(['foo' => 'bar']);
+});
+
+it('covers send() GET query body conversion branches', function (): void {
+    $message = m::mock(ResponseInterface::class);
+    $message->shouldReceive('getBody')->andReturn(Utils::streamFor('{}'));
+    $message->shouldReceive('getStatusCode')->andReturn(200);
+    $message->shouldReceive('getReasonPhrase')->andReturn('OK');
+    $message->shouldReceive('getHeader')->andReturn([]);
+    $message->shouldReceive('getHeaderLine')->andReturn('');
+    $message->shouldReceive('hasHeader')->andReturn(false);
+
+    $requests = [];
+    $httpClient = m::mock(PsrHttpClient::class);
+    $httpClient->shouldReceive('sendRequest')->withArgs(function ($httpRequest) use (&$requests): bool {
+        $requests[] = (string) $httpRequest->getUri();
+
+        return true;
+    })->andReturn($message);
+
+    $httpFactory = new HttpFactory;
+    $httpMethodsClient = new HttpMethodsClient($httpClient, $httpFactory, $httpFactory);
+    $client = new \Billplz\Client($httpMethodsClient, static::API_KEY, static::X_SIGNATURE);
+
+    $client->send('GET', new Endpoint('https://example.com', ['status']), ['Accept' => 'json'], new Payload(['status' => 'pending']));
+    $client->send('GET', new Endpoint('https://example.com', ['status']), ['Accept' => 'json'], 'status=processing');
+    $client->send('GET', new Endpoint('https://example.com', ['status']), ['Accept' => 'json'], ['page' => 1]);
+
+    expect($requests[0])->toBe('https://example.com/status?status=pending');
+    expect($requests[1])->toBe('https://example.com/status?status=processing');
+    expect($requests[2])->toBe('https://example.com/status?page=1');
+
+    expect(fn () => $client->send(
+        'GET',
+        new Endpoint('https://example.com', ['status']),
+        ['Accept' => 'json'],
+        true
+    ))->toThrow(\InvalidArgumentException::class);
 });
 
 it('covers codex response success, failures and magic helpers', function (): void {

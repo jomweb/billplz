@@ -235,12 +235,6 @@ parameters:
 			path: src/Internal/Codex/Client.php
 
 		-
-			message: '#^Parameter \#1 \$key of method Laravie\\Codex\\Contracts\\Endpoint\:\:addQuery\(\) expects array\<string, string\>\|string, array\|Laravie\\Codex\\Common\\Payload\|null given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Internal/Codex/Client.php
-
-		-
 			message: '#^Parameter \#4 \$body of method Http\\Client\\Common\\HttpMethodsClient\:\:send\(\) expects Psr\\Http\\Message\\StreamInterface\|string\|null, array\|Laravie\\Codex\\Common\\Payload\|Psr\\Http\\Message\\StreamInterface\|null given\.$#'
 			identifier: argument.type
 			count: 1

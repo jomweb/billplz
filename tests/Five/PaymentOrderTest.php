@@ -20,7 +20,7 @@ it('can create payment order', function (): void {
     $paymentOrderCollectionId = '8f4e331f-ac71-435e-a870-72fe520b4563';
     $bankAccountNumber = '543478924652';
     $total = 2000;
-    $epoch = time();
+    $epoch = 1700000000;
     $expected = '{"id":"cc92738f-dfda-4969-91dc-22a44afc7e26","payment_order_collection_id":"8f4e331f-ac71-435e-a870-72fe520b4563","bank_code":"MBBEMYKL","bank_account_number":"543478924652","name":"Michael Yap","description":"Maecenas eu placerat ante.","total":"2000","status":"pending"}';
 
     $payload = [
@@ -48,7 +48,9 @@ it('can create payment order', function (): void {
         $bankAccountNumber,
         'Michael Yap',
         'Maecenas eu placerat ante.',
-        $total
+        $total,
+        [],
+        $epoch
     );
 
     expect($response)->toBeInstanceOf(Response::class);
@@ -61,7 +63,7 @@ it('can create payment order', function (): void {
 
 it('can get payment order', function (): void {
     $paymentOrderId = 'cc92738f-dfda-4969-91dc-22a44afc7e26';
-    $epoch = time();
+    $epoch = 1700000000;
     $expected = '{"id":"cc92738f-dfda-4969-91dc-22a44afc7e26","payment_order_collection_id":"8f4e331f-ac71-435e-a870-72fe520b4563","bank_code":"MBBEMYKL","bank_account_number":"543478924652","name":"Michael Yap","description":"Maecenas eu placerat ante.","total":"2000","status":"pending"}';
 
     $payload = [
@@ -79,7 +81,7 @@ it('can get payment order', function (): void {
     )
         ->shouldResponseWithJson(200, $expected);
 
-    $response = $this->makeClient($faker)->paymentOrder()->get($paymentOrderId);
+    $response = $this->makeClient($faker)->paymentOrder()->get($paymentOrderId, $epoch);
 
     expect($response)->toBeInstanceOf(Response::class);
     expect($response->getStatusCode())->toBe(200);
@@ -90,7 +92,7 @@ it('can get payment order', function (): void {
 });
 
 it('can get payment order limit', function (): void {
-    $epoch = time();
+    $epoch = 1700000000;
     $expected = '{"available_limit":"15000","currency":"MYR"}';
 
     $payload = [
@@ -106,7 +108,7 @@ it('can get payment order limit', function (): void {
     )
         ->shouldResponseWithJson(200, $expected);
 
-    $response = $this->makeClient($faker)->paymentOrder()->limit();
+    $response = $this->makeClient($faker)->paymentOrder()->limit($epoch);
 
     expect($response)->toBeInstanceOf(Response::class);
     expect($response->getStatusCode())->toBe(200);

@@ -12,7 +12,7 @@ function billplz_register_bill_transaction_tests(array $hooks = []): void
             expect($transaction->getVersion())->toBe($this->apiVersion);
         },
         'can check bill transaction' => function (): void {
-            $expected = '{"bill_id":"inbmmepb","transactions":[{"id":"60793D4707CD","status":"completed","completed_at":"2017-02-23T12:49:23.612+08:00","payment_channel":"FPX"},{"id":"28F3D3194138","status":"failed","completed_at":,"payment_channel":"FPX"}],"page":1}';
+            $expected = '{"bill_id":"inbmmepb","transactions":[{"id":"60793D4707CD","status":"completed","completed_at":"2017-02-23T12:49:23.612+08:00","payment_channel":"FPX"},{"id":"28F3D3194138","status":"failed","completed_at":null,"payment_channel":"FPX"}],"page":1}';
 
             $faker = $this->expectRequest('GET', 'bills/inbmmepb/transactions')
                 ->shouldResponseWithJson(200, $expected);

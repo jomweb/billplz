@@ -2,6 +2,7 @@
 
 namespace Laravie\Codex\Common;
 
+use InvalidArgumentException;
 use Laravie\Codex\Contracts\Endpoint as EndpointContract;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
@@ -34,7 +35,22 @@ trait HttpClient
         $method = strtoupper($method);
 
         if ($method === 'GET' && ! $body instanceof StreamInterface) {
-            $uri->addQuery($body);
+            /** @var array<string, string> $query */
+            $query = [];
+
+            if ($body instanceof Payload) {
+                $body = $body->get();
+            }
+
+            if (\is_array($body)) {
+                $query = $body;
+            } elseif (\is_string($body)) {
+                parse_str($body, $query);
+            } else {
+                throw new InvalidArgumentException('GET request body should be an array or query string.');
+            }
+
+            $uri->addQuery($query);
             $body = null;
         }
 
