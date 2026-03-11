@@ -2,6 +2,7 @@
 
 namespace Laravie\Codex\Testing;
 
+use ArrayAccess;
 use ArrayObject;
 use PHPUnit\Framework\Constraint\Constraint;
 use SebastianBergmann\Comparator\ComparisonFailure;
@@ -13,7 +14,7 @@ use SebastianBergmann\Exporter\Exporter;
 final class ArraySubset extends Constraint
 {
     /**
-     * @var iterable
+     * @var iterable<mixed, mixed>|ArrayAccess<mixed, mixed>
      */
     private $subset;
 
@@ -25,9 +26,9 @@ final class ArraySubset extends Constraint
     /**
      * Create a new array subset constraint instance.
      *
-     * @return void
+     * @param  iterable<mixed, mixed>|ArrayAccess<mixed, mixed>  $subset
      */
-    public function __construct(iterable $subset, bool $strict = false)
+    public function __construct(iterable|ArrayAccess $subset, bool $strict = false)
     {
         $this->strict = $strict;
         $this->subset = $subset;
@@ -42,13 +43,8 @@ final class ArraySubset extends Constraint
      * If $returnResult is true, the result of the evaluation is returned as
      * a boolean value instead: true in case of success, false in case of a
      * failure.
-     *
-     * @param  mixed  $other
-     *
-     * @throws \PHPUnit\Framework\ExpectationFailedException
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
-    public function evaluate($other, string $description = '', bool $returnResult = false): ?bool
+    public function evaluate(mixed $other, string $description = '', bool $returnResult = false): ?bool
     {
         // type cast $other & $this->subset as an array to allow
         // support in standard array functions.
@@ -83,9 +79,6 @@ final class ArraySubset extends Constraint
 
     /**
      * Returns a string representation of the constraint.
-     *
-     *
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
     public function toString(): string
     {
@@ -97,23 +90,16 @@ final class ArraySubset extends Constraint
      *
      * The beginning of failure messages is "Failed asserting that" in most
      * cases. This method should return the second part of that sentence.
-     *
-     * @param  mixed  $other
-     *
-     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      */
-    protected function failureDescription($other): string
+    protected function failureDescription(mixed $other): string
     {
         return 'an array '.$this->toString();
     }
 
     /**
-     * Returns the description of the failure.
-     *
-     * The beginning of failure messages is "Failed asserting that" in most
-     * cases. This method should return the second part of that sentence.
+     * @return array<mixed, mixed>
      */
-    private function toArray(iterable $other): array
+    private function toArray(mixed $other): array
     {
         if (\is_array($other)) {
             return $other;
@@ -121,6 +107,10 @@ final class ArraySubset extends Constraint
 
         if ($other instanceof ArrayObject) {
             return $other->getArrayCopy();
+        }
+
+        if (! ($other instanceof \Traversable)) {
+            return (array) $other;
         }
 
         return iterator_to_array($other);
