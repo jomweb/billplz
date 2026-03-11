@@ -61,7 +61,7 @@
         "analyse": "vendor/bin/phpstan analyse --configuration=phpstan.neon.dist",
         "test": "vendor/bin/pest",
         "test:parallel": "vendor/bin/pest --parallel",
-        "test:coverage": "vendor/bin/pest --coverage-clover build/logs/clover.xml",
+        "test:coverage": "XDEBUG_MODE=coverage vendor/bin/pest --coverage-clover build/logs/clover.xml",
         "qa": [
             "@lint",
             "@analyse",

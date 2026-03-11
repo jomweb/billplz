@@ -5,5 +5,7 @@ set -eu
 repo_root="$(git rev-parse --show-toplevel)"
 cd "$repo_root"
 
-printf '%s\n' 'Running pre-commit checks: Pint'
+printf '%s\n' 'Running pre-commit checks: Pint and Pest coverage'
 composer run lint
+mkdir -p build/logs
+composer run test:coverage
