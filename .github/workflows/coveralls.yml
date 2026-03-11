@@ -48,5 +48,13 @@ jobs:
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set -euo pipefail
+          COVERAGE_FILE="${{ github.workspace }}/build/logs/clover.xml"
           composer global require php-coveralls/php-coveralls
-          php-coveralls --coverage_clover=build/logs/clover.xml -v
+          if [ ! -f "$COVERAGE_FILE" ]; then
+            echo "Coverage file not found: $COVERAGE_FILE"
+            ls -la "${{ github.workspace }}/build" || true
+            ls -la "${{ github.workspace }}/build/logs" || true
+            exit 1
+          fi
+          php-coveralls --root_dir="${{ github.workspace }}" --coverage_clover="$COVERAGE_FILE" -v
