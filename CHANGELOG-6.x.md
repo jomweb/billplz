@@ -6,6 +6,12 @@ This changelog references the relevant changes done to `jomweb/billplz`.
 
 Released: TBD
 
+### Breaking Changes
+
+* Minimum supported PHP is now `8.3`.
+* Response money values now hydrate to `\Money\Money`.
+* `jomweb/ringgit`, `laravie/codex`, and `laravie/codex-filter` are no longer required package dependencies.
+
 ### Added
 
 * Added support for PHP 8.4 and PHP 8.5 in CI.

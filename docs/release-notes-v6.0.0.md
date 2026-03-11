@@ -1,5 +1,11 @@
 # Billplz v6.0.0
 
+## Breaking Changes
+
+1. Minimum supported PHP is now `8.3`
+2. Response money values now hydrate to `\Money\Money`
+3. `jomweb/ringgit`, `laravie/codex`, and `laravie/codex-filter` are no longer package dependencies
+
 ## Highlights
 
 1. PHP `8.3+`
